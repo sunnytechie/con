@@ -1,3 +1,16 @@
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
-    height: 85vh !important;
+    height: 100vh !important;
+}
+
+i.fa {
+    font-size: 1.3em;
+    color: rgb(68, 65, 65) !important;
+}
+
+.active i.fa {
+    color: rgb(218, 213, 213) !important;
+}
+
+.aside li i.fa {
+    color: rgb(241, 77, 77) !important;
 }
