@@ -14,3 +14,7 @@ i.fa {
 .aside li i.fa {
     color: rgb(241, 77, 77) !important;
 }
+
+.first-app-row i.fa {
+    color: rgb(255, 255, 255) !important;
+}
