@@ -13,7 +13,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Total App Users</p>
                   <h5 class="font-weight-bolder mb-0">
-                    $53,000
+                    53,000
                     <span class="text-success text-sm font-weight-bolder">+10%</span>
                   </h5>
                 </div>
@@ -428,7 +428,7 @@
                     </td>
 
                     <td class="align-middle text-center text-sm">
-                      <span class="text-xs font-weight-bold"> $14,000 </span>
+                      <span class="text-xs font-weight-bold"> 14,000 </span>
                     </td> 
 
                   </tr>
