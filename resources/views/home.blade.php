@@ -228,7 +228,7 @@
           <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('assets/img/catholic.jpg');">
             <span class="mask bg-gradient-dark"></span>
             <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-              <h5 class="text-white font-weight-bolder mb-4 pt-2">Catholic of Nigeria</h5>
+              <h5 class="text-white font-weight-bolder mb-4 pt-2">Church of Nigeria</h5>
               <p class="text-white">
                 What you are is God's gift to you, what you become is your gift to God.
               </p>
