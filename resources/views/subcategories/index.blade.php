@@ -8,8 +8,21 @@
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Sub Category</h6>
-              <button class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </button>
+              <a href="#addSubCategory" class="btn btn-default" type="button" data-toggle="modal" type="button"> 
+                <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New 
+              </a>
+              @include('modals.add.subcategory')
             </div>
+
+             {{-- Success Message --}}
+             @if (session('success'))
+             <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+            @endif
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center justify-content-center mb-0">
@@ -22,6 +35,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($subcategories as $subcategory)
                     <tr>
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">1</span>
@@ -47,12 +61,8 @@
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                         
-                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                              <i class="fa fa-eye text-xs"></i>
-                            </a>
                           
-                            <a href="#myModal" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" data-toggle="modal">
+                            <a href="{{ route('subcategories.destroy') }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this record?')">
                               <i class="fa fa-trash text-xs"></i>
                             </a>
                             
@@ -61,7 +71,7 @@
                         </div>
                       </td>
                     </tr>
-                   
+                    @endforeach
                   </tbody>
                 </table>
               </div>

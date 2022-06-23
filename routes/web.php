@@ -45,7 +45,7 @@ Route::post('section/subcategories', [App\Http\Controllers\SubCatController::cla
 Route::get('section/subcategories/{subcategory}', [App\Http\Controllers\SubCatController::class, 'show'])->name('subcategories.show');
 Route::get('section/subcategories/{subcategory}/edit', [App\Http\Controllers\SubCatController::class, 'edit'])->name('subcategories.edit');
 Route::put('section/subcategories/{subcategory}', [App\Http\Controllers\SubCatController::class, 'update'])->name('subcategories.update');
-Route::delete('section/subcategories/{subcategory}', [App\Http\Controllers\SubCatController::class, 'destroy'])->name('subcategories.destroy');
+Route::get('section/subcategories/delete/{subcategory}', [App\Http\Controllers\SubCatController::class, 'destroy'])->name('subcategories.destroy');
 
 //Routes for NewsController
 Route::get('news', [App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
@@ -54,7 +54,7 @@ Route::post('news', [App\Http\Controllers\NewsController::class, 'store'])->name
 Route::get('news/{news}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 Route::get('news/{news}/edit', [App\Http\Controllers\NewsController::class, 'edit'])->name('news.edit');
 Route::put('news/{news}', [App\Http\Controllers\NewsController::class, 'update'])->name('news.update');
-Route::delete('news/{news}', [App\Http\Controllers\NewsController::class, 'destroy'])->name('news.destroy');
+Route::get('news/{news}', [App\Http\Controllers\NewsController::class, 'destroy'])->name('news.destroy');
 
 //Routes for EventController
 Route::get('events', [App\Http\Controllers\EventController::class, 'index'])->name('events.index');
