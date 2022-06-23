@@ -12,10 +12,10 @@
               <h6>Membership listing</h6>
               
               <div class="btn-group" role="group" aria-label="Button group">
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
                     <input type="text" class="form-control" placeholder="Type here...">
-                </div>
+                </div> --}}
                 
                 <a href="#" class="btn btn-default" type="button"> <span><i class="fa fa-file-excel-o px-2" aria-hidden="true"></i></span> Export </a>
               </div>
@@ -27,49 +27,36 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email2</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">State</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Diocese</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Province</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Street</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">City</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date of Birth</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Local Church Address</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                        <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">1</span>
-                        </td>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Spotify</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                      </td>
+                        <td class="text-left px-4"> <span class="text-xs font-weight-bold">1</span> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
                       
-                      <td class="align-middle">
-                        <div class="btn-group" role="group" aria-label="Button group">
-
-                          
-                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                            <i class="fa fa-pencil text-xs"></i>
-                          </a>
-                         
-                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                              <i class="fa fa-eye text-xs"></i>
-                            </a>
-                          
-                            <a href="#myModal" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" data-toggle="modal">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>
-                        
-                          
-                        </div>
-                      </td>
+                    
                     </tr>
                    
                   </tbody>

@@ -45,7 +45,7 @@
 
         {{-- Main application --}}
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            {{-- Navbare --}}
+            
             @guest
             @else
                 @include('navigator.notguest')
@@ -69,5 +69,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    {{-- Preview file upload --}}
+    
 </body>
 </html>

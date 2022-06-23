@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Middleware Auth
+Route::middleware('auth')->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -34,7 +36,7 @@ Route::post('section/categories', [App\Http\Controllers\CategoryController::clas
 Route::get('section/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
 Route::get('section/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('section/categories/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('categories.update');
-Route::delete('section/categories/{category}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::get('section/categories/delete/{category}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
 
 //Routes for SubCatController
 Route::get('section/subcategories', [App\Http\Controllers\SubCatController::class, 'index'])->name('subcategories.index');
@@ -133,3 +135,4 @@ Route::get('prayers/{prayer}/response', [App\Http\Controllers\PrayerController::
 //Routes for FeedbackController
 Route::get('feedbacks', [App\Http\Controllers\FeedbackController::class, 'index'])->name('feedbacks.index');
 
+});
