@@ -31,10 +31,11 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <?php $id = 1; ?>
                     @foreach ($categories as $category)
                     <tr>
                       <td class="text-left px-4">
-                          <span class="text-xs font-weight-bold">1</span>
+                          <span class="text-xs font-weight-bold">{{ $id++ }}</span>
                       </td>
                     <td>
                       <div class="d-flex px-2">

@@ -44,4 +44,43 @@ class SubCatController extends Controller
         return back()->with('success', 'Subcategory created successfully');
 }
 
+//edit subcategory
+public function edit(Subcategory $subcategory)
+{
+    $categories = Category::all();
+    $subcategories = Subcategory::all();
+    $subcategory = Subcategory::find($subcategory->id);
+    $subcategoryID = $subcategory->id;
+    $subcategoryTitle = $subcategory->title;
+    $subcategorySlug = $subcategory->slug;
+    $subcategoryCategoryID = $subcategory->category_id;
+
+    return view('subcategories.edit', compact('subcategory', 'subcategoryTitle', 'subcategorySlug', 'subcategoryCategoryID', 'subcategoryID', 'categories', 'subcategories'));
+}
+
+//Update subcategory
+public function update(Request $request, Subcategory $subcategory)
+{
+    $data = $request->validate([
+        'title' => 'required|min:3|max:255',
+        'slug' => 'required|min:3|max:255|unique:subcategories,slug,' . $subcategory->id,
+        'category_id' => 'required|exists:categories,id',
+    ]);
+
+    $subcategory->update([
+        'title' => $data['title'],
+        'slug' => $data['slug'],
+        'category_id' => $data['category_id'],
+    ]);
+
+    return back()->with('success', 'Subcategory updated successfully');
+}
+
+//destroy subcategory
+public function destroy(Subcategory $subcategory)
+{
+    $subcategory->delete();
+    return back()->with('success', 'Subcategory deleted successfully');
+}
+
 }

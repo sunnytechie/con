@@ -31,38 +31,41 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Slug</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
+                    <?php $id = 1; ?>
                     @foreach ($subcategories as $subcategory)
                     <tr>
                         <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">1</span>
+                            <span class="text-xs font-weight-bold">{{ $id++ }}</span>
                         </td>
                       <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                          </div>
+                        <div class="px-2">
                           <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Spotify</h6>
+                            <h6 class="mb-0 text-sm">{{ $subcategory->title }}</h6>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">Category Name</p>
+                        <p class="text-sm font-weight-bold mb-0">{{ $subcategory->category_id }}</p>
+                      </td>
+
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $subcategory->slug }}</p>
                       </td>
                       
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
 
                           
-                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
+                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('subcategories.edit', $subcategory->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
                           
-                            <a href="{{ route('subcategories.destroy') }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this record?')">
+                            <a href="{{ route('subcategories.destroy', $subcategory->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this record?')">
                               <i class="fa fa-trash text-xs"></i>
                             </a>
                             

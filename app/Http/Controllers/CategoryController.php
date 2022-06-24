@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -41,12 +42,13 @@ class CategoryController extends Controller
 //Edit Category
 public function edit(Category $category)
 {
-
+    $categories = Category::all();
+    $subcategories = Subcategory::all();
     $category = Category::find($category->id);
     $categoryID = $category->id;
     $categoryTitle = $category->title;
     $categoryThumbnail = $category->thumbnail;
-    return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID'));
+    return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories'));
 
     }
 

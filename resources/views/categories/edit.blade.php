@@ -4,7 +4,7 @@
 <div class="container-fluid py-4">
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-8">
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>You are editing this Category</h6>
@@ -52,6 +52,26 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4">
+              <div class="card-header pb-0">
+                  <h6>Total Category</h6>
+              </div>
+              <div class="card-body p-4">
+                  <p>{{ $categories->count() }}</p>
+              </div>
+          </div>
+
+          <div class="card mb-4">
+              <div class="card-header pb-0">
+                  <h6> Total Sub Category</h6>
+              </div>
+              <div class="card-body p-4">
+                  <p>{{ $subcategories->count() }}</p>
+              </div>
+          </div>
+      </div>
       </div>
 
     @include('footer.nonguest')
