@@ -28,6 +28,16 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //Routes for Media
 Route::get('media/videos', [App\Http\Controllers\MediaController::class, 'video'])->name('media.video');
 Route::get('media/audio', [App\Http\Controllers\MediaController::class, 'audio'])->name('media.audio');
+//Store video, edit video, update video and destroy
+Route::post('media/videos/store', [App\Http\Controllers\VideoController::class, 'store'])->name('video.store');
+Route::get('media/video/edit/{id}', [App\Http\Controllers\VideoController::class, 'edit'])->name('video.edit');
+Route::put('media/video/update/{id}', [App\Http\Controllers\VideoController::class, 'update'])->name('video.update');
+Route::get('media/video/destroy/{id}', [App\Http\Controllers\VideoController::class, 'destroy'])->name('video.destroy');
+//Store audio, edit Audio, update audio and destroy
+Route::post('media/audio/store', [App\Http\Controllers\AudioController::class, 'store'])->name('audio.store');
+Route::get('media/audio/edit/{id}', [App\Http\Controllers\AudioController::class, 'edit'])->name('audio.edit');
+Route::put('media/audio/update/{id}', [App\Http\Controllers\AudioController::class, 'update'])->name('audio.update');
+Route::get('media/audio/destroy/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy');
 
 //Routes for Categories
 Route::get('section/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');

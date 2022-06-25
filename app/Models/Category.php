@@ -15,4 +15,14 @@ class Category extends Model
     {
         return $this->hasMany(Subcategory::class);
     }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function audios()
+    {
+        return $this->hasMany(Audio::class);
+    }
 }
