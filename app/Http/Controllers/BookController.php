@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
 {
@@ -13,6 +16,131 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index');
+        //categories
+        $categories = Category::all();
+        //books
+        $books = Book::all();
+        return view('book.index', compact('categories', 'books'));
+    }
+
+    //store book
+    public function store(Request $request)
+    {
+        //Validate the request...
+        $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'category_id' => 'required',
+            'description' => 'required',
+            'file' => 'required|mimes:pdf',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        //store pdf file in public/books
+        $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
+        //change file name to avoid duplicate file name
+        $fileName = time() . '-' . $fileName;
+        
+        $file->storeAs('public/pdf', $fileName);
+
+        //store image file in public/books/images
+        $imagePath = request('image')->store('books/image', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
+
+        //store book
+        $book = new Book();
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->category_id = $request->category_id;
+        $book->description = $request->description;
+        $book->file = $fileName;
+        $book->image = $imagePath;
+        $book->save();
+
+        //redirect to back with success message
+        return redirect()->back()->with('success', 'Book added successfully');
+    }
+
+    //edit book
+    public function edit($book)
+    {
+        //books
+        $books = Book::all();
+        //categories
+        $categories = Category::all();
+        //Variable to store book
+        $book = Book::find($book);
+        $bookID = $book->id;
+        $bookTitle = $book->title;
+        $bookAuthor = $book->author;
+        $bookCategory = $book->category_id;
+        $bookDescription = $book->description;
+        $bookFile = $book->file;
+        $bookImage = $book->image;
+
+        return view('book.edit', compact('categories', 'bookID', 'bookTitle', 'bookAuthor', 'bookCategory', 'bookDescription', 'bookFile', 'bookImage', 'books'));
+    }
+
+    //update book
+    public function update(Request $request, $id)
+    {
+        //Validate the request...
+        $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required|max:255',
+            'category_id' => 'required',
+            'description' => 'required',
+            'file' => 'mimes:pdf',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        //update pdf file in public/books when file is changed or image is changed
+        if ($request->hasFile('file')) {
+            //update pdf file in public/books
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            //change file name to avoid duplicate file name
+            $fileName = time() . '-' . $fileName;
+            $file->storeAs('public/pdf', $fileName);
+        }
+
+        //update image file in public/books/images when image is changed
+        if ($request->hasFile('image')) {
+
+            //update image file in public/books/images
+            $imagePath = request('image')->store('books/image', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            $image->save();
+        }
+
+        //update book
+        $book = Book::find($id);
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->category_id = $request->category_id;
+        $book->description = $request->description;
+        if ($request->hasFile('file')) {
+            $book->file = $fileName;
+        }
+        if ($request->hasFile('image')) {
+            $book->image = $imagePath;
+        }
+        $book->save();
+
+        //redirect to back with success message
+        return redirect()->back()->with('success', 'Book updated successfully');
+       
+    }
+
+    //delete book
+    public function destroy($id)
+    {
+        //find book book
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->back()->with('success', 'Book deleted successfully');
     }
 }

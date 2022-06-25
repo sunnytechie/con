@@ -103,7 +103,7 @@ Route::post('books', [App\Http\Controllers\BookController::class, 'store'])->nam
 Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])->name('books.show');
 Route::get('books/{book}/edit', [App\Http\Controllers\BookController::class, 'edit'])->name('books.edit');
 Route::put('books/{book}', [App\Http\Controllers\BookController::class, 'update'])->name('books.update');
-Route::delete('books/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy');
+Route::get('books/delete/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy');
 
 //Routes for DonationController
 Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index');

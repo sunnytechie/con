@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->hasMany(Audio::class);
     }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

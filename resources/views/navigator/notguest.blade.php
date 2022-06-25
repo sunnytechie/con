@@ -6,10 +6,13 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-          <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+          {{-- //Switch page title based on url path --}}
+        @if(Request::path() == '/')
+          <li class="font-weight-bolder breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+        @else
+          <li class="font-weight-bolder breadcrumb-item text-sm text-dark active" aria-current="page">{{ Request::path() }}</li>
+        @endif
         </ol>
-        <h6 class="font-weight-bolder mb-0">Dashboard</h6>
-        {{-- Success msg --}}
       </nav>
 
       
@@ -51,7 +54,7 @@
 
           {{-- PDF --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
+            <a href="{{ route('books.index') }}" class="nav-link text-body p-0">
               <i class="fa fa-book fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>

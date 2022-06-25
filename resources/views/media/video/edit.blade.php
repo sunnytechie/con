@@ -87,7 +87,7 @@
                     
                     <div class="mb-3">
                         <label>Description</label>
-                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" value="{{ $videoDescription ?? old('category_id') }}" placeholder="Provide a description" required>{{ $videoDescription }}</textarea>
+                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Provide a description" required>{{ $videoDescription ?? old('description') }}</textarea>
 
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -150,7 +150,7 @@
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Button group">
-                        <a href="{{ route('categories.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                        <a href="{{ route('media.video') }}" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</a>
                         <button type="submit" class="btn btn-success">Update</button>
                     </div>
                 </form>
