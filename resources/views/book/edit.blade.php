@@ -37,14 +37,58 @@
                     
                     <div class="mb-3">
                         <label>Category</label>
-                        <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" value="{{ $bookCategory ?? old('category_id') }}" required>
+                        <select name="bookcategory_id" id="bookcategory_id" class="form-control @error('bookcategory_id') is-invalid @enderror" value="{{ $bookBookcategory ?? old('bookcategory_id') }}" required>
                             <option value="" disabled>Select Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $bookCategory == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
+                            @foreach ($bookcategories as $category)
+                                <option value="{{ $category->id }}" {{ $bookBookcategory == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                             @endforeach
                         </select>
 
-                        @error('category_id')
+                        @error('bookcategory_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+ 
+                    <div class="mb-3">
+                        <label>Subcategory</label>
+                        <select name="booksubcategory_id" id="booksubcategory_id" class="form-control @error('booksubcategory_id') is-invalid @enderror" value="{{ $bookBooksubcategory ?? old('booksubcategory_id') }}" required>
+                            <option value="" disabled>Select Subcategory</option>
+                            @foreach ($booksubcategories as $subcategory)
+                                <option value="{{ $subcategory->id }}" {{ $bookBooksubcategory == $subcategory->id ? 'selected' : '' }}>{{ $subcategory->title }}</option>
+                            @endforeach
+                        </select>
+
+                        @error('booksubcategory_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    
+                    <div class="mb-3">
+                        <label>Type</label>
+                        <select name="type" id="type" class="form-control @error('type') is-invalid @enderror" value="{{ $bookType ?? old('type') }}" required>
+                            <option value="" disabled>Select Price</option>
+                            <option value="0" {{ $bookType == 0 ? 'selected' : '' }}>Free</option>
+                            <option value="1" {{ $bookType == 1 ? 'selected' : '' }}>Paid</option>
+                        </select>
+
+                        @error('type')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label>Price</label>
+                        <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $bookPrice ?? old('price') }}" placeholder="Provide a price" required>
+
+                        @error('price')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -75,7 +119,7 @@
 
                     <div class="mb-3">
                         <label>Book author</label>
-                        <input name="author" class="form-control @error('author') is-invalid @enderror" type="text" value="{{ $bookAuthor ?? old('category_id') }}" id="author" placeholder="Provide a author">
+                        <input name="author" class="form-control @error('author') is-invalid @enderror" type="text" value="{{ $bookAuthor ?? old('author') }}" id="author" placeholder="Provide an author's name">
 
                             @error('author')
                                 <span class="invalid-feedback" role="alert">
@@ -95,11 +139,7 @@
                                 </span>
                             @enderror
                     </div>
-
-                    
-                
-
-                    
+         
 
                     <div class="btn-group" role="group" aria-label="Button group">
                         <a href="{{ route('books.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</a>

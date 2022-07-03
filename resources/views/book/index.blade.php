@@ -8,8 +8,14 @@
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Book listing</h6>
-              <a href="#newBook" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Publish New Book</a>
-              @include('modals.add.book')
+              <div class="btn-group" role="group" aria-label="Button group">
+                             <a href="#newSubBookCategory" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-square-o px-2" aria-hidden="true"></i></span> Create New Sub Category</a>
+                             <a href="#newBookCategory" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-square px-2" aria-hidden="true"></i></span> Create Book Category</a>
+                             <a href="#newBook" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Publish New Book</a>
+                             @include('modals.add.book')
+                             @include('modals.add.book_category')
+                             @include('modals.add.book_sub_category')
+              </div>
             </div>
 
             @if (session('success'))
@@ -31,6 +37,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Author</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sub Category</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -54,7 +61,8 @@
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->description }} </td>
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->author }} </td>
                     
-                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->category->title }} </td>
+                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->bookcategory->title }} </td>
+                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->booksubcategory->title }} </td>
                     
                     <td class="align-middle">
                       <div class="btn-group" role="group" aria-label="Button group">

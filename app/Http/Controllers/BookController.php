@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Bookcategory;
 use Illuminate\Http\Request;
+use App\Models\Booksubcategory;
 use Intervention\Image\Facades\Image;
 
 class BookController extends Controller
@@ -16,11 +18,15 @@ class BookController extends Controller
      */
     public function index()
     {
+        //bookcategories
+        $bookcategories = Bookcategory::all();
         //categories
         $categories = Category::all();
+        //booksubcategories
+        $booksubcategories = Booksubcategory::all();
         //books
         $books = Book::all();
-        return view('book.index', compact('categories', 'books'));
+        return view('book.index', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
     }
 
     //store book
@@ -30,9 +36,12 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'author' => 'required|max:255',
-            'category_id' => 'required',
             'description' => 'required',
             'file' => 'required|mimes:pdf',
+            'type' => 'required',
+            'price' => '',
+            'bookcategory_id' => '',
+            'booksubcategory_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -54,10 +63,14 @@ class BookController extends Controller
         $book = new Book();
         $book->title = $request->title;
         $book->author = $request->author;
-        $book->category_id = $request->category_id;
         $book->description = $request->description;
         $book->file = $fileName;
         $book->image = $imagePath;
+        $book->type = $request->type;
+        $book->price = $request->price;
+        $book->bookcategory_id = $request->bookcategory_id;
+        $book->booksubcategory_id = $request->booksubcategory_id;
+        
         $book->save();
 
         //redirect to back with success message
@@ -71,17 +84,24 @@ class BookController extends Controller
         $books = Book::all();
         //categories
         $categories = Category::all();
+        //bookcategories
+        $bookcategories = Bookcategory::all();
+        //booksubcategories
+        $booksubcategories = Booksubcategory::all();
         //Variable to store book
         $book = Book::find($book);
         $bookID = $book->id;
         $bookTitle = $book->title;
         $bookAuthor = $book->author;
-        $bookCategory = $book->category_id;
         $bookDescription = $book->description;
         $bookFile = $book->file;
+        $bookType = $book->type;
+        $bookPrice = $book->price;
+        $bookBookcategory = $book->bookcategory_id;
+        $bookBooksubcategory = $book->booksubcategory_id;
         $bookImage = $book->image;
 
-        return view('book.edit', compact('categories', 'bookID', 'bookTitle', 'bookAuthor', 'bookCategory', 'bookDescription', 'bookFile', 'bookImage', 'books'));
+        return view('book.edit', compact('categories', 'bookcategories', 'bookID', 'bookTitle', 'bookAuthor', 'bookDescription', 'bookFile', 'bookImage', 'books', 'bookType', 'bookPrice', 'bookBookcategory', 'bookBooksubcategory', 'booksubcategories'));
     }
 
     //update book
@@ -91,8 +111,11 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'author' => 'required|max:255',
-            'category_id' => 'required',
             'description' => 'required',
+            'type' => 'required',
+            'price' => '',
+            'bookcategory_id' => '',
+            'booksubcategory_id' => 'required',
             'file' => 'mimes:pdf',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -120,7 +143,10 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->title = $request->title;
         $book->author = $request->author;
-        $book->category_id = $request->category_id;
+        $book->type = $request->type;
+        $book->price = $request->price;
+        $book->bookcategory_id = $request->bookcategory_id;
+        $book->booksubcategory_id = $request->booksubcategory_id;
         $book->description = $request->description;
         if ($request->hasFile('file')) {
             $book->file = $fileName;

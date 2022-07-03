@@ -15,12 +15,27 @@ class Book extends Model
         'description',
         'image',
         'file',
-        'category_id',
+        'bookcategory_id',
+        'booksubcategory_id',
+        'price',
+        'type'
     ];
 
-    //belongs to category
-    public function category()
+    //belongs to BookCategory
+    public function bookcategory()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Bookcategory::class);
+    }
+
+    //belongs to BookSubCategory
+    public function booksubcategory()
+    {
+        return $this->belongsTo(Booksubcategory::class);
+    }
+
+    //has many BookSubCategory
+    public function booksubcategories()
+    {
+        return $this->hasMany(Booksubcategory::class);
     }
 }

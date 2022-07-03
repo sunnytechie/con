@@ -104,6 +104,10 @@ Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])
 Route::get('books/{book}/edit', [App\Http\Controllers\BookController::class, 'edit'])->name('books.edit');
 Route::put('books/{book}', [App\Http\Controllers\BookController::class, 'update'])->name('books.update');
 Route::get('books/delete/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy');
+//Route store Book Category
+Route::post('books/categories', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('books.categories.store');
+//Route store Book SubCategory
+Route::post('books/sub/categories', [App\Http\Controllers\BookSubCategoryController::class, 'store'])->name('books.sub.categories.store');
 
 //Routes for DonationController
 Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index');
