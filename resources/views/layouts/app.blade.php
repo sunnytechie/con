@@ -77,6 +77,13 @@
         }, 5000);
     </script>
 
-    
+<script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
+{{-- on window load, load two function --}}
+<script>
+    window.onload = function() {
+        columnChart();
+        pieChart();
+    };
+</script>
 </body>
 </html>
