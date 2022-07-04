@@ -149,4 +149,14 @@ Route::get('prayers/{prayer}/response', [App\Http\Controllers\PrayerController::
 //Routes for FeedbackController
 Route::get('feedbacks', [App\Http\Controllers\FeedbackController::class, 'index'])->name('feedbacks.index');
 
+//Routes for AdminController
+Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+Route::get('admin/create', [App\Http\Controllers\AdminController::class, 'create'])->name('admin.create');
+Route::post('admin', [App\Http\Controllers\AdminController::class, 'store'])->name('admin.store');
+Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'show'])->name('admin.show');
+Route::get('admin/{admin}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit');
+Route::put('admin/{admin}', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update');
+Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
+
+
 });

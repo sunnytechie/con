@@ -33,28 +33,28 @@
 
           {{-- Add more users --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
+            <a href="{{ route('admin.index') }}" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Admin Accounts">
               <i class="fa fa-user-plus fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
 
           {{-- Setting --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
+            <a href="javascript:;" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Settings">
               <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
             </a>
           </li>
 
           {{-- LiveStream --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0">
+            <a href="javascript:;" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Live stream setting">
               <i class="fa fa-steam fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
 
           {{-- PDF --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="{{ route('books.index') }}" class="nav-link text-body p-0">
+            <a href="{{ route('books.index') }}" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Books">
               <i class="fa fa-book fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
