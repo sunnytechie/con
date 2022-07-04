@@ -22,15 +22,17 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'role' => 'required',
+            'is_admin' => 'required',
             'password' => 'required|min:6',
         ]);
         $admin = new User;
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->role = $request->role;
+        $admin->is_admin = $request->is_admin;
         $admin->password = bcrypt($request->password);
         $admin->save();
-        return redirect()->route('admin.index')->with('success', 'User created successfully');
+        return back()->with('success', 'Account created successfully');
     }
 
     //edit admin
@@ -55,7 +57,7 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'role' => 'required',
-            'password' => 'required|min:6',
+            'password' => '',
         ]);
         $admin = User::find($id);
         $admin->name = $request->name;
@@ -64,7 +66,7 @@ class AdminController extends Controller
         $admin->password = bcrypt($request->password);
         $admin->save();
 
-        return back()->with('success', 'User updated successfully');
+        return back()->with('success', 'Account updated successfully');
         //return redirect()->route('admin.index')->with('success', 'User updated successfully');
     }
 
@@ -73,7 +75,7 @@ class AdminController extends Controller
     {
         $admin = User::find($id);
         $admin->delete();
-        return redirect()->route('admin.index')->with('success', 'User deleted successfully');
+        return back()->with('success', 'Account deleted successfully');
     }
 
 

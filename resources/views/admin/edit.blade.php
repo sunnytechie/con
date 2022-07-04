@@ -55,7 +55,7 @@
 					
                     <div class="mb-3">
                         <label>Password</label>
-                        	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ $adminPassword ?? old('password') }}" required>
+                        	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ $adminPassword ?? old('password') }}">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Button group">
-                        <a href="{{ route('admin.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                        <a href="{{ route('admin.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Back</a>
                         <button type="submit" class="btn btn-success">Publish</button>
                     </div>
                 </form>

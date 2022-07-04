@@ -10,7 +10,15 @@
             <div class="card card-plain mt-8">
               <div class="card-header pb-0 text-left bg-transparent">
                 <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
-                <p class="mb-0">Sign in with your email and password</p>
+                
+                @if(session()->has('error'))
+                <p class="mb-0" style="color: red">
+                        {{ session()->get('error') }}
+                </p>
+                @else
+                  <p class="mb-0">Sign in with your email and password</p>
+                @endif
+                
               </div>
               <div class="card-body">
                     <form role="form" method="POST" action="{{ route('login') }}">

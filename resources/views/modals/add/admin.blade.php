@@ -19,6 +19,9 @@
 							@enderror
 					</div>
                     
+                    {{-- Hide is_admin --}}
+                    <input type="hidden" name="is_admin" value="1">
+                    
                    
                     <div class="mb-3">
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter email" required>
@@ -35,7 +38,6 @@
                         <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
                             <option value="">Select Role</option>
                             <option value="admin">Admin</option>
-                            <option value="user">User</option>
                             <option value="finance">Finance Control</option>
                             <option value="db">Database Officer</option>
                             <option value="ict">ICT Control</option>

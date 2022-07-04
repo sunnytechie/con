@@ -46,4 +46,9 @@ class HomeController extends Controller
     {
         return view('media');
     }
+
+    public function notAuthorized()
+    {
+        return view('notAuthorized');
+    }
 }

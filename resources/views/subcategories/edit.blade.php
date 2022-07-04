@@ -65,7 +65,7 @@
 					
 
                     <div class="btn-group" role="group" aria-label="Button group">
-                        <a href="{{ route('subcategories.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</a>
+                        <a href="{{ route('subcategories.index') }}" type="button" class="btn btn-danger" data-dismiss="modal">Back</a>
                         <button type="submit" class="btn btn-success">Update</button>
                     </div>
                 </form>
