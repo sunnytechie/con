@@ -38,4 +38,10 @@ class Book extends Model
     {
         return $this->hasMany(Booksubcategory::class);
     }
+
+    //has many PurchasedBook
+    public function purchasedbooks()
+    {
+        return $this->hasMany(PurchasedBook::class);
+    }
 }

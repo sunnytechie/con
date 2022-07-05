@@ -126,7 +126,7 @@ Route::post('payments', [App\Http\Controllers\PaymentController::class, 'store']
 Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show')->middleware('is_admin');
 Route::get('payments/{payment}/edit', [App\Http\Controllers\PaymentController::class, 'edit'])->name('payments.edit')->middleware('is_admin');
 Route::put('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'update'])->name('payments.update')->middleware('is_admin');
-Route::delete('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payments.destroy')->middleware('is_admin');
+Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payments.destroy')->middleware('is_admin');
 
 //Routes for TestimonyController
 Route::get('testimonies', [App\Http\Controllers\TestimonyController::class, 'index'])->name('testimonies.index')->middleware('is_admin');

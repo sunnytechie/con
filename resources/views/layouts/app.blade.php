@@ -71,19 +71,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     {{-- Preview file upload --}}
 
+    {{-- Flutterwave inline payment --}}
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+
     <script>
         setTimeout(function() {
             $('.alert').fadeOut('fast');
         }, 5000);
     </script>
 
-<script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
-{{-- on window load, load two function --}}
-<script>
-    window.onload = function() {
-        columnChart();
-        pieChart();
-    };
-</script>
+    <script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
+    
+    {{-- on window load, load two function --}}
+    <script>
+        window.onload = function() {
+            columnChart();
+            pieChart();
+        };
+    </script>
+
 </body>
 </html>
