@@ -42,22 +42,25 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td class="text-left px-4"> <span class="text-xs font-weight-bold">1</span> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">$2,500</p> </td>
-                      
-                    
-                    </tr>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($memberships as $membership)
+                      <tr>
+                        <td class="text-left px-4"> <span class="text-xs font-weight-bold">{{ $i++ }}</span> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->first_name }} {{ $membership->last_name }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->phone }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email2 }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->state }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->diocease }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->province }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->street }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->city }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->date_of_birth }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->local_church_address }}</p> </td>                   
+                    </tr>  
+                    @endforeach                    
                    
                   </tbody>
                 </table>
