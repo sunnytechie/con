@@ -22,6 +22,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('login_type')->default('email');
+            $table->string('blocked')->default(0);
+            $table->string('isDeleted')->default(0);
+            $table->string('subscribed')->nullable();
+            $table->string('subscribe_expiry_date')->nullable();
+            $table->string('subscribe_plan')->nullable();
+            $table->string('subscribe_token')->nullable();
+            $table->string('sub_type')->nullable();
+            $table->string('user_otp')->nullable();
             $table->timestamps();
         });
     }

@@ -60,7 +60,7 @@
                       <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->date_of_birth }}</p> </td>
                       <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->local_church_address }}</p> </td> 
                       <td> 
-                        <form method="post" action="{{ route('membership.destroy', $membership->id) }}">
+                        <form method="post" action="{{ route('memberships.destroy', $membership->id) }}">
                           @method('delete')
                           @csrf
                           <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>

@@ -26,4 +26,10 @@ class Membership extends Model
         'wedding_date',
         'local_church_address',
     ];
+
+    //belongs to user through email
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'email', 'email');
+    }
 }

@@ -22,7 +22,24 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'is_admin',
+        'role',
+        'email_verified_at',
+        'login_type',
+        'blocked',
+        'isDeleted',
+        'subscribed',
+        'subscribe_expiry_date',
+        'subscribe_plan',
+        'subscribe_token',
+        'sub_type',
+        'user_otp',
     ];
+
+    //has many membership
+    public function membership()
+    {
+        return $this->hasMany('App\Models\Membership');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

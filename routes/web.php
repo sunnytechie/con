@@ -72,7 +72,7 @@ Route::post('news', [App\Http\Controllers\NewsController::class, 'store'])->name
 Route::get('news/{news}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show')->middleware('is_admin');
 Route::get('news/{news}/edit', [App\Http\Controllers\NewsController::class, 'edit'])->name('news.edit')->middleware('is_admin');
 Route::put('news/{news}', [App\Http\Controllers\NewsController::class, 'update'])->name('news.update')->middleware('is_admin');
-Route::get('news/{news}', [App\Http\Controllers\NewsController::class, 'destroy'])->name('news.destroy')->middleware('is_admin');
+Route::delete('news/{news}', [App\Http\Controllers\NewsController::class, 'destroy'])->name('news.destroy')->middleware('is_admin');
 
 //Routes for EventController
 Route::get('events', [App\Http\Controllers\EventController::class, 'index'])->name('events.index')->middleware('is_admin');
@@ -90,6 +90,13 @@ Route::post('notifications', [App\Http\Controllers\NotificationController::class
 
 //Routes for AndroidUsersController
 Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index')->middleware('is_admin');
+Route::get('app/androidusers/create', [App\Http\Controllers\AndroidUsersController::class, 'create'])->name('androidusers.create')->middleware('is_admin');
+Route::post('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'store'])->name('androidusers.store')->middleware('is_admin');
+Route::get('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'show'])->name('androidusers.show')->middleware('is_admin');
+Route::get('app/androidusers/{androiduser}/edit', [App\Http\Controllers\AndroidUsersController::class, 'edit'])->name('androidusers.edit')->middleware('is_admin');
+Route::put('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'update'])->name('androidusers.update')->middleware('is_admin');
+Route::delete('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'destroy'])->name('androidusers.destroy')->middleware('is_admin');
+
 
 //Routes for CommentController
 Route::get('app/comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index')->middleware('is_admin');
