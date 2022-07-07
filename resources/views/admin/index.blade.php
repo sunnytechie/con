@@ -66,10 +66,12 @@
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('admin.edit', $user->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                               
-                            <a href="{{ route('admin.destroy', $user->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this user?')">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>
+
+                            <form method="post" action="{{ route('admin.destroy', $user->id) }}">
+                              @method('delete')
+                              @csrf
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
+                          </form>
                             
                            
                         </div>

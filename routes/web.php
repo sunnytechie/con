@@ -18,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Auth::routes();
+//verified middleware
+Route::get('/verified', function () {
+    return view('verified');
+})->middleware('verified');
+
+Auth::routes([
+    'verify' => true,
+]);
 
 //Middleware Auth
 Route::middleware('auth')->group(function () {
@@ -33,12 +40,12 @@ Route::get('media/audio', [App\Http\Controllers\MediaController::class, 'audio']
 Route::post('media/videos/store', [App\Http\Controllers\VideoController::class, 'store'])->name('video.store')->middleware('is_admin');
 Route::get('media/video/edit/{id}', [App\Http\Controllers\VideoController::class, 'edit'])->name('video.edit')->middleware('is_admin');
 Route::put('media/video/update/{id}', [App\Http\Controllers\VideoController::class, 'update'])->name('video.update')->middleware('is_admin');
-Route::get('media/video/destroy/{id}', [App\Http\Controllers\VideoController::class, 'destroy'])->name('video.destroy')->middleware('is_admin');
+Route::delete('media/video/destroy/{id}', [App\Http\Controllers\VideoController::class, 'destroy'])->name('video.destroy')->middleware('is_admin');
 //Store audio, edit Audio, update audio and destroy
 Route::post('media/audio/store', [App\Http\Controllers\AudioController::class, 'store'])->name('audio.store')->middleware('is_admin');
 Route::get('media/audio/edit/{id}', [App\Http\Controllers\AudioController::class, 'edit'])->name('audio.edit')->middleware('is_admin');
 Route::put('media/audio/update/{id}', [App\Http\Controllers\AudioController::class, 'update'])->name('audio.update')->middleware('is_admin');
-Route::get('media/audio/destroy/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy')->middleware('is_admin');
+Route::delete('media/audio/destroy/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy')->middleware('is_admin');
 
 //Routes for Categories
 Route::get('section/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index')->middleware('is_admin');
@@ -47,7 +54,7 @@ Route::post('section/categories', [App\Http\Controllers\CategoryController::clas
 Route::get('section/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show')->middleware('is_admin');
 Route::get('section/categories/{category}/edit', [App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit')->middleware('is_admin');
 Route::put('section/categories/{category}', [App\Http\Controllers\CategoryController::class, 'update'])->name('categories.update')->middleware('is_admin');
-Route::get('section/categories/delete/{category}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy')->middleware('is_admin');
+Route::delete('section/categories/delete/{category}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy')->middleware('is_admin');
 
 //Routes for SubCatController
 Route::get('section/subcategories', [App\Http\Controllers\SubCatController::class, 'index'])->name('subcategories.index')->middleware('is_admin');
@@ -56,7 +63,7 @@ Route::post('section/subcategories', [App\Http\Controllers\SubCatController::cla
 Route::get('section/subcategories/{subcategory}', [App\Http\Controllers\SubCatController::class, 'show'])->name('subcategories.show')->middleware('is_admin');
 Route::get('section/subcategories/{subcategory}/edit', [App\Http\Controllers\SubCatController::class, 'edit'])->name('subcategories.edit')->middleware('is_admin');
 Route::put('section/subcategories/{subcategory}', [App\Http\Controllers\SubCatController::class, 'update'])->name('subcategories.update')->middleware('is_admin');
-Route::get('section/subcategories/delete/{subcategory}', [App\Http\Controllers\SubCatController::class, 'destroy'])->name('subcategories.destroy')->middleware('is_admin');
+Route::delete('section/subcategories/delete/{subcategory}', [App\Http\Controllers\SubCatController::class, 'destroy'])->name('subcategories.destroy')->middleware('is_admin');
 
 //Routes for NewsController
 Route::get('news', [App\Http\Controllers\NewsController::class, 'index'])->name('news.index')->middleware('is_admin');
@@ -94,6 +101,10 @@ Route::get('app/comments/reported', [App\Http\Controllers\ReportedCommentControl
 Route::get('memberships', [App\Http\Controllers\MembershipController::class, 'index'])->name('memberships.index')->middleware('is_admin');
 Route::get('memberships/create', [App\Http\Controllers\MembershipController::class, 'create'])->name('memberships.create')->middleware('is_admin');
 Route::post('memberships', [App\Http\Controllers\MembershipController::class, 'store'])->name('memberships.store')->middleware('is_admin');
+Route::get('memberships/{membership}', [App\Http\Controllers\MembershipController::class, 'show'])->name('memberships.show')->middleware('is_admin');
+Route::get('memberships/{membership}/edit', [App\Http\Controllers\MembershipController::class, 'edit'])->name('memberships.edit')->middleware('is_admin');
+Route::put('memberships/{membership}', [App\Http\Controllers\MembershipController::class, 'update'])->name('memberships.update')->middleware('is_admin');
+Route::delete('memberships/{membership}', [App\Http\Controllers\MembershipController::class, 'destroy'])->name('memberships.destroy')->middleware('is_admin');
 //Route for Membership Export
 Route::get('memberships/export', [App\Http\Controllers\MembershipController::class, 'export'])->name('memberships.export')->middleware('is_admin');
 
@@ -104,7 +115,7 @@ Route::post('books', [App\Http\Controllers\BookController::class, 'store'])->nam
 Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])->name('books.show')->middleware('is_admin');
 Route::get('books/{book}/edit', [App\Http\Controllers\BookController::class, 'edit'])->name('books.edit')->middleware('is_admin');
 Route::put('books/{book}', [App\Http\Controllers\BookController::class, 'update'])->name('books.update')->middleware('is_admin');
-Route::get('books/delete/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy')->middleware('is_admin');
+Route::delete('books/delete/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy')->middleware('is_admin');
 //Route store Book Category
 Route::post('books/categories', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('books.categories.store')->middleware('is_admin');
 //Route store Book SubCategory
@@ -126,7 +137,7 @@ Route::post('payments', [App\Http\Controllers\PaymentController::class, 'store']
 Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show')->middleware('is_admin');
 Route::get('payments/{payment}/edit', [App\Http\Controllers\PaymentController::class, 'edit'])->name('payments.edit')->middleware('is_admin');
 Route::put('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'update'])->name('payments.update')->middleware('is_admin');
-Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payments.destroy')->middleware('is_admin');
+Route::delete('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payments.destroy')->middleware('is_admin');
 
 //Routes for TestimonyController
 Route::get('testimonies', [App\Http\Controllers\TestimonyController::class, 'index'])->name('testimonies.index')->middleware('is_admin');
@@ -157,5 +168,5 @@ Route::post('admin', [App\Http\Controllers\AdminController::class, 'store'])->na
 Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'show'])->name('admin.show')->middleware('is_admin');
 Route::get('admin/{admin}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit')->middleware('is_admin');
 Route::put('admin/{admin}', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update')->middleware('is_admin');
-Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy')->middleware('is_admin');
+Route::delete('admin/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy')->middleware('is_admin');
 });

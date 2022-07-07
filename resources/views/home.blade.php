@@ -61,10 +61,6 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Admins</p>
                   <h5 class="font-weight-bolder mb-0">
-                    {{-- Remove after implimented --}}
-                    @php
-                      $totalAdmins = Null;
-                    @endphp
                     {{ $totalAdmins }}
                     {{-- <span class="text-danger text-sm font-weight-bolder">-2%</span> --}}
                   </h5>
@@ -133,7 +129,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Audio</p>
                   <h5 class="font-weight-bolder mb-0">
-                    {{ $totalVideos }}
+                    {{ $totalAudios }}
                   </h5>
                 </div>
               </div>

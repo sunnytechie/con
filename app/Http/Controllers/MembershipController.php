@@ -61,4 +61,11 @@ class MembershipController extends Controller
         $membership->save();
         return back()->with('success', 'Membership Created');
     }
+
+    //destroy
+    public function destroy($id) {
+        $membership = Membership::find($id);
+        $membership->delete();
+        return back()->with('success', 'Membership deleted!');
+    }
 }

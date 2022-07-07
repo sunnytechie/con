@@ -37,9 +37,11 @@ class HomeController extends Controller
         $totalVideos = Video::count();
         //Total number of Audios
         $totalAudios = Audio::count();
+        //Total number of admins
+        $totalAdmins = User::where('role', 'admin')->count();
         
 
-        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios'));
+        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins'));
     }
 
     public function media()

@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-12">
           <div class="card mb-4">
+            
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>News listing</h6>
               <button class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </button>
@@ -56,7 +57,7 @@
                               <i class="fa fa-trash text-xs"></i>
                             </a>
                             
-                            @include('modals.delete.news')
+                            
                           
                         </div>
                       </td>

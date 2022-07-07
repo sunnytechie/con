@@ -85,9 +85,11 @@
                       
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
-                            <a href="{{ route('donations.destroy', $donation->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" data-toggle="modal">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>                  
+                            <form method="post" action="{{ route('donations.destroy', $donation->id) }}">
+                              @method('delete')
+                              @csrf
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
+                          </form>                
                         </div>
                       </td>
                     </tr>

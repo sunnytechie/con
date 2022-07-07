@@ -24,12 +24,9 @@
                         </h3>
                     </div>
                     <div class="card-body text-center">
-                        {{-- session set error --}}
-                        @if(session()->has('error'))
-                        <div class="alert alert-danger">
-                            {{ session()->get('error') }}
-                        </div>
-                    @endif
+                        <h5 class="card-title">Your email has been verified successfully</h5>
+                        <p class="card-text">You can now login to the mobile application.</p>
+                        <a href="#" class="btn btn-default shadow-sm btn-lg">Login</a>
                 </div>
             </div>
         </div>

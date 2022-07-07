@@ -51,4 +51,12 @@ class DonationController extends Controller
 
         return back()->with('success', 'Thank you for your donation!');
     }
+
+    //destroy the donation
+    public function destroy($id)
+    {
+        $donation = Donation::find($id);
+        $donation->delete();
+        return back()->with('success', 'Donation deleted!');
+    }
 }

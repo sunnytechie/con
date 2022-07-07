@@ -46,6 +46,7 @@
                         </td>
                       
                       <td>
+                        {{-- Note* This could throw an error if the book is deleted. --}}
                         <p class="text-sm font-weight-bold mb-0">{{ $purchase->book->title }}</p>
                       </td>
 
@@ -73,9 +74,11 @@
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
                           
-                            <a href="{{ route('payments.destroy', $purchase->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this payment?')">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>
+                            <form method="post" action="{{ route('payments.destroy', $purchase->id) }}">
+                              @method('delete')
+                              @csrf
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
+                            </form> 
                         
                           
                         </div>

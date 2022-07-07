@@ -48,10 +48,23 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+
+            //if user email is not verified
+            if (auth()->user()->email_verified_at == null) {
+                return redirect('email/verify');
+            }
+
             if(auth()->user()->is_admin == 1) {
                 return redirect()->route('home');
-            } else {
-                return redirect()->route('notAuthorized');
+            }
+            //if user email is verified
+            if(auth()->user()->email_verified_at != null) {
+                return redirect()->route('home');
+            }                
+            
+            else {
+                //return redirect to /verified
+                return redirect()->route('verified');
             }
             
         } else {

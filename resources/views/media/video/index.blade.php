@@ -8,8 +8,8 @@
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Video listing</h6>
-              <a href="#addAudio" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </a>
-              @include('modals.add.audio')
+              <a href="#addVideo" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </a>
+              @include('modals.add.video')
             </div>
 
             @if (session('success'))
@@ -63,13 +63,13 @@
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('video.edit', $data->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                          
-                            <a href="{{ route('video.destroy', $data->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this record?')">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>
-                            
-                            @include('modals.delete.audio')
-                          
+                                                      
+                            <form method="post" action="{{ route('video.destroy', $data->id) }}">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
+                            </form>
+                                                      
                         </div>
                       </td>
                     </tr>

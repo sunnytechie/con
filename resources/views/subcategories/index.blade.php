@@ -64,12 +64,12 @@
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('subcategories.edit', $subcategory->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                          
-                            <a href="{{ route('subcategories.destroy', $subcategory->id) }}" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="return confirm('Are you sure you want to delete this record?')">
-                              <i class="fa fa-trash text-xs"></i>
-                            </a>
-                            
-                            @include('modals.delete.subcategory')
+                                                      
+                            <form method="post" action="{{ route('subcategories.destroy', $subcategory->id) }}">
+                              @method('delete')
+                              @csrf
+                              <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
+                          </form>
                           
                         </div>
                       </td>
