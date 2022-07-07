@@ -83,7 +83,7 @@
                 
                 <div class="form-group">
                   <label for="details">Body</label>
-                  <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" rows="3">{{ $eventDetails ?? old('details') }}</textarea>
+                  <textarea class="form-control @error('details') is-invalid @enderror" id="myeditorinstance" name="details" rows="3">{{ $eventDetails ?? old('details') }}</textarea>
 
                   @error('detail')
                     <span class="invalid-feedback" role="alert">
@@ -92,7 +92,7 @@
                   @enderror
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Publish</button>
+                <button type="submit" class="btn btn-primary">Update</button>
 
               </form>
             </div>

@@ -79,7 +79,7 @@
                 
                 <div class="form-group">
                   <label for="details">Body</label>
-                  <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" rows="3"></textarea>
+                  <textarea class="form-control @error('details') is-invalid @enderror" id="myeditorinstance" name="details" rows="3"></textarea>
 
                   @error('details')
                     <span class="invalid-feedback" role="alert">

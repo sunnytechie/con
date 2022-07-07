@@ -72,7 +72,7 @@
                 
                 <div class="form-group">
                   <label for="bible_verse">Bible verse</label>
-                  <textarea class="form-control @error('bible_verse') is-invalid @enderror" id="bible_verse" name="bible_verse" rows="3">{{ $newsTitle ?? old('bible_verse') }}</textarea>
+                  <textarea class="form-control @error('bible_verse') is-invalid @enderror" id="myeditorinstance" name="bible_verse" rows="3">{{ $newsBibleVerse ?? old('bible_verse') }}</textarea>
 
                   @error('bible_verse')
                     <span class="invalid-feedback" role="alert">
@@ -83,7 +83,7 @@
                 
                 <div class="form-group">
                   <label for="details">Body</label>
-                  <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" rows="3">{{ $newsDetails ?? old('details') }}</textarea>
+                  <textarea class="form-control @error('details') is-invalid @enderror" id="myeditorinstance" name="details" rows="3">{{ $newsDetails ?? old('details') }}</textarea>
 
                   @error('detail')
                     <span class="invalid-feedback" role="alert">
@@ -92,7 +92,7 @@
                   @enderror
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Publish</button>
+                <button type="submit" class="btn btn-primary">Update</button>
 
               </form>
             </div>

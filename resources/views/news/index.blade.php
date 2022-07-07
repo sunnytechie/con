@@ -17,7 +17,7 @@
                 </button>
                 </div>
             @endif
-              <button class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </button>
+              <a class="btn btn-default" type="button" href="{{ route('news.create') }}"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Add New </a>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
