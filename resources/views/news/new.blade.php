@@ -78,6 +78,7 @@
                         <strong>{{ $message }}</strong>
                     </span>
                   @enderror
+                </div>
                 
                 <div class="form-group">
                   <label for="details">Body</label>

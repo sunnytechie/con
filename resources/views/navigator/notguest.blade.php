@@ -40,7 +40,7 @@
 
           {{-- Setting --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Settings">
+            <a href="{{ route('settings.index') }}" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Settings">
               <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
             </a>
           </li>

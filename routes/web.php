@@ -176,4 +176,8 @@ Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'show'
 Route::get('admin/{admin}/edit', [App\Http\Controllers\AdminController::class, 'edit'])->name('admin.edit')->middleware('is_admin');
 Route::put('admin/{admin}', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.update')->middleware('is_admin');
 Route::delete('admin/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy')->middleware('is_admin');
+
+//Routes to edit and update settings
+Route::get('settings', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings.index')->middleware('is_admin');
+Route::put('settings/{id}', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update')->middleware('is_admin');
 });
