@@ -26,7 +26,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Your email has been verified successfully</h5>
                         <p class="card-text">You can now login to the mobile application.</p>
-                        <a href="#" class="btn btn-default shadow-sm btn-lg">Login</a>
+                        <button onclick="self.close()" class="btn btn-default shadow-sm btn-lg">Done</button>
                 </div>
             </div>
         </div>

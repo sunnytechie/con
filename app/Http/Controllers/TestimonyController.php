@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 
 class TestimonyController extends Controller
@@ -13,6 +14,28 @@ class TestimonyController extends Controller
      */
     public function index()
     {
+        //testimonies
+        $testimonies = Testimony::all();
         return view('testimony.index');
+    }
+
+    //api to store testimony
+    public function storeTestimony(Request $request)
+    {
+        //validate request
+        $request->validate([
+            'fullname' => 'required',
+            'email' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $testimony = new Testimony();
+        $testimony->fullname = $request->fullname;
+        $testimony->email = $request->email;
+        $testimony->title = $request->title;
+        $testimony->body = $request->body;
+        $testimony->save();
+        return response()->json(['success' => 'Testimony sent successfully.']);
     }
 }

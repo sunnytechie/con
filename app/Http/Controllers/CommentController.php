@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -13,6 +14,49 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return view('app.comments');
+        //comments
+        $comments = Comment::all();
+        return view('app.comments', compact('comments'));
+    }
+
+    //store comment
+    public function store(Request $request)
+    {
+        $comment = new Comment();
+        $comment->user_id = $request->user_id;
+        $comment->email = $request->email;
+        $comment->media_id = $request->media_id;
+        $comment->content = $request->content;
+        $comment->type = $request->type;
+        $comment->edited = $request->edited;
+        $comment->deleted = $request->deleted;
+        $comment->save();
+        return redirect()->back();
+    }
+
+    //api store comment
+    public function apiStoreComment(Request $request)
+    {
+        //validate request
+        $request->validate([
+            'user_id' => '',
+            'email' => 'required',
+            'media_id' => 'required',
+            'content' => 'required',
+            'type' => '',
+            'edited' => '',
+            'deleted' => '',
+        ]);
+
+        $comment = new Comment();
+        $comment->user_id = $request->user_id;
+        $comment->email = $request->email;
+        $comment->media_id = $request->media_id;
+        $comment->content = $request->content;
+        $comment->type = $request->type;
+        $comment->edited = $request->edited;
+        $comment->deleted = $request->deleted;
+        $comment->save();
+        return response()->json($comment);
     }
 }
