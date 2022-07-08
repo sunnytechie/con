@@ -180,4 +180,8 @@ Route::delete('admin/{admin}', [App\Http\Controllers\AdminController::class, 'de
 //Routes to edit and update settings
 Route::get('settings', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings.index')->middleware('is_admin');
 Route::put('settings/{id}', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update')->middleware('is_admin');
+
+//Routes to edit and update stream
+Route::get('stream', [App\Http\Controllers\StreamController::class, 'edit'])->name('stream.index')->middleware('is_admin');
+Route::put('stream/{id}', [App\Http\Controllers\StreamController::class, 'update'])->name('stream.update')->middleware('is_admin');
 });

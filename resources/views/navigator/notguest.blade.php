@@ -47,7 +47,7 @@
 
           {{-- LiveStream --}}
           <li class="nav-item px-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Live stream setting">
+            <a href="{{ route('stream.index') }}" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Live stream setting">
               <i class="fa fa-steam fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
