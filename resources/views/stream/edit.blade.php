@@ -8,7 +8,14 @@
           <div class="card mb-4">
             
             <div class="card-header d-flex justify-content-between pb-0">
-              <h4>Update Setting</h4>
+              <div>
+                <h4 class="mb-0">Edit Stream key</h4>
+                <h6>
+                  Manually activate or deactivate a livestream. Users will be able subscribe and watch an active livestream.
+  You have to set a livestream status to inactive when the livestream is finished or you dont want users to watch the livestream.
+                </h6>
+              </div>
+              
               @if (session('success'))
                 <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>{{ session('success') }}</strong>
