@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Audio;
+use App\Models\Media;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -24,8 +25,8 @@ class AudioController extends Controller
             'notification' => '',
         ]);
 
-        //Store Audio
-        
+        //Var for type of media
+        $type = 'audio';    
         //store thumbnail
         $imagePath = request('thumbnail')->store('media', 'public');
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
@@ -34,7 +35,7 @@ class AudioController extends Controller
         //If Audio is empty, then store the url
         if ($request->hasFile('audio')) {
             $audioPath = request('audio')->store('media', 'public');
-            $audio = Audio::create([
+            $audio = Media::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
@@ -43,9 +44,10 @@ class AudioController extends Controller
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
+                'type' => $type,
             ]);
         } else {
-            $audio = Audio::create([
+            $audio = Media::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
@@ -54,6 +56,7 @@ class AudioController extends Controller
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
+                'type' => $type,
             ]);
         }
         
@@ -61,14 +64,14 @@ class AudioController extends Controller
     }
 
     //Edit Audio
-    public function edit(Audio $id)
+    public function edit(Media $id)
     {
         //categories
         $categories = Category::all();
         //audios
-        $audios = Audio::all();
+        $audios = Media::all();
         //Variable to store the audio
-        $audio = Audio::find($id->id);
+        $audio = Media::find($id->id);
         $audioID = $audio->id;
         $audioTitle = $audio->title;
         $audioDescription = $audio->description;
@@ -110,7 +113,7 @@ class AudioController extends Controller
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
             $image->save();
             //update audio
-            $audio = Audio::find($id);
+            $audio = Media::find($id);
             $audio->title = $request->title;
             $audio->description = $request->description;
             $audio->category_id = $request->category_id;
@@ -124,7 +127,7 @@ class AudioController extends Controller
             //store audio
             $audioPath = request('audio')->store('media', 'public');
             //update audio
-            $audio = Audio::find($id);
+            $audio = Media::find($id);
             $audio->title = $request->title;
             $audio->description = $request->description;
             $audio->category_id = $request->category_id;
@@ -140,7 +143,7 @@ class AudioController extends Controller
             $image->save();
             //update audio
             //update audio
-            $audio = Audio::find($id);
+            $audio = Media::find($id);
             $audio->title = $request->title;
             $audio->description = $request->description;
             $audio->category_id = $request->category_id;
@@ -151,7 +154,7 @@ class AudioController extends Controller
             $audio->save();
         } else {
             //update audio
-            $audio = Audio::find($id);
+            $audio = Media::find($id);
             $audio->title = $request->title;
             $audio->description = $request->description;
             $audio->category_id = $request->category_id;
@@ -168,7 +171,7 @@ class AudioController extends Controller
     //Delete Audio
     public function destroy($id)
     {
-        $audio = Audio::find($id);
+        $audio = Media::find($id);
         $audio->delete();
         return back()->with('success', 'Audio deleted successfully');
     }

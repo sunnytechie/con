@@ -32,4 +32,15 @@ class Comment extends Model
     }
 
     //belongs to media
+    public function media()
+    {
+        return $this->belongsTo(Media::class);
+    }
+
+    //has many reportedcomments
+    public function reportedComment()
+    {
+        return $this->hasMany(ReportedComment::class);
+    }
+
 }

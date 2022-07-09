@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -25,6 +26,9 @@ class VideoController extends Controller
             'notification' => '',
         ]);
 
+        //Var for type of media
+        $type = 'video';
+
         //store thumbnail
         $imagePath = request('thumbnail')->store('media', 'public');
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
@@ -33,7 +37,7 @@ class VideoController extends Controller
         //store video if it is not empty
         if ($request->hasFile('video')) {
             $videoPath = request('video')->store('media', 'public');
-            $video = Video::create([
+            $video = Media::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
@@ -42,9 +46,10 @@ class VideoController extends Controller
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
+                'type' => $type,
             ]);
         } else {
-            $video = Video::create([
+            $video = Media::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
@@ -53,6 +58,7 @@ class VideoController extends Controller
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
+                'type' => $type,
             ]);
         }
 
@@ -61,14 +67,14 @@ class VideoController extends Controller
     }
 
     //Edit Video
-    public function edit(Video $id)
+    public function edit(Media $id)
     {
         //Videos
-        $videos = Video::all();
+        $videos = Media::all();
         //Categories
         $categories = Category::all();
         //video
-        $video = Video::find($id->id);
+        $video = Media::find($id->id);
         $videoID = $video->id;
         $videoTitle = $video->title;
         $videoDescription = $video->description;
@@ -100,8 +106,6 @@ class VideoController extends Controller
             'notification' => '',
         ]);
 
-        
-
         //if video and thumbnail are not empty
 
         if ($request->hasFile('video') && $request->hasFile('thumbnail')) {
@@ -112,7 +116,7 @@ class VideoController extends Controller
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
             $image->save();
             //update video
-            $video = Video::find($id);
+            $video = Media::find($id);
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
@@ -126,7 +130,7 @@ class VideoController extends Controller
             //store video
             $videoPath = request('video')->store('media', 'public');
             //update video
-            $video = Video::find($id);
+            $video = Media::find($id);
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
@@ -142,7 +146,7 @@ class VideoController extends Controller
             $image->save();
             //update video
             //update video
-            $video = Video::find($id);
+            $video = Media::find($id);
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
@@ -153,7 +157,7 @@ class VideoController extends Controller
             $video->save();
         } else {
             //update video
-            $video = Video::find($id);
+            $video = Media::find($id);
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
@@ -170,7 +174,7 @@ class VideoController extends Controller
     //Delete Video
     public function destroy($id)
     {
-        $video = Video::find($id);
+        $video = Media::find($id);
         $video->delete();
         return back()->with('success', 'Video deleted successfully');
     }

@@ -30,4 +30,9 @@ class Category extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
 }
