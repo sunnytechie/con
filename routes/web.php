@@ -99,10 +99,14 @@ Route::delete('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUse
 
 
 //Routes for CommentController
-Route::get('app/comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index')->middleware('is_admin');
+Route::get('comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index')->middleware('is_admin');
+//destroy comment
+Route::delete('comments/{comment}', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comments.destroy')->middleware('is_admin');
 
 //Routes for ReportedCommentController
-Route::get('app/comments/reported', [App\Http\Controllers\ReportedCommentController::class, 'index'])->name('reportedcomments.index')->middleware('is_admin');
+Route::get('comments/reported', [App\Http\Controllers\ReportedCommentController::class, 'index'])->name('reportedcomments.index')->middleware('is_admin');
+//destroy reported comment
+Route::delete('comments/reported/{reportedcomment}', [App\Http\Controllers\ReportedCommentController::class, 'destroy'])->name('reportedcomments.destroy')->middleware('is_admin');
 
 //Routes for MembershipController
 Route::get('memberships', [App\Http\Controllers\MembershipController::class, 'index'])->name('memberships.index')->middleware('is_admin');

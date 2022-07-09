@@ -7,7 +7,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Testimony listing</h6>
+              <h6>Comment listing</h6>
                 <div class="input-group" style="width: 300px">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
@@ -27,11 +27,10 @@
                 <table class="table align-items-center justify-content-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">S/N</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Comment</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Body</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Type</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created At</th>
                       <th></th>
                     </tr>
@@ -40,18 +39,28 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($testimonies as $testimony)
+                    @foreach ($comments as $comment)
                     <tr>
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">{{ $i++ }}</span>
                         </td>
                     
-                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $testimony->fullname }} </td>
-                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $testimony->email }} </td>
+                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $comment->content }} </td>
+                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $comment->email }} </td>
                         
-                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $testimony->title }} </td>
-                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $testimony->body }} </td>
-                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $testimony->created_at->diffForHumans() }} </td>
+                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $comment->type }} </td>
+                        <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $comment->created_at->diffForHumans() }} </td>
+
+                        //delete
+                        <td class="text-right">
+                            <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-icon btn-secondary" type="submit" onclick="return confirm('Are you sure you want to delete this record?')">
+                                    <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                     

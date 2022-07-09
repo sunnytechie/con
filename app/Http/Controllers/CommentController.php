@@ -16,7 +16,7 @@ class CommentController extends Controller
     {
         //comments
         $comments = Comment::all();
-        return view('app.comments', compact('comments'));
+        return view('comment.index', compact('comments'));
     }
 
     //store comment
@@ -31,6 +31,14 @@ class CommentController extends Controller
         $comment->edited = $request->edited;
         $comment->deleted = $request->deleted;
         $comment->save();
+        return redirect()->back();
+    }
+
+    //destroy comment
+    public function destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
         return redirect()->back();
     }
 

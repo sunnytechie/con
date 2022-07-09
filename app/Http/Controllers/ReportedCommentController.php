@@ -16,7 +16,15 @@ class ReportedCommentController extends Controller
     {
         //reported comments
         $reportedComments = ReportedComment::all();
-        return view('app.reports', compact('reportedComments'));
+        return view('commentreported.index', compact('reportedComments'));
+    }
+
+    //destroy reported comment
+    public function destroy($id)
+    {
+        $reportedComment = ReportedComment::find($id);
+        $reportedComment->delete();
+        return redirect()->back();
     }
 
     //api store reported comment

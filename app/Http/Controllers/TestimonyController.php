@@ -16,7 +16,7 @@ class TestimonyController extends Controller
     {
         //testimonies
         $testimonies = Testimony::all();
-        return view('testimony.index');
+        return view('testimony.index', compact('testimonies'));
     }
 
     //api to store testimony
