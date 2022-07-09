@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('version')->nullable();
-            $table->string('shortcode')->unique();
+            $table->string('shortcode')->nullable();
             $table->text('description')->nullable();
             $table->text('source');
             $table->timestamps();

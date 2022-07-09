@@ -50,7 +50,10 @@ class BookController extends Controller
         $fileName = $file->getClientOriginalName();
         //change file name to avoid duplicate file name
         $fileName = time() . '-' . $fileName;
-        
+        //Add pdf/file as variable to store in database
+        $fileFolder = 'pdf/';
+        $filePath = $fileFolder . $fileName;
+                
         $file->storeAs('public/pdf', $fileName);
 
         //store image file in public/books/images
@@ -64,7 +67,7 @@ class BookController extends Controller
         $book->title = $request->title;
         $book->author = $request->author;
         $book->description = $request->description;
-        $book->file = $fileName;
+        $book->file = $filePath;
         $book->image = $imagePath;
         $book->type = $request->type;
         $book->price = $request->price;
@@ -127,6 +130,9 @@ class BookController extends Controller
             $fileName = $file->getClientOriginalName();
             //change file name to avoid duplicate file name
             $fileName = time() . '-' . $fileName;
+            //Add pdf/file as variable to store in database
+            $fileFolder = 'pdf/';
+            $filePath = $fileFolder . $fileName;
             $file->storeAs('public/pdf', $fileName);
         }
 
@@ -149,7 +155,7 @@ class BookController extends Controller
         $book->booksubcategory_id = $request->booksubcategory_id;
         $book->description = $request->description;
         if ($request->hasFile('file')) {
-            $book->file = $fileName;
+            $book->file = $filePath;
         }
         if ($request->hasFile('image')) {
             $book->image = $imagePath;

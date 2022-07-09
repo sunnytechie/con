@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Bible extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'version',
+        'shortcode',
+        'description',
+        'source',
+    ];
 }

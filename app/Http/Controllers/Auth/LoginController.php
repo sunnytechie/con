@@ -71,4 +71,38 @@ class LoginController extends Controller
             return redirect()->route('login')->with('error', 'Invalid email or password');
         }
     }
+
+    //api for user login
+    public function loginApi(Request $request)
+    {
+        $input = $request->all();
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+
+            //if user email is not verified
+            if (auth()->user()->email_verified_at == null) {
+                return response()->json(['error' => 'Email is not verified'], 401);
+            }
+
+            if(auth()->user()->is_admin == 1) {
+                return response()->json(['error' => 'You are not authorized to login'], 401);
+            }
+            //if user email is verified
+            if(auth()->user()->email_verified_at != null) {
+                return response()->json(['error' => 'You are not authorized to login'], 401);
+            }                
+            
+            else {
+                //return redirect to /verified
+                return response()->json(['error' => 'You are not authorized to login'], 401);
+            }
+            
+        } else {
+            return response()->json(['error' => 'Invalid email or password'], 401);
+        }
+    }
 }
