@@ -1,3 +1,6 @@
+@php
+    $num1 = "8";
+@endphp
 <script>
     function columnChart() {
     
@@ -24,8 +27,8 @@
                 { y: 1, label: "CONSTITUTION AND CANNONS" },
                 { y: 23,  label: "DAILY DYNAMITES 2022" },
                 { y: 48,  label: "DAILY FOUNTAIN 2022" },
-                { y: 48,  label: "FINANCIAL FREEDOM" },
-                { y: 48,  label: "SS AGE 3-5" }
+                { y: 30,  label: "FINANCIAL FREEDOM" },
+                { y: {{ $num1 }},  label: "SS AGE 3-5" }
             ]
         }]
     });

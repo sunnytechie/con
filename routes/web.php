@@ -188,4 +188,9 @@ Route::put('settings/{id}', [App\Http\Controllers\SettingsController::class, 'up
 //Routes to edit and update stream
 Route::get('stream', [App\Http\Controllers\StreamController::class, 'edit'])->name('stream.index')->middleware('is_admin');
 Route::put('stream/{id}', [App\Http\Controllers\StreamController::class, 'update'])->name('stream.update')->middleware('is_admin');
+
+//import routes
+Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index')->middleware('is_admin');
+Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import')->middleware('is_admin');
+Route::get('user-export', [App\Http\Controllers\ImportController::class, 'userExport'])->name('user.export')->middleware('is_admin');
 });
