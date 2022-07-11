@@ -40,8 +40,8 @@ class BookController extends Controller
             'file' => 'required|mimes:pdf',
             'type' => 'required',
             'price' => '',
-            'bookcategory_id' => '',
-            'booksubcategory_id' => 'required',
+            'bookcategory_id' => 'required',
+            'booksubcategory_id' => '',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

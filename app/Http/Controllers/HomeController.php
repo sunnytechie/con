@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Audio;
 use App\Models\Video;
 use App\Models\Comment;
+use App\Models\PurchasedBook;
 use Illuminate\Http\Request;
 use App\Models\ReportedComment;
 
@@ -45,9 +46,14 @@ class HomeController extends Controller
         $totalComments = Comment::count();
         //Total number of reportedcomments
         $totalReportedComments = ReportedComment::count();
-        
+        //total number of books purchased based on category
+        //$totalBooksByCategory = Book::selectRaw('category_id, count(*) as total')->groupBy('category')->get();
+        //dd($totalBooksByCategory);
+        //Count purchased books by book id
+        $totalPurchaseByBookId = PurchasedBook::selectRaw('book_id, count(*) as total')->groupBy('book_id')->get();
+        //dd($totalPurchaseByBookId);
 
-        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments'));
+        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId'));
     }
 
     public function media()

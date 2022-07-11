@@ -63,7 +63,7 @@
 
                     <div class="mb-3">
                         <label>Sub Category</label>
-                        <select name="booksubcategory_id" id="booksubcategory_id" class="form-control @error('booksubcategory_id') is-invalid @enderror" value="{{ old('booksubcategory_id') }}" required>
+                        <select name="booksubcategory_id" id="booksubcategory_id" class="form-control @error('booksubcategory_id') is-invalid @enderror" value="{{ old('booksubcategory_id') }}">
                             <option value="" disabled>Select Sub Category</option>
                             @foreach ($booksubcategories as $subcategory)
                                 <option value="{{ $subcategory->id }}">{{ $subcategory->title }}</option>

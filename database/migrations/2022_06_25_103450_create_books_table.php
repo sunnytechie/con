@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('file');
             $table->string('bookcategory_id')->nullable();
-            $table->string('booksubcategory_id');
+            $table->string('booksubcategory_id')->nullable();
             $table->string('price')->nullable();
             $table->string('type')->default('Free')->nullable();
             
