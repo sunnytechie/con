@@ -24,7 +24,55 @@
               <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                  <label for="file">File</label>
+                  <label for="file">User File</label>
+                  <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </form>
+            </div>
+
+            <div class="card-body">
+              
+              <form action="{{ route('media.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="file">Media File</label>
+                  <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </form>
+            </div>
+
+            <div class="card-body">
+              
+              <form action="{{ route('donation.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="file">Donation File</label>
+                  <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </form>
+            </div>
+
+            <div class="card-body">
+              
+              <form action="{{ route('purchasedbook.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="file">Purchase book File</label>
+                  <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </form>
+            </div>
+
+            <div class="card-body">
+              
+              <form action="{{ route('testimony.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="file">Testimony File</label>
                   <input type="file" class="form-control-file" id="file" name="file">
                 </div>
                 <button type="submit" class="btn btn-primary">Import</button>

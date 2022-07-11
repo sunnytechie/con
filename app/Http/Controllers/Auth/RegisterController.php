@@ -73,7 +73,7 @@ class RegisterController extends Controller
     }
 
     //register user for api
-    public function register(Request $request)
+    public function registerApi(Request $request)
     {
         //$input = $request->all();
         $input = $this->validate($request, [

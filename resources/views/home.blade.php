@@ -151,7 +151,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Comments</p>
                   <h5 class="font-weight-bolder mb-0">
-                    430
+                    {{ $totalComments }}
                   </h5>
                 </div>
               </div>
@@ -174,7 +174,7 @@
                 <div class="numbers">
                   <p class="text-sm mb-0 text-capitalize font-weight-bold">Reported</p>
                   <h5 class="font-weight-bolder mb-0">
-                    430
+                    {{ $totalReportedComments }}
                   </h5>
                 </div>
               </div>

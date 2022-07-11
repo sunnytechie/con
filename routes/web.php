@@ -193,4 +193,20 @@ Route::put('stream/{id}', [App\Http\Controllers\StreamController::class, 'update
 Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index')->middleware('is_admin');
 Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import')->middleware('is_admin');
 Route::get('user-export', [App\Http\Controllers\ImportController::class, 'userExport'])->name('user.export')->middleware('is_admin');
+//import media
+Route::post('media-import', [App\Http\Controllers\ImportController::class, 'mediaImport'])->name('media.import')->middleware('is_admin');
+//import testimonies
+Route::post('testimony-import', [App\Http\Controllers\ImportController::class, 'testimonyImport'])->name('testimony.import')->middleware('is_admin');
+//import donation
+Route::post('donation-import', [App\Http\Controllers\ImportController::class, 'donationImport'])->name('donation.import')->middleware('is_admin');
+//import book
+Route::post('book-import', [App\Http\Controllers\ImportController::class, 'bookImport'])->name('book.import')->middleware('is_admin');
+//import purchasedbook
+Route::post('purchasedbook-import', [App\Http\Controllers\ImportController::class, 'purchasedbookImport'])->name('purchasedbook.import')->middleware('is_admin');
+//export donation
+Route::get('donation-export', [App\Http\Controllers\ImportController::class, 'donationExport'])->name('donation.export')->middleware('is_admin');
+//export purchasedbook
+Route::get('purchasedbook-export', [App\Http\Controllers\ImportController::class, 'purchasedbookExport'])->name('purchasedbook.export')->middleware('is_admin');
+//export testimony
+Route::get('testimony-export', [App\Http\Controllers\ImportController::class, 'testimonyExport'])->name('testimony.export')->middleware('is_admin');
 });

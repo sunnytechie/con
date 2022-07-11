@@ -6,7 +6,9 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Audio;
 use App\Models\Video;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\ReportedComment;
 
 class HomeController extends Controller
 {
@@ -39,9 +41,13 @@ class HomeController extends Controller
         $totalAudios = Audio::count();
         //Total number of admins
         $totalAdmins = User::where('role', 'admin')->count();
+        //Total number of comments
+        $totalComments = Comment::count();
+        //Total number of reportedcomments
+        $totalReportedComments = ReportedComment::count();
         
 
-        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins'));
+        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments'));
     }
 
     public function media()
