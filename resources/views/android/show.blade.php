@@ -11,17 +11,17 @@
             </div>
             <div class="card-body p-4">
               {{-- User details --}}
-                <p>Full Name: {{ $membershipFirstName }} {{ $membershipLastName }}</p>
-                <p>Email: {{ $membershipEmail }}, {{ $membershipEmail2 }}</p>
-                <p>Phone: 1. {{ $membershipPhone }}, 2. {{ $membershipPhone2 }}</p>
-                <p>Street: {{ $membershipStreet }}</p>
-                <p>City: {{ $membershipCity }}</p>
-                <p>State: {{ $membershipState }}</p>
-                <p>Country: {{ $membershipCountry }}</p>
-                <p>Province: {{ $membershipProvince }}</p>
-                <p>Diocese: {{ $membershipDiocese }}</p>
-                <p>Birthdate: {{ $membershipDateOfBirth }}</p>
-                <p>Local Church Address: {{ $membershipLocalChurchAddress }}</p>
+                <p>Full Name: {{ $first_name }} {{ $last_name }}</p>
+                <p>Email: {{ $users->email }}, {{ $email2 }}</p>
+                <p>Phone: {{ $phone }} {{ $phone2 }}</p>
+                <p>Street: {{ $street }}</p>
+                <p>City: {{ $city }}</p>
+                <p>State: {{ $state }}</p>
+                <p>Country: {{ $country }}</p>
+                <p>Province: {{ $province }}</p>
+                <p>Diocese: {{ $date_of_birth }}</p>
+                <p>Birthdate: {{ $wedding_date }}</p>
+                <p>Local Church Address: {{ $local_church_address }}</p>
             </div>
           </div>
         </div>

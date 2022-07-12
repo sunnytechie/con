@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membership;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,30 +22,51 @@ class AndroidUsersController extends Controller
     }
 
     //show user details
-    public function show($email)
+    public function show($id)
     {
-        //get membership details where email is equal to the email in the url
-        $membership = Membership::find($email);
+        $users = User::find($id);
 
-        $membership = Membership::where('email', $email)->first();
-        
-        $membershipFirstName = $membership->first_name;
-        $membershipLastName = $membership->last_name;
-        $membershipEmail = $membership->email;
-        $membershipEmail2 = $membership->email2;
-        $membershipPhone = $membership->phone;
-        $membershipPhone2 = $membership->phone2;
-        $membershipStreet = $membership->street;
-        $membershipCity = $membership->city;
-        $membershipState = $membership->state;
-        $membershipCountry = $membership->country;
-        $membershipProvince = $membership->province;
-        $membershipDiocese = $membership->diocese;
-        $membershipDateOfBirth = $membership->date_of_birth;
-        $membershipWeddingDate = $membership->wedding_date;
-        $membershipLocalChurchAddress = $membership->local_church_address;
+        $profileFind = Profile::where('user_id', $id)->first();
+
+        //profileFInd is null if user has no profile
+        if ($profileFind == null) {
+            //Varriable for profile
+        $first_name = "";
+        $last_name = "";
+        $email = "";
+        $email2 = "";
+        $phone = "";
+        $phone2 = "";
+        $street = "";
+        $city = "";
+        $state = "";
+        $country = "";
+        $province = "";
+        $diocese = "";
+        $date_of_birth = "";
+        $wedding_date = "";
+        $local_church_address = "";
+        } else {
+            //Varriable for profile
+        $first_name = $profileFind->first_name;
+        $last_name = $profileFind->last_name;
+        $email = $users->email;
+        $email2 = $profileFind->email2;
+        $phone = $profileFind->phone;
+        $phone2 = $profileFind->phone2;
+        $street = $profileFind->street;
+        $city = $profileFind->city;
+        $state = $profileFind->state;
+        $country = $profileFind->country;
+        $province = $profileFind->province;
+        $diocese = $profileFind->diocese;
+        $date_of_birth = $profileFind->date_of_birth;
+        $wedding_date = $profileFind->wedding_date;
+        $local_church_address = $profileFind->local_church_address;
+        }
 
         
-        return view('android.show', compact('membershipFirstName', 'membershipLastName', 'membershipEmail', 'membershipEmail2', 'membershipPhone', 'membershipPhone2', 'membershipStreet', 'membershipCity', 'membershipState', 'membershipCountry', 'membershipProvince', 'membershipDiocese', 'membershipDateOfBirth', 'membershipWeddingDate', 'membershipLocalChurchAddress'));
+
+        return view('android.show', compact('users', 'first_name', 'last_name', 'email', 'email2', 'phone', 'phone2', 'street', 'city', 'state', 'country', 'province', 'diocese', 'date_of_birth', 'wedding_date', 'local_church_address'));
     }
 }

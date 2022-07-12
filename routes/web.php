@@ -92,7 +92,7 @@ Route::post('notifications', [App\Http\Controllers\NotificationController::class
 Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index')->middleware('is_admin');
 Route::get('app/androidusers/create', [App\Http\Controllers\AndroidUsersController::class, 'create'])->name('androidusers.create')->middleware('is_admin');
 Route::post('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'store'])->name('androidusers.store')->middleware('is_admin');
-Route::get('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'show'])->name('androidusers.show')->middleware('is_admin');
+Route::get('app/androidusers/{id}', [App\Http\Controllers\AndroidUsersController::class, 'show'])->name('androidusers.show')->middleware('is_admin');
 Route::get('app/androidusers/{androiduser}/edit', [App\Http\Controllers\AndroidUsersController::class, 'edit'])->name('androidusers.edit')->middleware('is_admin');
 Route::put('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'update'])->name('androidusers.update')->middleware('is_admin');
 Route::delete('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'destroy'])->name('androidusers.destroy')->middleware('is_admin');

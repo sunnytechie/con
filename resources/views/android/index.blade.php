@@ -42,7 +42,7 @@
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
                      
-                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('androidusers.show', $user->email) }}">
+                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('androidusers.show', $user->id) }}">
                               <i class="fa fa-eye text-xs"></i>
                             </a>
 
@@ -50,9 +50,9 @@
                               <i class="fa fa-ban text-xs"></i>
                             </a>
                           
-                            <a href="#myModal" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" data-toggle="modal">
+                            {{-- <a href="#myModal" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" data-toggle="modal">
                               <i class="fa fa-trash text-xs"></i>
-                            </a>
+                            </a> --}}
                         
                           
                         </div>
