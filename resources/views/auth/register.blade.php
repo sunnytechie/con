@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@php
+    //redirect to login whenever user come to register page
+    if(Auth::check()){
+        return redirect('/');
+    }
+@endphp
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -74,4 +80,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

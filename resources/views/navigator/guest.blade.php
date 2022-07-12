@@ -22,7 +22,7 @@
                     Dashboard
                   </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a class="nav-link me-2" href="{{ route('register') }}">
                     <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
                     Sign Up
@@ -39,7 +39,7 @@
 
                 Good Morning, <span class="text-info font-weight-bold">Guest</span>
 
-            </li>
+            </li> --}}
             </div>
           </div>
         </nav>
