@@ -19,7 +19,7 @@
                 </div>
             @endif
             
-            <div class="card-body">
+            <div class="card-body mt-3">
               
               <form action="{{ route('user.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -31,7 +31,7 @@
               </form>
             </div>
 
-            <div class="card-body">
+            <div class="card-body mt-3">
               
               <form action="{{ route('media.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -43,7 +43,7 @@
               </form>
             </div>
 
-            <div class="card-body">
+            <div class="card-body mt-3">
               
               <form action="{{ route('donation.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -55,7 +55,7 @@
               </form>
             </div>
 
-            <div class="card-body">
+            <div class="card-body mt-3">
               
               <form action="{{ route('purchasedbook.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -67,7 +67,7 @@
               </form>
             </div>
 
-            <div class="card-body">
+            <div class="card-body mt-3">
               
               <form action="{{ route('testimony.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -78,7 +78,21 @@
                 <button type="submit" class="btn btn-primary">Import</button>
               </form>
             </div>
+
+            <div class="card-body mt-3">
+              
+              <form action="{{ route('membership.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                  <label for="file">membership File</label>
+                  <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Import</button>
+              </form>
+
           </div>
+
+
         </div>
       </div>
 

@@ -13,6 +13,7 @@ use App\Exports\DonationExport;
 use App\Imports\DonationImport;
 use App\Exports\TestimonyExport;
 use App\Imports\TestimonyImport;
+use App\Imports\MembershipImport;
 use App\Exports\PurchasedBookExport;
 use App\Imports\PurchasedBookImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -72,6 +73,13 @@ class ImportController extends Controller
     {
         Excel::import(new PurchasedBookImport, $request->file('file')->store('temp'));
         return back()->with('success', 'PurchasedBooks imported successfully.');
+    }
+
+    //Import Membership from Excel file
+    public function membershipImport(Request $request) 
+    {
+        Excel::import(new MembershipImport, $request->file('file')->store('temp'));
+        return back()->with('success', 'Memberships imported successfully.');
     }
     /**
     * @return \Illuminate\Support\Collection

@@ -38,7 +38,7 @@
 
                     <div class="mb-3">
                         <label>Audio Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control" type="file" id="thumbnail" required>
+                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="text" id="thumbnail" placeholder="provide url for thumbnail" required>
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">

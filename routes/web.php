@@ -209,4 +209,6 @@ Route::get('donation-export', [App\Http\Controllers\ImportController::class, 'do
 Route::get('purchasedbook-export', [App\Http\Controllers\ImportController::class, 'purchasedbookExport'])->name('purchasedbook.export')->middleware('is_admin');
 //export testimony
 Route::get('testimony-export', [App\Http\Controllers\ImportController::class, 'testimonyExport'])->name('testimony.export')->middleware('is_admin');
+//Route for Membership Import
+Route::post('membership-import', [App\Http\Controllers\ImportController::class, 'membershipImport'])->name('membership.import')->middleware('is_admin');
 });

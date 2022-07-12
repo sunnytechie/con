@@ -20,7 +20,7 @@ class VideoController extends Controller
             'category_id' => 'required',
             'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
             'url' => '',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2000',
+            'thumbnail' => 'required|url',
             'duration' => 'required',
             'downloadable' => '',
             'notification' => '',
@@ -30,9 +30,9 @@ class VideoController extends Controller
         $type = 'video';
 
         //store thumbnail
-        $imagePath = request('thumbnail')->store('media', 'public');
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        $image->save();
+        //$imagePath = request('thumbnail')->store('media', 'public');
+        //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        //$image->save();
 
         //store video if it is not empty
         if ($request->hasFile('video')) {
@@ -42,7 +42,7 @@ class VideoController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'video' => $videoPath,
-                'thumbnail' => $imagePath,
+                'thumbnail' => $request->thumbnail,
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
@@ -54,7 +54,7 @@ class VideoController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'url' => $request->url,
-                'thumbnail' => $imagePath,
+                'thumbnail' => $request->thumbnail,
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
@@ -69,6 +69,10 @@ class VideoController extends Controller
     //Edit Video
     public function edit(Media $id)
     {
+        //Total number of videos
+        $totalVideos = Media::where('type', 'video')->count();
+        //Total number of Audios
+        $totalAudios = Media::where('type', 'audio')->count();
         //Videos
         $videos = Media::all();
         //Categories
@@ -87,7 +91,7 @@ class VideoController extends Controller
         $videoUrl = $video->url;
 
         //return view        
-        return view('media.video.edit', compact('videos', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID'));
+        return view('media.video.edit', compact('videos', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID', 'totalVideos', 'totalAudios'));
     }
 
     //Update Video
@@ -100,7 +104,7 @@ class VideoController extends Controller
             'category_id' => 'required',
             'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
             'url' => '',
-            'thumbnail' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2000',
+            'thumbnail' => 'required|url',
             'duration' => 'required',
             'downloadable' => '',
             'notification' => '',
@@ -108,49 +112,20 @@ class VideoController extends Controller
 
         //if video and thumbnail are not empty
 
-        if ($request->hasFile('video') && $request->hasFile('thumbnail')) {
+        if ($request->hasFile('video')) {
             //store video
             $videoPath = request('video')->store('media', 'public');
             //store thumbnail
-            $imagePath = request('thumbnail')->store('media', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            $image->save();
+            //$imagePath = request('thumbnail')->store('media', 'public');
+            //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            //$image->save();
             //update video
             $video = Media::find($id);
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
             $video->video = $videoPath;
-            $video->thumbnail = $imagePath;
-            $video->duration = $request->duration;
-            $video->downloadable = $request->downloadable;
-            $video->notification = $request->notification;
-            $video->save();
-        } elseif ($request->hasFile('video') && !$request->hasFile('thumbnail')) {
-            //store video
-            $videoPath = request('video')->store('media', 'public');
-            //update video
-            $video = Media::find($id);
-            $video->title = $request->title;
-            $video->description = $request->description;
-            $video->category_id = $request->category_id;
-            $video->video = $videoPath;
-            $video->duration = $request->duration;
-            $video->downloadable = $request->downloadable;
-            $video->notification = $request->notification;
-            $video->save();
-        } elseif (!$request->hasFile('video') && $request->hasFile('thumbnail')) {
-            //store thumbnail
-            $imagePath = request('thumbnail')->store('media', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            $image->save();
-            //update video
-            //update video
-            $video = Media::find($id);
-            $video->title = $request->title;
-            $video->description = $request->description;
-            $video->category_id = $request->category_id;
-            $video->thumbnail = $imagePath;
+            $video->thumbnail = $request->thumbnail;
             $video->duration = $request->duration;
             $video->downloadable = $request->downloadable;
             $video->notification = $request->notification;
@@ -161,6 +136,7 @@ class VideoController extends Controller
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
+            $video->thumbnail = $request->thumbnail;
             $video->url = $request->url;
             $video->duration = $request->duration;
             $video->downloadable = $request->downloadable;

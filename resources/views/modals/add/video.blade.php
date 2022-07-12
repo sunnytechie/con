@@ -38,7 +38,7 @@
 
                     <div class="mb-3">
                         <label>Video Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="file" id="thumbnail" required>
+                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" placeholder="provide url for thumbnail" type="text" id="thumbnail" required>
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">

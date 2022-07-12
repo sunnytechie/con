@@ -52,8 +52,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Video Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="file" id="thumbnail">
+                        <label>Video Cover</label>
+                        <input type="text" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $videoThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url" required>
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
@@ -173,7 +173,7 @@
                   <h6> Total Video</h6>
               </div>
               <div class="card-body p-4">
-                  <p>{{ $videos->count() }}</p>
+                  <p>{{ $totalVideos }}</p>
               </div>
           </div>
       </div>

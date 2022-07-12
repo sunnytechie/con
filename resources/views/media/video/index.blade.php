@@ -45,7 +45,7 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="/storage/{{ $data->thumbnail }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                            <img src="{{ $data->thumbnail }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
                           </div>
                           <div class="my-auto">
                             <h6 class="mb-0 text-sm">{{ $data->title }}</h6>

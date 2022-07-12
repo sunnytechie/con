@@ -52,9 +52,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>audio Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="file" id="thumbnail">
-
+                        <label>Audio Cover</label>
+                        <input type="text" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $audioThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url" required>
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -173,7 +172,7 @@
                   <h6> Total audio</h6>
               </div>
               <div class="card-body p-4">
-                  <p>{{ $audios->count() }}</p>
+                  <p>{{ $totalAudios }}</p>
               </div>
           </div>
       </div>
