@@ -59,6 +59,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $testimonies->links() !!}
+              </div>
             </div>
           </div>
         </div>

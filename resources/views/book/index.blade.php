@@ -91,6 +91,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $books->links() !!}
+              </div>
             </div>
           </div>
         </div>

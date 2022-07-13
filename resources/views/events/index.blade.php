@@ -76,6 +76,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $events->links() !!}
+              </div>
             </div>
           </div>
         </div>

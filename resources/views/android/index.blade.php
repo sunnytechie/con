@@ -59,10 +59,12 @@
                       </td>
                     </tr>
                     @endforeach
-                    
-                   
                   </tbody>
                 </table>
+              </div>
+              
+              <div class="d-flex">
+                {!! $users->links() !!}
               </div>
             </div>
           </div>

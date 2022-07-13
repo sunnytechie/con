@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prayer;
 use Illuminate\Http\Request;
 
 class PrayerController extends Controller
@@ -13,6 +14,7 @@ class PrayerController extends Controller
      */
     public function index()
     {
-        return view('prayer.index');
+        $prayers = Prayer::paginate(20);;
+        return view('prayer.index', compact('prayers'));
     }
 }

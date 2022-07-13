@@ -25,14 +25,14 @@ class MediaController extends Controller
         //categories
         $categories = Category::all();
         //Videos
-        $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->paginate(10);
+        $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->paginate(20);
         return view('media.video.index', compact('categories', 'videos'));
     }
 
     public function audio()
     {
         //Audio
-        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->paginate(10);
+        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->paginate(20);
         //categories
         $categories = Category::all();
         return view('media.audio.index', compact('categories', 'audio'));

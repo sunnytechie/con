@@ -78,6 +78,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $news->links() !!}
+              </div>
             </div>
           </div>
         </div>

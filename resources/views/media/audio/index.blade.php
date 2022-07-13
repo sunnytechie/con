@@ -79,6 +79,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $audio->links() !!}
+              </div>
             </div>
           </div>
         </div>

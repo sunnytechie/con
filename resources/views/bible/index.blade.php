@@ -75,6 +75,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $bibles->links() !!}
+              </div>
             </div>
           </div>
         </div>

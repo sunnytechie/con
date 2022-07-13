@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Prayer extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'feedback_type',
-        'user_fullname',
-        'user_email',
-        'feedback_msg',
+        'fullname',
+        'email',
+        'phone',
+        'title',
+        'prayer_request',
+        'request_response',
+        'deleted',
     ];
 }

@@ -72,6 +72,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $memberships->links() !!}
+              </div>
             </div>
           </div>
         </div>

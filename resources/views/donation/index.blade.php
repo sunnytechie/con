@@ -97,6 +97,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $donations->links() !!}
+              </div>
             </div>
           </div>
         </div>

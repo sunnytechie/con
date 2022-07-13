@@ -78,6 +78,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $videos->links() !!}
+              </div>
             </div>
           </div>
         </div>

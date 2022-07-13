@@ -15,7 +15,7 @@ class TestimonyController extends Controller
     public function index()
     {
         //testimonies
-        $testimonies = Testimony::all();
+        $testimonies = Testimony::paginate(20);;
         return view('testimony.index', compact('testimonies'));
     }
 

@@ -18,7 +18,7 @@ class PaymentController extends Controller
         //books
         $books = Book::all();
         //purchased books
-        $purchasedBooks = PurchasedBook::all();
+        $purchasedBooks = PurchasedBook::paginate(20);;
         return view('payment.index', compact('books', 'purchasedBooks'));
     }
 

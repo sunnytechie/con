@@ -68,6 +68,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="d-flex">
+                {!! $reportedComments->links() !!}
+              </div>
             </div>
           </div>
         </div>
