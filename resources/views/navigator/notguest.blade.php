@@ -28,7 +28,7 @@
         <ul class="navbar-nav justify-content-end">
 
           <li class="nav-item d-flex align-items-center">
-            <span class="mb-0 me-3">Good morning</span>
+            <span class="mb-0 me-3">Hi, {{ Auth::user()->name }}</span>
           </li>
 
           {{-- Add more users --}}
