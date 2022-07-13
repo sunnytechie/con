@@ -103,16 +103,3 @@ i.fa {
 	background: #fff;
 }
 
-.ps {
-    overflow: auto !important;
-    overflow-anchor: none;
-}
-
-/* Hide .ps and sidebar scrollbar */
-.ps::-webkit-scrollbar {
-	visibility: hidden;
-}
-
-.sidebar::-webkit-scrollbar {
-	visibility: hidden;
-}
