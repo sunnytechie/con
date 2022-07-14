@@ -36,15 +36,16 @@
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
     <style>
         .table> :not(caption)>*>* {
-	padding: 0.1rem 0.5rem !important;
-}
+            padding: 0.1rem 0.5rem !important;
+        }
 
-.table .m-2 {
-    margin: 0.2rem 0.5rem !important;
-}
+        .table .m-2 {
+            margin: 0.2rem 0.5rem !important;
+        }
     </style>
 
 </head>
+
 <body class="g-sidenav-show  bg-gray-100">
     <div id="app">
         {{-- Navbare --}}
@@ -110,5 +111,35 @@
   });
 </script>
 
+{{-- ajax search --}}
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            var query = $(this).val();
+            if (query != '') {
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: "{{ route('search') }}",
+                    method: "POST",
+                    data: {
+                        query: query,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        $('#search-result').fadeIn();
+                        $('#search-result').html(data);
+                    }
+                });
+            } else {
+                $('#search-result').fadeOut();
+                $('#search-result').html('');
+            }
+        });
+        $(document).on('click', 'li', function() {
+            $('#search').val($(this).text());
+            $('#search-result').fadeOut();
+        });
+    });
+</script>
 </body>
 </html>

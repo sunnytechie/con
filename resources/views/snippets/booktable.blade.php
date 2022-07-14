@@ -12,7 +12,6 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">S/N</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Books</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Amount Sold</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
