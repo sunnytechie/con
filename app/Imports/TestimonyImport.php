@@ -20,8 +20,6 @@ class TestimonyImport implements ToModel
             'email'=> $row[2],
             'title'=> $row[3],
             'body'=> $row[4],
-            'created_at'=> $row[5],
-            'updated_at'=> $row[6],
         ]);
     }
 }

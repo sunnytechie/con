@@ -15,7 +15,5 @@ class Testimony extends Model
         'email',
         'title',
         'body',
-        'created_at',
-        'updated_at'
     ];
 }
