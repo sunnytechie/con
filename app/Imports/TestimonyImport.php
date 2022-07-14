@@ -15,7 +15,13 @@ class TestimonyImport implements ToModel
     public function model(array $row)
     {
         return new Testimony([
-            //
+            'user_id'=> $row[0],
+            'fullname'=> $row[1],
+            'email'=> $row[2],
+            'title'=> $row[3],
+            'body'=> $row[4],
+            'created_at'=> $row[5],
+            'updated_at'=> $row[6],
         ]);
     }
 }

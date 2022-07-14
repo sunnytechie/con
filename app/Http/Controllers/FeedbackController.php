@@ -15,7 +15,7 @@ class FeedbackController extends Controller
     public function index()
     {
         //feedbacks
-        $feedbacks = Feedback::paginate(20);;
+        $feedbacks = Feedback::paginate(10);;
         return view('feedback.index', compact('feedbacks'));
     }
 

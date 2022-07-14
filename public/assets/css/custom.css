@@ -2,6 +2,14 @@
     height: 100vh !important;
 }
 
+.table> :not(caption)>*>* {
+	padding: 0.1rem 0.5rem !important;
+}
+
+.table .m-2 {
+    margin: 0.2rem 0.5rem !important;
+}
+
 i.fa {
     font-size: 1.3em;
     color: rgb(68, 65, 65) !important;

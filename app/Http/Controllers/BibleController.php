@@ -16,7 +16,7 @@ class BibleController extends Controller
     public function index()
     {
         //bibles paginate 20
-        $bibles = Bible::paginate(20);
+        $bibles = Bible::paginate(10);
         return view('bible.index', compact('bibles'));
     }
 

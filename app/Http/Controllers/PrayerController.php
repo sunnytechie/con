@@ -14,7 +14,7 @@ class PrayerController extends Controller
      */
     public function index()
     {
-        $prayers = Prayer::paginate(20);;
+        $prayers = Prayer::paginate(10);;
         return view('prayer.index', compact('prayers'));
     }
 }

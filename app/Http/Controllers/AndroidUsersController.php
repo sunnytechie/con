@@ -17,7 +17,7 @@ class AndroidUsersController extends Controller
     public function index()
     {
         //all user that are not admin
-        $users = User::where('is_admin', 0)->paginate(20);;
+        $users = User::where('is_admin', 0)->paginate(10);;
         return view('android.index', compact('users'));
     }
 

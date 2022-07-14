@@ -15,7 +15,7 @@ class ReportedCommentController extends Controller
     public function index()
     {
         //reported comments
-        $reportedComments = ReportedComment::paginate(20);;
+        $reportedComments = ReportedComment::paginate(10);;
         return view('commentreported.index', compact('reportedComments'));
     }
 

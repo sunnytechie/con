@@ -15,7 +15,7 @@ class MembershipController extends Controller
     public function index()
     {
         //memberships
-        $memberships = Membership::paginate(20);;
+        $memberships = Membership::paginate(10);;
         return view('membership.index', compact('memberships'));
     }
 
