@@ -112,34 +112,6 @@
 </script>
 
 {{-- ajax search --}}
-<script>
-    $(document).ready(function() {
-        $('#search').on('keyup', function() {
-            var query = $(this).val();
-            if (query != '') {
-                var _token = $('input[name="_token"]').val();
-                $.ajax({
-                    url: "{{ route('search') }}",
-                    method: "POST",
-                    data: {
-                        query: query,
-                        _token: _token
-                    },
-                    success: function(data) {
-                        $('#search-result').fadeIn();
-                        $('#search-result').html(data);
-                    }
-                });
-            } else {
-                $('#search-result').fadeOut();
-                $('#search-result').html('');
-            }
-        });
-        $(document).on('click', 'li', function() {
-            $('#search').val($(this).text());
-            $('#search-result').fadeOut();
-        });
-    });
-</script>
+
 </body>
 </html>
