@@ -34,6 +34,15 @@
     <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.0.6') }}" rel="stylesheet" />
     {{-- Custom css --}}
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+    <style>
+        .table> :not(caption)>*>* {
+	padding: 0.1rem 0.5rem !important;
+}
+
+.table .m-2 {
+    margin: 0.2rem 0.5rem !important;
+}
+    </style>
 
 </head>
 <body class="g-sidenav-show  bg-gray-100">
