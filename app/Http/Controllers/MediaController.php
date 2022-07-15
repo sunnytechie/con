@@ -33,7 +33,6 @@ class MediaController extends Controller
     public function searchVideo(Request $request)
     {
         $output = "";
-        $comfiirmation = "onclick='return confirm('Are you sure you want to delete this record?')'";
         $videos = Media::where('title', 'like', '%' . $request->search . '%')
             ->orWhere('description', 'like', '%' . $request->search . '%')
             ->paginate(10);
@@ -63,10 +62,11 @@ class MediaController extends Controller
                                 <i class="fa fa-pencil text-xs"></i>
                                 </a>
 
-                                <form action="/media/audio/destroy/'.$video->id.'" method="post">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" '.$comfiirmation.'>
+                                <form action="/media/video/destroy/'.$video->id.'" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="'.csrf_token().'">
+                                    <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="
+                                        return confirm(\'Are you sure you want to delete this record?\')">
                                     <i class="fa fa-trash text-xs"></i>
                                     </button>
                                 </form>
@@ -98,7 +98,6 @@ class MediaController extends Controller
 
         foreach ($audios as $key => $audio) {
             //key is the index of the array and starts from 1
-            $comfiirmation = "onclick='return confirm('Are you sure you want to delete this record?')'";
 
             $key = $key + 1;
             $output.=
@@ -124,9 +123,10 @@ class MediaController extends Controller
                                 </a>
 
                                 <form action="/media/audio/destroy/'.$audio->id.'" method="post">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" '.$comfiirmation.'>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="'.csrf_token().'">
+                                    <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="
+                                        return confirm(\'Are you sure you want to delete this record?\')">
                                     <i class="fa fa-trash text-xs"></i>
                                     </button>
                                 </form>

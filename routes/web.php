@@ -140,17 +140,21 @@ Route::post('books/sub/categories', [App\Http\Controllers\BookSubCategoryControl
 
 //Routes for DonationController
 Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index')->middleware('is_admin');
+//Search
+Route::get('donations/search', [App\Http\Controllers\DonationController::class, 'search'])->name('donations.search')->middleware('is_admin');
 Route::get('donations/create', [App\Http\Controllers\DonationController::class, 'create'])->name('donations.create')->middleware('is_admin');
 Route::post('donations', [App\Http\Controllers\DonationController::class, 'store'])->name('donations.store')->middleware('is_admin');
 Route::get('donations/{donation}', [App\Http\Controllers\DonationController::class, 'show'])->name('donations.show')->middleware('is_admin');
 Route::get('donations/{donation}/edit', [App\Http\Controllers\DonationController::class, 'edit'])->name('donations.edit')->middleware('is_admin');
 Route::put('donations/{donation}', [App\Http\Controllers\DonationController::class, 'update'])->name('donations.update')->middleware('is_admin');
-Route::delete('donations/{donation}', [App\Http\Controllers\DonationController::class, 'destroy'])->name('donations.destroy')->middleware('is_admin');
+Route::delete('donations/destroy/{donation}', [App\Http\Controllers\DonationController::class, 'destroy'])->name('donations.destroy')->middleware('is_admin');
 
 //Routes for PaymentController
 Route::get('payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index')->middleware('is_admin');
 //search
 Route::get('payments/search', [App\Http\Controllers\PaymentController::class, 'search'])->name('payments.search')->middleware('is_admin');
+//rangeSearch
+Route::post('payments/range/search', [App\Http\Controllers\PaymentController::class, 'rangeSearch'])->name('payments.rangeSearch')->middleware('is_admin');
 Route::get('payments/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payments.create')->middleware('is_admin');
 Route::post('payments', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.store')->middleware('is_admin');
 Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show')->middleware('is_admin');

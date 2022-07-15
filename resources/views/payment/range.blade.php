@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }} Donations</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
@@ -74,95 +74,88 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Donations</h6>
-              <div class="search-form">
-                <div class="input-group">
-                  <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
-              </div>
-              </div>
-              @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
+              <h6>Range Select Payments Search</h6>
+
+              
+              {{-- Success Message --}}
+             @if (session('success'))
+             <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>{{ session('success') }}</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                </div>
+              </div>
             @endif
-              <a href="#addDonation" data-toggle="modal" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Manually donate </a>
+            <div class="btn-group" role="group" aria-label="Button group">
+              <a class="btn btn-default" href="{{ route('payments.index') }}"> <span><i class="fa fa-search px-2" aria-hidden="true"></i></span> Goto Search </a>
+              <button class="btn btn-default" href="#generate" data-toggle="modal" type="button"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter </button>
+              <button class="btn btn-default" href="#newPurchase" data-toggle="modal" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </button>
             </div>
-            @include('modals.add.donation')
+           
+              @include('modals.generate.purchase')
+              @include('modals.add.purchase')
+            </div>
+
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center table-striped justify-content-center mb-0">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reason</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Province</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Diocese</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Currency</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Method</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Book title</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">User email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Transaction ref</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date created</th>
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody id="searchResults"></tbody>
-                  <tbody id="allResults">
+                  <tbody>
                     @php
                       $i = 1;
                     @endphp
-                    @foreach ($donations as $donation)
+                    @foreach ($purchasedBooks as $purchase)
                     <tr>
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">{{ $i++ }}</span>
                         </td>
-                        <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">{{ $donation->name }}</span>
-                        </td>
-                        <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">
-                                <a href="mailto:  {{ $donation->email }}">  {{ $donation->email }}</a>
-                            </span>
-                        </td>
-
+                      
                       <td>
-                        <p class="text-sm font-weight-bold mb-0">{{ $donation->reason }}</p>
+                        {{-- Note* This could throw an error if the book is deleted. --}}
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->book->title }}</p>
                       </td>
 
-                      <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->province }}</span>
-                    </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->email }}</p>
+                      </td>
 
-                    <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->diocese }}</span>
-                    </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->price }}</p>
+                      </td>
 
-                    <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->currency }}</span>
-                    </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->transaction_ref }}</p>
+                      </td>
 
-                    <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->amount }}</span>
-                    </td>
-
-                    <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->method }}</span>
-                    </td>
-
-                    <td class="text-left px-4">
-                        <span class="text-xs font-weight-bold">{{ $donation->created_at->diffForHumans() }}</span>
-                    </td>
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->created_at->diffForHumans() }}</p>
+                      </td>
                       
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
-                            <form method="post" action="{{ route('donations.destroy', $donation->id) }}">
+
+                          
+                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('payments.edit', $purchase->id) }}">
+                            <i class="fa fa-pencil text-xs"></i>
+                          </a>
+                          
+                            <form method="post" action="{{ route('payments.destroy', $purchase->id) }}">
                               @method('delete')
                               @csrf
                               <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                          </form>                
+                            </form> 
+                        
+                          
                         </div>
                       </td>
                     </tr>
@@ -170,16 +163,17 @@
                   </tbody>
                 </table>
               </div>
+
               <div class="d-flex">
-                {!! $donations->links() !!}
+                {!! $purchasedBooks->links() !!}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    @include('footer.nonguest')
   </div>
+
 </main>
 </div>
 
@@ -227,24 +221,6 @@ plugins: 'code table lists',
 toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
 });
 </script>
-
-{{-- ajax search --}}
-<script>
-  $('#search').on('keyup', function(){
-    var search = $(this).val();
-      if(search) {
-        $('#allResults').hide();
-      }
-    $.ajax({
-      url: "{{ route('donations.search') }}",
-      method: 'get',
-      data: {'search': search},
-      success: function(data){
-        $('#searchResults').html(data);
-      }
-    });
-  });
-</script>
-
 </body>
 </html>
+

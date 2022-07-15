@@ -131,7 +131,7 @@
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-				<button type="submit" class="btn btn-success">Publish</button>
+				<button type="submit" class="btn btn-success">Submit</button>
 			</div>
 		</div>
         </form>

@@ -63,6 +63,18 @@ class PaymentController extends Controller
         return response($output);
     }
 
+    public function rangeSearch(Request $request)
+    {
+        //dd($request->all());
+        $books = Book::all();
+        //range from date to date from created_at
+        $purchasedBooks = PurchasedBook::whereBetween('created_at', [$request->from, $request->to])
+            ->paginate(10);
+
+            //dd($purchasedBooks);
+        return view('payment.range', compact('purchasedBooks', 'books'));
+    }
+
     //store
     public function store(Request $request)
     {
