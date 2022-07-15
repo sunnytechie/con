@@ -35,7 +35,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 //Routes for Media
 Route::get('media/videos', [App\Http\Controllers\MediaController::class, 'video'])->name('media.video')->middleware('is_admin');
+//search
+Route::get('media/videos/search', [App\Http\Controllers\MediaController::class, 'searchVideo'])->name('media.video.search')->middleware('is_admin');
 Route::get('media/audio', [App\Http\Controllers\MediaController::class, 'audio'])->name('media.audio')->middleware('is_admin');
+//search
+Route::get('media/audio/search', [App\Http\Controllers\MediaController::class, 'searchAudio'])->name('media.audio.search')->middleware('is_admin');
 //Store video, edit video, update video and destroy
 Route::post('media/videos/store', [App\Http\Controllers\VideoController::class, 'store'])->name('video.store')->middleware('is_admin');
 Route::get('media/video/edit/{id}', [App\Http\Controllers\VideoController::class, 'edit'])->name('video.edit')->middleware('is_admin');
@@ -90,6 +94,8 @@ Route::post('notifications', [App\Http\Controllers\NotificationController::class
 
 //Routes for AndroidUsersController
 Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index')->middleware('is_admin');
+//search for android users
+Route::get('app/androidusers/search', [App\Http\Controllers\AndroidUsersController::class, 'search'])->name('androidusers.search')->middleware('is_admin');
 Route::get('app/androidusers/create', [App\Http\Controllers\AndroidUsersController::class, 'create'])->name('androidusers.create')->middleware('is_admin');
 Route::post('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'store'])->name('androidusers.store')->middleware('is_admin');
 Route::get('app/androidusers/{id}', [App\Http\Controllers\AndroidUsersController::class, 'show'])->name('androidusers.show')->middleware('is_admin');
@@ -143,6 +149,8 @@ Route::delete('donations/{donation}', [App\Http\Controllers\DonationController::
 
 //Routes for PaymentController
 Route::get('payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index')->middleware('is_admin');
+//search
+Route::get('payments/search', [App\Http\Controllers\PaymentController::class, 'search'])->name('payments.search')->middleware('is_admin');
 Route::get('payments/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payments.create')->middleware('is_admin');
 Route::post('payments', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.store')->middleware('is_admin');
 Route::get('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show')->middleware('is_admin');

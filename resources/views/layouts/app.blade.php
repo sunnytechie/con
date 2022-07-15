@@ -34,6 +34,7 @@
     <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.0.6') }}" rel="stylesheet" />
     {{-- Custom css --}}
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+
     <style>
         .table> :not(caption)>*>* {
             padding: 0.1rem 0.5rem !important;
@@ -41,6 +42,10 @@
 
         .table .m-2 {
             margin: 0.2rem 0.5rem !important;
+        }
+
+        .search-form {
+            width: 300px;
         }
     </style>
 
@@ -84,7 +89,8 @@
 
     {{-- Flutterwave inline payment --}}
     <script src="https://checkout.flutterwave.com/v3.js"></script>
-
+    {{-- Google CDN --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         setTimeout(function() {
             $('.alert').fadeOut('fast');
@@ -112,6 +118,10 @@
 </script>
 
 {{-- ajax search --}}
+    
+        
+
+
 
 </body>
 </html>

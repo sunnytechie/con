@@ -10,8 +10,8 @@ class AdminController extends Controller
     //index admin
     public function index()
     {
-        $users = User::all();
-        return view('admin.index', compact('users'));
+        $admins = User::orderBy('id', 'desc')->where('role', 'admin')->paginate(10);
+        return view('admin.index', compact('admins'));
     }
 
 

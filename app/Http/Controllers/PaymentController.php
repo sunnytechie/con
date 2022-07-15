@@ -22,6 +22,47 @@ class PaymentController extends Controller
         return view('payment.index', compact('books', 'purchasedBooks'));
     }
 
+    //search
+    public function search(Request $request)
+    {
+        $output = "";
+
+        $purchasedBooks = PurchasedBook::where('email', 'like', '%' . $request->search . '%')
+            ->orWhere('transaction_ref', 'like', '%' . $request->search . '%')
+            ->orWhere('price', 'like', '%' . $request->search . '%')
+            ->orWhere('payment_status', 'like', '%' . $request->search . '%')
+            ->paginate(10);
+
+        foreach ($purchasedBooks as $key => $purchasedBook) {
+            //key is the index of the array and starts from 1
+            $key = $key + 1;
+            $output.=
+                '<tr>
+                    <td>'.$key.'</td>
+                    <td>'.$purchasedBook->book->title.'</td>
+                    <td>'.$purchasedBook->email.'</td>
+                    <td>'.$purchasedBook->price.'</td>
+                    <td>'.$purchasedBook->transaction_ref.'</td>
+                    <td>'.$purchasedBook->created_at.'</td>
+                    <td class="align-middle">
+                    <div class="btn-group" role="group" aria-label="Button group">
+                 
+                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="/payments/'.$purchasedBook->id.'">
+                          <i class="fa fa-pencil text-xs"></i>
+                        </a>
+ 
+                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
+                          <i class="fa fa-trash text-xs"></i>
+                        </a>                        
+                      
+                    </div>
+                  </td>
+                </tr>';
+        }
+
+        return response($output);
+    }
+
     //store
     public function store(Request $request)
     {

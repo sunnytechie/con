@@ -36,7 +36,7 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach($users as $user)
+                    @foreach($admins as $user)
                     <tr>
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">{{ $i++ }}</span>
