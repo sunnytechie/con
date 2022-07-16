@@ -75,6 +75,7 @@ class LoginController extends Controller
     //api for user login
     public function loginApi(Request $request)
     {
+        $success = "Successfully logged in";
         $input = $request->all();
         $this->validate($request, [
             'email' => 'required|email',
@@ -87,13 +88,13 @@ class LoginController extends Controller
             if (auth()->user()->email_verified_at == null) {
                 return response()->json(['error' => 'Email is not verified'], 401);
             }
-
+            
             if(auth()->user()->is_admin == 1) {
-                return response()->json(['error' => 'You are not authorized to login'], 401);
+                return response()->json(['success' => $success], 200);
             }
             //if user email is verified
             if(auth()->user()->email_verified_at != null) {
-                return response()->json(['error' => 'You are not authorized to login'], 401);
+                return response()->json(['success' => $success], 200);
             }                
             
             else {
