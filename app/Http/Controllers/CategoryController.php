@@ -20,6 +20,13 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    //Category Api
+    public function categoriesApi()
+    {
+        $categories = Category::orderBy('title')->get();
+        return response()->json($categories);
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([

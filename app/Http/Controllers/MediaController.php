@@ -15,10 +15,6 @@ class MediaController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function video()
     {
@@ -27,6 +23,20 @@ class MediaController extends Controller
         //Videos
         $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->paginate(10);
         return view('media.video.index', compact('categories', 'videos'));
+    }
+
+    //api mediaApi
+    public function mediaApi()
+    {
+        $videos = Media::orderBy('created_at', 'desc')->get();
+        return response()->json($videos);
+    }
+
+    //Video Api for category id
+    public function videoApi($id)
+    {
+        $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->where('category_id', $id)->get();
+        return response()->json($videos);
     }
 
     //search
@@ -85,6 +95,13 @@ class MediaController extends Controller
         //categories
         $categories = Category::all();
         return view('media.audio.index', compact('categories', 'audio'));
+    }
+
+    //Audio Api for category id
+    public function audioApi($id)
+    {
+        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->where('category_id', $id)->get();
+        return response()->json($audio);
     }
 
     //search
