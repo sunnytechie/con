@@ -97,7 +97,7 @@ class LoginController extends Controller
             //if user email is verified
             if(auth()->user()->email_verified_at != null) {
                 //success response with user name and email
-                return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
+                return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
             }                
             
             else {
