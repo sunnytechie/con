@@ -154,4 +154,30 @@ class MediaController extends Controller
         }
         return response($output);
     }
+
+
+    //Apis
+    public function mediaVideoApi() {
+        $video = Media::orderBy('created_at', 'desc')->where('type', 'video')->get();
+        return response()->json($video);  
+    }
+
+    public function mediaAudioApi() {
+        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->get();
+        return response()->json($audio);  
+    }
+
+    //Audio Api for category id
+    public function mediaShowAudioApi($id)
+    {
+        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->where('category_id', $id)->get();
+        return response()->json($audio);
+    }
+
+    //Video Api for category id
+    public function mediaShowVideoApi($id)
+    {
+        $video = Media::orderBy('created_at', 'desc')->where('type', 'video')->where('category_id', $id)->get();
+        return response()->json($video);
+    }
 }

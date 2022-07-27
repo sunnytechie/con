@@ -29,6 +29,14 @@ Route::get('/media/video/{id}', [App\Http\Controllers\MediaController::class, 'v
 Route::get('/media/audio/{id}', [App\Http\Controllers\MediaController::class, 'audioApi']);
 //api for media
 Route::get('/media', [App\Http\Controllers\MediaController::class, 'mediaApi']);
+//api for categories/video
+Route::get('/categories/video', [App\Http\Controllers\MediaController::class, 'mediaVideoApi']);
+//api for categories/audio
+Route::get('/categories/audio', [App\Http\Controllers\MediaController::class, 'mediaAudioApi']);
+//api to show audio
+Route::get('/categories/audio/{id}', [App\Http\Controllers\MediaController::class, 'mediaShowAudioApi']);
+//api to show video
+Route::get('/categories/video/{id}', [App\Http\Controllers\MediaController::class, 'mediaShowVideoApi']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

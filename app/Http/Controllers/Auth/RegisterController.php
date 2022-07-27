@@ -88,9 +88,12 @@ class RegisterController extends Controller
             'password' => Hash::make($input['password']),
         ]);
 
-        //$success['token'] = $user->createToken('MyApp')->accessToken;
+        //send email verify at 
+        
+
+        $user->sendEmailVerificationNotification();
         //success message for user to verify their email
-        $success = "You are registered successfully. Please check your email to verify your account.";
+        $success = "Verification email sent. Please check your email to verify your account.";
 
         //$success['name'] = $user->name;
         return response()->json(['success' => $success], 200);
