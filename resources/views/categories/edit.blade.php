@@ -23,8 +23,9 @@
                     @csrf
                     @method('PUT')
 
-                    <label>Title for Category</label>
+                    
                   <div class="mb-3">
+                    <label>Title for Category</label>
                     	<input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ $categoryTitle ?? old('title') }}" required>
 
 							@error('title')
@@ -33,6 +34,15 @@
 								</span>
 							@enderror
 					</div>
+
+                    <div class="mb-3">
+                        <label>Type of Category</label>
+                        <select class="form-control" name="type" id="type">
+                            <option value="audio" {{ $categoryType == 'audio' ? 'selected' : '' }}>Audio</option>
+                            <option value="video" {{ $categoryType == 'video' ? 'selected' : '' }}>Video</option>
+                            <option value="image" {{ $categoryType == 'image' ? 'selected' : '' }}>Image</option>
+                        </select>
+                    </div>
 
 					<div class="mb-3">
 						<input name="thumbnail" class="form-control" type="file" id="thumbnail">

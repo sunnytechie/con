@@ -27,6 +27,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Belongs to</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -45,6 +46,13 @@
                         <div class="my-auto">
                           <h6 class="mb-0 text-sm">{{ $category->title }}</h6>
                         </div>
+                        
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="my-auto">
+                        <h6 class="mb-0 text-sm">{{ $category->type }}</h6>
                       </div>
                     </td>
                     

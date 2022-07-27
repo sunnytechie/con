@@ -156,28 +156,33 @@ class MediaController extends Controller
     }
 
 
-    //Apis
-    public function mediaVideoApi() {
-        $video = Media::orderBy('created_at', 'desc')->where('type', 'video')->get();
-        return response()->json($video);  
-    }
-
-    public function mediaAudioApi() {
-        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->get();
-        return response()->json($audio);  
-    }
-
-    //Audio Api for category id
-    public function mediaShowAudioApi($id)
+    //APIs
+    //api categoryApi with type video
+    public function categoryApiVideo()
     {
-        $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->where('category_id', $id)->get();
-        return response()->json($audio);
+        $categories = Category::where('type', 'video')->get();
+        return response()->json($categories);
     }
 
-    //Video Api for category id
-    public function mediaShowVideoApi($id)
+    //api categoryApi with type audio
+    public function categoryApiAudio()
     {
-        $video = Media::orderBy('created_at', 'desc')->where('type', 'video')->where('category_id', $id)->get();
-        return response()->json($video);
+        $categories = Category::where('type', 'audio')->get();
+        return response()->json($categories);
     }
+
+    //api categoryApi with type image
+    public function categoryApiImage()
+    {
+        $categories = Category::where('type', 'image')->get();
+        return response()->json($categories);
+    }
+
+    //api fetch media with category id
+    public function mediaCategoryApi($id)
+    {
+        $media = Media::where('category_id', $id)->get();
+        return response()->json($media);
+    }
+    
 }

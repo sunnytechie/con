@@ -31,6 +31,7 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'title' => 'required',
+            'type' => 'required',
             'thumbnail' => ['required', 'image'],
         ]);
 
@@ -41,6 +42,7 @@ class CategoryController extends Controller
         Category::create([
             'thumbnail' => $imagePath,
             'title' => $data['title'],
+            'type' => $data['type'],
         ]);       
 
         return back()->with('success', 'Category created successfully');
@@ -54,8 +56,9 @@ public function edit(Category $category)
     $category = Category::find($category->id);
     $categoryID = $category->id;
     $categoryTitle = $category->title;
+    $categoryType = $category->type;
     $categoryThumbnail = $category->thumbnail;
-    return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories'));
+    return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories', 'categoryType'));
 
     }
 
@@ -64,6 +67,7 @@ public function edit(Category $category)
     {
         $data = $request->validate([
             'title' => 'required',
+            'type' => 'required',
             'thumbnail' => 'image',
         ]);
 
@@ -74,11 +78,13 @@ public function edit(Category $category)
             $category->update([
                 'thumbnail' => $imagePath,
                 'title' => $data['title'],
+                'type' => $data['type'],
             ]);
         }
         else {
             $category->update([
                 'title' => $data['title'],
+                'type' => $data['type'],
             ]);
         }
 
