@@ -27,6 +27,14 @@ Route::get('/categories/video', [App\Http\Controllers\MediaController::class, 'c
 Route::get('/categories/image', [App\Http\Controllers\MediaController::class, 'categoryApiImage']);
 //api for media in categories with id
 Route::get('/media/category/{id}', [App\Http\Controllers\MediaController::class, 'mediaCategoryApi']);
+//api for bookcategories
+Route::get('/books/categories', [App\Http\Controllers\BookCategoryController::class, 'bookcategoryApi']);
+//api for books in bookSubCategoriesApi with bookcategory_id
+Route::get('/books/subcategories/{id}', [App\Http\Controllers\BookCategoryController::class, 'bookSubCategoriesApi']);
+//api for books with bookcategory_id where type is 1
+Route::get('/books/paid/{id}', [App\Http\Controllers\BookCategoryController::class, 'bookDetailsApiPaid']);
+//api for books with bookcategory_id where type is 0
+Route::get('/books/free/{id}', [App\Http\Controllers\BookCategoryController::class, 'bookDetailsApiFree']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

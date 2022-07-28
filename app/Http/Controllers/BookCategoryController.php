@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Bookcategory;
 use Illuminate\Http\Request;
+use App\Models\Booksubcategory;
 use Intervention\Image\Facades\Image;
 
 class BookCategoryController extends Controller
 {
     //Create a new controller instance.
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     //store a book category
     public function store(Request $request)
@@ -34,4 +32,33 @@ class BookCategoryController extends Controller
 
         return back()->with('success', 'Book Category created successfully.');
     }
+    
+    //APIs for bookcategory with books
+    public function bookcategoryApi()
+    {
+        $bookcategories = Bookcategory::get();
+        return response()->json($bookcategories);
+    }
+
+    //APIs for subbookcategory with with bookcategory id
+    public function bookSubCategoriesApi($id)
+    {
+        $bookSubCategories = Booksubcategory::where('bookcategory_id', $id)->get();
+        return response()->json($bookSubCategories);
+    }
+
+   //APIs for books with bookcategory_id where type is 1
+    public function bookDetailsApiPaid($id)
+    {
+        $books = Book::where('bookcategory_id', $id)->where('type', '1')->get();
+        return response()->json($books);
+    }
+
+    //APIs for books with bookcategory_id where type is 0
+    public function bookDetailsApiFree($id)
+    {
+        $books = Book::where('bookcategory_id', $id)->where('type', '0')->get();
+        return response()->json($books);
+    }
+  
 }
