@@ -43,4 +43,13 @@ class StreamController extends Controller
 
         return back()->with('success', 'Stream updated successfully');
     }
+
+    //API for streams details
+    public function streamDetailsApi()
+    {
+        //get last stream
+        $stream = Stream::latest()->first();
+        $stream = Stream::find($stream);
+        return response()->json($stream);
+    }
 }

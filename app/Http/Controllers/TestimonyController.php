@@ -20,12 +20,13 @@ class TestimonyController extends Controller
     }
 
     //api to store testimony
-    public function storeTestimony(Request $request)
+    public function storeTestimonyApi(Request $request)
     {
         //validate request
         $request->validate([
+            'user_id' => '',
             'fullname' => 'required',
-            'email' => 'required',
+            'email' => '',
             'title' => 'required',
             'body' => 'required',
         ]);
@@ -36,6 +37,6 @@ class TestimonyController extends Controller
         $testimony->title = $request->title;
         $testimony->body = $request->body;
         $testimony->save();
-        return response()->json(['success' => 'Testimony sent successfully.']);
+        return response()->json(['success' => 'Your testimony has been submitted successfully.']);
     }
 }

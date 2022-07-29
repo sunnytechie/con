@@ -20,7 +20,7 @@ class MembershipController extends Controller
     }
 
     //store
-    public function store(Request $request)
+    public function storeMembershipApi(Request $request)
     {
         //validate the data
         $this->validate($request, [
@@ -59,7 +59,8 @@ class MembershipController extends Controller
         $membership->wedding_date = $request->input('wedding_date');
         $membership->local_church_address = $request->input('local_church_address');
         $membership->save();
-        return back()->with('success', 'Membership Created');
+
+        return response()->json(['success' => 'Your Membership for has been submitted successfully.']);
     }
 
     //destroy
