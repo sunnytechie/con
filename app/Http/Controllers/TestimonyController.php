@@ -39,4 +39,11 @@ class TestimonyController extends Controller
         $testimony->save();
         return response()->json(['success' => 'Your testimony has been submitted successfully.']);
     }
+
+    //api to get all testimonies
+    public function getTestimoniesApi()
+    {
+        $testimonies = Testimony::all();
+        return response()->json($testimonies);
+    }
 }

@@ -113,4 +113,11 @@ class EventController extends Controller
         $event->delete();
         return back()->with('success', 'Event deleted successfully');
     }
+
+    //api get all events
+    public function getEventsApi()
+    {
+        $events = Event::all();
+        return response()->json($events);
+    }
 }

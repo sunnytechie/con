@@ -112,4 +112,11 @@ class NewsController extends Controller
         $news->delete();
         return back()->with('success', 'News deleted successfully');
     }
+
+    //api to get all news
+    public function getNewsApi()
+    {
+        $news = News::all();
+        return response()->json($news);
+    }
 }

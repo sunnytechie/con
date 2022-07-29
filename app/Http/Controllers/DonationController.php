@@ -104,4 +104,37 @@ class DonationController extends Controller
         $donation->delete();
         return back()->with('success', 'Donation deleted!');
     }
+
+    //APi to store donation
+    public function storeDonationApi(Request $request)
+    {
+        //validate the data
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => '',
+            'currency' => 'required',
+            'amount' => 'required',
+            'reason' => '',
+            'method' => 'required',
+            'reference' => '',
+            'province' => 'required',
+            'diocese' => 'required',
+        ]);
+
+        //create a new donation
+        $donation = new Donation;
+        $donation->name = $request->name;
+        $donation->email = $request->email;
+        $donation->currency = $request->currency;
+        $donation->amount = $request->amount;
+        $donation->reason = $request->reason;
+        $donation->method = $request->method;
+        $donation->reference = $request->reference;
+        $donation->province = $request->province;
+        $donation->diocese = $request->diocese;
+        $donation->deleted = false;
+        $donation->save();
+
+        return response()->json(['success' => 'Thank you for your donation!']);
+    }
 }

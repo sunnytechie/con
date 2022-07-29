@@ -44,11 +44,22 @@ Route::get('/livestream', [App\Http\Controllers\StreamController::class, 'stream
 //Api for prayer request
 Route::post('/prayer/request', [App\Http\Controllers\PrayerController::class, 'storPrayereApi']);
 
-//Api for testimonies
-Route::post('/testimonies', [App\Http\Controllers\TestimonyController::class, 'storeTestimonyApi']);
-
 //Api to store membership
 Route::post('/membership', [App\Http\Controllers\MembershipController::class, 'storeMembershipApi']);
+
+//Api for testimonies
+Route::post('/testimonies', [App\Http\Controllers\TestimonyController::class, 'storeTestimonyApi']);
+//Api to get all testimonies
+Route::get('/testimonies/index', [App\Http\Controllers\TestimonyController::class, 'getTestimoniesApi']);
+
+//Api to get all events
+Route::get('/events', [App\Http\Controllers\EventController::class, 'getEventsApi']);
+
+//Api to get all news
+Route::get('/news', [App\Http\Controllers\NewsController::class, 'getNewsApi']);
+
+//Api to store donation
+Route::post('/donation/new', [App\Http\Controllers\DonationController::class, 'storeDonationApi']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
