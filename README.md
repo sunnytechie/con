@@ -2,6 +2,6 @@
 
 # Application name is CoN (Catholic of Nigeria)
 
-this application is created to store media files and special contents for the catholics.
+this application is created to store media files and special contents for Anglican Church of Nigeria.
 
-also has an android application using this apps api.
+This application delivers APIs that run the android application version.
