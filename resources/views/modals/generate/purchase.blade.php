@@ -22,7 +22,7 @@
 					{{-- Select book purchased book name --}}
                     <div class="mb-2">
                         <label>Book purchased</label>
-                        <select name="book_title" id="book_title" class="form-control @error('book_title') is-invalid @enderror">
+                        <select name="book_title" id="book_title" class="form-control @error('book_title') is-invalid @enderror" required>
                             <option value="">Select book</option>
                             @foreach ($books as $book)
                                 <option value="{{ $book->title }}">{{ $book->title }}</option>

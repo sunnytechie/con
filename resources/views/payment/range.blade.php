@@ -164,9 +164,7 @@
                 </table>
               </div>
 
-              <div class="d-flex">
-                {!! $purchasedBooks->links() !!}
-              </div>
+            
             </div>
           </div>
         </div>
