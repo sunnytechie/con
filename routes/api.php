@@ -37,6 +37,10 @@ Route::get('/books/subcategories/{id}', [App\Http\Controllers\BookCategoryContro
 Route::get('/books/paid/{id}', [App\Http\Controllers\BookCategoryController::class, 'bookDetailsApiPaid']);
 //api for books with bookcategory_id where type is 0
 Route::get('/books/free/{id}', [App\Http\Controllers\BookCategoryController::class, 'bookDetailsApiFree']);
+//api for bookcategoryApiFree
+Route::get('/categories/free', [App\Http\Controllers\BookCategoryController::class, 'bookcategoryApiFree']);
+//api for bookcategoryApiPaid
+Route::get('/categories/paid', [App\Http\Controllers\BookCategoryController::class, 'bookcategoryApiPaid']);
 
 //Api for streams details
 Route::get('/livestream', [App\Http\Controllers\StreamController::class, 'streamDetailsApi']);

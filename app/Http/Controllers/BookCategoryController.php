@@ -45,6 +45,35 @@ class BookCategoryController extends Controller
         return response()->json($bookcategories);
     }
 
+    public function bookcategoryApiFree()
+    {
+        //get bookategory with that has books with this bookcategory id
+        $bookcategories = Bookcategory::whereHas('books', function ($query) {
+            $query->where('type', 0);
+        })->get();
+        //$bookcategories = Bookcategory::where('type', 0)->get();
+        //get bookategory with books type 0
+
+        foreach ($bookcategories as $bookcategory) {
+            $bookcategory->books_count = Book::where('bookcategory_id', $bookcategory->id)->count();
+        }
+        
+        return response()->json($bookcategories);
+    }
+
+    public function bookcategoryApiPaid()
+    {
+        $bookcategories = Bookcategory::whereHas('books', function ($query) {
+            $query->where('type', 1);
+        })->get();
+        //count books with this bookcategory id
+        foreach ($bookcategories as $bookcategory) {
+            $bookcategory->books_count = Book::where('bookcategory_id', $bookcategory->id)->where('type', 1)->count();
+        }
+        
+        return response()->json($bookcategories);
+    }
+
     //APIs for subbookcategory with with bookcategory id
     public function bookSubCategoriesApi($id)
     {
