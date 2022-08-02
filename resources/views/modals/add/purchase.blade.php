@@ -39,8 +39,6 @@
                         @enderror
                     </div>
 
-                  
-
 
 			</div>
 			<div class="modal-footer justify-content-center">

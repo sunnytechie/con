@@ -37,6 +37,11 @@ class BookCategoryController extends Controller
     public function bookcategoryApi()
     {
         $bookcategories = Bookcategory::get();
+        //count books with this bookcategory id
+        foreach ($bookcategories as $bookcategory) {
+            $bookcategory->books_count = Book::where('bookcategory_id', $bookcategory->id)->count();
+        }
+        
         return response()->json($bookcategories);
     }
 

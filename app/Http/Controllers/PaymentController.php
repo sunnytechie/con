@@ -66,10 +66,28 @@ class PaymentController extends Controller
     public function rangeSearch(Request $request)
     {
         //dd($request->all());
+        $bookName = "$request->book_title";
+        $startDate = "$request->from_date";
+        $endDate = "$request->to_date";
+
         $books = Book::all();
-        //range from date to date from created_at
-        $purchasedBooks = PurchasedBook::whereBetween('created_at', [$request->from, $request->to])
-            ->paginate(10);
+        
+        //select purchased books where book title is equal to the book name and created_at is between the start and end date
+        $purchasedBooks = PurchasedBook::where('book_title', '=', $bookName)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->get();
+        //range from date to date in created_at
+        //$purchasedBooks = PurchasedBook::whereBetween('created_at', [$request->from_date, $request->to_date])->get();
+            //->where('book_title', 'like', '%' . $bookName . '%')
+
+            dd($purchasedBooks);
+
+
+        $purchasedBooks = PurchasedBook::whereBetween('created_at', [$startDate, $endDate])
+                        //->where('book_title', $bookName)
+                        ->paginate();
+
+            
 
             //dd($purchasedBooks);
         return view('payment.range', compact('purchasedBooks', 'books'));
@@ -100,6 +118,7 @@ class PaymentController extends Controller
         $purchasedBook->price = $bookPrice;
         $purchasedBook->transaction_ref = $request->transaction_ref;
         $purchasedBook->payment_status = $request->payment_status;
+        $purchasedBook->book_title = $bookName;
         $purchasedBook->save();
 
         return back()->with('success', 'Book purchased successfully');

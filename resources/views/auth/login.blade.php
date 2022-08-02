@@ -6,16 +6,16 @@
     <div class="page-header min-vh-75">
       <div class="container">
         <div class="row">
-          <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
-            <div class="card card-plain mt-8">
+          <div class="col-xl-4 col-lg-5 shadow-sm col-md-6 d-flex flex-column mx-auto">
+            <div class="card card-plain mt-6">
               <div style="color: purple" class="card-header pb-0 text-left bg-transparent">
-                <div style="font-weight: 700; font-size: 25px"><span><img height="70" width="70" src="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}" alt=""></span>Welcome Back</div>
+                <div style="font-weight: 700; font-size: 25px"><span><img height="70" width="70" src="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}" alt=""></span></div>
                 @if(session()->has('error'))
                 <p class="mb-0" style="color: red">
                         {{ session()->get('error') }}
                 </p>
                 @else
-                  <p class="mb-0 p-2">Sign in with your email and password</p>
+                  <p class="mb-0 p-2">Provide email and password</p>
                 @endif
                 
               </div>
@@ -43,21 +43,21 @@
                         </span>
                     @enderror
                   </div>
-                  <div class="form-check form-switch">
+                  {{-- <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked="" name="remember" {{ old('remember') ? 'checked' : '' }}>
                     <label class="form-check-label" for="rememberMe">Remember me</label>
-                  </div>
+                  </div> --}}
                   <div class="text-center">
                     <button style="background: purple; border-radius: 0;" type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
                   </div>
                 </form>
               </div>
-              <div class="card-footer text-center pt-0 px-lg-2 px-1">
+              {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                   Don't have an account?
                   <a href="#" class="text-info text-gradient font-weight-bold">Contact the admin</a>
                 </p>
-              </div>
+              </div> --}}
             </div>
           </div>
           <div class="col-md-6">
