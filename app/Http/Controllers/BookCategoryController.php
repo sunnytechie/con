@@ -84,14 +84,14 @@ class BookCategoryController extends Controller
    //APIs for books with bookcategory_id where type is 1
     public function bookDetailsApiPaid($id)
     {
-        $books = Book::where('bookcategory_id', $id)->where('type', '1')->get();
+        $books = Book::where('booksubcategory_id', $id)->where('type', '1')->get();
         return response()->json($books);
     }
 
     //APIs for books with bookcategory_id where type is 0
     public function bookDetailsApiFree($id)
     {
-        $books = Book::where('bookcategory_id', $id)->where('type', '0')->get();
+        $books = Book::where('booksubcategory_id', $id)->where('type', '0')->get();
         return response()->json($books);
     }
   
