@@ -76,8 +76,7 @@ class PaymentController extends Controller
         //select purchased books where book title is equal to the book name and created_at is between the start and end date
 
             $purchasedBooks = PurchasedBook::where('book_title', '=', $bookName)
-            //orwhere transaction_ref is like $bookName
-            ->orWhere('transaction_ref', 'like', '%' . $bookName . '%')
+            ->orWhere('transaction_ref', '=', $bookName)
             ->whereBetween('created_at', [$startDate, $endDate])
             ->get();
 
