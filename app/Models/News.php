@@ -16,5 +16,6 @@ class News extends Model
         'thumbnail',
         'author',
         'bible_verse',
+        'url',
     ];
 }

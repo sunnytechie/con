@@ -38,6 +38,7 @@ class NewsController extends Controller
             'author' => '',
             'bible_verse' => '',
             'news_date' => '',
+            'url' => 'required|url',
         ]);
 
         //store thumbnail
@@ -53,6 +54,7 @@ class NewsController extends Controller
         $news->thumbnail = $imagePath;
         $news->author = $request->author;
         $news->bible_verse = $request->bible_verse;
+        $news->url = $request->url;
         $news->save();
         return back()->with('success', 'News created successfully');
     }
@@ -68,7 +70,8 @@ class NewsController extends Controller
         $newsImage = $news->thumbnail;
         $newsAuthor = $news->author;
         $newsBibleVerse = $news->bible_verse;
-        return view('news.edit', compact('newsTitle', 'newsDetails', 'newsDate', 'newsImage', 'newsAuthor', 'newsBibleVerse', 'newsId'));
+        $newsUrl = $news->url;
+        return view('news.edit', compact('newsTitle', 'newsDetails', 'newsDate', 'newsImage', 'newsAuthor', 'newsBibleVerse', 'newsId', 'newsUrl'));
     }
 
     //update
@@ -82,6 +85,7 @@ class NewsController extends Controller
             'author' => '',
             'bible_verse' => '',
             'news_date' => '',
+            'url' => 'required|url',
         ]);
 
         //store thumbnail
@@ -101,6 +105,7 @@ class NewsController extends Controller
         }
         $news->author = $request->author;
         $news->bible_verse = $request->bible_verse;
+        $news->url = $request->url;
         $news->save();
         return back()->with('success', 'News updated successfully');
     }

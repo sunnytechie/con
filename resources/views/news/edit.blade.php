@@ -36,6 +36,17 @@
 
                 
                 <div class="form-group">
+                  <label for="url">Url</label>
+                  <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" value="{{ $newsUrl ?? old('url') }}" name="url" placeholder="Url">
+                  @error('url')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+                
+                <div class="form-group">
                   <label for="news_date">News date</label>
                   <input type="date" class="form-control @error('news_date') is-invalid @enderror" value="{{ $newsDate ?? old('news_date') }}" id="news_date" name="news_date" placeholder="date">
 
