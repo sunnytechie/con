@@ -4,7 +4,7 @@
 <div class="container-fluid py-4">
 
     <div class="row">
-        <div class="col-12">
+      <div class="col-md-8 offset-md-1">
           <div class="card mb-4">
             
             <div class="card-header d-flex justify-content-between pb-0">

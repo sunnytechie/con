@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -200,6 +201,30 @@ Route::put('settings/{id}', [App\Http\Controllers\SettingsController::class, 'up
 //Routes to edit and update stream
 Route::get('stream', [App\Http\Controllers\StreamController::class, 'edit'])->name('stream.index')->middleware('is_admin');
 Route::put('stream/{id}', [App\Http\Controllers\StreamController::class, 'update'])->name('stream.update')->middleware('is_admin');
+
+//Routes recources for StudyController
+Route::resource('studies', StudyController::class)->middleware('is_admin');
+
+//Routes indexFountain StudyController
+Route::get('study/fountain', [App\Http\Controllers\StudyController::class, 'indexFountain'])->name('studies.fountain')->middleware('is_admin');
+//Routes editFountain StudyController
+Route::get('study/{study}/editFountain', [App\Http\Controllers\StudyController::class, 'editFountain'])->name('studies.editFountain')->middleware('is_admin');
+//Routes updateFountain StudyController
+Route::put('study/{study}/updateFountain', [App\Http\Controllers\StudyController::class, 'updateFountain'])->name('studies.updateFountain')->middleware('is_admin');
+
+//Routes indexBibleStudy StudyController
+Route::get('study/biblestudy', [App\Http\Controllers\StudyController::class, 'indexBibleStudy'])->name('studies.study')->middleware('is_admin');
+//Routes editBibleStudy StudyController
+Route::get('study/{study}/editBibleStudy', [App\Http\Controllers\StudyController::class, 'editBibleStudy'])->name('studies.editBibleStudy')->middleware('is_admin');
+//Routes updateBibleStudy StudyController
+Route::put('study/{study}/updateBibleStudy', [App\Http\Controllers\StudyController::class, 'updateBibleStudy'])->name('studies.updateBibleStudy')->middleware('is_admin');
+
+//Routes indexDailyDynamite StudyController
+Route::get('study/dailydynamite', [App\Http\Controllers\StudyController::class, 'indexDailyDynamite'])->name('studies.dynamite')->middleware('is_admin');
+//Routes editDailyDynamite StudyController
+Route::get('study/{study}/editDailyDynamite', [App\Http\Controllers\StudyController::class, 'editDailyDynamite'])->name('studies.editDailyDynamite')->middleware('is_admin');
+//Routes updateDailyDynamite StudyController
+Route::put('study/{study}/updateDailyDynamite', [App\Http\Controllers\StudyController::class, 'updateDailyDynamite'])->name('studies.updateDailyDynamite')->middleware('is_admin');
 
 //import routes
 Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index')->middleware('is_admin');

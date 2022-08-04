@@ -47,6 +47,12 @@
         .search-form {
             width: 300px;
         }
+
+        @media screen and (min-width: 764px) {
+            .modal-dialog {
+		        width: 800px important;
+	    }
+  }
     </style>
 
 </head>

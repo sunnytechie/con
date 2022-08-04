@@ -21,20 +21,50 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('books.index') }}">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="fa fa-book" aria-hidden="true"></i>
-            </div>
-            <span class="nav-link-text ms-1">Books</span>
-          </a>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Books</h6>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ route('payments.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-credit-card" aria-hidden="true"></i>
             </div>
             <span class="nav-link-text ms-1">Books/Material Payment</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('studies.dynamite') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Daily Dynamite</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('studies.fountain') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-tint" aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Fountain</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('studies.study') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Bible Study</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('books.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-clone" aria-hidden="true"></i>
+            </div>
+            <span class="nav-link-text ms-1">Books</span>
           </a>
         </li>
 

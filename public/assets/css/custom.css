@@ -111,3 +111,6 @@ i.fa {
 	background: #fff;
 }
 
+.dropdown-toggle::after {
+	display: none;
+}
