@@ -463,4 +463,25 @@ class StudyController extends Controller
         $study->delete();
         return back()->with('success', 'Deleted successfully.');
     }
+
+    //fountainApi where type = 1
+    public function fountainApi()
+    {
+        $studies = Study::where('type', 1)->get();
+        return response()->json($studies);
+    }
+
+    //dynamiteApi where type = 3
+    public function dynamiteApi()
+    {
+        $studies = Study::where('type', 3)->get();
+        return response()->json($studies);
+    }
+
+    //biblestudyApi where type = 2
+    public function biblestudyApi()
+    {
+        $studies = Study::where('type', 2)->get();
+        return response()->json($studies);
+    }
 }

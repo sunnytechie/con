@@ -22,6 +22,8 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 //api for user login
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'loginApi']);
 
+//api for categories
+Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'categoriesApi']);
 //api for categories according to media type
 Route::get('/categories/audio', [App\Http\Controllers\MediaController::class, 'categoryApiAudio']);
 Route::get('/categories/video', [App\Http\Controllers\MediaController::class, 'categoryApiVideo']);
@@ -64,6 +66,13 @@ Route::get('/news', [App\Http\Controllers\NewsController::class, 'getNewsApi']);
 
 //Api to store donation
 Route::post('/donation/new', [App\Http\Controllers\DonationController::class, 'storeDonationApi']);
+
+//Api for foutain in StudyController
+Route::get('/study/fountain', [App\Http\Controllers\StudyController::class, 'fountainApi']);
+//Api for dynamite in StudyController
+Route::get('/study/dynamite', [App\Http\Controllers\StudyController::class, 'dynamiteApi']);
+//Api for biblestudy in StudyController
+Route::get('/study/biblestudy', [App\Http\Controllers\StudyController::class, 'biblestudyApi']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

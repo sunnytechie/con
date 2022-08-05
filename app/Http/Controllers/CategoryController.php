@@ -59,8 +59,7 @@ public function edit(Category $category)
     $categoryType = $category->type;
     $categoryThumbnail = $category->thumbnail;
     return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories', 'categoryType'));
-
-    }
+}
 
     //Update Category
     public function update(Request $request, Category $category)
