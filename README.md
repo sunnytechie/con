@@ -10,9 +10,6 @@ This application is developed for Anglican Church use only
 ## Application URL 
 https://api.conaio.com/
 
-## Connect with the developer on Linkedin
-https://www.linkedin.com/in/sunday-afoka-chinedu-82223595
-
 ## Requirements
 * PHP 8.0 or latest
 * Node 14 or latest
