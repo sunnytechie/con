@@ -217,14 +217,14 @@
 
 
 
-    {{-- <div class="row mt-4">
+    <div class="row mt-4">
       <div class="col-lg-12 mb-lg-0 mb-4">
         <div class="card h-100 p-3">
           <div id="lineChart" style="height: 370px; max-width: 100%;"></div>
         </div>
       </div>
       @include('charts.line')
-    </div> --}}
+    </div>
 
 
     @include('footer.nonguest')

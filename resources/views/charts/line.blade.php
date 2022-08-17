@@ -1,32 +1,27 @@
 <script>
-    window.onload = function () {
     
-    var chart = new CanvasJS.Chart("linechart", {
+    function lineChart() {
+    
+    var line = new CanvasJS.Chart("lineChart", {
         animationEnabled: true,
-        theme: "light2",
-        title:{
-            text: "Simple Line Chart"
+        title: {
+            text: "Pie Chart Analysis"
         },
-        axisY:{
-            includeZero: false
-        },
-        data: [{        
-            type: "line",       
+        data: [{
+            type: "pie",
+            startAngle: 240,
+            yValueFormatString: "##0.00'%'",
+            indexLabel: "{label} {y}",
             dataPoints: [
-                { x: 10, label: "A&B" },
-                { x: 13,  label: "BCP" },
-                { x: 35,  label: "Bible Study 2022" },
-                { x: 6,  label: "CYC" },
-                { x: 6,  label: "CoN HYMN" },
-                { x: 1, label: "CONSTITUTION AND CANNONS" },
-                { x: 23,  label: "DAILY DYNAMITES 2022" },
-                { x: 48,  label: "DAILY FOUNTAIN 2022" },
-                { x: 48,  label: "FINANCIAL FREEDOM" },
-                { x: 48,  label: "SS AGE 3-5" }
+                
+                { y: {{ $totalPurchasedBibleStudy }}, label: "Bible Study" },
+                { y: {{ $totalPurchasedDailyFountain }}, label: "Daily Fountain" },
+                { y: {{ $totalPurchasedDailyDynamite }}, label: "Daily Dynamite" }
+                
             ]
         }]
     });
-    chart.render();
+    line.render();
     
     }
     </script>

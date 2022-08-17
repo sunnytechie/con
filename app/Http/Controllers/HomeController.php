@@ -11,6 +11,7 @@ use App\Models\Comment;
 use App\Models\Membership;
 use Illuminate\Http\Request;
 use App\Models\PurchasedBook;
+use App\Models\Purchasedstudy;
 use App\Models\ReportedComment;
 
 class HomeController extends Controller
@@ -57,7 +58,14 @@ class HomeController extends Controller
         $totalPurchaseByBookId = PurchasedBook::selectRaw('book_id, count(*) as total')->groupBy('book_id')->get();
         //dd($totalPurchaseByBookId);
 
-        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId', 'totalMemberships'));
+        //Count PurchasedStudy where study_category_name = Daily Fountain
+        $totalPurchasedDailyFountain = Purchasedstudy::where('study_category_name', 'Daily Fountain')->count();
+        //Count PurchasedStudy where study_category_name = Daily Dynamite
+        $totalPurchasedDailyDynamite = Purchasedstudy::where('study_category_name', 'Daily Dynamite')->count();
+        //Count PurchasedStudy where study_category_name = Bible Study
+        $totalPurchasedBibleStudy = Purchasedstudy::where('study_category_name', 'Bible Study')->count();
+
+        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId', 'totalMemberships', 'totalPurchasedDailyFountain', 'totalPurchasedDailyDynamite', 'totalPurchasedBibleStudy'));
     }
 
     public function media()

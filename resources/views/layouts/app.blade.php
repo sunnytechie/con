@@ -110,6 +110,7 @@
         window.onload = function() {
             columnChart();
             pieChart();
+            lineChart();
         };
     </script>
     
@@ -122,11 +123,6 @@
     toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
   });
 </script>
-
-{{-- ajax search --}}
-    
-        
-
 
 
 </body>

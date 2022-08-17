@@ -33,4 +33,10 @@ class Study extends Model
         'prayer',
         'study_year',
     ];
+
+    //has many purchasedstudies
+    public function purchasedstudies()
+    {
+        return $this->hasMany(Purchasedstudy::class);
+    }
 }
