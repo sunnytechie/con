@@ -75,13 +75,15 @@ Route::get('/study/dynamite', [App\Http\Controllers\StudyController::class, 'dyn
 Route::get('/study/biblestudy', [App\Http\Controllers\StudyController::class, 'biblestudyApi']);
 
 //apiStorePurchasedBook
-Route::post('/store/purchased/book', [App\Http\Controllers\PaymentController::class, 'storePurchasedBookApi']);
+Route::post('/store/purchased/book', [App\Http\Controllers\PaymentController::class, 'apiStorePurchasedBook']);
 //apiGetPurchasedBooks
-Route::get('/user/purchased/books', [App\Http\Controllers\PaymentController::class, 'getPurchasedBooksApi']);
+Route::get('/user/purchased/books', [App\Http\Controllers\PaymentController::class, 'apiGetPurchasedBooks']);
 //apiStorePurchasedStudy
-Route::post('/store/purchased/study', [App\Http\Controllers\PaymentController::class, 'storePurchasedStudyApi']);
+
+Route::post('/store/purchased/study', [App\Http\Controllers\PurchaseStudyController::class, 'apiStorePurchasedStudy']);
 //apiGetPurchasedStudy
-Route::get('/user/purchased/study', [App\Http\Controllers\PaymentController::class, 'getPurchasedStudyApi']);
+Route::get('/user/purchased/study', [App\Http\Controllers\PurchaseStudyController::class, 'apiGetPurchasedStudy']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
