@@ -136,7 +136,7 @@ class PaymentController extends Controller
         $purchasedBook->email = $request->email;
         $purchasedBook->book_id = $request->book_id;
         $purchasedBook->price = $bookPrice;
-        $purchasedBook->transaction = $request->transaction_ref;
+        $purchasedBook->transaction_ref = $request->transaction_ref;
         $purchasedBook->book_title = $bookName;
         $purchasedBook->payment_status = "Paid";
         $purchasedBook->save();

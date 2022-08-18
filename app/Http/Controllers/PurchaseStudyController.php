@@ -123,15 +123,15 @@ class PurchaseStudyController extends Controller
         
         //find study
         $study = Study::find($request->study_id);
-        $studyName = $study->title;
-        $studyPrice = $study->price;
+        $studyName = $study->study_title;
+        $studyPrice = "500";
         
         //store
         $purchasedstudy = new Purchasedstudy();
         $purchasedstudy->email = $request->email;
         $purchasedstudy->study_id = $request->study_id;
         $purchasedstudy->price = $studyPrice;
-        $purchasedstudy->transaction = $request->transaction_ref;
+        $purchasedstudy->transaction_ref = $request->transaction_ref;
         $purchasedstudy->study_title = $studyName;
         $purchasedstudy->payment_status = "Paid";
         $purchasedstudy->save();
