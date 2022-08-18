@@ -5,7 +5,7 @@
     var line = new CanvasJS.Chart("lineChart", {
         animationEnabled: true,
         title: {
-            text: "Pie Chart Analysis"
+            text: "Dynamite, Bible study and Fountain Purchased Analysis"
         },
         data: [{
             type: "pie",

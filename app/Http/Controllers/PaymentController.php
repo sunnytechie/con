@@ -109,12 +109,57 @@ class PaymentController extends Controller
         $purchasedBook->book_id = $request->book_id;
         $purchasedBook->price = $bookPrice;
         $purchasedBook->transaction_ref = $request->transaction_ref;
-        $purchasedBook->payment_status = $request->payment_status;
         $purchasedBook->book_title = $bookName;
+        $purchasedBook->payment_status = "Paid";
         $purchasedBook->save();
 
         return back()->with('success', 'Book purchased successfully');
     }
+
+    //api to store payment
+    public function apiStorePurchasedBook(Request $request)
+    {
+        //validate
+        $request->validate([
+            'email' => 'required|email',
+            'book_id' => 'required',
+            'price' => '',
+            'transaction_ref' => '',
+            'payment_status' => '',
+        ]);
+        //find book
+        $book = Book::find($request->book_id);
+        $bookName = $book->title;
+        $bookPrice = $book->price;
+        //store
+        $purchasedBook = new PurchasedBook;
+        $purchasedBook->email = $request->email;
+        $purchasedBook->book_id = $request->book_id;
+        $purchasedBook->price = $bookPrice;
+        $purchasedBook->transaction = $request->transaction_ref;
+        $purchasedBook->book_title = $bookName;
+        $purchasedBook->payment_status = "Paid";
+        $purchasedBook->save();
+
+        return response()->json(['success' => 'Book purchased successfully']);
+    }
+
+
+    //api to get purchased books by email
+    public function apiGetPurchasedBooksByEmail(Request $request)
+    {
+        $email = $request->email;
+        $purchasedBooks = PurchasedBook::where('email', '=', $email)->get();
+        return response()->json(['purchasedBooks' => $purchasedBooks]);
+    }
+
+    //api to get purchased books
+    public function apiGetPurchasedBooks(Request $request)
+    {
+        $purchasedBooks = PurchasedBook::all();
+        return response()->json(['purchasedBooks' => $purchasedBooks]);
+    }
+
 
     //edit
     public function edit($id)

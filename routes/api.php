@@ -74,6 +74,14 @@ Route::get('/study/dynamite', [App\Http\Controllers\StudyController::class, 'dyn
 //Api for biblestudy in StudyController
 Route::get('/study/biblestudy', [App\Http\Controllers\StudyController::class, 'biblestudyApi']);
 
+//apiStorePurchasedBook
+Route::post('/store/purchased/book', [App\Http\Controllers\PaymentController::class, 'storePurchasedBookApi']);
+//apiGetPurchasedBooks
+Route::get('/user/purchased/books', [App\Http\Controllers\PaymentController::class, 'getPurchasedBooksApi']);
+//apiStorePurchasedStudy
+Route::post('/store/purchased/study', [App\Http\Controllers\PaymentController::class, 'storePurchasedStudyApi']);
+//apiGetPurchasedStudy
+Route::get('/user/purchased/study', [App\Http\Controllers\PaymentController::class, 'getPurchasedStudyApi']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -31,12 +31,15 @@
             <span class="mb-0 me-3">Hi, {{ Auth::user()->name }}</span>
           </li>
 
+          @if (Auth::user()->role == "admin")
           {{-- Add more users --}}
           <li class="nav-item px-3 d-flex align-items-center">
             <a href="{{ route('admin.index') }}" class="nav-link text-body p-0" data-toggle="tooltip" data-placement="bottom" title="Admin Accounts">
               <i class="fa fa-user-plus fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
+          @endif
+          {{-- //Add more users --}}
 
           {{-- Setting --}}
           <li class="nav-item px-3 d-flex align-items-center">
