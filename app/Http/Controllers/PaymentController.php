@@ -27,9 +27,10 @@ class PaymentController extends Controller
     {
         $output = "";
 
-        $purchasedBooks = PurchasedBook::where('email', 'like', '%' . $request->search . '%')
+        $purchasedBooks = PurchasedBook::orderBy('id', 'DESC')->where('email', 'like', '%' . $request->search . '%')
             ->orWhere('transaction_ref', 'like', '%' . $request->search . '%')
             ->orWhere('price', 'like', '%' . $request->search . '%')
+            ->orWhere('book_title', 'like', '%' . $request->search . '%')
             ->orWhere('payment_status', 'like', '%' . $request->search . '%')
             ->paginate(10);
 
@@ -51,9 +52,14 @@ class PaymentController extends Controller
                           <i class="fa fa-pencil text-xs"></i>
                         </a>
  
-                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                          <i class="fa fa-trash text-xs"></i>
-                        </a>                        
+                        <form action="/payments/'.$purchasedBook->id.'" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="'.csrf_token().'">
+                                    <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="
+                                        return confirm(\'Are you sure you want to delete this record?\')">
+                                    <i class="fa fa-trash text-xs"></i>
+                                    </button>
+                        </form>                        
                       
                     </div>
                   </td>

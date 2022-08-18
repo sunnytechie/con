@@ -38,7 +38,7 @@
               <i class="fa fa-user-plus fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
             </a>
           </li>
-          @endif
+          
           {{-- //Add more users --}}
 
           {{-- Setting --}}
@@ -62,6 +62,7 @@
             </a>
           </li>
 
+          @endif
           {{-- Logout --}}
           <li class="nav-item px-2 d-flex align-items-center">
             <a href="{{ route('logout') }}" class="nav-link text-body font-weight-bold px-0"

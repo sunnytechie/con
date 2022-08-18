@@ -12,12 +12,13 @@ class PurchaseStudyController extends Controller
     //index for purchase study
     public function index()
     {
-        //books
-        $books = Book::all();
+        //studies
+        $studies = Study::all();
+
         //purchased books
-        $purchasedstudies = Purchasedstudy::paginate(10);;
+        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->paginate(10);
         
-        return view('purchase.index', compact('books', 'purchasedstudies'));
+        return view('purchase.index', compact('studies', 'purchasedstudies'));
     }
 
     //search for purchase study
@@ -25,9 +26,10 @@ class PurchaseStudyController extends Controller
     {
         $output = "";
 
-        $purchasedstudies = Purchasedstudy::where('email', 'like', '%' . $request->search . '%')
+        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->where('email', 'like', '%' . $request->search . '%')
             ->orWhere('transaction_ref', 'like', '%' . $request->search . '%')
             ->orWhere('price', 'like', '%' . $request->search . '%')
+            ->orWhere('study_title', 'like', '%' . $request->search . '%')
             ->orWhere('payment_status', 'like', '%' . $request->search . '%')
             ->paginate(10);
         
@@ -37,21 +39,22 @@ class PurchaseStudyController extends Controller
             $output.=
                 '<tr>
                     <td>'.$key.'</td>
-                    <td>'.$purchasedstudy->book->title.'</td>
+                    <td>'.$purchasedstudy->study_title.'</td>
                     <td>'.$purchasedstudy->email.'</td>
                     <td>'.$purchasedstudy->price.'</td>
                     <td>'.$purchasedstudy->transaction_ref.'</td>
                     <td>'.$purchasedstudy->created_at.'</td>
                     <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Button group">
-                 
-                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="/payments/'.$purchasedstudy->id.'">
-                          <i class="fa fa-pencil text-xs"></i>
-                        </a>
   
-                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                          <i class="fa fa-trash text-xs"></i>
-                        </a>                        
+                    <form action="/purchase/study/'.$purchasedstudy->id.'" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="'.csrf_token().'">
+                        <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="
+                            return confirm(\'Are you sure you want to delete this record?\')">
+                        <i class="fa fa-trash text-xs"></i>
+                        </button>
+            </form>                        
                       
                     </div>
                   </td>
@@ -61,22 +64,21 @@ class PurchaseStudyController extends Controller
     }
 
     public function rangeSearch(Request $request) {
-        $studyName = $request->book_title;
+        $studyCategory = $request->study_category;
         $startDate = $request->from;
         $endDate = $request->to;
 
-        $studys = Study::all();
+        $studies = Study::all();
         
-        //select purchased studys where study title is equal to the study name and created_at is between the start and end date
+        //select purchased stud$studies where study title is equal to the study name and created_at is between the start and end date
 
-            $purchasedstudies = Purchasedstudy::where('study_title', '=', $studyName)
-            ->orWhere('transaction_ref', '=', $studyName)
+            $purchasedstudies = Purchasedstudy::where('study_category_name', $studyCategory)
             ->whereBetween('created_at', [$startDate, $endDate])
             ->get();
 
             //dd($purchasedstudies);
 
-        return view('payment.range', compact('purchasedstudies', 'studys'));
+        return view('purchase.range', compact('purchasedstudies', 'studies'));
     }
 
 //store
@@ -93,8 +95,9 @@ class PurchaseStudyController extends Controller
 
         //find study
         $study = Study::find($request->study_id);
-        $studyName = $study->title;
-        $studyPrice = $study->price;
+        $studyName = $study->study_title;
+        $studyPrice = "500";
+        $studyTypeName = $study->study_type_name;
 
         //store
         $purchasedstudy = new Purchasedstudy();
@@ -103,6 +106,7 @@ class PurchaseStudyController extends Controller
         $purchasedstudy->price = $studyPrice;
         $purchasedstudy->transaction_ref = $request->transaction_ref;
         $purchasedstudy->study_title = $studyName;
+        $purchasedstudy->study_category_name = $studyTypeName;
         $purchasedstudy->payment_status = "Paid";
         $purchasedstudy->save();
 
@@ -125,6 +129,7 @@ class PurchaseStudyController extends Controller
         $study = Study::find($request->study_id);
         $studyName = $study->study_title;
         $studyPrice = "500";
+        $studyTypeName = $study->study_type_name;
         
         //store
         $purchasedstudy = new Purchasedstudy();
@@ -133,6 +138,7 @@ class PurchaseStudyController extends Controller
         $purchasedstudy->price = $studyPrice;
         $purchasedstudy->transaction_ref = $request->transaction_ref;
         $purchasedstudy->study_title = $studyName;
+        $purchasedstudy->study_category_name = $studyTypeName;
         $purchasedstudy->payment_status = "Paid";
         $purchasedstudy->save();
 
@@ -147,6 +153,14 @@ class PurchaseStudyController extends Controller
     {
         $purchasedstudies = Purchasedstudy::all();
         return response()->json(['purchasedStudies' => $purchasedstudies]);
+    }
+
+    //destroy
+    public function destroy($id)
+    {
+        $purchasedstudy = Purchasedstudy::find($id);
+        $purchasedstudy->delete();
+        return back()->with('success', 'Book deleted successfully');
     }
 
 

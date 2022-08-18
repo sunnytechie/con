@@ -74,7 +74,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Books/Materials Payments</h6>
+              <h6>Daily Fountain, Dynamites and Bible Study</h6>
 
               <div class="search-form">
                 <div class="input-group">
@@ -91,12 +91,12 @@
               </div>
             @endif
             <div class="btn-group" role="group" aria-label="Button group">
-              <button class="btn btn-default" href="#generate" data-toggle="modal" type="button"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter </button>
-              <button class="btn btn-default" href="#newPurchase" data-toggle="modal" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </button>
+              <button class="btn btn-default" href="#generatePurchasedStudy" data-toggle="modal" type="button"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter </button>
+              <button class="btn btn-default" href="#newPurchaseStudy" data-toggle="modal" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </button>
             </div>
            
-              @include('modals.generate.purchase')
-              @include('modals.add.purchase')
+              @include('modals.generate.purchasedstudy')
+              @include('modals.add.purchasedstudy') 
             </div>
 
             <div class="card-body px-0 pt-0 pb-2">
@@ -118,7 +118,7 @@
                     @php
                       $i = 1;
                     @endphp
-                    @foreach ($purchasedBooks as $purchase)
+                    @foreach ($purchasedstudies as $purchase)
                     <tr>
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">{{ $i++ }}</span>
@@ -126,7 +126,7 @@
                       
                       <td>
                         {{-- Note* This could throw an error if the book is deleted. --}}
-                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->book->title }}</p>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->study_title }}</p>
                       </td>
 
                       <td>
@@ -147,13 +147,8 @@
                       
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
-
                           
-                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('payments.edit', $purchase->id) }}">
-                            <i class="fa fa-pencil text-xs"></i>
-                          </a>
-                          
-                            <form method="post" action="{{ route('payments.destroy', $purchase->id) }}">
+                            <form method="post" action="{{ route('purchase.studies.destroy', $purchase->id) }}">
                               @method('delete')
                               @csrf
                               <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
@@ -169,7 +164,7 @@
               </div>
 
               <div class="d-flex">
-                {!! $purchasedBooks->links() !!}
+                {!! $purchasedstudies->links() !!}
               </div>
             </div>
           </div>
@@ -234,7 +229,7 @@ toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | 
         $('#allResults').hide();
       }
     $.ajax({
-      url: "{{ route('payments.search') }}",
+      url: "{{ route('purchase.studies.search') }}",
       method: 'get',
       data: {'search': search},
       success: function(data){

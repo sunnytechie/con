@@ -163,6 +163,19 @@ Route::get('payments/{payment}/edit', [App\Http\Controllers\PaymentController::c
 Route::put('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'update'])->name('payments.update')->middleware('is_admin');
 Route::delete('payments/{payment}', [App\Http\Controllers\PaymentController::class, 'destroy'])->name('payments.destroy')->middleware('is_admin');
 
+//Routes for PurchasedStudyController
+Route::get('purchase/studies', [App\Http\Controllers\PurchaseStudyController::class, 'index'])->name('purchase.studies.index')->middleware('is_admin');
+Route::get('purchase/study/create', [App\Http\Controllers\PurchaseStudyController::class, 'create'])->name('purchase.studies.create')->middleware('is_admin');
+Route::post('purchase/studies', [App\Http\Controllers\PurchaseStudyController::class, 'store'])->name('purchase.studies.store')->middleware('is_admin');
+Route::get('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudyController::class, 'show'])->name('purchase.studies.show')->middleware('is_admin');
+Route::get('purchase/study/{purchaseStudy}/edit', [App\Http\Controllers\PurchaseStudyController::class, 'edit'])->name('purchase.studies.edit')->middleware('is_admin');
+Route::put('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudyController::class, 'update'])->name('purchase.studies.update')->middleware('is_admin');
+Route::delete('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudyController::class, 'destroy'])->name('purchase.studies.destroy')->middleware('is_admin');
+//search
+Route::get('purchase/studies/search', [App\Http\Controllers\PurchaseStudyController::class, 'search'])->name('purchase.studies.search')->middleware('is_admin');
+//rangeSearch
+Route::post('purchase/studies/range/search', [App\Http\Controllers\PurchaseStudyController::class, 'rangeSearch'])->name('purchase.studies.rangeSearch')->middleware('is_admin');
+
 //Routes for TestimonyController
 Route::get('testimonies', [App\Http\Controllers\TestimonyController::class, 'index'])->name('testimonies.index')->middleware('is_admin');
 
