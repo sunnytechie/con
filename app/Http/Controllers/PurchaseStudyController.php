@@ -85,7 +85,7 @@ class PurchaseStudyController extends Controller
         //validate
         $request->validate([
             'email' => 'required|email',
-            'book_id' => 'required',
+            'study_id' => 'required',
             'price' => '',
             'transaction_ref' => '',
             'payment_status' => '',
@@ -115,7 +115,7 @@ class PurchaseStudyController extends Controller
         //validate
         $request->validate([
             'email' => 'required|email',
-            'book_id' => 'required',
+            'study_id' => 'required',
             'price' => '',
             'transaction_ref' => '',
             'payment_status' => '',
