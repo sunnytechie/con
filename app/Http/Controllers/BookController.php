@@ -45,17 +45,21 @@ class BookController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        //store pdf file in public/books
+        //move pdf file to pdf folder
         $file = $request->file('file');
         $fileName = $file->getClientOriginalName();
-        //change file name to avoid duplicate file name
-        $fileName = time() . '-' . $fileName;
-        //Add pdf/file as variable to store in database
-        $fileFolder = 'pdf/';
-        $filePath = $fileFolder . $fileName;
-                
-        $file->storeAs('public/pdf', $fileName);
+        $file->move(public_path('pdf'), $fileName);
+        $filePath = public_path('pdf/' . $fileName);
 
+        //store pdf file in public/books
+        //$file = $request->file('file');
+        //$fileName = $file->getClientOriginalName();
+        //change file name to avoid duplicate file name
+        //$fileName = time() . '-' . $fileName;
+        //Add pdf/file as variable to store in database
+        //$fileFolder = 'pdf/';
+        //$filePath = $fileFolder . $fileName;
+      
         //store image file in public/books/images
         $imagePath = request('image')->store('books/image', 'public');
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
@@ -126,14 +130,19 @@ class BookController extends Controller
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {
             //update pdf file in public/books
+            //$file = $request->file('file');
+            //$fileName = $file->getClientOriginalName();
+            //change file name to avoid duplicate file name
+            //$fileName = time() . '-' . $fileName;
+            //Add pdf/file as variable to store in database
+            //$fileFolder = 'pdf/';
+            //$filePath = $fileFolder . $fileName;
+            //$file->storeAs('public/pdf', $fileName);
+
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
-            //change file name to avoid duplicate file name
-            $fileName = time() . '-' . $fileName;
-            //Add pdf/file as variable to store in database
-            $fileFolder = 'pdf/';
-            $filePath = $fileFolder . $fileName;
-            $file->storeAs('public/pdf', $fileName);
+            $file->move(public_path('pdf'), $fileName);
+            $filePath = public_path('pdf/' . $fileName);
         }
 
         //update image file in public/books/images when image is changed
