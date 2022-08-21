@@ -116,7 +116,7 @@ class PaymentController extends Controller
         $purchasedBook->price = $bookPrice;
         $purchasedBook->transaction_ref = $request->transaction_ref;
         $purchasedBook->book_title = $bookName;
-        $purchasedBook->payment_status = "Paid";
+        $purchasedBook->payment_status = "success";
         $purchasedBook->save();
 
         return back()->with('success', 'Book purchased successfully');
@@ -144,7 +144,7 @@ class PaymentController extends Controller
         $purchasedBook->price = $bookPrice;
         $purchasedBook->transaction_ref = $request->transaction_ref;
         $purchasedBook->book_title = $bookName;
-        $purchasedBook->payment_status = "Paid";
+        $purchasedBook->payment_status = "success";
         $purchasedBook->save();
 
         return response()->json(['success' => 'Book purchased successfully']);

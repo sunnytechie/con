@@ -48,6 +48,8 @@ class BookController extends Controller
         //move pdf file to pdf folder
         $file = $request->file('file');
         $fileName = $file->getClientOriginalName();
+        //add time to file name to avoid duplicate file name
+        $fileName = time() . '_' . $fileName;
         $file->move(public_path('pdf'), $fileName);
         $filePath = public_path('pdf/' . $fileName);
 
@@ -141,6 +143,8 @@ class BookController extends Controller
 
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
+            //add time to file name to avoid duplicate file name
+            $fileName = time() . '_' . $fileName;
             $file->move(public_path('pdf'), $fileName);
             $filePath = public_path('pdf/' . $fileName);
         }
