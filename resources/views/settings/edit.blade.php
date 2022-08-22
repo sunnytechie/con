@@ -22,7 +22,63 @@
               <form method="POST" action="{{ route('settings.update', $id) }}">
                 @csrf
                 @method('PUT')
+
+                <h5>Donation APi Keys Settings</h5>
+                <div class="form-group row">
+                  <label for="paystack_api_key">Paystack Api Key</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="paystack_api_key" name="paystack_api_key" value="{{ $paystack_api_key }}">
+                  </div>
+
+                  @error('paystack_api_key')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+                <div class="form-group row">
+                  <label for="flutterwave_api_key">FlutterWave Api Key</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="flutterwave_api_key" name="flutterwave_api_key" value="{{ $flutterwave_api_key }}">
+                  </div>
+
+                  @error('flutterwave_api_key')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+                <div class="form-group row">
+                  <label for="flutterwave_currency_code">FlutterWave Api Key</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="flutterwave_currency_code" value="NGN" name="flutterwave_currency_code" value="{{ $flutterwave_currency_code }}">
+                  </div>
+
+                  @error('flutterwave_currency_code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+              
+                <div class="form-group row">
+                  <label for="paypal_donation_url">FlutterWave Api Key</label>
+                  <div class="col-sm-12">
+                    <input type="text" class="form-control" id="paypal_donation_url" name="paypal_donation_url" value="{{ $paypal_donation_url }}">
+                  </div>
+
+                  @error('paypal_donation_url')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
                 
+                <h5 class="mt-5">Firebase Settings</h5>
                 <div class="form-group">
                   <label for="fcm_server_key">Firebase Server Key</label>
                   <input type="text" class="form-control @error('fcm_server_key') is-invalid @enderror" id="fcm_server_key" value="{{ $fcm_server_key ?? old('fcm_server_key') }}" name="fcm_server_key" placeholder="Key">
@@ -34,7 +90,7 @@
                   @enderror
                 </div>
 
-                <h5>SMTP Settings</h5>
+                <h5 class="mt-5">SMTP Settings</h5>
                 <div class="form-group">
                   <label for="mail_username">Mail Username</label>
                   <input type="text" class="form-control @error('mail_username') is-invalid @enderror" id="mail_username" value="{{ $mail_username ?? old('mail_username') }}" name="mail_username" placeholder="Username">
@@ -93,7 +149,7 @@
                   @enderror
                 </div>
 
-                <h5>Social Profile Settings</h5>
+                <h5 class="mt-5">Social Profile Settings</h5>
                 <div class="form-group">
                   <label for="facebook_page">Facebook Page</label>
                   <input type="text" class="form-control @error('facebook_page') is-invalid @enderror" id="facebook_page" value="{{ $facebook_page ?? old('facebook_page') }}" name="facebook_page" placeholder="Facebook Page">

@@ -40,7 +40,7 @@
                         <select class="form-control @error('book_id') is-invalid @enderror" name="book_id" id="book_id" required>
                             <option value="">Select a book</option>
                             @foreach ($books as $book)
-                                <option value="{{ $book->id }}" {{ $book->id == $purchasedBookId ? 'selected' : '' }}>{{ $book->title }} ({{ $book->price }})</option>
+                                <option value="{{ $book->id }}" {{ $book->title == $purchasedBookTitle ? 'selected' : '' }}>{{ $book->title }} ({{ $book->price }})</option>
                             @endforeach
                         </select>
                         @error('book_id')

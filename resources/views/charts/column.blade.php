@@ -1,6 +1,8 @@
 @php
     $num1 = "8";
+    $deleted = "Item deleted";
 @endphp
+
 <script>
     function columnChart() {
     
@@ -20,7 +22,7 @@
             legendText: "FINANCIAL REPORT",
             dataPoints: [
                 @foreach ($totalPurchaseByBookId as $item)
-                { y: {{ $item->total }}, label: "{{ $item->book->title }}" },
+                { y: {{ $item->total }}, label: "{{ $item->book->title ?? $deleted }}" },
                 @endforeach
             ]
         }]

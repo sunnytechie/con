@@ -32,5 +32,9 @@ class Settings extends Model
         'image_six',
         'image_seven',
         'image_eight',
+        'paystack_api_key',
+        'flutterwave_api_key',
+        'flutterwave_currency_code',
+        'paypal_donation_url',
     ];
 }

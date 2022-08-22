@@ -25,11 +25,22 @@
                     </td>
                   <td>
                     <div class="d-flex px-2">
+                      {{-- @php
+                        $defaultImage = 'assets/img/default.png';
+                        $image = $item->thumbnail;
+                        if($image == null){
+                            $image = 'assets/img/default.png';
+                        }
+
+                      @endphp
                       <div>
-                        <img src="/storage/{{ $item->book->bookcategory->thumbnail }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                      </div>
+                        <img src="/storage/{{ $image }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                      </div> --}}
+                      @php
+                          $deleted = "Book deleted";
+                      @endphp
                       <div class="my-auto">
-                        <h6 class="mb-0 text-sm">{{ $item->book->title }}</h6>
+                        <h6 class="mb-0 text-sm">{{ $item->book->title ?? $deleted }}</h6>
                       </div>
                     </div>
                   </td>

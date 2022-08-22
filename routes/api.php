@@ -84,6 +84,10 @@ Route::post('/store/purchased/study', [App\Http\Controllers\PurchaseStudyControl
 //apiGetPurchasedStudy
 Route::get('/user/purchased/study', [App\Http\Controllers\PurchaseStudyController::class, 'apiGetPurchasedStudy']);
 
+//getSettings
+Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'getSettings']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

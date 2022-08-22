@@ -1,3 +1,6 @@
+@php
+                          $deleted = "Item deleted";
+                      @endphp
 <script>
     
     function pieChart() {
@@ -15,7 +18,7 @@
             dataPoints: [
                 //for each item in the array, add a new data point
                 @foreach ($totalPurchaseByBookId as $item)
-                { y: {{ $item->total }}, label: "{{ $item->book->title }}" },
+                { y: {{ $item->total }}, label: "{{ $item->book->title ?? $deleted}}" },
                 @endforeach
                 
             ]

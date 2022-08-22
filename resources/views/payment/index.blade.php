@@ -126,7 +126,7 @@
                       
                       <td>
                         {{-- Note* This could throw an error if the book is deleted. --}}
-                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->book->title }}</p>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->book_title }}</p>
                       </td>
 
                       <td>

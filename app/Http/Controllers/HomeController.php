@@ -53,8 +53,8 @@ class HomeController extends Controller
         $totalReportedComments = ReportedComment::count();
         //total number of books purchased based on category
         //$totalBooksByCategory = Book::selectRaw('category_id, count(*) as total')->groupBy('category')->get();
-        //dd($totalBooksByCategory);
-        //Count purchased books by book id
+        
+        //Count purchased books by book id that exists in purchasedbooks table
         $totalPurchaseByBookId = PurchasedBook::selectRaw('book_id, count(*) as total')->groupBy('book_id')->get();
         //dd($totalPurchaseByBookId);
 

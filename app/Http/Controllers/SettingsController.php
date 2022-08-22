@@ -27,8 +27,12 @@ class SettingsController extends Controller
         $phone_number = $settings->phone_number;
         $whatsapp_number = $settings->whatsapp_number;
         $ads_interval = $settings->ads_interval;
+        $paystack_api_key = $settings->paystack_api_key;
+        $flutterwave_api_key = $settings->flutterwave_api_key;
+        $flutterwave_currency_code = $settings->flutterwave_currency_code;
+        $paypal_donation_url = $settings->paypal_donation_url;
 
-        return view('settings.edit', compact('settings', 'fcm_server_key', 'mail_username', 'mail_password', 'mail_smtp_host', 'mail_protocol', 'mail_port', 'facebook_page', 'youtube_page', 'twitter_page', 'instagram_page', 'phone_number', 'whatsapp_number', 'ads_interval', 'id'));
+        return view('settings.edit', compact('settings', 'fcm_server_key', 'mail_username', 'mail_password', 'mail_smtp_host', 'mail_protocol', 'mail_port', 'facebook_page', 'youtube_page', 'twitter_page', 'instagram_page', 'phone_number', 'whatsapp_number', 'ads_interval', 'id', 'paystack_api_key', 'flutterwave_api_key', 'flutterwave_currency_code', 'paypal_donation_url'));
     }
 
     //update settings
@@ -48,6 +52,10 @@ class SettingsController extends Controller
             'instagram_page' => 'required',
             'phone_number' => 'required',
             'whatsapp_number' => 'required',
+            'paystack_api_key' => '',
+            'flutterwave_api_key' => '',
+            'flutterwave_currency_code' => '',
+            'paypal_donation_url' => '',
         ]);
 
         //update the settings
@@ -64,8 +72,20 @@ class SettingsController extends Controller
         $settings->instagram_page = $request->instagram_page;
         $settings->phone_number = $request->phone_number;
         $settings->whatsapp_number = $request->whatsapp_number;
+        $settings->paystack_api_key = $request->paystack_api_key;
+        $settings->flutterwave_api_key = $request->flutterwave_api_key;
+        $settings->flutterwave_currency_code = $request->flutterwave_currency_code;
+        $settings->paypal_donation_url = $request->paypal_donation_url;
+
         $settings->save();
         
         return back()->with('success', 'Settings updated successfully');
+    }
+
+    //Api to get latest settings
+    public function getSettings()
+    {
+        $settings = Settings::latest()->first();
+        return response()->json($settings);
     }
 }

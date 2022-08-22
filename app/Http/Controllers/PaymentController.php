@@ -175,12 +175,13 @@ class PaymentController extends Controller
         $books = Book::all();
         //get varaibles
         $purchasedBook = PurchasedBook::find($id);
-        $purchasedBookTitle = $purchasedBook->book->title;
+        $purchasedBookTitle = $purchasedBook->book_title;
+        $purchasedBookPrice = $purchasedBook->price;
         $purchasedBookEmail = $purchasedBook->email;
         $purchasedBookId = $purchasedBook->book_id;
         $purchasedId = $purchasedBook->id;
 
-        return view('payment.edit', compact('purchasedBook', 'books', 'purchasedBookTitle', 'purchasedBookEmail', 'purchasedBookId', 'purchasedId', 'purchasedBooks'));
+        return view('payment.edit', compact('purchasedBook', 'books', 'purchasedBookTitle', 'purchasedBookEmail', 'purchasedBookId', 'purchasedId', 'purchasedBooks', 'purchasedBookPrice'));
     }
 
     //update
@@ -194,11 +195,14 @@ class PaymentController extends Controller
         //find book
         $book = Book::find($request->book_id);
         $bookPrice = $book->price;
+        $bookName = $book->title;
 
         //update
         $purchasedBook = PurchasedBook::find($id);
         $purchasedBook->book_id = $request->book_id;
         $purchasedBook->price = $bookPrice;
+        $purchasedBook->book_title = $bookName;
+        
         $purchasedBook->save();
 
         return back()->with('success', 'Book updated successfully');
