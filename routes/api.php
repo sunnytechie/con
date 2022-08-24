@@ -21,6 +21,8 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 //api for user login
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'loginApi']);
+//Api to reset password
+Route::post('forgot-password', [App\Http\Controllers\Api\NewPasswordController::class, 'forgotPassword']);
 
 //api for categories
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'categoriesApi']);

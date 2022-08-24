@@ -27,7 +27,7 @@
                         {{-- session set error --}}
                         @if(session()->has('error'))
                         <div class="alert alert-danger">
-                            {{ session()->get('error') }}
+                            Kindly close this page and then login from the mobile application.
                         </div>
                     @endif
                 </div>

@@ -50,6 +50,13 @@
                   <div class="text-center">
                     <button style="background: purple; border-radius: 0;" type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
                   </div>
+
+                  <div class="my-3">
+                    <p class="mb-4 text-sm mx-auto">
+                      Forgot Password?
+                      <a href="{{ route('password.request') }}" class="text-info text-gradient font-weight-bold">Reset here.</a>
+                    </p>
+                  </div>
                 </form>
               </div>
               {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
