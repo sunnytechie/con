@@ -80,20 +80,23 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'login_type' => '',
         ]);
 
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'login_type' => $input['login_type'],
         ]);
 
         //send email verify at 
+        $name = $input['name'];
         
 
         $user->sendEmailVerificationNotification();
         //success message for user to verify their email
-        $success = "Verification email sent. Please check your email to verify your account.";
+        $success = "Welcome $name, kindly check your email to verify your account.";
 
         //$success['name'] = $user->name;
         return response()->json(['success' => $success], 200);

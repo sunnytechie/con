@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -79,34 +80,60 @@ class LoginController extends Controller
         $input = $request->all();
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => '',
+            'login_type' => '',
         ]);
 
-        if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+        $checkLoginType = $input['login_type'];
 
-            //if user email is not verified
-            if (auth()->user()->email_verified_at == null) {
-                return response()->json(['error' => 'Kindly check your mail inbox to verify your email.'], 401);
-            }
+        switch ($checkLoginType) {
+            case 'Google':
+                $email = $input['email'];
+                $user = User::where('email', $email)
+                ->where('login_type', $checkLoginType)
+                ->latest()->first();
+
+                if ($user == null) {
+                    return response()->json(['error' => 'User not found'], 401);
+                }else {
+                    return response()->json(['success' => 'Successfully logges in', 'user' => $user], 200);
+                }
+                
+                
+                break;
             
-            if(auth()->user()->is_admin == 1) {
-                //success response with all user details
-                return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
-                //return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
-               }
-            //if user email is verified
-            if(auth()->user()->email_verified_at != null) {
-                //success response with user name and email
-                return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
-            }                
+            default:
+            if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
+
+                //if user email is not verified
+                if (auth()->user()->email_verified_at == null) {
+                    return response()->json(['error' => 'Kindly check your mail inbox to verify your email.'], 401);
+                }
+                
+                if(auth()->user()->is_admin == 1) {
+                    //success response with all user details
+                    return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
+                    //return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
+                   }
+                //if user email is verified
+                if(auth()->user()->email_verified_at != null) {
+                    //success response with user name and email
+                    return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
+                }
+                
+                else {
+                    //return redirect to /verified
+                    return response()->json(['error' => 'You are not authorized to login'], 401);
+                }
+                
+            }
             
             else {
-                //return redirect to /verified
-                return response()->json(['error' => 'You are not authorized to login'], 401);
-            }
-            
-        } else {
-            return response()->json(['error' => 'Invalid email or password'], 401);
+                return response()->json(['error' => 'Invalid email or password'], 401);
+            } 
+                break;
         }
+
+              
     }
 }
