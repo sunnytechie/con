@@ -85,6 +85,7 @@ class StudyController extends Controller
         $studies->anchor_verse_contents = $request->anchor_verse_contents;
         $studies->prayer = $request->prayer;
         $studies->study_year = $request->study_year;
+        $studies->price = $request->price;
         $studies->save();
 
         //return back with success message
@@ -137,8 +138,9 @@ class StudyController extends Controller
         $anchor_verse_contents = $study->anchor_verse_contents;
         $prayer = $study->prayer;
         $study_year = $study->study_year;
+        $price = $study->price;
 
-        return view('study.edit.fountain', compact('id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
+        return view('study.edit.fountain', compact('price', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
     }
 
     public function editBibleStudy($id)
@@ -170,8 +172,9 @@ class StudyController extends Controller
         $anchor_verse_contents = $study->anchor_verse_contents;
         $prayer = $study->prayer;
         $study_year = $study->study_year;
+        $price = $study->price;
 
-        return view('study.edit.biblestudy', compact('id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
+        return view('study.edit.biblestudy', compact('price', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
     }
 
     public function editDailyDynamite($id)
@@ -203,8 +206,9 @@ class StudyController extends Controller
         $anchor_verse_contents = $study->anchor_verse_contents;
         $prayer = $study->prayer;
         $study_year = $study->study_year;
+        $price = $study->price;
 
-        return view('study.edit.dynamite', compact('id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
+        return view('study.edit.dynamite', compact('price', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
     }
 
     /**
@@ -287,6 +291,10 @@ class StudyController extends Controller
         if ($request->has('study_year')) {
             $study->study_year = $request->study_year;
         }
+
+        if ($request->has('price')) {
+            $study->price = $request->price;
+        }
         $study->save();
 
         //return back with success message
@@ -366,6 +374,9 @@ class StudyController extends Controller
         if ($request->has('study_year')) {
             $study->study_year = $request->study_year;
         }
+        if ($request->has('price')) {
+            $study->price = $request->price;
+        }
         $study->save();
 
         //return back with success message
@@ -444,6 +455,9 @@ class StudyController extends Controller
         }
         if ($request->has('study_year')) {
             $study->study_year = $request->study_year;
+        }
+        if ($request->has('price')) {
+            $study->price = $request->price;
         }
         $study->save();
 

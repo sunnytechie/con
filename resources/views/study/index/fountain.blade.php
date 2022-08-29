@@ -47,7 +47,8 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Topic</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Study Date</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Slug</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Devotional</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created</th>
                       <th></th>
                     </tr>
@@ -67,7 +68,7 @@
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ date('l, d F Y', strtotime($book->study_date)) }} </td>
                     
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->study_type_name }} {{ $book->study_year }} </td>
-                   
+                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->price }} </td>
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->created_at->diffForHumans() }} </td>
                     
 

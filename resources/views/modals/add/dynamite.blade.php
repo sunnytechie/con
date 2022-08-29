@@ -23,6 +23,17 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label for="price">Study Price(NGN)</label>
+                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" placeholder="Privide Name" required>
+
+                    @error('price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
                 
                 <div class="form-group">
                     <label for="study_text">Study Text</label>

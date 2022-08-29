@@ -32,6 +32,7 @@ class Study extends Model
         'anchor_verse_contents',
         'prayer',
         'study_year',
+        'price',
     ];
 
     //has many purchasedstudies

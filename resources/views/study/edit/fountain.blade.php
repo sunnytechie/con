@@ -34,6 +34,17 @@
                       </span>
                   @enderror
               </div>
+
+              <div class="form-group">
+                <label for="price">Study Price</label>
+                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ $price ?? old('price') }}" placeholder="Privide Name" required>
+
+                @error('price')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
               
               <div class="form-group">
                   <label for="head_date">Head Date</label>

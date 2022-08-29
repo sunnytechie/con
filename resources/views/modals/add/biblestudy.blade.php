@@ -23,6 +23,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="price">Study Price(NGN)</label>
+                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" placeholder="Privide Name" required>
+
+                    @error('price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="study_date">Study Date</label>
                     <input type="date" class="form-control @error('study_date') is-invalid @enderror" id="study_date" name="study_date" value="{{ old('study_date') }}" placeholder="Privide Date" required>
 
