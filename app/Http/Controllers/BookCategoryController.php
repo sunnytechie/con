@@ -31,7 +31,7 @@ class BookCategoryController extends Controller
         $categoryTitle = $category->title;
         $categoryThumbnail = $category->thumbnail;
 
-        return view('book\category\edit', compact('categoryID', 'categoryTitle', 'categoryThumbnail'));
+        return view('book.category.edit', compact('categoryID', 'categoryTitle', 'categoryThumbnail'));
 
     }
 
