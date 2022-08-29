@@ -134,10 +134,21 @@ Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])
 Route::get('books/{book}/edit', [App\Http\Controllers\BookController::class, 'edit'])->name('books.edit')->middleware('is_admin');
 Route::put('books/{book}', [App\Http\Controllers\BookController::class, 'update'])->name('books.update')->middleware('is_admin');
 Route::delete('books/delete/{book}', [App\Http\Controllers\BookController::class, 'destroy'])->name('books.destroy')->middleware('is_admin');
-//Route store Book Category
-Route::post('books/categories', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('books.categories.store')->middleware('is_admin');
+
+
+//Route Book Category
+Route::get('book/categories', [App\Http\Controllers\BookCategoryController::class, 'index'])->name('books.categories.index')->middleware('is_admin');
+Route::get('book/{category}/edit', [App\Http\Controllers\BookCategoryController::class, 'edit'])->name('book.category.edit')->middleware('is_admin');
+Route::put('book/{category}', [App\Http\Controllers\BookCategoryController::class, 'update'])->name('book.category.update')->middleware('is_admin');
+Route::delete('book/{category}/delete', [App\Http\Controllers\BookCategoryController::class, 'destroy'])->name('book.category.destroy')->middleware('is_admin');
+Route::post('books/category', [App\Http\Controllers\BookCategoryController::class, 'store'])->name('books.categories.store')->middleware('is_admin');
+
 //Route store Book SubCategory
-Route::post('books/sub/categories', [App\Http\Controllers\BookSubCategoryController::class, 'store'])->name('books.sub.categories.store')->middleware('is_admin');
+Route::get('book/sub/categories', [App\Http\Controllers\BookSubCategoryController::class, 'index'])->name('book.sub.categories.index')->middleware('is_admin');
+Route::get('book/sub/{category}/edit', [App\Http\Controllers\BookSubCategoryController::class, 'edit'])->name('book.sub.category.edit')->middleware('is_admin');
+Route::put('book/sub/{category}', [App\Http\Controllers\BookSubCategoryController::class, 'update'])->name('book.sub.category.update')->middleware('is_admin');
+Route::delete('book/sub/{category}/delete', [App\Http\Controllers\BookSubCategoryController::class, 'destroy'])->name('book.sub.category.destroy')->middleware('is_admin');
+Route::post('books/sub/category', [App\Http\Controllers\BookSubCategoryController::class, 'store'])->name('books.sub.categories.store')->middleware('is_admin');
 
 //Routes for DonationController
 Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index')->middleware('is_admin');

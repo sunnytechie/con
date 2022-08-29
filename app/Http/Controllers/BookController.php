@@ -25,7 +25,7 @@ class BookController extends Controller
         //booksubcategories
         $booksubcategories = Booksubcategory::all();
         //books
-        $books = Book::paginate(10);;
+        $books = Book::paginate(10);
         return view('book.index', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use App\Models\Bookcategory;
 use Illuminate\Http\Request;
 use App\Models\Booksubcategory;
@@ -10,8 +11,62 @@ use Intervention\Image\Facades\Image;
 
 class BookCategoryController extends Controller
 {
-    //Create a new controller instance.
+    //Index
+    public function index() {
+        $fetchbookCategories = Bookcategory::all();
+        //bookcategories
+        $bookcategories = Bookcategory::all();
+        //categories
+        $categories = Category::all();
+        //booksubcategories
+        $booksubcategories = Booksubcategory::all();
 
+        return view('book.category.index', compact('fetchbookCategories', 'bookcategories', 'categories', 'booksubcategories'));
+    }
+
+    public function edit($category) {
+        $category = Bookcategory::find($category);
+
+        $categoryID = $category->id;
+        $categoryTitle = $category->title;
+        $categoryThumbnail = $category->thumbnail;
+
+        return view('book\category\edit', compact('categoryID', 'categoryTitle', 'categoryThumbnail'));
+
+    }
+
+    public function update(Request $request, Bookcategory $category) {
+        $data = $request->validate([
+            'title' => 'required',
+            'thumbnail' => 'image',
+        ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $imagePath = request('thumbnail')->store('uploads', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            $image->save();
+            $category->update([
+                'thumbnail' => $imagePath,
+                'title' => $data['title'],
+            ]);
+        }
+        else {
+            $category->update([
+                'title' => $data['title'],
+            ]);
+        }
+
+        return back()->with('success', 'Category updated successfully');
+    }
+
+    public function destroy($category) {
+        $category = Bookcategory::find($category);
+        $category->delete();
+
+        return redirect()->back()->with('success', 'Category deleted successfully');
+    }
+
+    //Create a new controller instance.
     //store a book category
     public function store(Request $request)
     {

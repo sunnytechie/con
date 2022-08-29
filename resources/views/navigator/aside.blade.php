@@ -90,18 +90,36 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('categories.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <span><i class="fa fa-th-list" aria-hidden="true"></i></span>
+              <span><i class="fa fa-film" aria-hidden="true"></i></span>
             </div>
-            <span class="nav-link-text ms-1">Categories</span>
+            <span class="nav-link-text ms-1">Media Categories</span>
           </a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link" href="{{ route('subcategories.index') }}">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <span><i class="fa fa-list" aria-hidden="true"></i></span>
+              <span><i class="fa fa-film" aria-hidden="true"></i></span>
             </div>
-            <span class="nav-link-text ms-1">Sub Categories</span>
+            <span class="nav-link-text ms-1">Media Sub Categories</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('books.categories.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <span><i class="fa fa-book" aria-hidden="true"></i></span>
+            </div>
+            <span class="nav-link-text ms-1">Books Categories</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('book.sub.categories.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <span><i class="fa fa-book" aria-hidden="true"></i></span>
+            </div>
+            <span class="nav-link-text ms-1">Book Sub Categories</span>
           </a>
         </li>
 

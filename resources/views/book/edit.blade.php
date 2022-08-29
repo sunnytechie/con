@@ -96,6 +96,7 @@
                     </div>
 
                     <div class="mb-3">
+                        <img class="img-thumbnail" height="100" width="100" src="/storage/{{ $bookImage }}" alt="No Image">
                         <label>PDF Cover Thumbnail/Picture</label>
                         <input name="image" class="form-control @error('image') is-invalid @enderror" type="file" id="image">
 
