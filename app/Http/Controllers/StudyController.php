@@ -18,28 +18,28 @@ class StudyController extends Controller
 
     public function index()
     {
-        $studies = Study::paginate(10);
+        $studies = Study::orderBy('created_at', 'desc')->paginate(10);
         return view('study.index', compact('studies'));
     }
 
     //index for type 1
     public function indexFountain()
     {
-        $studies = Study::where('type', 1)->paginate(10);
+        $studies = Study::orderBy('created_at', 'desc')->where('type', 1)->paginate(10);
         return view('study.index.fountain', compact('studies'));
     }
 
     //index for type 2
     public function indexBibleStudy()
     {
-        $studies = Study::where('type', 2)->paginate(10);
+        $studies = Study::orderBy('created_at', 'desc')->where('type', 2)->paginate(10);
         return view('study.index.biblestudy', compact('studies'));
     }
 
     //index for type 3
     public function indexDailyDynamite()
     {
-        $studies = Study::where('type', 3)->paginate(10);
+        $studies = Study::orderBy('created_at', 'desc')->where('type', 3)->paginate(10);
         return view('study.index.dynamite', compact('studies'));
     }
 

@@ -12,6 +12,8 @@ class Purchasedstudy extends Model
     protected $fillable = [
         'email',
         'study_id',
+        'user_id',
+        'valid_year',
         'study_title',
         'study_category_name',
         'price',

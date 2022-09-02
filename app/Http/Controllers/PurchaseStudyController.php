@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Study;
 use Illuminate\Http\Request;
 use App\Models\Purchasedstudy;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseStudyController extends Controller
 {
@@ -88,26 +89,57 @@ class PurchaseStudyController extends Controller
         $request->validate([
             'email' => 'required|email',
             'study_id' => 'required',
-            'price' => '',
+            'price' => 'required',
             'transaction_ref' => '',
             'payment_status' => '',
+            'valid_year' => 'required',
         ]);
 
+        //dd($request->all());
+
+        //Declare by type
+        //Fountain = 1
+        //Bible Study = 2
+        //Daily dynamite = 3
+
         //find study
-        $study = Study::find($request->study_id);
-        $studyName = $study->study_title;
-        $studyPrice = "500";
-        $studyTypeName = $study->study_type_name;
+        switch ($request->study_id) {
+            case '1':
+                $studyName = "Daily Fountain";
+                $studyTypeName = "Daily Fountain";
+                break;
+
+            case '2':
+                $studyName = "Bible Study";
+                $studyTypeName = "Bible Study";
+                break;
+
+            case '3':
+                $studyName = "Daily Dynamite";
+                $studyTypeName = "Daily Dynamite";
+                break;
+            
+            default:
+            $studyName = "nil";
+            $studyTypeName = "nil";
+                break;
+        }
+
+        $userID = Auth::user()->id;
+
+        //dd($userID);
 
         //store
         $purchasedstudy = new Purchasedstudy();
         $purchasedstudy->email = $request->email;
         $purchasedstudy->study_id = $request->study_id;
-        $purchasedstudy->price = $studyPrice;
+        $purchasedstudy->valid_year = $request->valid_year;
+        $purchasedstudy->price = $request->price;
         $purchasedstudy->transaction_ref = $request->transaction_ref;
         $purchasedstudy->study_title = $studyName;
         $purchasedstudy->study_category_name = $studyTypeName;
         $purchasedstudy->payment_status = "Paid";
+        $purchasedstudy->user_id = $userID;
         $purchasedstudy->save();
 
         return back()->with('success', 'Book purchased successfully');
@@ -120,22 +152,43 @@ class PurchaseStudyController extends Controller
         $request->validate([
             'email' => 'required|email',
             'study_id' => 'required',
-            'price' => '',
+            'valid_year' => 'required',
+            'price' => 'required',
             'transaction_ref' => '',
             'payment_status' => '',
+            'user_id' => '',
         ]);
         
         //find study
-        $study = Study::find($request->study_id);
-        $studyName = $study->study_title;
-        $studyPrice = "500";
-        $studyTypeName = $study->study_type_name;
+        switch ($request->study_id) {
+            case '1':
+                $studyName = "Daily Fountain";
+                $studyTypeName = "Daily Fountain";
+                break;
+
+            case '2':
+                $studyName = "Bible Study";
+                $studyTypeName = "Bible Study";
+                break;
+
+            case '3':
+                $studyName = "Daily Dynamite";
+                $studyTypeName = "Daily Dynamite";
+                break;
+            
+            default:
+            $studyName = "nil";
+            $studyTypeName = "nil";
+                break;
+        }
         
         //store
         $purchasedstudy = new Purchasedstudy();
         $purchasedstudy->email = $request->email;
         $purchasedstudy->study_id = $request->study_id;
-        $purchasedstudy->price = $studyPrice;
+        $purchasedstudy->user_id = $request->user_id;
+        $purchasedstudy->price = $request->price;
+        $purchasedstudy->valid_year = $request->valid_year;
         $purchasedstudy->transaction_ref = $request->transaction_ref;
         $purchasedstudy->study_title = $studyName;
         $purchasedstudy->study_category_name = $studyTypeName;

@@ -59,11 +59,11 @@ class HomeController extends Controller
         //dd($totalPurchaseByBookId);
 
         //Count PurchasedStudy where study_category_name = Daily Fountain
-        $totalPurchasedDailyFountain = Purchasedstudy::where('study_category_name', 'Daily Fountain')->count();
+        $totalPurchasedDailyFountain = Purchasedstudy::where('study_id', '1')->count();
         //Count PurchasedStudy where study_category_name = Daily Dynamite
-        $totalPurchasedDailyDynamite = Purchasedstudy::where('study_category_name', 'Daily Dynamite')->count();
+        $totalPurchasedDailyDynamite = Purchasedstudy::where('study_id', '3')->count();
         //Count PurchasedStudy where study_category_name = Bible Study
-        $totalPurchasedBibleStudy = Purchasedstudy::where('study_category_name', 'Bible Study')->count();
+        $totalPurchasedBibleStudy = Purchasedstudy::where('study_id', '2')->count();
 
         return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId', 'totalMemberships', 'totalPurchasedDailyFountain', 'totalPurchasedDailyDynamite', 'totalPurchasedBibleStudy'));
     }
