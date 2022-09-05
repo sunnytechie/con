@@ -79,18 +79,6 @@
                     </span>
                   @enderror
                 </div>
-
-                
-                <div class="form-group">
-                  <label for="bible_verse">Bible verse</label>
-                  <textarea class="form-control @error('bible_verse') is-invalid @enderror" id="myeditorinstance" name="bible_verse" rows="3">{{ $newsBibleVerse ?? old('bible_verse') }}</textarea>
-
-                  @error('bible_verse')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-                </div>
                 
                 <div class="form-group">
                   <label for="details">Body</label>
@@ -103,7 +91,11 @@
                   @enderror
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Update</button>
+                <div class="btn-group" role="group" aria-label="Button group">
+                  <a href="{{ route('news.index') }}" class="btn btn-info">Back</a>
+                  <button type="submit" class="btn btn-success">Update</button>
+                </div>
+                
 
               </form>
             </div>

@@ -26,7 +26,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Author</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -44,7 +44,7 @@
                       <td>
                         <div class="d-flex px-2">
                           <div>
-                            <img src="/storage/{{ $new->thumbnail }}" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
+                            <img src="/storage/{{ $new->thumbnail }}" class="avatar avatar-sm rounded-circle me-2" alt="No Image">
                           </div>
                           <div class="my-auto">
                             <h6 class="mb-0 text-sm">{{ $new->title }}</h6>

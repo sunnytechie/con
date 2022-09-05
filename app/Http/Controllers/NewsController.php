@@ -36,10 +36,12 @@ class NewsController extends Controller
             'details' => 'required',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'author' => '',
-            'bible_verse' => '',
-            'news_date' => '',
+            'news_date' => 'required',
             'url' => 'required|url',
         ]);
+
+        $nil = 'Not in use';
+        $noAuthor = 'No Author';
 
         //store thumbnail
         //store image file in public/books/images
@@ -52,8 +54,12 @@ class NewsController extends Controller
         $news->details = $request->details;
         $news->news_date = $request->news_date;
         $news->thumbnail = $imagePath;
-        $news->author = $request->author;
-        $news->bible_verse = $request->bible_verse;
+        if ($request->author == null) {
+            $news->author = $noAuthor;
+        }else {
+            $news->author = $request->author;
+        }
+        $news->bible_verse = $nil;
         $news->url = $request->url;
         $news->save();
         return back()->with('success', 'News created successfully');
@@ -103,8 +109,9 @@ class NewsController extends Controller
         if ($request->has('thumbnail')) {
             $news->thumbnail = $imagePath;
         }
+        if ($request->has('author')) {
         $news->author = $request->author;
-        $news->bible_verse = $request->bible_verse;
+        }
         $news->url = $request->url;
         $news->save();
         return back()->with('success', 'News updated successfully');

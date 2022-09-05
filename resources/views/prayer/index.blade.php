@@ -8,9 +8,7 @@
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Prayer Requests Recieved</h6>
-                <div class="input-group" style="width: 300px">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
+                <a href="{{ route('prayers.export') }}" class="btn btn-success" type="button">Download report</a>
             </div>
 
             @if (session('success'))
@@ -54,6 +52,8 @@
                         <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $prayer->title }} </td>
                         <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $prayer->prayer_request }} </td>
                         <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $prayer->created_at->diffForHumans() }} </td>
+
+                        <td><a href="{{ route('prayers.show', $prayer->id) }}" class="btn btn-success btn-sm mt-2" type="button">Respond to request</a></td>
                     </tr>
                     @endforeach
                     

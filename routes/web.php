@@ -201,8 +201,10 @@ Route::delete('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'd
 
 //Routes for PrayerController
 Route::get('prayers', [App\Http\Controllers\PrayerController::class, 'index'])->name('prayers.index')->middleware('is_admin');
+Route::get('prayers/{prayer}', [App\Http\Controllers\PrayerController::class, 'show'])->name('prayers.show')->middleware('is_admin');
+Route::post('mail/prayer', [App\Http\Controllers\PrayerController::class, 'email'])->name('prayers.email')->middleware('is_admin');
 //Route for Prayer Export
-Route::get('prayers/export', [App\Http\Controllers\PrayerController::class, 'export'])->name('prayers.export')->middleware('is_admin');
+Route::get('export/prayers', [App\Http\Controllers\Export\PrayerController::class, 'fileExport'])->name('prayers.export')->middleware('is_admin');
 //Route for Prayer Response
 Route::get('prayers/{prayer}/response', [App\Http\Controllers\PrayerController::class, 'response'])->name('prayers.response')->middleware('is_admin');
 
