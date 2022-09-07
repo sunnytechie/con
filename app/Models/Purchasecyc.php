@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cyc extends Model
+class Purchasecyc extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'email',
+        'cyc_id',
         'cyc_title',
         'cyc_year',
-        'cyc_pdf',
+        'price',
+        'transaction_ref',
+        'payment_status',
+        'deleted',
     ];
 
-    public function purchasecycs()
+    public function cyc()
     {
-        return $this->hasMany(Purchasecyc::class);
+        return $this->belongsTo(Cyc::class);
     }
 }

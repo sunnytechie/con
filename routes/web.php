@@ -260,6 +260,11 @@ Route::put('cyc/{new}update', [App\Http\Controllers\CycController::class, 'updat
 Route::get('cyc/{new}edit', [App\Http\Controllers\CycController::class, 'edit'])->name('cyc.edit')->middleware('is_admin');
 Route::delete('cyc/{new}destroy', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
 
+//Purchase cyc
+Route::get('purchased/cyc', [App\Http\Controllers\PurchasedCycController::class, 'index'])->name('purchased.cyc.index')->middleware('is_admin');
+Route::post('purchased/cyc/store', [App\Http\Controllers\PurchasedCycController::class, 'store'])->name('purchased.cyc.store')->middleware('is_admin');
+Route::delete('purchased/{id}/cyc/', [App\Http\Controllers\PurchasedCycController::class, 'destroy'])->name('purchased.cyc.destory')->middleware('is_admin');
+
 //import routes
 Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index')->middleware('is_admin');
 Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import')->middleware('is_admin');
