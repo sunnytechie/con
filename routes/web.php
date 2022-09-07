@@ -252,6 +252,14 @@ Route::get('study/{study}/editDailyDynamite', [App\Http\Controllers\StudyControl
 //Routes updateDailyDynamite StudyController
 Route::put('study/{study}/updateDailyDynamite', [App\Http\Controllers\StudyController::class, 'updateDailyDynamite'])->name('studies.updateDailyDynamite')->middleware('is_admin');
 
+//Routes for cyc
+Route::get('cyc', [App\Http\Controllers\CycController::class, 'index'])->name('cyc.index')->middleware('is_admin');
+Route::get('cyc/new', [App\Http\Controllers\CycController::class, 'create'])->name('cyc.new')->middleware('is_admin');
+Route::post('cyc/store', [App\Http\Controllers\CycController::class, 'store'])->name('cyc.store')->middleware('is_admin');
+Route::put('cyc/{new}update', [App\Http\Controllers\CycController::class, 'update'])->name('cyc.update')->middleware('is_admin');
+Route::get('cyc/{new}edit', [App\Http\Controllers\CycController::class, 'edit'])->name('cyc.edit')->middleware('is_admin');
+Route::delete('cyc/{new}destroy', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
+
 //import routes
 Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index')->middleware('is_admin');
 Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import')->middleware('is_admin');
@@ -274,4 +282,5 @@ Route::get('purchasedbook-export', [App\Http\Controllers\ImportController::class
 Route::get('testimony-export', [App\Http\Controllers\ImportController::class, 'testimonyExport'])->name('testimony.export')->middleware('is_admin');
 //Route for Membership Import
 Route::post('membership-import', [App\Http\Controllers\ImportController::class, 'membershipImport'])->name('membership.import')->middleware('is_admin');
+
 });
