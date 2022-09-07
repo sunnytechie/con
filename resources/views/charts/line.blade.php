@@ -16,7 +16,8 @@
                 
                 { y: {{ $totalPurchasedBibleStudy }}, label: "Bible Study" },
                 { y: {{ $totalPurchasedDailyFountain }}, label: "Daily Fountain" },
-                { y: {{ $totalPurchasedDailyDynamite }}, label: "Daily Dynamite" }
+                { y: {{ $totalPurchasedDailyDynamite }}, label: "Daily Dynamite" },
+                { y: {{ $totalPurchasedCyc }}, label: "CYC" },
                 
             ]
         }]

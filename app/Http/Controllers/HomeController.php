@@ -9,6 +9,7 @@ use App\Models\Media;
 use App\Models\Video;
 use App\Models\Comment;
 use App\Models\Membership;
+use App\Models\Purchasecyc;
 use Illuminate\Http\Request;
 use App\Models\PurchasedBook;
 use App\Models\Purchasedstudy;
@@ -64,8 +65,10 @@ class HomeController extends Controller
         $totalPurchasedDailyDynamite = Purchasedstudy::where('study_id', '3')->count();
         //Count PurchasedStudy where study_category_name = Bible Study
         $totalPurchasedBibleStudy = Purchasedstudy::where('study_id', '2')->count();
+        //count cyc
+        $totalPurchasedCyc = Purchasecyc::get()->count();
 
-        return view('home', compact('totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId', 'totalMemberships', 'totalPurchasedDailyFountain', 'totalPurchasedDailyDynamite', 'totalPurchasedBibleStudy'));
+        return view('home', compact('totalPurchasedCyc', 'totalUsers', 'totalUsersToday', 'totalBooks', 'totalVideos', 'totalAudios', 'totalAdmins', 'totalComments', 'totalReportedComments', 'totalPurchaseByBookId', 'totalMemberships', 'totalPurchasedDailyFountain', 'totalPurchasedDailyDynamite', 'totalPurchasedBibleStudy'));
     }
 
     public function media()
