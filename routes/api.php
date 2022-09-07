@@ -87,6 +87,7 @@ Route::post('/store/purchased/study', [App\Http\Controllers\PurchaseStudyControl
 Route::get('/user/purchased/study', [App\Http\Controllers\PurchaseStudyController::class, 'apiGetPurchasedStudy']);
 
 //Api for purchase cyc and cyc list
+Route::get('/cyc/users', [App\Http\Controllers\Api\CycController::class, 'users']);
 Route::get('/cyc', [App\Http\Controllers\Api\CycController::class, 'index']);
 Route::post('/store/purchased/cyc', [App\Http\Controllers\Api\CycController::class, 'store']);
 

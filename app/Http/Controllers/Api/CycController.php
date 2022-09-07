@@ -11,6 +11,12 @@ class CycController extends Controller
 {
     //index
     public function index() {
+        $cycs = Cyc::orderBy('created_at', 'desc')->get();
+        return response()->json($cycs);
+    }
+
+    //users
+    public function users() {
         $purchasedCycs = Purchasecyc::orderBy('created_at', 'desc')->get();
         return response()->json($purchasedCycs);
     }
