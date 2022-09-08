@@ -42,6 +42,7 @@
                         <label for="cyc_year">CYC Year</label>
                         <select name="cyc_year" class="form-control @error('cyc_year') is-invalid @enderror">
                             <option value="" disabled>Select year</option>
+                            <option value="2021" {{ $cycYear == '2021' ? 'selected' : '' }}>2021</option>
                             <option value="2022" {{ $cycYear == '2022' ? 'selected' : '' }}>2022</option>
                             <option value="2023" {{ $cycYear == '2023' ? 'selected' : '' }}>2023</option>
                             <option value="2024" {{ $cycYear == '2024' ? 'selected' : '' }}>2024</option>

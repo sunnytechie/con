@@ -121,6 +121,7 @@
                 <label for="study_year">Study Year</label>
                 <select class="form-control @error('study_year') is-invalid @enderror" id="study_year" name="study_year" required>
                     <option value="" disabled>Select Study Year</option>
+                            <option value="2021" {{ $study_year == "2021" ? 'selected' : '' }}>2021</option>
                             <option value="2022" {{ $study_year == "2022" ? 'selected' : '' }}>2022</option>
                             <option value="2023" {{ $study_year == "2023" ? 'selected' : '' }}>2023</option>
                             <option value="2024" {{ $study_year == "2024" ? 'selected' : '' }}>2024</option>

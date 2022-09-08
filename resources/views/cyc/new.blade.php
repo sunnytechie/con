@@ -42,7 +42,8 @@
                         <label for="cyc_year">CYC Year</label>
                         <select name="cyc_year" class="form-control @error('cyc_year') is-invalid @enderror">
                             <option value="" disabled>Select year</option>
-                            <option>2022</option>
+                            <option>2021</option>
+                            <option selected>2022</option>
                             <option>2023</option>
                             <option>2024</option>
                             <option>2025</option>

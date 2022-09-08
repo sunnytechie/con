@@ -109,7 +109,8 @@
                     <label for="study_year">Study Year</label>
                     <select class="form-control @error('study_year') is-invalid @enderror" id="study_year" name="study_year" required>
                         <option value="" disabled>Select Study Year</option>
-                            <option>2022</option>
+                            <option>2021</option>
+                            <option selected>2022</option>
                             <option>2023</option>
                             <option>2024</option>
                             <option>2025</option>
