@@ -120,12 +120,26 @@
               <div class="form-group">
                 <label for="study_year">Study Year</label>
                 <select class="form-control @error('study_year') is-invalid @enderror" id="study_year" name="study_year" required>
-                    <option value="">Select Study Year</option>
-                    <option value="2022" {{ $study_year == "2022" ? 'selected' : '' }}>2022</option>
-                    <option value="2023" {{ $study_year == "2023" ? 'selected' : '' }}>2023</option>
-                    <option value="2024" {{ $study_year == "2024" ? 'selected' : '' }}>2024</option>
-                    <option value="2025" {{ $study_year == "2025" ? 'selected' : '' }}>2025</option>
-
+                    <option value="" disabled>Select Study Year</option>
+                            <option value="2022" {{ $study_year == "2022" ? 'selected' : '' }}>2022</option>
+                            <option value="2023" {{ $study_year == "2023" ? 'selected' : '' }}>2023</option>
+                            <option value="2024" {{ $study_year == "2024" ? 'selected' : '' }}>2024</option>
+                            <option value="2025" {{ $study_year == "2025" ? 'selected' : '' }}>2025</option>
+                            <option value="2026" {{ $study_year == '2026' ? 'selected' : '' }}>2026</option>
+                            <option value="2027" {{ $study_year == '2027' ? 'selected' : '' }}>2027</option>
+                            <option value="2028" {{ $study_year == '2028' ? 'selected' : '' }}>2028</option>
+                            <option value="2029" {{ $study_year == '2029' ? 'selected' : '' }}>2029</option>
+                            <option value="2030" {{ $study_year == '2030' ? 'selected' : '' }}>2030</option>
+                            <option value="2031" {{ $study_year == '2031' ? 'selected' : '' }}>2031</option>
+                            <option value="2032" {{ $study_year == '2032' ? 'selected' : '' }}>2032</option>
+                            <option value="2033" {{ $study_year == '2033' ? 'selected' : '' }}>2033</option>
+                            <option value="2034" {{ $study_year == '2034' ? 'selected' : '' }}>2034</option>
+                            <option value="2035" {{ $study_year == '2035' ? 'selected' : '' }}>2035</option>
+                            <option value="2036" {{ $study_year == '2036' ? 'selected' : '' }}>2036</option>
+                            <option value="2037" {{ $study_year == '2037' ? 'selected' : '' }}>2037</option>
+                            <option value="2038" {{ $study_year == '2038' ? 'selected' : '' }}>2038</option>
+                            <option value="2039" {{ $study_year == '2039' ? 'selected' : '' }}>2039</option>
+                            <option value="2040" {{ $study_year == '2040' ? 'selected' : '' }}>2040</option>
                 </select>
             </div>
 

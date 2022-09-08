@@ -108,11 +108,26 @@
                 <div class="form-group">
                     <label for="study_year">Study Year</label>
                     <select class="form-control @error('study_year') is-invalid @enderror" id="study_year" name="study_year" required>
-                        <option value="">Select Study Year</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
+                        <option value="" disabled>Select Study Year</option>
+                            <option>2022</option>
+                            <option>2023</option>
+                            <option>2024</option>
+                            <option>2025</option>
+                            <option>2026</option>
+                            <option>2027</option>
+                            <option>2028</option>
+                            <option>2029</option>
+                            <option>2030</option>
+                            <option>2031</option>
+                            <option>2032</option>
+                            <option>2033</option>
+                            <option>2034</option>
+                            <option>2035</option>
+                            <option>2036</option>
+                            <option>2037</option>
+                            <option>2038</option>
+                            <option>2039</option>
+                            <option>2040</option>
                     </select>
                     @error('study_year')
                         <span class="invalid-feedback" role="alert">
