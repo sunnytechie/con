@@ -94,6 +94,9 @@ Route::post('/store/purchased/cyc', [App\Http\Controllers\Api\CycController::cla
 //getSettings
 Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'getSettings']);
 
+//Apis for notifications
+Route::get('latest/push/nofication', [App\Http\Controllers\Api\NotificationController::class, 'indexLatest']);
+Route::get('all/push/nofication', [App\Http\Controllers\Api\NotificationController::class, 'indexAll']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

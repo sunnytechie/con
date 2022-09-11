@@ -54,7 +54,7 @@
                         <label for="details">Body</label>
                         <textarea class="form-control @error('details') is-invalid @enderror" id="myeditorinstance" name="message" rows="3"></textarea>
       
-                        @error('detail')
+                        @error('details')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>

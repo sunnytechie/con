@@ -92,6 +92,9 @@ Route::delete('events/{event}', [App\Http\Controllers\EventController::class, 'd
 Route::get('notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index')->middleware('is_admin');
 Route::get('notifications/create', [App\Http\Controllers\NotificationController::class, 'create'])->name('notifications.create')->middleware('is_admin');
 Route::post('notifications', [App\Http\Controllers\NotificationController::class, 'store'])->name('notifications.store')->middleware('is_admin');
+Route::get('notifications/{notification}/edit', [App\Http\Controllers\NotificationController::class, 'edit'])->name('notifications.edit')->middleware('is_admin');
+Route::put('notifications/{notification}', [App\Http\Controllers\NotificationController::class, 'update'])->name('notifications.update')->middleware('is_admin');
+Route::delete('notifications/{notification}', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('notifications.destroy')->middleware('is_admin');
 
 //Routes for AndroidUsersController
 Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index')->middleware('is_admin');
