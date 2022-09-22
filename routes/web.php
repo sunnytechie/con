@@ -202,6 +202,16 @@ Route::get('bibles/{bible}/edit', [App\Http\Controllers\BibleController::class, 
 Route::put('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'update'])->name('bibles.update')->middleware('is_admin');
 Route::delete('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'destroy'])->name('bibles.destroy')->middleware('is_admin');
 
+//Routes for CycProvinceandDiocese
+Route::get('provinces', [App\Http\Controllers\CycprovinceController::class, 'index'])->name('provinces.index')->middleware('is_admin');
+Route::post('store/cyc/province', [App\Http\Controllers\CycprovinceController::class, 'store'])->name('cyc.provinces.store')->middleware('is_admin');
+
+//Route for ProvinceController
+Route::post('store/province', [App\Http\Controllers\ProvinceController::class, 'store'])->name('provinces.store')->middleware('is_admin');
+//Route for DioceseController
+Route::post('diocese', [App\Http\Controllers\DioceseController::class, 'store'])->name('diocese.store')->middleware('is_admin');
+
+
 //Routes for PrayerController
 Route::get('prayers', [App\Http\Controllers\PrayerController::class, 'index'])->name('prayers.index')->middleware('is_admin');
 Route::get('prayers/{prayer}', [App\Http\Controllers\PrayerController::class, 'show'])->name('prayers.show')->middleware('is_admin');

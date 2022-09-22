@@ -216,7 +216,7 @@
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <span><i class="fa fa-users" aria-hidden="true"></i></span>
             </div>
-            <span class="nav-link-text ms-1">Android Users</span>
+            <span class="nav-link-text ms-1">Android/IOS Users</span>
           </a>
         </li>
 

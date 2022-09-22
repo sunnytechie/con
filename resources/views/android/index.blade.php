@@ -74,7 +74,7 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Registered Android Users</h6>
+              <h6>Registered IOS and Android Users</h6>
               
               <div class="search-form">
                 <div class="input-group">

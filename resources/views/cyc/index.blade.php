@@ -7,8 +7,9 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-end pb-0">
-              <div>
-                <a class="btn btn-success" href="{{ route('cyc.new') }}">Upload New CYC</a>
+              <div class="btn-group" role="group" aria-label="Button group">
+                <a class="btn btn-info" href="{{ route('provinces.index') }}">Provices</a>
+                <a class="btn btn-success" href="{{ route('cyc.new') }}">Upload New CYC PDF</a>
               </div>
             
             </div>
