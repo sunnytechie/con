@@ -31,6 +31,16 @@ class CycprovinceController extends Controller
         return view('province.profile', compact('cycs', 'provinces', 'dioceses'));
     }
 
+    //Method for diocese dependent selection from province select.
+    public function getDiocese(Request $request) {
+
+        $dioceses = Diocese::where('province_id', $request->province_id)->get();
+
+        if (count($dioceses) > 0) {
+            return response()->json($dioceses);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

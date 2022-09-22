@@ -142,7 +142,7 @@
 
         <div class="form-group">
           <label for="province_id">Province</label>
-          <select class="form-select" id="province_id" name="province_id" required>
+          <select class="form-select" id="province" name="province_id" required>
             <option disabled selected>Choose...</option>
             @foreach ($provinces as $province)
             <option value="{{ $province->id }}">{{ $province->name }} {{ $province->state_name }}</option>
@@ -152,12 +152,13 @@
 
         <div class="form-group">
           <label for="diocese">Diocese</label>
-          <select class="form-select" id="diocese" name="diocese" required>
+          {{-- <select class="form-select" id="diocese" name="diocese" required>
             <option disabled selected>Choose...</option>
             @foreach ($dioceses as $diocese)
             <option>{{ $diocese->name }}</option>
             @endforeach
-          </select>
+          </select> --}}
+          <select class="form-select" id="diocese"></select>
         </div>
 
         <div class="form-group">

@@ -21,7 +21,7 @@
 
     {{-- favicon --}}
     <link rel="icon" href="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}">
-
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -124,6 +124,29 @@
   });
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#province').on('change', function () {
+            var provinceId = this.value;
+            
+            $('#diocese').html('');
+            $.ajax({
+                url: '{{ route('getDiocese') }}?province_id='+provinceId,
+                type: 'get',
+                success: function (res) {
+                    $('#diocese').html('<option value="">Select diocese</option>');
+                    $.each(res, function (key, value) {
+                        $('#diocese').append('<option value="' + value
+                            .id + '">' + value.name + '</option>');
+                    });
+                   
+                }
+            });
+
+        });
+       
+    });
+</script>
 
 </body>
 </html>
