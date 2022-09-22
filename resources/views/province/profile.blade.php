@@ -25,7 +25,7 @@
                     </button>
                     </div>
                 @endif
-                <h5 class="card-header pb-0">Province and it diocese</h5>
+                <h5 class="card-header pb-0">Profiles</h5>
 
                 <div class="card-body px-0 pt-0 pb-2">
 
