@@ -28,24 +28,32 @@
                 <h5 class="card-header pb-0">Province and it diocese</h5>
 
                 <div class="card-body px-0 pt-0 pb-2">
-                  @php
-                      $id = 1;
-                  @endphp
-                  @foreach ($provinces as $province)
-                    <div class="province rounded shadow-sm p-3 m-3 mb-3">
-                      <div class="province-name fw-bolder">{{ $id++ }}. {{ $province->name }} in {{ $province->state_name }}</div>
-                      
-                      @foreach ($province->dioceses as $diocese)
-                      <div class="diocese ms-5 bordered">{{ $diocese->name }}</div>
-                      @endforeach
-                      
 
-                    </div>
-                  @endforeach
-                  
-
-                  
                     
+                    @foreach ($cycs as $cyc)
+                        <div class="card m-4 shadow">
+                        <div class="row g-0">
+                          <div class="col-md-4 p-2">
+                            <img src="{{ $cyc->img_url }}" class="img-fluid rounded-start" alt="No Picture">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ $cyc->rev_title }} {{ $cyc->rev_name }}</h5>
+                              <h5 class="card-title">{{ $cyc->province_name }} {{ $cyc->diocese }}</h5>
+                              <p class="card-text">{{ $cyc->diocese }}</p>
+                              <p class="card-text"><small class="text-muted">{{ $cyc->tel }}, {{ $cyc->email }}, {{ $cyc->court }}, {{ $cyc->address }}, {{ $cyc->po_box }}</small></p>
+                              <form method="post" action="{{ route('cyc.provinces.destroy', $cyc->id) }}">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md btn btn-danger text-white text-sm m-2"><i class="fa fa-trash text-xs"></i> delete</button>
+                            </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                    
+
                 </div>
         </div>
       </div>

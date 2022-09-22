@@ -23,6 +23,14 @@ class CycprovinceController extends Controller
         return view('province.index', compact('provinces', 'dioceses'));
     }
 
+    public function profile() {
+        $provinces = Province::orderBy('created_at', 'desc')->with('dioceses')->get();
+        //dd($provinces);
+        $dioceses = Diocese::orderBy('created_at', 'desc')->get();
+        $cycs = Cycprovince::orderBy('created_at', 'desc')->paginate();
+        return view('province.profile', compact('cycs', 'provinces', 'dioceses'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -110,6 +118,10 @@ class CycprovinceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //delete
+        $cyc = Cycprovince::find($id);
+        $cyc->delete();
+
+        return redirect()->back()->with('success', 'CYC deleted successfully.');
     }
 }

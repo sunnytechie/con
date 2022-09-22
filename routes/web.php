@@ -203,8 +203,10 @@ Route::put('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'upda
 Route::delete('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'destroy'])->name('bibles.destroy')->middleware('is_admin');
 
 //Routes for CycProvinceandDiocese
+Route::get('provinces/profiles', [App\Http\Controllers\CycprovinceController::class, 'profile'])->name('provinces.profile')->middleware('is_admin');
 Route::get('provinces', [App\Http\Controllers\CycprovinceController::class, 'index'])->name('provinces.index')->middleware('is_admin');
 Route::post('store/cyc/province', [App\Http\Controllers\CycprovinceController::class, 'store'])->name('cyc.provinces.store')->middleware('is_admin');
+Route::delete('provinces/cyc/{id}', [App\Http\Controllers\CycprovinceController::class, 'destroy'])->name('cyc.provinces.destroy')->middleware('is_admin');
 
 //Route for ProvinceController
 Route::post('store/province', [App\Http\Controllers\ProvinceController::class, 'store'])->name('provinces.store')->middleware('is_admin');
