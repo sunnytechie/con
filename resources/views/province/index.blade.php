@@ -131,8 +131,13 @@
       <div class="modal-body">
 
         <div class="form-group">
-          <label for="my-input">Province Name</label>
-          <input id="my-input" class="form-control" type="text" placeholder="Provine Name" name="province_name" required>
+          <label for="my-input">Rev. Title</label>
+          <input id="my-input" class="form-control" type="text" placeholder="Rev. Title" name="rev_title" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="my-input">Rev. Name</label>
+          <input id="my-input" class="form-control" type="text" placeholder="Rev. Name" name="rev_name" required>
         </div>
 
         <div class="form-group">
@@ -164,14 +169,7 @@
           <label for="my-input">img url</label>
           <input id="my-input" class="form-control" type="text" placeholder="http..." name="img_url" required>
         </div>
-        <div class="form-group">
-          <label for="my-input">Rev. Name</label>
-          <input id="my-input" class="form-control" type="text" placeholder="Rev. Name" name="rev_name" required>
-        </div>
-        <div class="form-group">
-          <label for="my-input">Rev. Title</label>
-          <input id="my-input" class="form-control" type="text" placeholder="Rev. Title" name="rev_title" required>
-        </div>
+        
 
         <div class="form-group">
           <label for="my-input">Court</label>

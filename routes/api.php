@@ -97,6 +97,8 @@ Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'getSet
 //Apis for notifications
 Route::get('latest/push/nofication', [App\Http\Controllers\Api\NotificationController::class, 'indexLatest']);
 Route::get('all/push/nofication', [App\Http\Controllers\Api\NotificationController::class, 'indexAll']);
+//APi for CYC Province
+Route::get('cyc/province', [App\Http\Controllers\Api\CycProfileController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

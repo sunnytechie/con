@@ -51,8 +51,10 @@ class CycprovinceController extends Controller
     {
         //Index
         //dd($request->all());
+        $province = Province::where('id', $request->province_id)->first();
+
         $cyc = New Cycprovince;
-        $cyc->province_name = $request->province_name;
+        $cyc->province_name = $province->name;
         $cyc->province_id = $request->province_id;
         $cyc->diocese = $request->diocese;
         $cyc->inagurated = $request->inagurated;
