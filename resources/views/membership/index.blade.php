@@ -9,7 +9,7 @@
           <div class="card mb-4">
             
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Membership listing</h6>
+              <h6>Membership listing {{ $membershipsCount->count(); }}</h6>
               
               <div class="btn-group" role="group" aria-label="Button group">
                 {{-- <div class="input-group">
@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" placeholder="Type here...">
                 </div> --}}
                 
-                <a href="#" class="btn btn-default" type="button"> <span><i class="fa fa-file-excel-o px-2" aria-hidden="true"></i></span> Export </a>
+                <a href="{{ route('membership.export') }}" class="btn btn-default" type="button"> <span><i class="fa fa-file-excel-o px-2" aria-hidden="true"></i></span> Export Excel </a>
               </div>
               
             </div>
@@ -48,7 +48,7 @@
                     @foreach ($memberships as $membership)
                       <tr>
                         <td class="text-left px-4"> <span class="text-xs font-weight-bold">{{ $i++ }}</span> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->first_name }} {{ $membership->last_name }}</p> </td>
+                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->fullname }}</p> </td>
                       <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email }}</p> </td>
                       <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->phone }}</p> </td>
                       <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email2 }}</p> </td>

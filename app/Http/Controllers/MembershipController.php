@@ -15,8 +15,9 @@ class MembershipController extends Controller
     public function index()
     {
         //memberships
-        $memberships = Membership::paginate(10);;
-        return view('membership.index', compact('memberships'));
+        $membershipsCount = Membership::get();
+        $memberships = Membership::paginate(10);
+        return view('membership.index', compact('memberships', 'membershipsCount'));
     }
 
     //store
