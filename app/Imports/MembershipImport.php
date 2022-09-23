@@ -15,23 +15,20 @@ class MembershipImport implements ToModel
     public function model(array $row)
     {
         return new Membership([
-            'first_name' => $row[0],
-            'last_name' => $row[1],
-            'email' => $row[2],
-            'email2' => $row[3],
-            'phone' => $row[4],
-            'phone2' => $row[5],
-            'street' => $row[6],
-            'city' => $row[7],
-            'state' => $row[8],
-            'country' => $row[9],
-            'province' => $row[10],
-            'diocease' => $row[11],
-            'date_of_birth' => $row[12],
-            'wedding_date' => $row[13],
-            'local_church_address' => $row[14],
-            'created_at' => $row[15],
-            'updated_at' => $row[16],
+            'email' => $row[0],
+            'email2' => $row[1],
+            'phone' => $row[2],
+            'phone2' => $row[3],
+            'street' => $row[4],
+            'city' => $row[5],
+            'state' => $row[6],
+            'country' => $row[7],
+            'province' => $row[8],
+            'diocease' => $row[9],
+            'date_of_birth' => $row[10],
+            'wedding_date' => $row[11],
+            'local_church_address' => $row[12],
+            'fullname' => $row[13],
         ]);
     }
 }

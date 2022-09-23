@@ -24,8 +24,9 @@ class MembershipController extends Controller
     {
         //validate the data
         $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'fullname' => '',
+            'first_name' => '',
+            'last_name' => '',
             'email' => 'required|email',
             'email2' => '',
             'phone' => 'required',
@@ -33,7 +34,7 @@ class MembershipController extends Controller
             'street' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'country' => 'required',
+            'country' => '',
             'province' => '',
             'diocease' => '',
             'date_of_birth' => '',
@@ -43,6 +44,7 @@ class MembershipController extends Controller
 
         //create a new membership
         $membership = new Membership;
+        $membership->first_name = $request->input('fullname');
         $membership->first_name = $request->input('first_name');
         $membership->last_name = $request->input('last_name');
         $membership->email = $request->input('email');
