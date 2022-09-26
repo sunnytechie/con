@@ -302,6 +302,8 @@ Route::get('purchasedbook-export', [App\Http\Controllers\ImportController::class
 Route::get('testimony-export', [App\Http\Controllers\ImportController::class, 'testimonyExport'])->name('testimony.export')->middleware('is_admin');
 //Route for Membership Import
 Route::post('membership-import', [App\Http\Controllers\ImportController::class, 'membershipImport'])->name('membership.import')->middleware('is_admin');
+//Feedback
+Route::post('feedback-import', [App\Http\Controllers\Import\FeedbackController::class, 'feedbackImport'])->name('feedback.import')->middleware('is_admin');
 //Membership
 Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export')->middleware('is_admin');
 });

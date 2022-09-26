@@ -105,6 +105,19 @@
 
         </div>
 
+        <div class="card-body mt-3">
+              
+          <form action="{{ route('feedback.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group">
+              <label for="file">Feedbacks File</label>
+              <input type="file" class="form-control-file" id="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Import</button>
+          </form>
+
+      </div>
+
 
         </div>
       </div>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('feedback_type');
             $table->string('user_fullname');
             $table->string('user_email')->nullable();
-            $table->string('feedback_msg');
+            $table->text('feedback_msg');
             $table->timestamps();
         });
     }
