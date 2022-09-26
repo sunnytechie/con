@@ -15,7 +15,7 @@ class FeedbackController extends Controller
     public function index()
     {
         //feedbacks
-        $feedbacks = Feedback::paginate(10);;
+        $feedbacks = Feedback::orderBy('created_at', 'desc')->paginate(10);;
         return view('feedback.index', compact('feedbacks'));
     }
 
