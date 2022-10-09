@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('currency');
-            $table->string('amount');
+            $table->string('currency')->nullable();
+            $table->string('amount')->nullable();
             $table->text('reason')->nullable();
             $table->string('method')->nullable();
             $table->string('reference')->nullable();
-            $table->string('province');
-            $table->string('diocese');
+            $table->string('province')->nullable();
+            $table->string('diocese')->nullable();
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
