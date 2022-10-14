@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diocese;
 use App\Models\Province;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class ProvinceController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::orderBy('created_at', 'desc')->with('dioceses')->get();
+        //dd($provinces);
+        $dioceses = Diocese::orderBy('created_at', 'desc')->get();
+        
+        return view('province.index', compact('provinces', 'dioceses'));
     }
 
     /**
@@ -65,7 +70,15 @@ class ProvinceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $provinces = Province::orderBy('created_at', 'desc')->with('dioceses')->get();
+        //dd($provinces);
+        $dioceses = Diocese::orderBy('created_at', 'desc')->get();
+        $province = Province::find($id);
+        $provinceID = $province->id;
+        $provinceName = $province->name;
+        $provinceStateName = $province->state_name;
+
+        return view('province.edit', compact('provinceName', 'provinceID', 'provinceStateName', 'provinces', 'dioceses'));
     }
 
     /**
@@ -77,7 +90,12 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $province = Province::find($id);
+        $province->name = $request->name;
+        $province->state_name = $request->state_name;
+        $province->save();
+        
+        return back()->with('success', 'Edited Successfully');
     }
 
     /**
@@ -88,6 +106,8 @@ class ProvinceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $province = Province::find($id);
+        $province->delete();
+        return back()->with('success', 'Deleted Successfully');
     }
 }

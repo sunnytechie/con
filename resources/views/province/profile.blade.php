@@ -12,7 +12,7 @@
                     <a class="btn btn-secondary" href="{{ route('provinces.profile') }}">Profiles</a>
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#provinceModal">New Province</button>
                     <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#dioceseModal">New Diocese</button>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cycModal">Create New CYC</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cycModal">New CYC Profile</button>
                 </div>
                 
                 </div>

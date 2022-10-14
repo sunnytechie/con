@@ -204,12 +204,17 @@ Route::delete('bibles/{bible}', [App\Http\Controllers\BibleController::class, 'd
 
 //Routes for CycProvinceandDiocese
 Route::get('provinces/profiles', [App\Http\Controllers\CycprovinceController::class, 'profile'])->name('provinces.profile')->middleware('is_admin');
-Route::get('provinces', [App\Http\Controllers\CycprovinceController::class, 'index'])->name('provinces.index')->middleware('is_admin');
 Route::post('store/cyc/province', [App\Http\Controllers\CycprovinceController::class, 'store'])->name('cyc.provinces.store')->middleware('is_admin');
 Route::delete('provinces/cyc/{id}', [App\Http\Controllers\CycprovinceController::class, 'destroy'])->name('cyc.provinces.destroy')->middleware('is_admin');
 Route::get('get-diocese', [App\Http\Controllers\CycprovinceController::class, 'getDiocese'])->name('getDiocese');
+
 //Route for ProvinceController
+Route::get('provinces', [App\Http\Controllers\ProvinceController::class, 'index'])->name('provinces.index')->middleware('is_admin');
+Route::get('edit/provinces/{id}', [App\Http\Controllers\ProvinceController::class, 'edit'])->name('provinces.edit')->middleware('is_admin');
+Route::put('update/provinces/{id}', [App\Http\Controllers\ProvinceController::class, 'update'])->name('provinces.update')->middleware('is_admin');
 Route::post('store/province', [App\Http\Controllers\ProvinceController::class, 'store'])->name('provinces.store')->middleware('is_admin');
+Route::delete('delete/provinces/{id}', [App\Http\Controllers\ProvinceController::class, 'destroy'])->name('provinces.destroy')->middleware('is_admin');
+
 //Route for DioceseController
 Route::post('diocese', [App\Http\Controllers\DioceseController::class, 'store'])->name('diocese.store')->middleware('is_admin');
 

@@ -25,47 +25,43 @@
                     </button>
                     </div>
                 @endif
-                <h5 class="card-header pb-0">Province and it diocese</h5>
+                <h5 class="card-header pb-0">Edit Province</h5>
 
-                <div class="card-body px-0 pt-0 pb-2">
-                  @php
-                      $id = 1;
-                  @endphp
-                  @foreach ($provinces as $province)
-                    <div class="province rounded shadow-sm p-3 m-3 mb-3">
-                      <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header d-flex justify-content-between" id="flush-heading{{ $province->id }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $province->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $province->id }}">
-                              {{ $id++ }}. {{ $province->name }} in {{ $province->state_name }}
-                            </button>
-
-                            <div class="btn-group" role="group" aria-label="Button group">
-                              <a href="{{ route('provinces.edit', $province->id) }}" class="btn btn-success btn-sm rounded">Edit</a>
-                              <form method="post" action="{{ route('provinces.destroy', $province->id) }}">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this records?')" class="btn btn-danger btn-sm rounded">Delete</button>
-                              </form>
-                            </div>
-                                              
-                          </h2>
-                          
-                          @foreach ($province->dioceses as $diocese)
-
-                          <div id="flush-collapse{{ $province->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $province->id }}" data-bs-parent="#accordionFlushExample">
-                            <div class="ps-5" style="color: rgb(49, 49, 49)">{{ $diocese->name }}</div>
-                          </div>
-                          @endforeach
+                <div class="card-body">
+                    <form method="POST" action="{{ route('provinces.update', $provinceID) }}">
+                        @csrf
+                        @method('put')
+            
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="my-input">Name</label>
+                          <input id="my-input" class="form-control @error('name') is-invalid @enderror" value="{{ $provinceName ?? old('name') }}" type="text" placeholder="Ecclesiastical province" name="name" required>
+                            @error('name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+                        </div>
+            
+                        <div class="form-group">
+                          <label for="my-input">State</label>
+                          <input id="my-input" class="form-control @error('state_name') is-invalid @enderror" value="{{ $provinceStateName ?? old('state_name') }}" type="text" placeholder="Abuja" name="state_name" required>
+                            @error('state_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+							@enderror
                         </div>
                       </div>
-                    </div>
-                  @endforeach
-                             
-                    
+            
+                      <div class="modal-footer d-flex justify-content-between">
+                        <a href="{{ route('provinces.index') }}" class="btn btn-secondary" type="button">Return back</a>
+                        <button type="submit" class="btn btn-success">Update Province</button>
+                      </div>
+                      </form>                    
                 </div>
+            </div>
         </div>
-      </div>
       {{-- Modal for Province --}}
     <div class="modal fade" id="provinceModal" tabindex="-1" aria-labelledby="provinceModalLabel" aria-hidden="true">
       <div class="modal-dialog">
