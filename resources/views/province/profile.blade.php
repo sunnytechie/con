@@ -58,8 +58,9 @@
                         </div>
                       </div>
                     @endforeach
-                    
-
+                </div>
+                <div class="d-flex">
+                  {!! $cycs->links() !!}
                 </div>
         </div>
       </div>
