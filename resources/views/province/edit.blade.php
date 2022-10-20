@@ -171,7 +171,7 @@
             <option>{{ $diocese->name }}</option>
             @endforeach
           </select> --}}
-          <select class="form-select" id="diocese"></select>
+          <select class="form-select" id="diocese" name="diocese"></select>
         </div>
 
         <div class="form-group">
@@ -249,7 +249,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success">Save Province</button>
+        <button type="submit" class="btn btn-success">Save Profile</button>
       </div>
       </form>
     </div>

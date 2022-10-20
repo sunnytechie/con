@@ -1,5 +1,5 @@
 @php
-                          $deleted = "Item deleted";
+                          $deleted = "deleted";
                       @endphp
 <script>
     

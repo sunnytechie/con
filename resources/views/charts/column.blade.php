@@ -1,6 +1,6 @@
 @php
     $num1 = "8";
-    $deleted = "Item deleted";
+    $deleted = "deleted";
 @endphp
 
 <script>

@@ -175,7 +175,7 @@
             <option>{{ $diocese->name }}</option>
             @endforeach
           </select> --}}
-          <select class="form-select" id="diocese"></select>
+          <select class="form-select" id="diocese" name="diocese"></select>
         </div>
 
         <div class="form-group">
