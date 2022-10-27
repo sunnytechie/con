@@ -108,6 +108,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Book title</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">User email</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Year</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Transaction ref</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date created</th>
                       <th></th>
@@ -135,6 +136,10 @@
 
                       <td>
                         <p class="text-sm font-weight-bold mb-0">{{ $purchase->price }}</p>
+                      </td>
+
+                      <td>
+                        <p class="text-sm font-weight-bold mb-0">{{ $purchase->valid_year }}</p>
                       </td>
 
                       <td>
