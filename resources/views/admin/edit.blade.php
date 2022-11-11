@@ -54,8 +54,8 @@
 
 					
                     <div class="mb-3">
-                        <label>Password</label>
-                        	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ $adminPassword ?? old('password') }}">
+                        <label>Change Password</label>
+                        	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ $adminPassword ?? old('password') }}" placeholder="New Password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
