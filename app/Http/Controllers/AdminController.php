@@ -30,8 +30,10 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->role = $request->role;
         $admin->is_admin = $request->is_admin;
+        $admin->email_verified_at = now();
         $admin->password = bcrypt($request->password);
         $admin->save();
+        
         return back()->with('success', 'Account created successfully');
     }
 
