@@ -12,12 +12,18 @@ class MembershipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //memberships
-        $membershipsCount = Membership::get();
-        $memberships = Membership::paginate(10);
+        if($request->filled('search')){
+            $memberships = Membership::search($request->search)->paginate();
+            $membershipsCount = Membership::get();
+        }else{
+            $membershipsCount = Membership::get();
+            $memberships = Membership::paginate(10);
+        }
+
         return view('membership.index', compact('memberships', 'membershipsCount'));
+        
     }
 
     //store

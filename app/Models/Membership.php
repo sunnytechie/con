@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Membership extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'first_name',
@@ -32,5 +33,26 @@ class Membership extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'email', 'email');
+    }
+
+    //searchable array
+    public function toSearchableArray()
+    {
+        return [
+            'email' => $this->email,
+            'email2' => $this->email2,
+            'phone' => $this->phone,
+            'phone2' => $this->phone2,
+            'street' => $this->street,
+            'city' => $this->city,
+            'state' => $this->state,
+            'country' => $this->country,
+            'province' => $this->province,
+            'diocease' => $this->diocease,
+            'date_of_birth' => $this->date_of_birth,
+            'wedding_date' => $this->wedding_date,
+            'local_church_address' => $this->local_church_address,
+            'fullname' => $this->fullnamel
+        ];
     }
 }

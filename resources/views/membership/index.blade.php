@@ -11,14 +11,21 @@
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Membership listing {{ $membershipsCount->count(); }}</h6>
               
-              <div class="btn-group" role="group" aria-label="Button group">
-                {{-- <div class="input-group">
-                    <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" placeholder="Type here...">
-                </div> --}}
+              
+              <form class="search-form" method="GET">
+                <div class="input-group">
+                  <input 
+                  type="text"
+                  id="search" 
+                  name="search" 
+                  value="{{ request()->get('search') }}"
+                  class="form-control" 
+                  placeholder="Search name, email, diocese...">
+                </div>
+              </form>
                 
                 <a href="{{ route('membership.export') }}" class="btn btn-default" type="button"> <span><i class="fa fa-file-excel-o px-2" aria-hidden="true"></i></span> Export Excel </a>
-              </div>
+              
               
             </div>
             <div class="card-body px-0 pt-0 pb-2">
