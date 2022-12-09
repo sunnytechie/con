@@ -96,6 +96,10 @@ Route::get('notifications/{notification}/edit', [App\Http\Controllers\Notificati
 Route::put('notifications/{notification}', [App\Http\Controllers\NotificationController::class, 'update'])->name('notifications.update')->middleware('is_admin');
 Route::delete('notifications/{notification}', [App\Http\Controllers\NotificationController::class, 'destroy'])->name('notifications.destroy')->middleware('is_admin');
 
+//Route Push Notification
+Route::get('notifications/push', [App\Http\Controllers\PushNotificationController::class, 'index'])->name('notifications.push.index')->middleware('is_admin');
+Route::post('notifications/push', [App\Http\Controllers\PushNotificationController::class, 'push'])->name('notifications.push')->middleware('is_admin');
+
 //Routes for AndroidUsersController
 Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index')->middleware('is_admin');
 //search for android users

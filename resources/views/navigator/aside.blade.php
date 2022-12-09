@@ -207,6 +207,15 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('notifications.push.index') }}">
+            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+              <span><i class="fa fa-bell" aria-hidden="true"></i></span>
+            </div>
+            <span class="nav-link-text ms-1">Push Notification</span>
+          </a>
+        </li>
+
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">App Related</h6>
         </li>
