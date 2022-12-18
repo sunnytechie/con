@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Otp;
 use App\Models\User;
+use App\Mail\VerifyEmail;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -90,11 +93,22 @@ class RegisterController extends Controller
             'login_type' => $input['login_type'],
         ]);
 
-        //send email verify at 
-        $name = $input['name'];
         
+        $name = $input['name'];
+        //send email verify at 
+        //generate 5 digit token
+        $token = mt_rand(100000, 999999);
+        $email = $user->email;
 
-        $user->sendEmailVerificationNotification();
+        Mail::to($request->email)->send(new VerifyEmail($token, $email));
+
+        //Save the token to the database
+        Otp::create([
+            'token' => $token,
+            'email' => $email,
+        ]);
+
+
         //success message for user to verify their email
         $success = "Welcome $name, kindly check your email to verify your account.";
 

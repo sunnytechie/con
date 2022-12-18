@@ -23,6 +23,10 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'loginApi']);
 //Api to reset password
 Route::post('forgot-password', [App\Http\Controllers\Api\NewPasswordController::class, 'forgotPassword']);
+//Api to send otp
+Route::post('/email/verification-notification', [App\Http\Controllers\Api\SendVerificationTokenToEmailController::class, 'sendVerificationTokenToEmail'])->name('verification.send.notification');
+//Api to verify email
+Route::post('/email/verify', [App\Http\Controllers\Api\VerifyEmailController::class, 'verify'])->name('verification.verify');
 
 //api for categories
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'categoriesApi']);
