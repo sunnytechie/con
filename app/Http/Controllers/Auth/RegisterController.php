@@ -79,24 +79,24 @@ class RegisterController extends Controller
     public function registerApi(Request $request)
     {
         //$input = $request->all();
+        //dd($request->all());
         $input = $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'login_type' => '',
         ]);
 
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'login_type' => $input['login_type'],
+            'login_type' => 'Email',
         ]);
 
         
         $name = $input['name'];
         //send email verify at 
-        //generate 5 digit token
+        //generate 6 digit token
         $token = mt_rand(100000, 999999);
         $email = $user->email;
 
@@ -110,7 +110,7 @@ class RegisterController extends Controller
 
 
         //success message for user to verify their email
-        $success = "Welcome $name, kindly check your email to verify your account.";
+        $success = "Welcome $name, A verification code has been sent to $email.";
 
         //$success['name'] = $user->name;
         return response()->json(['success' => $success], 200);

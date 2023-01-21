@@ -21,6 +21,13 @@ class VerifyEmailController extends Controller
         //check if the email has this token
         $otp = Otp::where('email', $request->email)->where('token', $request->token)->first();
         
+        //check if token is lasted more than 24 hours
+        if ($otp->created_at->diffInHours(now()) > 24) {
+            //delete the token
+            $otp->delete();
+            return response()->json(['message' => 'Token is expired'], 400);
+        }
+
         //if the email has this token
         if ($otp) {
             //update the user email_verified_at
