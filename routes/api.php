@@ -26,7 +26,7 @@ Route::post('forgot-password', [App\Http\Controllers\Api\NewPasswordController::
 //Api to send otp
 Route::post('/email/verification-notification', [App\Http\Controllers\Api\SendVerificationTokenToEmailController::class, 'sendVerificationTokenToEmail'])->name('verification.send.notification');
 //Api to verify email
-Route::post('/email/verify', [App\Http\Controllers\Api\VerifyEmailController::class, 'verify'])->name('verification.verify');
+Route::post('/email/verify', [App\Http\Controllers\Api\VerifyEmailController::class, 'verify'])->name('verify.otp');
 
 //api for categories
 Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'categoriesApi']);
