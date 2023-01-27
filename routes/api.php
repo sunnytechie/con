@@ -104,6 +104,15 @@ Route::get('all/push/nofication', [App\Http\Controllers\Api\NotificationControll
 //APi for CYC Province
 Route::get('cyc/province', [App\Http\Controllers\Api\CycProfileController::class, 'index']);
 
+//Api get Media likes
+Route::get('/media/likes/{id}', [App\Http\Controllers\Api\LikesController::class, 'getMediaLikes']);
+//Api store Media likes
+Route::put('/media/likes/update/{id}', [App\Http\Controllers\Api\LikesController::class, 'updateMediaLikes']);
+//Api get Media Views
+Route::get('/media/views/{id}', [App\Http\Controllers\Api\ViewsController::class, 'getMediaViews']);
+//Api store Media Views
+Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController::class, 'updateMediaViews']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -29,11 +29,6 @@ class VideoController extends Controller
         //Var for type of media
         $type = 'video';
 
-        //store thumbnail
-        //$imagePath = request('thumbnail')->store('media', 'public');
-        //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        //$image->save();
-
         //store video if it is not empty
         if ($request->hasFile('video')) {
             $videoPath = request('video')->store('media', 'public');
@@ -62,6 +57,27 @@ class VideoController extends Controller
             ]);
         }
 
+        //Push Notification
+        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
+        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+        $fields = json_encode ($arrayToSend);
+        $headers = array (
+            'Authorization: key=' . $fIREBASE_SERVER_KEY,
+            'Content-Type: application/json'
+        );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        //var_dump($result);
+        curl_close ( $ch );
 
         return back()->with('success', 'Video created successfully');
     }
@@ -143,6 +159,28 @@ class VideoController extends Controller
             $video->notification = $request->notification;
             $video->save();
         }
+
+        //Push Notification
+        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
+        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+        $fields = json_encode ($arrayToSend);
+        $headers = array (
+            'Authorization: key=' . $fIREBASE_SERVER_KEY,
+            'Content-Type: application/json'
+        );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        //var_dump($result);
+        curl_close ( $ch );
 
         return back()->with('success', 'Video updated successfully');
     }

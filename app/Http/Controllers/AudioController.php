@@ -6,6 +6,7 @@ use App\Models\Audio;
 use App\Models\Media;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\PushNotification;
 use Intervention\Image\Facades\Image;
 
 class AudioController extends Controller
@@ -59,6 +60,28 @@ class AudioController extends Controller
                 'type' => $type,
             ]);
         }
+
+        //Push Notification
+        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
+        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+        $fields = json_encode ($arrayToSend);
+        $headers = array (
+            'Authorization: key=' . $fIREBASE_SERVER_KEY,
+            'Content-Type: application/json'
+        );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        //var_dump($result);
+        curl_close ( $ch );
         
         return back()->with('success', 'Audio created successfully');
     }
@@ -141,6 +164,28 @@ class AudioController extends Controller
             $audio->notification = $request->notification;
             $audio->save();
         }
+
+        //Push Notification
+        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
+        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+        $fields = json_encode ($arrayToSend);
+        $headers = array (
+            'Authorization: key=' . $fIREBASE_SERVER_KEY,
+            'Content-Type: application/json'
+        );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        //var_dump($result);
+        curl_close ( $ch );
 
         return back()->with('success', 'Audio updated successfully');
     }
