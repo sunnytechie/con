@@ -17,8 +17,12 @@ class ViewsController extends Controller
         $media->views_count += 1;
         $media->save();
 
+        //Get the total number of views
+        $views = $media->views_count;
+
         return response()->json([
-            'message' => 'Success'
+            'views' => $views,
+            'message' => 'Success',
         ], 200);
     }
 

@@ -17,8 +17,11 @@ class LikesController extends Controller
         $media->likes_count += 1;
         $media->save();
 
+        $likes = $media->likes_count;
+
         return response()->json([
-            'message' => 'Success'
+            'likes' => $likes,
+            'message' => 'Success',
         ], 200);
     }
 
