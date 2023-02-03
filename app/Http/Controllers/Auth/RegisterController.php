@@ -82,37 +82,49 @@ class RegisterController extends Controller
         //dd($request->all());
         $input = $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
-        $user = User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-            'login_type' => 'Email',
-        ]);
+        //check if email already exist
+        $user = User::where('email', $input['email'])->first();
+        if ($user) {
+            return response()->json([
+                'error' => 'Email already exist',
+                'status' => '0',
+            ], 401);
+        } 
+        else {
+            $user = User::create([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+                'login_type' => 'Email',
+            ]);
 
-        
-        $name = $input['name'];
-        //send email verify at 
-        //generate 6 digit token
-        $token = mt_rand(100000, 999999);
-        $email = $user->email;
+            $name = $input['name'];
+            //send email verify at 
+            //generate 6 digit token
+            $token = mt_rand(100000, 999999);
+            $email = $user->email;
 
-        Mail::to($request->email)->send(new VerifyEmail($token, $email));
+            Mail::to($request->email)->send(new VerifyEmail($token, $email));
 
-        //Save the token to the database
-        Otp::create([
-            'token' => $token,
-            'email' => $email,
-        ]);
+            //Save the token to the database
+            Otp::create([
+                'token' => $token,
+                'email' => $email,
+            ]);
 
-
-        //success message for user to verify their email
+            //success message for user to verify their email
         $success = "Welcome $name, A verification code has been sent to $email.";
 
         //$success['name'] = $user->name;
-        return response()->json(['success' => $success], 200);
+        return response()->json([
+            'success' => $success,
+            'status' => '1',
+        ], 200);
+       
+        }        
     }
 }
