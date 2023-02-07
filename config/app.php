@@ -183,6 +183,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Propaganistas\LaravelDisposableEmail\DisposableEmailServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Propaganistas\LaravelDisposableEmail\Validation\Indisposable;
 
 class RegisterController extends Controller
 {
@@ -82,10 +83,13 @@ class RegisterController extends Controller
         //dd($request->all());
         $input = $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|indisposable',
             'password' => 'required|min:6',
         ]);
 
+        //if email is indisposable
+        //Coming soon
+        
         //check if email already exist
         $user = User::where('email', $input['email'])->first();
         if ($user) {
