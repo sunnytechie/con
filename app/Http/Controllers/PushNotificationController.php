@@ -27,14 +27,14 @@ class PushNotificationController extends Controller
         $notification->img = $request->input('img');
         $notification->save();
 
-        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
+        //$fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
         $url = 'https://fcm.googleapis.com/fcm/send';
         $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
         $notification = array('title' =>$request->title, 'text' => $request->body, 'image'=> $request->img, 'sound' => 'default', 'badge' => '1',);
         $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
         $fields = json_encode ($arrayToSend);
         $headers = array (
-            'Authorization: key=' . $fIREBASE_SERVER_KEY,
+            'Authorization: key=' . "AAAAo9KT6zk:APA91bGQv5NcNJ3qRhTwYIf9hW8BqzMb_xNYxS3CUlMmvuFt6g3I2X_UO1aiIg9o-a8PGp_VPgrm1Ls8VJmmIGxOlm695_4lDGRFt06gg3jA5bhB10gFoCPxnm0bKZwKK6lwEPvDAIO_",
             'Content-Type: application/json'
         );
         $ch = curl_init ();
