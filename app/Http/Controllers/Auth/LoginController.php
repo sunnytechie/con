@@ -81,58 +81,52 @@ class LoginController extends Controller
         $this->validate($request, [
             'email' => 'required|email',
             'password' => '',
-            'login_type' => '',
         ]);
 
-        $checkLoginType = $input['login_type'];
+        if (auth()
+            ->attempt([
+                'email' => $input['email'], 
+                'password' => $input['password']])) {
 
-        switch ($checkLoginType) {
-            case 'Google':
-                $email = $input['email'];
-                $user = User::where('email', $email)
-                ->where('login_type', $checkLoginType)
-                ->latest()->first();
-
-                if ($user == null) {
-                    return response()->json(['error' => 'User not found'], 401);
-                }else {
-                    return response()->json(['success' => 'Successfully logges in', 'user' => $user], 200);
-                }
-                
-                
-                break;
-            
-            default:
-            if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
-
-                //if user email is not verified
-                if (auth()->user()->email_verified_at == null) {
-                    return response()->json(['error' => 'Kindly check your mail inbox to verify your email.'], 401);
-                }
-                
-                if(auth()->user()->is_admin == 1) {
-                    //success response with all user details
-                    return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
-                    //return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
-                   }
-                //if user email is verified
-                if(auth()->user()->email_verified_at != null) {
-                    //success response with user name and email
-                    return response()->json(['success' => 'Successfully logged in', 'user' => auth()->user()], 200);
-                }
-                
-                else {
-                    //return redirect to /verified
-                    return response()->json(['error' => 'You are not authorized to login'], 401);
-                }
-                
+            //if user email is not verified
+            if (auth()
+                ->user()
+                ->email_verified_at == null) {
+                return response()->json([
+                    'message' => 'Kindly check your email inbox to verify your account.',
+                    'status' => 0,
+                ], 401);
             }
             
-            else {
-                return response()->json(['error' => 'Invalid email or password'], 401);
-            } 
-                break;
+            if(auth()
+                ->user()
+                ->is_admin == 1) {
+                //success response with all user details
+                return response()->json([
+                    'message' => 'Successfully logged in',
+                    'status' => 1, 
+                    'user' => auth()->user()], 200);
+                //return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
+               }
+            //if user email is verified
+            if(auth()
+            ->user()
+            ->email_verified_at != null) {
+                //success response with user name and email
+                return response()->json([
+                    'message' => 'Successfully logged in', 
+                    'status' => 1,
+                    'user' => auth()->user()], 200);
+            }
+            
         }
+        
+        else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Invalid email or password. Kindly click on forgot password to change your password.'
+            ], 401);
+        } 
 
               
     }

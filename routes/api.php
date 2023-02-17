@@ -21,6 +21,8 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 //api for user login
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'loginApi']);
+//Api for Google Login
+Route::post('/auth/google-login', [App\Http\Controllers\Api\Auth\GoogleLoginController::class, 'gooleLoginApi']);
 //Api to reset password
 Route::post('forgot-password', [App\Http\Controllers\Api\NewPasswordController::class, 'forgotPassword']);
 //Api to send otp
