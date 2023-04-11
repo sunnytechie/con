@@ -147,7 +147,7 @@ class EventController extends Controller
 
         return back()->with('success', 'Event updated successfully');
     }
-
+    
     //destroy
     public function destroy($id)
     {
