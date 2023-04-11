@@ -58,26 +58,25 @@ class VideoController extends Controller
         }
 
         //Push Notification
-        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
         $url = 'https://fcm.googleapis.com/fcm/send';
-        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
-        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
-        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
-        $fields = json_encode ($arrayToSend);
-        $headers = array (
-            'Authorization: key=' . $fIREBASE_SERVER_KEY,
-            'Content-Type: application/json'
-        );
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_URL, $url );
-        curl_setopt ( $ch, CURLOPT_POST, true );
-        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+            $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+            $notification = array('title' =>$request->title, 'text' => $request->body, 'sound' => 'default', 'badge' => '1',);
+            $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+            $fields = json_encode ($arrayToSend);
+            $headers = array (
+                'Authorization: key=' . 'AAAAo9KT6zk:APA91bHFFW8sx44n64q-DSgTr9SCjbf-Ji1uHlG8GrEWRaQDCqw6-XZFqAxch1pVRWYRy7jdnXlXA-SqIg0O1oyxH5--aGeYJlwi03YPKOuZpk0Bqo8J85xnxDaRXjlZdCuxCKdoMdzF',
+                'Content-Type: application/json'
+            );
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-        $result = curl_exec ( $ch );
-        //var_dump($result);
-        curl_close ( $ch );
+            $result = curl_exec ( $ch );
+            //var_dump($result);
+            curl_close ( $ch );
 
         return back()->with('success', 'Video created successfully');
     }
@@ -161,25 +160,24 @@ class VideoController extends Controller
         }
 
         //Push Notification
-        $fIREBASE_SERVER_KEY = env('FIREBASE_SERVER_KEY');
         $url = 'https://fcm.googleapis.com/fcm/send';
-        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
-        $notification = array('title' =>$request->title, 'text' => $request->description, 'image'=> $request->thumbnail, 'sound' => 'default', 'badge' => '1',);
-        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
-        $fields = json_encode ($arrayToSend);
-        $headers = array (
-            'Authorization: key=' . $fIREBASE_SERVER_KEY,
-            'Content-Type: application/json'
-        );
-        $ch = curl_init ();
-        curl_setopt ( $ch, CURLOPT_URL, $url );
-        curl_setopt ( $ch, CURLOPT_POST, true );
-        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+            $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
+            $notification = array('title' =>$request->title, 'text' => $request->body, 'sound' => 'default', 'badge' => '1',);
+            $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+            $fields = json_encode ($arrayToSend);
+            $headers = array (
+                'Authorization: key=' . 'AAAAo9KT6zk:APA91bHFFW8sx44n64q-DSgTr9SCjbf-Ji1uHlG8GrEWRaQDCqw6-XZFqAxch1pVRWYRy7jdnXlXA-SqIg0O1oyxH5--aGeYJlwi03YPKOuZpk0Bqo8J85xnxDaRXjlZdCuxCKdoMdzF',
+                'Content-Type: application/json'
+            );
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
 
-        $result = curl_exec ( $ch );
-        //var_dump($result);
+            $result = curl_exec ( $ch );
+            //var_dump($result);
         curl_close ( $ch );
 
         return back()->with('success', 'Video updated successfully');
