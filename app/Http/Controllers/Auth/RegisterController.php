@@ -112,7 +112,7 @@ class RegisterController extends Controller
             $token = mt_rand(100000, 999999);
             $email = $user->email;
 
-            Mail::to($request->email)->send(new VerifyEmail($token, $email));
+            Mail::to($email)->send(new VerifyEmail($token, $email));
 
             //Save the token to the database
             Otp::create([
