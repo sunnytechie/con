@@ -115,6 +115,32 @@ Route::get('/media/views/{id}', [App\Http\Controllers\Api\ViewsController::class
 //Api store Media Views
 Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController::class, 'updateMediaViews']);
 
+
+
+
+//version 23
+//grouping api version 23 with bearer middleware
+Route::middleware('bearer')->group(function () {
+    //v23 api for login
+    Route::post('/auth/v23/login', [App\Http\Controllers\Api\V23\Auth\LoginController::class, 'loginApi']);
+    //v23 api for google login
+    Route::post('/auth/v23/google-login', [App\Http\Controllers\Api\V23\Auth\GoogleLoginController::class, 'gooleLoginApi']);
+    //v23 api for register
+    Route::post('/auth/v23/register', [App\Http\Controllers\Api\V23\Auth\RegisterController::class, 'registerApi']);
+    //v23 api for verify email
+    Route::post('/auth/v23/verify-email', [App\Http\Controllers\Api\V23\Auth\RegisterController::class, 'verifyOtp']);
+    //v23 api for forgot password
+    Route::post('/auth/v23/forgot-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'sendOtp']);
+    //v23 api for verify otp
+    Route::post('/auth/v23/verify-otp', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'verifyOtp']);
+    //v23 api for reset password
+    Route::post('/auth/v23/reset-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'newPassword']);
+});
+
+
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
