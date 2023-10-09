@@ -20,5 +20,8 @@ class Donation extends Model
         'province',
         'diocese',
         'deleted',
+        'phone',
+        'donation_type',
+        'description',
     ];
 }

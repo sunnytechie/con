@@ -135,6 +135,180 @@ Route::middleware('bearer')->group(function () {
     Route::post('/auth/v23/verify-otp', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'verifyOtp']);
     //v23 api for reset password
     Route::post('/auth/v23/reset-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'newPassword']);
+
+    //v23 api for account settings
+    //verifyOldPassword
+    Route::post('/v23/account/verify-old-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'verifyOldPassword']);
+    //changePassword
+    Route::post('/v23/account/change-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'changePassword']);
+
+    //v23 api for contact us
+    Route::post('/v23/contact-us/{user_id}', [App\Http\Controllers\Api\V23\ContactUsController::class, 'store']);
+
+    //v23 api for membership
+    Route::post('/v23/membership/{user_id}', [App\Http\Controllers\Api\V23\MembershipController::class, 'store']);
+    //v23 api for provinces and dioceses
+    Route::get('/v23/provinces', [App\Http\Controllers\Api\V23\MembershipController::class, 'provinceDiocese']);
+    //membership statusCheck
+    Route::get('/v23/membership/status/{user_id}', [App\Http\Controllers\Api\V23\MembershipController::class, 'statusCheck']);
+
+    //v23 api for prayer request
+    Route::post('/v23/prayer/request', [App\Http\Controllers\Api\V23\PrayerController::class, 'store']);
+
+    //Testimonies
+    //v23 api for testimonies
+    Route::post('/v23/testimonies', [App\Http\Controllers\Api\V23\TestimonyController::class, 'store']);
+    //v23 api for testimonies
+    Route::get('/v23/testimonies', [App\Http\Controllers\Api\V23\TestimonyController::class, 'index']);
+
+    //bookinayear
+    //v23 api for bookinayear for current year
+    Route::get('/v23/bookinayear', [App\Http\Controllers\Api\V23\BookInAYearController::class, 'index']);
+    //v23 api for today bookinayear
+    Route::get('/v23/bookinayear/today', [App\Http\Controllers\Api\V23\BookInAYearController::class, 'today']);
+    //v23 api for current month bookinayear
+    Route::get('/v23/bookinayear/month', [App\Http\Controllers\Api\V23\BookInAYearController::class, 'month']);
+    //search bookinayear
+    Route::get('/v23/bookinayear/search/{month}', [App\Http\Controllers\Api\V23\BookInAYearController::class, 'searchByMonth']);
+
+    //Notes
+    //v23 api for notes
+    Route::post('/v23/notes/{user_id}', [App\Http\Controllers\Api\V23\NoteController::class, 'store']);
+    //v23 api for notes
+    Route::get('/v23/notes/{user_id}', [App\Http\Controllers\Api\V23\NoteController::class, 'index']);
+
+    //donation
+    //v23 api for donation
+    Route::post('/v23/donation/new', [App\Http\Controllers\Api\V23\DonationController::class, 'store']);
+
+    //v23 api for Forum
+    //check membership
+    Route::get('/v23/forum/membership/{user_id}', [App\Http\Controllers\Api\V23\Forum\MembershipController::class, 'checkUserInMembership']);
+
+    //index post
+    Route::get('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'index']);
+    //store post
+    Route::post('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'store']);
+    //update post
+    Route::post('/v23/forum/post/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'update']);
+    //delete post
+    Route::delete('/v23/forum/delete/post/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'destroy']);
+
+    //store post image
+    Route::post('/v23/forum/post/image/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\ImageController::class, 'store']);
+    //delete post image
+    Route::delete('/v23/forum/post/image/delete/{user_id}/{post_id}/{image_id}', [App\Http\Controllers\Api\V23\Forum\ImageController::class, 'destroy']);
+
+    //store post like
+    Route::post('/v23/forum/post/like/{post_id}', [App\Http\Controllers\Api\V23\Forum\LikeController::class, 'store']);
+
+    //store post saved
+    Route::post('/v23/forum/post/saved/{post_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
+
+    //store post comment
+    Route::post('/v23/forum/post/comment/{post_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\CommentController::class, 'store']);
+    //delete post comment
+    Route::delete('/v23/forum/post/comment/{post_id}/{comment_id}', [App\Http\Controllers\Api\V23\Forum\CommentController::class, 'destroy']);
+
+    //store comment like
+    Route::post('/v23/forum/post/comment/like/{user_id}/{comment_id}', [App\Http\Controllers\Api\V23\Forum\LikeCommentController::class, 'update']);
+
+    //store reply
+    Route::post('/v23/forum/post/reply/{post_id}/{comment_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\ReplyController::class, 'store']);
+    //delete reply
+    Route::delete('/v23/forum/post/reply/{post_id}/{reply_id}', [App\Http\Controllers\Api\V23\Forum\ReplyController::class, 'destroy']);
+
+    //store reply like
+    Route::post('/v23/forum/post/reply/like/{user_id}/{reply_id}', [App\Http\Controllers\Api\V23\Forum\LikeReplyController::class, 'store']);
+
+    //Update membership
+    Route::post('/v23/forum/membership/update/{user_id}', [App\Http\Controllers\Api\V23\Forum\MembershipController::class, 'update']);
+
+    //pdf with tag
+    Route::get('/v23/pdf/anglicanism', [App\Http\Controllers\Api\V23\PDFController::class, 'indexByTag']);
+
+    //pdf without tag
+    Route::get('/v23/pdf/paid', [App\Http\Controllers\Api\V23\PDFController::class, 'indexPaid']);
+    Route::get('/v23/pdf/free', [App\Http\Controllers\Api\V23\PDFController::class, 'indexFree']);
+
+    //hymnals
+    //index
+    Route::get('/v23/hymnals', [App\Http\Controllers\Api\V23\HymnalsController::class, 'index']);
+    //search
+    Route::post('/v23/hymnals/search', [App\Http\Controllers\Api\V23\HymnalsController::class, 'search']);
+    //filter
+    Route::post('/v23/hymnals/filter', [App\Http\Controllers\Api\V23\HymnalsController::class, 'filter']);
+
+    //Devotional year listing price
+    Route::get('/v23/devotional/year/listing/price', [App\Http\Controllers\Api\V23\DevotionalController::class, 'yearsListingPrice']);
+
+    //bible study
+    Route::post('/v23/devotional/biblestudy', [App\Http\Controllers\Api\V23\DevotionalController::class, 'bibleStudy']);
+    //daily dynamite
+    Route::post('/v23/devotional/dailydynamite', [App\Http\Controllers\Api\V23\DevotionalController::class, 'dailyDynamite']);
+    //daily fountain
+    Route::post('/v23/devotional/dailyfountain', [App\Http\Controllers\Api\V23\DevotionalController::class, 'dailyfountain']);
+
+    //audio category
+    Route::get('/v23/media/audio/category', [App\Http\Controllers\Api\V23\Media\CategoryController::class, 'audioCategory']);
+    //video category
+    Route::get('/v23/media/video/category', [App\Http\Controllers\Api\V23\Media\CategoryController::class, 'videoCategory']);
+    //gallery category
+    Route::get('/v23/media/gallery/category', [App\Http\Controllers\Api\V23\Media\CategoryController::class, 'galleryCategory']);
+
+    //audio media
+    Route::post('/v23/media/audio', [App\Http\Controllers\Api\V23\Media\MediaController::class, 'audio']);
+    //video media
+    Route::post('/v23/media/video', [App\Http\Controllers\Api\V23\Media\MediaController::class, 'video']);
+    //gallery media
+    Route::post('/v23/media/gallery', [App\Http\Controllers\Api\V23\Media\MediaController::class, 'gallery']);
+
+    //messages
+    Route::get('/v23/messages', [App\Http\Controllers\Api\V23\MessageController::class, 'index']);
+
+    //kidszone
+    Route::get('/v23/kidszone', [App\Http\Controllers\Api\V23\KidsZoneController::class, 'index']);
+
+    //notifications
+    Route::get('/v23/notifications/{user_id}', [App\Http\Controllers\Api\V23\NotificationController::class, 'index']);
+
+    //subscribe book
+    Route::post('/v23/subscribe/book/{user_id}/{book_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'subscribeBook']);
+    //subscribe study
+    Route::post('/v23/subscribe/study/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'subscribeStudy']);
+    //subscribe bcp
+    Route::post('/v23/subscribe/bcp/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'subscribeBcp']);
+    //subscribe cyc
+    Route::post('/v23/subscribe/cyc/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'subscribeCyc']);
+
+    //checkBookSubscription
+    Route::get('/v23/check/book/subscription/{user_id}/{book_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkBookSubscription']);
+    //checkStudySubscription
+    Route::post('/v23/check/study/subscription/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkStudySubscription']);
+    //checkBcpSubscription
+    Route::get('/v23/check/bcp/subscription/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkBcpSubscription']);
+    //checkCycSubscription
+    Route::get('/v23/check/cyc/subscription/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkCycSubscription']);
+
+    //bcp category
+    Route::get('/v23/bcp/categories', [App\Http\Controllers\Api\V23\BcpController::class, 'category']);
+    //bcp subcategory
+    Route::get('/v23/bcp/subcategory/{id}', [App\Http\Controllers\Api\V23\BcpController::class, 'subcategory']);
+    //bcp
+    Route::get('/v23/bcp/{id}', [App\Http\Controllers\Api\V23\BcpController::class, 'bcp']);
+    //bcp search
+    Route::post('/v23/bcp/search', [App\Http\Controllers\Api\V23\BcpController::class, 'search']);
+
+    //cyccategories
+    Route::get('/v23/cyccategories', [App\Http\Controllers\Api\V23\CycController::class, 'cyccategories']);
+    //cycsubcategories
+    Route::get('/v23/cycsubcategories/cyc/{cyccategory_id}', [App\Http\Controllers\Api\V23\CycController::class, 'cycsubcategories']);
+
+    //calendar
+    //current day
+    Route::get('/v23/calendar', [App\Http\Controllers\Api\V23\CalendarController::class, 'index']);
+    //search by date
+    Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
 });
 
 

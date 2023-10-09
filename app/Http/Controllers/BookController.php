@@ -43,6 +43,7 @@ class BookController extends Controller
             'bookcategory_id' => 'required',
             'booksubcategory_id' => '',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tag' => 'nullable',
         ]);
 
         //move pdf file to pdf folder
@@ -53,15 +54,6 @@ class BookController extends Controller
         $file->move(public_path('pdf'), $fileName);
         $filePath = public_path('pdf/' . $fileName);
 
-        //store pdf file in public/books
-        //$file = $request->file('file');
-        //$fileName = $file->getClientOriginalName();
-        //change file name to avoid duplicate file name
-        //$fileName = time() . '-' . $fileName;
-        //Add pdf/file as variable to store in database
-        //$fileFolder = 'pdf/';
-        //$filePath = $fileFolder . $fileName;
-      
         //store image file in public/books/images
         $imagePath = request('image')->store('books/image', 'public');
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
@@ -79,7 +71,8 @@ class BookController extends Controller
         $book->price = $request->price;
         $book->bookcategory_id = $request->bookcategory_id;
         $book->booksubcategory_id = $request->booksubcategory_id;
-        
+        $book->tag = $request->tag;
+
         $book->save();
 
         //redirect to back with success message
@@ -127,20 +120,11 @@ class BookController extends Controller
             'booksubcategory_id' => 'required',
             'file' => 'mimes:pdf',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tag' => 'nullable',
         ]);
 
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {
-            //update pdf file in public/books
-            //$file = $request->file('file');
-            //$fileName = $file->getClientOriginalName();
-            //change file name to avoid duplicate file name
-            //$fileName = time() . '-' . $fileName;
-            //Add pdf/file as variable to store in database
-            //$fileFolder = 'pdf/';
-            //$filePath = $fileFolder . $fileName;
-            //$file->storeAs('public/pdf', $fileName);
-
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
             //add time to file name to avoid duplicate file name
@@ -151,7 +135,6 @@ class BookController extends Controller
 
         //update image file in public/books/images when image is changed
         if ($request->hasFile('image')) {
-
             //update image file in public/books/images
             $imagePath = request('image')->store('books/image', 'public');
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
@@ -167,6 +150,7 @@ class BookController extends Controller
         $book->bookcategory_id = $request->bookcategory_id;
         $book->booksubcategory_id = $request->booksubcategory_id;
         $book->description = $request->description;
+        $book->tag = $request->tag;
         if ($request->hasFile('file')) {
             $book->file = $filePath;
         }
@@ -177,7 +161,7 @@ class BookController extends Controller
 
         //redirect to back with success message
         return redirect()->back()->with('success', 'Book updated successfully');
-       
+
     }
 
     //delete book

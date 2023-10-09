@@ -27,6 +27,7 @@ class Membership extends Model
         'wedding_date',
         'local_church_address',
         'fullname',
+        'user_id',
     ];
 
     //belongs to user through email

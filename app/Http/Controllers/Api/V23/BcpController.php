@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers\Api\V23;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class BcpController extends Controller
+{
+    //category
+    public function category()
+    {
+        $bcpcategories = \App\Models\Bcpcategory::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'BCP category',
+            'data' => $bcpcategories
+        ], 200);
+    }
+
+    //subcategory
+    public function subcategory($id)
+    {
+        $bcpsubcategories = \App\Models\Bcpsubcategory::where('bcpcategory_id', $id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'BCP subcategory',
+            'data' => $bcpsubcategories
+        ], 200);
+    }
+
+    //search subcategory
+    public function searchsubcategory(Request $request)
+    {
+        //validate incoming request
+        $validate = Validator::make($request->all(), [
+            'title' => 'required|string',
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validate->errors()
+            ], 422);
+        }
+
+        $bcpsubcategories = \App\Models\Bcpsubcategory::where('title', 'LIKE', '%' . $request->title . '%')->get();
+
+        if (count($bcpsubcategories) > 0) {
+            return response()->json([
+                'success' => true,
+                'message' => 'BCP subcategory',
+                'data' => $bcpsubcategories
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No BCP subcategory found',
+            ], 404);
+        }
+
+    }
+
+    //bcp
+    public function bcp($id)
+    {
+        $bcp = \App\Models\Bcp::where('bcpsubcategory_id', $id)->get();
+        return response()->json([
+            'success' => true,
+            'message' => 'BCP',
+            'data' => $bcp
+        ], 200);
+    }
+
+
+}

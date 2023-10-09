@@ -19,7 +19,7 @@ class MediaController extends Controller
     public function video()
     {
         //categories
-        $categories = Category::all();
+        $categories = Category::where('type', 'video')->get();
         //Videos
         $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->paginate(10);
         return view('media.video.index', compact('categories', 'videos'));
@@ -67,7 +67,7 @@ class MediaController extends Controller
                     <td>'.$video->description.'</td>
                     <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Button group">
-                        
+
                                 <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="/media/'.$video->id.'/edit">
                                 <i class="fa fa-pencil text-xs"></i>
                                 </a>
@@ -93,7 +93,7 @@ class MediaController extends Controller
         //Audio
         $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->paginate(10);
         //categories
-        $categories = Category::all();
+        $categories = Category::where('type', 'audio')->get();
         return view('media.audio.index', compact('categories', 'audio'));
     }
 
@@ -134,7 +134,7 @@ class MediaController extends Controller
                     <td>'.$audio->description.'</td>
                     <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Button group">
-                        
+
                                 <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="/media/'.$audio->id.'/edit">
                                 <i class="fa fa-pencil text-xs"></i>
                                 </a>
@@ -184,5 +184,5 @@ class MediaController extends Controller
         $media = Media::where('category_id', $id)->get();
         return response()->json($media);
     }
-    
+
 }

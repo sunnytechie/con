@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['title', 'thumbnail', 'type'];
 
     public function subcategories()
@@ -34,5 +34,11 @@ class Category extends Model
     public function media()
     {
         return $this->hasMany(Media::class);
+    }
+
+    //relationship with gallery
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
     }
 }

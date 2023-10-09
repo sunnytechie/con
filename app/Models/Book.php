@@ -18,7 +18,8 @@ class Book extends Model
         'bookcategory_id',
         'booksubcategory_id',
         'price',
-        'type'
+        'type',
+        'tag',
     ];
 
     //belongs to BookCategory

@@ -68,6 +68,29 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Comment');
     }
 
+    //has many posts
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    //has many postcomments
+    public function postcomments()
+    {
+        return $this->hasMany('App\Models\Postcomment');
+    }
+
+    //has many postlikes
+    public function postlikes()
+    {
+        return $this->hasMany('App\Models\Postlike');
+    }
+
+    //has many savedposts
+    public function savedposts()
+    {
+        return $this->hasMany('App\Models\Savedpost');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
