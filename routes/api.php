@@ -127,6 +127,8 @@ Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController
     Route::post('/auth/v23/register', [App\Http\Controllers\Api\V23\Auth\RegisterController::class, 'registerApi']);
     //v23 api for verify email
     Route::post('/auth/v23/verify-email', [App\Http\Controllers\Api\V23\Auth\RegisterController::class, 'verifyOtp']);
+    //v23 api for resend email
+    Route::post('/auth/v23/resend-email', [App\Http\Controllers\Api\V23\Auth\VerifyEmailController::class, 'resendOtp']);
     //v23 api for forgot password
     Route::post('/auth/v23/forgot-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'sendOtp']);
     //v23 api for verify otp
