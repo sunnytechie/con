@@ -119,8 +119,6 @@ Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController
 
 
 //version 23
-//grouping api version 23 with bearer middleware
-Route::middleware('bearer')->group(function () {
     //v23 api for login
     Route::post('/auth/v23/login', [App\Http\Controllers\Api\V23\Auth\LoginController::class, 'loginApi']);
     //v23 api for google login
@@ -136,6 +134,8 @@ Route::middleware('bearer')->group(function () {
     //v23 api for reset password
     Route::post('/auth/v23/reset-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'newPassword']);
 
+//grouping api version 23 with bearer middleware
+Route::middleware('bearer')->group(function () {
     //v23 api for account settings
     //verifyOldPassword
     Route::post('/v23/account/verify-old-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'verifyOldPassword']);
@@ -310,9 +310,6 @@ Route::middleware('bearer')->group(function () {
     //search by date
     Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
 });
-
-
-
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
