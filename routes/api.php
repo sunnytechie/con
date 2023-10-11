@@ -311,6 +311,9 @@ Route::middleware('bearer')->group(function () {
     Route::get('/v23/calendar', [App\Http\Controllers\Api\V23\CalendarController::class, 'index']);
     //search by date
     Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
+
+    //update profile
+    Route::post('/v23/profile/update/{user_id}', [App\Http\Controllers\Api\V23\ProfileUpdateController::class, 'update']);
 });
 
 
