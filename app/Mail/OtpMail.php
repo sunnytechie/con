@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 class OtpMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $otp;
+    public $compose;
 
     /**
      * Create a new message instance.
@@ -21,11 +21,9 @@ class OtpMail extends Mailable
      */
     public function __construct($otp)
     {
-        $compose = $this->subject('Otp - One Time Password')
-            ->markdown('emails.otp')
-            ->with([
-                'otp' => $otp,
-            ]);
+        $this->compose = [
+            'otp' => $otp,
+        ];
     }
 
     /**
