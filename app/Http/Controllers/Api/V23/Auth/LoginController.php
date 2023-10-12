@@ -51,6 +51,8 @@ class LoginController extends Controller
 
         //user details
         $user = User::where('email', $request->email)->first();
+        $user->remember_token = $token;
+        $user->save();
 
         //return response
         return response()->json([

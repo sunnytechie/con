@@ -116,8 +116,6 @@ Route::get('/media/views/{id}', [App\Http\Controllers\Api\ViewsController::class
 Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController::class, 'updateMediaViews']);
 
 
-
-
 //version 23
     //v23 api for login
     Route::post('/auth/v23/login', [App\Http\Controllers\Api\V23\Auth\LoginController::class, 'loginApi']);
@@ -135,6 +133,7 @@ Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController
     Route::post('/auth/v23/verify-otp', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'verifyOtp']);
     //v23 api for reset password
     Route::post('/auth/v23/reset-password', [App\Http\Controllers\Api\V23\Auth\ForgotPasswordController::class, 'newPassword']);
+
 
 //grouping api version 23 with bearer middleware
 Route::middleware('bearer')->group(function () {
@@ -311,12 +310,17 @@ Route::middleware('bearer')->group(function () {
     Route::get('/v23/calendar', [App\Http\Controllers\Api\V23\CalendarController::class, 'index']);
     //search by date
     Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
+});
 
+
+//grouping api version 23 with user token middleware
+Route::middleware('token')->group(function () {
     //update profile
     Route::post('/v23/profile/update/{user_id}', [App\Http\Controllers\Api\V23\ProfileUpdateController::class, 'update']);
 });
 
 
+//grouping api version 23 with sanctum middleware
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

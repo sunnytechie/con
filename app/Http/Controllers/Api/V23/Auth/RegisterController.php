@@ -46,6 +46,7 @@ class RegisterController extends Controller
 
         //update otp
         $user->user_otp = $otp;
+        $user->remember_token = $token;
         $user->save();
 
         //send otp to email

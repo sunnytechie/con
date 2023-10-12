@@ -15,6 +15,7 @@ class ProfileUpdateController extends Controller
     public function update(Request $request, $user_id) {
         //validate request
         $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer',
             'fullname' => 'nullable|string',
             //'email' => 'required|email',
             'phone' => 'nullable|string',
@@ -40,24 +41,23 @@ class ProfileUpdateController extends Controller
             ]);
         }
 
+        //random numbers for image name
+        $random = rand(1, 1000000000000000000);
+
         //if request has avatar
         if($request->hasFile('avatar')) {
-            //get file
-            $file = $request->file('avatar');
-            //get file name
-            $filename = $file->getClientOriginalName();
-            $imagePath = request('image')->store('profile/images', 'public');
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            $image->save();
+            $image = $request->file('avatar');
+            $imageName = time() . $random . '.' . $image->extension();
+            $image->move(public_path('uploads/avatars'), $imageName);
         }
 
         //update user
-        $user->fullname = $request->fullname;
+        $user->name = $request->fullname;
         //$user->email = $request->email;
         $user->phone = $request->phone;
-        $user->birthday = $request->birthday;
+        $user->date_of_birth = $request->birthday;
         if($request->hasFile('avatar')) {
-            $user->avatar = $imagePath;
+            $user->avatar = $imageName;
         }
         $user->save();
 
@@ -70,14 +70,21 @@ class ProfileUpdateController extends Controller
             $membership->phone = $request->phone;
             $membership->birthday = $request->birthday;
             $membership->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Profile updated successfully',
+                'data' => $membership
+            ]);
         }
-
-
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Membership updated successfully',
-            'data' => $membership
+            'message' => 'Profile updated successfully',
+            'data' => $user
         ]);
+
+
+
     }
 }

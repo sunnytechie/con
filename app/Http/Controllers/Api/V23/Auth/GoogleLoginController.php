@@ -42,6 +42,8 @@ class GoogleLoginController extends Controller
 
             //create token
             $token = $user->createToken('auth_token')->plainTextToken;
+            $user->remember_token = $token;
+            $user->save();
 
             //return response
             return response()->json([
@@ -64,6 +66,8 @@ class GoogleLoginController extends Controller
 
         //create token
         $token = $user->createToken('auth_token')->plainTextToken;
+        $user->remember_token = $token;
+        $user->save();
 
         //return response
         return response()->json([
