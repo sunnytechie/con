@@ -46,6 +46,20 @@ class ProfileUpdateController extends Controller
 
         //if request has avatar
         if($request->hasFile('avatar')) {
+            //validate image
+            $validator = Validator::make($request->all(), [
+                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            //validate image
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Image Validation error',
+                    'errors' => $validator->errors()
+                ]);
+            }
+            
             $image = $request->file('avatar');
             $imageName = time() . $random . '.' . $image->extension();
             $image->move(public_path('uploads/avatars'), $imageName);
