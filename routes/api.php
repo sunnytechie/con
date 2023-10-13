@@ -137,12 +137,6 @@ Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController
 
 //grouping api version 23 with bearer middleware
 Route::middleware('bearer')->group(function () {
-    //v23 api for account settings
-    //verifyOldPassword
-    Route::post('/v23/account/verify-old-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'verifyOldPassword']);
-    //changePassword
-    Route::post('/v23/account/change-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'changePassword']);
-
     //v23 api for contact us
     Route::post('/v23/contact-us/{user_id}', [App\Http\Controllers\Api\V23\ContactUsController::class, 'store']);
 
@@ -317,6 +311,12 @@ Route::middleware('bearer')->group(function () {
 Route::middleware('token')->group(function () {
     //update profile
     Route::post('/v23/profile/update/{user_id}', [App\Http\Controllers\Api\V23\ProfileUpdateController::class, 'update']);
+    
+    //v23 api for account settings
+    //verifyOldPassword
+    Route::post('/v23/account/verify-old-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'verifyOldPassword']);
+    //changePassword
+    Route::post('/v23/account/change-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'changePassword']);
 });
 
 
