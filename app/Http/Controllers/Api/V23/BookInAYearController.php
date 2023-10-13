@@ -15,7 +15,7 @@ class BookInAYearController extends Controller
         $bibleinoneyear = Bibleinoneyear::where('year', date('Y'))->get();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'List of bible in one year',
             //'data' => $bibleinoneyear
         ], 200);
@@ -29,14 +29,14 @@ class BookInAYearController extends Controller
 
         if (!$bibleinoneyear) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Bible for today not found',
                 'data' => ''
             ], 404);
         }
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Bible for today',
             'data' => $bibleinoneyear
         ], 200);
@@ -50,14 +50,14 @@ class BookInAYearController extends Controller
 
         if (!$bibleinoneyear) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Bible for this month not found',
                 'data' => ''
             ], 404);
         }
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Bible for this month',
             'data' => $bibleinoneyear
         ], 200);
@@ -74,14 +74,14 @@ class BookInAYearController extends Controller
 
         if (!$bibleinoneyear) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Bible for this month not found',
                 'data' => ''
             ], 404);
         }
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Bible for this month',
             'data' => $bibleinoneyear
         ], 200);

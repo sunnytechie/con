@@ -21,7 +21,7 @@ class NoteController extends Controller
         //validate incoming request
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validator->errors()
             ], 400);
@@ -36,7 +36,7 @@ class NoteController extends Controller
         $note->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Note created',
             'data' => $note
         ], 201);
@@ -48,7 +48,7 @@ class NoteController extends Controller
         $notes = Note::where('user_id', $user_id)->get();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Notes',
             'data' => $notes
         ], 200);

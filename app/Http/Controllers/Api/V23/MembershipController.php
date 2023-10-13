@@ -29,7 +29,7 @@ class MembershipController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -40,7 +40,7 @@ class MembershipController extends Controller
         //if user exists
         if ($membership) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'You are already a member'
             ], 400);
         }
@@ -63,7 +63,7 @@ class MembershipController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Membership created successfully',
             'data' => $membership
         ], 201);
@@ -75,7 +75,7 @@ class MembershipController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Province and Diocese',
             'data' => $provinces
         ], 200);
@@ -89,7 +89,7 @@ class MembershipController extends Controller
         //if user exists
         if ($membership) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'You are a member',
                 'data' => $membership
             ], 200);
@@ -97,7 +97,7 @@ class MembershipController extends Controller
 
         //return response
         return response()->json([
-            'success' => false,
+            'status' => false,
             'message' => 'You are not a member'
         ], 404);
     }

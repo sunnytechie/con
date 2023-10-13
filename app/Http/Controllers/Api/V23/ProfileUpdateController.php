@@ -26,7 +26,7 @@ class ProfileUpdateController extends Controller
         //validate request
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Validation error',
                 'errors' => $validator->errors()
             ]);
@@ -36,7 +36,7 @@ class ProfileUpdateController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'User not found',
             ]);
         }
@@ -54,12 +54,12 @@ class ProfileUpdateController extends Controller
             //validate image
             if ($validator->fails()) {
                 return response()->json([
-                    'status' => 'error',
+                    'status' => false,
                     'message' => 'Image Validation error',
                     'errors' => $validator->errors()
                 ]);
             }
-            
+
             $image = $request->file('avatar');
             $imageName = time() . $random . '.' . $image->extension();
             $image->move(public_path('uploads/avatars'), $imageName);
@@ -86,14 +86,14 @@ class ProfileUpdateController extends Controller
             $membership->save();
 
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'Profile updated successfully',
                 'data' => $membership
             ]);
         }
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'message' => 'Profile updated successfully',
             'data' => $user
         ]);

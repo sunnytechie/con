@@ -25,7 +25,7 @@ class RegisterController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -57,7 +57,7 @@ class RegisterController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Verification code sent to email',
             'token' => $token
         ], 200);
@@ -75,7 +75,7 @@ class RegisterController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -86,7 +86,7 @@ class RegisterController extends Controller
         //if user not found
         if (!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Email not found'
             ], 404);
         }
@@ -94,7 +94,7 @@ class RegisterController extends Controller
         //check otp
         if ($user->user_otp != $request->otp) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Invalid otp'
             ], 401);
         }
@@ -106,7 +106,7 @@ class RegisterController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Email verified',
             'user' => $user,
         ], 200);

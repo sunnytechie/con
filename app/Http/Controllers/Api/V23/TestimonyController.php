@@ -24,7 +24,7 @@ class TestimonyController extends Controller
         //validate incoming request
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validator->errors()
             ], 400);
@@ -39,7 +39,7 @@ class TestimonyController extends Controller
         $prayer->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Prayer submitted successfully',
             'data' => $prayer
         ], 201);
@@ -52,7 +52,7 @@ class TestimonyController extends Controller
         $testimonies = Testimony::all();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Testimonies',
             'data' => $testimonies
         ], 200);

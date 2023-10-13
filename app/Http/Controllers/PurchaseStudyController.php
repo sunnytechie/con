@@ -18,7 +18,7 @@ class PurchaseStudyController extends Controller
 
         //purchased books
         $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->paginate(10);
-        
+
         return view('purchase.index', compact('studies', 'purchasedstudies'));
     }
 
@@ -33,7 +33,7 @@ class PurchaseStudyController extends Controller
             ->orWhere('study_title', 'like', '%' . $request->search . '%')
             ->orWhere('payment_status', 'like', '%' . $request->search . '%')
             ->paginate(10);
-        
+
         foreach ($purchasedstudies as $key => $purchasedstudy) {
             //key is the index of the array and starts from 1
             $key = $key + 1;
@@ -47,7 +47,7 @@ class PurchaseStudyController extends Controller
                     <td>'.$purchasedstudy->created_at.'</td>
                     <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Button group">
-  
+
                     <form action="/purchase/study/'.$purchasedstudy->id.'" method="post">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="'.csrf_token().'">
@@ -55,8 +55,8 @@ class PurchaseStudyController extends Controller
                             return confirm(\'Are you sure you want to delete this record?\')">
                         <i class="fa fa-trash text-xs"></i>
                         </button>
-            </form>                        
-                      
+            </form>
+
                     </div>
                   </td>
                 </tr>';
@@ -70,7 +70,7 @@ class PurchaseStudyController extends Controller
         $endDate = $request->to;
 
         $studies = Study::all();
-        
+
         //select purchased stud$studies where study title is equal to the study name and created_at is between the start and end date
 
             $purchasedstudies = Purchasedstudy::where('study_category_name', $studyCategory)
@@ -118,7 +118,7 @@ class PurchaseStudyController extends Controller
                 $studyName = "Daily Dynamite";
                 $studyTypeName = "Daily Dynamite";
                 break;
-            
+
             default:
             $studyName = "nil";
             $studyTypeName = "nil";
@@ -157,7 +157,7 @@ class PurchaseStudyController extends Controller
             'payment_status' => '',
             'user_id' => '',
         ]);
-        
+
         //find study
         switch ($request->study_id) {
             case '1':
@@ -174,13 +174,13 @@ class PurchaseStudyController extends Controller
                 $studyName = "Daily Dynamite";
                 $studyTypeName = "Daily Dynamite";
                 break;
-            
+
             default:
             $studyName = "nil";
             $studyTypeName = "nil";
                 break;
         }
-        
+
         //store
         $purchasedstudy = new Purchasedstudy();
         $purchasedstudy->email = $request->email;
@@ -195,7 +195,7 @@ class PurchaseStudyController extends Controller
         $purchasedstudy->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Book purchased successfully',
         ]);
     }

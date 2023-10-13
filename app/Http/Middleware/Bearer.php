@@ -23,11 +23,11 @@ class Bearer
 
         if ($request->header('Authorization') !== "Bearer $token") {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Unauthorized'
             ], 401);
         }
-        
+
         return $next($request);
     }
 }

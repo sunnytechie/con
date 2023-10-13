@@ -20,7 +20,7 @@ class MediaController extends Controller
         if (!$category) {
             return response()->json(
                 [
-                    'status' => 'error',
+                    'status' => false,
                     'message' => 'Invalid category_id'
                 ],
                 400
@@ -30,7 +30,7 @@ class MediaController extends Controller
         $audio = \App\Models\Media::where('category_id', $request->category_id)->where('type', 'audio')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $audio
             ],
             200
@@ -49,7 +49,7 @@ class MediaController extends Controller
         if (!$category) {
             return response()->json(
                 [
-                    'status' => 'error',
+                    'status' => false,
                     'message' => 'Invalid category_id'
                 ],
                 400
@@ -59,7 +59,7 @@ class MediaController extends Controller
         $video = \App\Models\Media::where('category_id', $request->category_id)->where('type', 'video')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $video
             ],
             200
@@ -77,7 +77,7 @@ class MediaController extends Controller
         if (!$category) {
             return response()->json(
                 [
-                    'status' => 'error',
+                    'status' => false,
                     'message' => 'Invalid category_id'
                 ],
                 400
@@ -87,10 +87,10 @@ class MediaController extends Controller
         $gallery = \App\Models\Gallery::orderBy('created_at', 'desc')
             ->where('category_id', $request->category_id)
             ->get();
-            
+
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $gallery
             ],
             200

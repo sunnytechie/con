@@ -21,7 +21,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -31,7 +31,7 @@ class SubscribeController extends Controller
         $book = Book::find($book_id);
         if(!$book) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Book not found',
             ], 404);
         }
@@ -43,7 +43,7 @@ class SubscribeController extends Controller
 
         if($validate->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validate->errors()
             ], 400);
@@ -57,7 +57,7 @@ class SubscribeController extends Controller
             $purchasedBook = PurchasedBook::where('book_id', $book_id)->where('email', $userEmail)->first();
             if($purchasedBook) {
                 return response()->json([
-                    'success' => false,
+                    'status' => false,
                     'message' => 'Book already purchased',
                 ], 404);
             } else {
@@ -72,7 +72,7 @@ class SubscribeController extends Controller
                 $purchasedBook->save();
 
                 return response()->json([
-                    'success' => true,
+                    'status' => true,
                     'message' => 'Book purchased successfully',
                 ], 200);
             }
@@ -88,7 +88,7 @@ class SubscribeController extends Controller
             $purchasedBook->save();
 
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'Book purchased successfully',
             ], 200);
             }
@@ -106,7 +106,7 @@ class SubscribeController extends Controller
 
         if($validate->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validate->errors()
             ], 400);
@@ -116,7 +116,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -134,7 +134,7 @@ class SubscribeController extends Controller
                 break;
             default:
                 return response()->json([
-                    'success' => false,
+                    'status' => false,
                     'message' => 'Study not found',
                 ], 404);
         }
@@ -151,7 +151,7 @@ class SubscribeController extends Controller
         $purchasedStudy->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Subscribed successfully',
         ], 200);
     }
@@ -166,7 +166,7 @@ class SubscribeController extends Controller
 
         if($validate->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validate->errors()
             ], 400);
@@ -176,7 +176,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -190,7 +190,7 @@ class SubscribeController extends Controller
         $purchasedBcp->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Subscribed successfully',
         ], 200);
     }
@@ -205,7 +205,7 @@ class SubscribeController extends Controller
 
         if($validate->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validate->errors()
             ], 400);
@@ -215,7 +215,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -232,7 +232,7 @@ class SubscribeController extends Controller
         $purchasedCyc->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Subscribed successfully',
         ], 200);
     }
@@ -243,7 +243,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -253,7 +253,7 @@ class SubscribeController extends Controller
         $book = Book::find($book_id);
         if(!$book) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Book not found',
             ], 404);
         }
@@ -266,18 +266,18 @@ class SubscribeController extends Controller
             $purchasedBook = PurchasedBook::where('book_id', $book_id)->where('email', $userEmail)->first();
             if($purchasedBook) {
                 return response()->json([
-                    'success' => true,
+                    'status' => true,
                     'message' => 'Book purchased',
                 ], 200);
             } else {
                 return response()->json([
-                    'success' => false,
+                    'status' => false,
                     'message' => 'Book not purchased',
                 ], 404);
             }
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Book not purchased',
             ], 404);
         }
@@ -295,7 +295,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -305,12 +305,12 @@ class SubscribeController extends Controller
 
         if($status) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'Subscribed',
             ], 200);
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Not subscribed',
             ], 404);
         }
@@ -324,7 +324,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -333,12 +333,12 @@ class SubscribeController extends Controller
         $status = Purchasedbcp::where('email', $user->email)->first();
         if($status) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'Subscribed',
             ], 200);
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Not subscribed',
             ], 404);
         }
@@ -350,7 +350,7 @@ class SubscribeController extends Controller
         $user = User::find($user_id);
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found',
             ], 404);
         }
@@ -359,12 +359,12 @@ class SubscribeController extends Controller
         $status = Purchasecyc::where('email', $user->email)->first();
         if($status) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'Subscribed',
             ], 200);
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Not subscribed',
             ], 404);
         }

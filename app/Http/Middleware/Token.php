@@ -25,7 +25,7 @@ class Token
         //check if user exist
         if(!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found'
             ], 404);
         }
@@ -35,7 +35,7 @@ class Token
 
         if ($request->header('Authorization') !== $token) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Invalid token'
             ], 401);
         }

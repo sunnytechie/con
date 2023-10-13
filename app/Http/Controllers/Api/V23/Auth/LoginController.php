@@ -22,7 +22,7 @@ class LoginController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -33,7 +33,7 @@ class LoginController extends Controller
         //check password
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Invalid Credentials'
             ], 401);
         }
@@ -41,7 +41,7 @@ class LoginController extends Controller
         //check email verified
         if (!$user->hasVerifiedEmail()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Email not verified'
             ], 401);
         }
@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Login Success',
             'user' => $user,
             'token' => $token

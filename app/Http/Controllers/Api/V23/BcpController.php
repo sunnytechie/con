@@ -13,7 +13,7 @@ class BcpController extends Controller
     {
         $bcpcategories = \App\Models\Bcpcategory::all();
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'BCP category',
             'data' => $bcpcategories
         ], 200);
@@ -24,7 +24,7 @@ class BcpController extends Controller
     {
         $bcpsubcategories = \App\Models\Bcpsubcategory::where('bcpcategory_id', $id)->get();
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'BCP subcategory',
             'data' => $bcpsubcategories
         ], 200);
@@ -40,7 +40,7 @@ class BcpController extends Controller
 
         if ($validate->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'errors' => $validate->errors()
             ], 422);
@@ -50,13 +50,13 @@ class BcpController extends Controller
 
         if (count($bcpsubcategories) > 0) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'BCP subcategory',
                 'data' => $bcpsubcategories
             ], 200);
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'No BCP subcategory found',
             ], 404);
         }
@@ -68,7 +68,7 @@ class BcpController extends Controller
     {
         $bcp = \App\Models\Bcp::where('bcpsubcategory_id', $id)->get();
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'BCP',
             'data' => $bcp
         ], 200);

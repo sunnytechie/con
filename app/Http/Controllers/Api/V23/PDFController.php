@@ -17,7 +17,7 @@ class PDFController extends Controller
                     ->where('type', 'Paid')->get();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'List of pdfs',
             'data' => $pdfs
         ], 200);
@@ -28,7 +28,7 @@ class PDFController extends Controller
                     ->where('type', 'Free')->get();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'List of pdfs',
             'data' => $pdfs
         ], 200);
@@ -41,7 +41,7 @@ class PDFController extends Controller
         $pdfs = Book::where('tag', $tag)->get();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'List of pdfs',
             'data' => $pdfs
         ], 200);

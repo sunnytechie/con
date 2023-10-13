@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -33,7 +33,7 @@ class ForgotPasswordController extends Controller
         //if user not found
         if (!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Email not found'
             ], 404);
         }
@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Otp sent to email'
         ], 200);
     }
@@ -71,7 +71,7 @@ class ForgotPasswordController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -82,7 +82,7 @@ class ForgotPasswordController extends Controller
         //if user not found
         if (!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Email not found'
             ], 404);
         }
@@ -90,7 +90,7 @@ class ForgotPasswordController extends Controller
         //check otp
         if ($request->otp != $user->user_otp) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Invalid Otp'
             ], 401);
         }
@@ -102,14 +102,14 @@ class ForgotPasswordController extends Controller
         //if opt is 30 minutes old then return error
         if ($user->updated_at->diffInMinutes() > 30) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Otp expired'
             ], 401);
         }
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Otp verified'
         ], 200);
     }
@@ -126,7 +126,7 @@ class ForgotPasswordController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -137,7 +137,7 @@ class ForgotPasswordController extends Controller
         //if user not found
         if (!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Email not found'
             ], 404);
         }
@@ -148,7 +148,7 @@ class ForgotPasswordController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Password updated'
         ], 200);
     }

@@ -13,7 +13,7 @@ class CycController extends Controller
         $cyccategories = \App\Models\Cyccategory::all();
         return response()->json(
             [
-                'success' => true,
+                'status' => true,
                 'message' => 'Cyccategories',
                 'data' => $cyccategories
             ],
@@ -27,7 +27,7 @@ class CycController extends Controller
         $cycsubcategories = \App\Models\Cycsubcategory::where('cyccategory_id', $cyccategory_id)->get();
         return response()->json(
             [
-                'success' => true,
+                'status' => true,
                 'message' => 'Cycsubcategories',
                 'data' => $cycsubcategories
             ],

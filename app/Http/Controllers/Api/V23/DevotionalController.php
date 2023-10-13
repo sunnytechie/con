@@ -25,7 +25,7 @@ class DevotionalController extends Controller
         $yearsWithData = array_reverse($yearsWithData);
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' => $yearsWithData
         ], 200);
     }
@@ -40,7 +40,7 @@ class DevotionalController extends Controller
         $bibleStudy = Study::orderBy('study_date', 'asc')->where('type', 2)->where('study_year', $request->year)->get();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' => $bibleStudy
         ], 200);
     }
@@ -55,7 +55,7 @@ class DevotionalController extends Controller
         $dailyDynamite = Study::where('type', 3)->where('study_date', $request->date)->first();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' => $dailyDynamite
         ], 200);
     }
@@ -70,7 +70,7 @@ class DevotionalController extends Controller
         $dailyFountain = Study::where('type', 1)->where('study_date', $request->date)->first();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'data' => $dailyFountain
         ], 200);
     }

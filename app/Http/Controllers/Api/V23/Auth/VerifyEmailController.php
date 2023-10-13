@@ -22,7 +22,7 @@ class VerifyEmailController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -33,7 +33,7 @@ class VerifyEmailController extends Controller
         //if user not found
         if (!$user) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'User not found'
             ], 404);
         }
@@ -53,7 +53,7 @@ class VerifyEmailController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Verification code sent to email'
         ]);
     }

@@ -14,13 +14,13 @@ class MembershipController extends Controller
         $membership = Membership::where('user_id', $user_id)->first();
         if($membership) {
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'message' => 'User has membership.',
                 'data' => $membership
             ]);
         } else {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'User has no membership.',
                 'data' => ''
             ]);
@@ -40,7 +40,7 @@ class MembershipController extends Controller
         //validate request
         if ($validator->fails()) {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Validation error',
                 'errors' => $validator->errors()
             ]);
@@ -50,7 +50,7 @@ class MembershipController extends Controller
         $membership = Membership::where('user_id', $user_id)->first();
         if(!$membership) {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'User does not exist.',
                 'errors' => ''
             ]);
@@ -64,7 +64,7 @@ class MembershipController extends Controller
         $membership->save();
 
         return response()->json([
-            'status' => 'success',
+            'status' => true,
             'message' => 'Membership updated successfully',
             'data' => $membership
         ]);

@@ -14,7 +14,7 @@ class HymnalsController extends Controller
         $hymnals = \App\Models\Hymnal::orderBy('number', 'asc')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $hymnals
             ]
         );
@@ -30,7 +30,7 @@ class HymnalsController extends Controller
         if ($validate->fails()) {
             return response()->json(
                 [
-                    'status' => 'error',
+                    'status' => false,
                     'message' => $validate->errors()->first()
                 ]
             );
@@ -42,7 +42,7 @@ class HymnalsController extends Controller
 
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $hymnals
             ]
         );
@@ -59,7 +59,7 @@ class HymnalsController extends Controller
         if ($validate->fails()) {
             return response()->json(
                 [
-                    'status' => 'error',
+                    'status' => false,
                     'message' => $validate->errors()->first()
                 ]
             );
@@ -72,7 +72,7 @@ class HymnalsController extends Controller
 
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $hymnals
             ]
         );

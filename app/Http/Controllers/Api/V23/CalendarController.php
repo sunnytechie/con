@@ -14,12 +14,12 @@ class CalendarController extends Controller
         $calendar = \App\Models\Calendar::where('date', date('Y-m-d'))->first();
         if ($calendar) {
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'data' => $calendar
             ]);
         } else {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'No data found'
             ]);
         }
@@ -31,12 +31,12 @@ class CalendarController extends Controller
         $calendar = \App\Models\Calendar::where('date', $request->date)->first();
         if ($calendar) {
             return response()->json([
-                'status' => 'success',
+                'status' => true,
                 'data' => $calendar
             ]);
         } else {
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'No data found'
             ]);
         }

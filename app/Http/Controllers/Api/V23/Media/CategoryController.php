@@ -13,7 +13,7 @@ class CategoryController extends Controller
         $audioCategories = \App\Models\Category::where('type', 'audio')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $audioCategories
             ],
             200
@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $videoCategories = \App\Models\Category::where('type', 'video')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $videoCategories
             ],
             200
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $galleryCategories = \App\Models\Category::where('type', 'gallery')->get();
         return response()->json(
             [
-                'status' => 'success',
+                'status' => true,
                 'data' => $galleryCategories
             ],
             200

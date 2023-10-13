@@ -23,7 +23,7 @@ class PrayerController extends Controller
         //validate incoming request
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Validation error',
                 'data' => $validator->errors()
             ], 400);
@@ -40,7 +40,7 @@ class PrayerController extends Controller
         $prayer->save();
 
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'Prayer created',
             'data' => $prayer
         ], 201);

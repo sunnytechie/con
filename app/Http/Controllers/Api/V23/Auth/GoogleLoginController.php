@@ -22,7 +22,7 @@ class GoogleLoginController extends Controller
         //if validation fails
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => $validator->errors()->first()
             ], 400);
         }
@@ -47,7 +47,7 @@ class GoogleLoginController extends Controller
 
             //return response
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'User logged in successfully',
                 'data' => [
                     'user' => $user,
@@ -71,7 +71,7 @@ class GoogleLoginController extends Controller
 
         //return response
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => 'User registered successfully',
             'data' => [
                 'user' => $user,
