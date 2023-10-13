@@ -20,7 +20,7 @@ class ProfileUpdateController extends Controller
             //'email' => 'required|email',
             'phone' => 'nullable|string',
             'birthday' => 'date|nullable',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'nullable',
         ]);
 
         //validate request
