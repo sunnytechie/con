@@ -140,8 +140,6 @@ Route::middleware('bearer')->group(function () {
     //v23 api for contact us
     Route::post('/v23/contact-us/{user_id}', [App\Http\Controllers\Api\V23\ContactUsController::class, 'store']);
 
-    //v23 api for membership
-    Route::post('/v23/membership/{user_id}', [App\Http\Controllers\Api\V23\MembershipController::class, 'store']);
     //v23 api for provinces and dioceses
     Route::get('/v23/provinces', [App\Http\Controllers\Api\V23\MembershipController::class, 'provinceDiocese']);
     //membership statusCheck
@@ -317,6 +315,8 @@ Route::middleware('token')->group(function () {
     Route::post('/v23/account/verify-old-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'verifyOldPassword']);
     //changePassword
     Route::post('/v23/account/change-password/{user_id}', [App\Http\Controllers\Api\V23\Auth\ChangePasswordController::class, 'changePassword']);
+    //v23 api for membership
+    Route::post('/v23/membership/{user_id}', [App\Http\Controllers\Api\V23\MembershipController::class, 'store']);
 });
 
 

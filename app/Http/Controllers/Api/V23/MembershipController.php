@@ -14,8 +14,8 @@ class MembershipController extends Controller
         //validate incoming request
         $validator = Validator::make($request->all(), [
             'fullname' => 'required',
-            'email' => 'required',
-            'email2' => 'required',
+            'email' => 'nullable',
+            'email2' => 'nullable',
             'phone' => 'required',
             'birthday' => 'required',
             'address' => 'required', //street
@@ -52,7 +52,7 @@ class MembershipController extends Controller
         $membership->email = $request->email;
         $membership->email2 = $request->email2;
         $membership->phone = $request->phone;
-        $membership->birthday = $request->birthday;
+        $membership->date_of_birth = $request->birthday;
         $membership->street = $request->address;
         $membership->city = $request->city;
         $membership->state = $request->state;
