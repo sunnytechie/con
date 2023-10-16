@@ -150,7 +150,7 @@ Route::middleware('bearer')->group(function () {
 
     //Testimonies
     //v23 api for testimonies
-    Route::post('/v23/testimonies', [App\Http\Controllers\Api\V23\TestimonyController::class, 'store']);
+    Route::post('/v23/testimony/{user_id}', [App\Http\Controllers\Api\V23\TestimonyController::class, 'store']);
     //v23 api for testimonies
     Route::get('/v23/testimonies', [App\Http\Controllers\Api\V23\TestimonyController::class, 'index']);
 
