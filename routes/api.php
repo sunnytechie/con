@@ -169,6 +169,10 @@ Route::middleware('bearer')->group(function () {
     Route::post('/v23/notes/{user_id}', [App\Http\Controllers\Api\V23\NoteController::class, 'store']);
     //v23 api for notes
     Route::get('/v23/notes/{user_id}', [App\Http\Controllers\Api\V23\NoteController::class, 'index']);
+    //update
+    Route::post('/v23/update/notes/{id}', [App\Http\Controllers\Api\V23\NoteController::class, 'update']);
+    //delete
+    Route::delete('/v23/delete/notes/{id}', [App\Http\Controllers\Api\V23\NoteController::class, 'destroy']);
 
     //donation
     //v23 api for donation
