@@ -82,7 +82,7 @@ class ProfileUpdateController extends Controller
             $membership->fullname = $request->fullname;
             //$membership->email = $request->email;
             $membership->phone = $request->phone;
-            $membership->birthday = $request->birthday;
+            $membership->date_of_birth = $request->birthday;
             $membership->save();
 
             return response()->json([
