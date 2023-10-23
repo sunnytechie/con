@@ -83,7 +83,7 @@
                     @endphp
                             @foreach ($kidzones as $kid)
                             <tr>
-                                <td>{{ $i }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td><img width="30px" width="30px" src="/storage/{{ $kid->image }}" alt=""></td>
                                 <td>{{ $kid->title }}</td>
                                 <td>{{ $kid->url }}</td>
