@@ -69,7 +69,7 @@ class KidZoneController extends Controller
             $image->save();
         }
 
-        $kid = new Kidzone();
+        $kid = Kidzone::find($id);
         $kid->title = $request->title;
         $kid->url = $request->url;
         if ($request->has('image')) {
