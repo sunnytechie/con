@@ -74,6 +74,21 @@
                             </div>
                         </div>
                         <!-- PAGE-HEADER END -->
+                        @if (session('success'))
+                        {{-- Error Message --}}
+                        <div class="text-wrap mb-4">
+                            <div class="">
+                                <div class="alert alert-success">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                                    <span class=""><i class="fe fe-bell"></i></span>
+                                    <strong>Heads Up</strong>
+                                    <hr class="message-inner-separator">
+                                    <p>{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- End Error Message --}}
+                        @endif
 
                         {{-- Content --}}
                         @yield('content')

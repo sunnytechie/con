@@ -318,4 +318,10 @@ Route::post('membership-import', [App\Http\Controllers\ImportController::class, 
 Route::post('feedback-import', [App\Http\Controllers\Import\FeedbackController::class, 'feedbackImport'])->name('feedback.import')->middleware('is_admin');
 //Membership
 Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export')->middleware('is_admin');
+
+Route::get('kidzone/index', [App\Http\Controllers\KidZoneController::class, 'index'])->name('kidzone.index')->middleware('is_admin');
+Route::post('kidzone/store', [App\Http\Controllers\KidZoneController::class, 'store'])->name('kidzone.store')->middleware('is_admin');
+Route::put('kidzone/update/{id}', [App\Http\Controllers\KidZoneController::class, 'update'])->name('kidzone.update')->middleware('is_admin');
+Route::delete('kidzone/destroy/{id}', [App\Http\Controllers\KidZoneController::class, 'destroy'])->name('kidzone.destroy')->middleware('is_admin');
+
 });

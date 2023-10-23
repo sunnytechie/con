@@ -147,6 +147,7 @@
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">video</a></li>
                                             <li><a href="#" class="slide-item">Listings</a></li>
+                                            <li><a href="{{ route('kidzone.index') }}" class="slide-item">Kidzone</a></li>
                                             <li><a href="#" class="slide-item">Create New</a></li>
                                         </ul>
                                     </div>

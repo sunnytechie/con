@@ -56,18 +56,18 @@ class LoginController extends Controller
             }
 
             if(auth()->user()->is_admin == 1) {
-                return redirect()->route('home');
+                return redirect()->intended(RouteServiceProvider::HOME);
             }
             //if user email is verified
             if(auth()->user()->email_verified_at != null) {
-                return redirect()->route('home');
-            }                
-            
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+
             else {
                 //return redirect to /verified
                 return redirect()->route('verified');
             }
-            
+
         } else {
             return redirect()->route('login')->with('error', 'Invalid email or password');
         }
@@ -85,7 +85,7 @@ class LoginController extends Controller
 
         if (auth()
             ->attempt([
-                'email' => $input['email'], 
+                'email' => $input['email'],
                 'password' => $input['password']])) {
 
             //if user email is not verified
@@ -97,14 +97,14 @@ class LoginController extends Controller
                     'status' => 0,
                 ], 401);
             }
-            
+
             if(auth()
                 ->user()
                 ->is_admin == 1) {
                 //success response with all user details
                 return response()->json([
                     'message' => 'Successfully logged in',
-                    'status' => 1, 
+                    'status' => 1,
                     'user' => auth()->user()], 200);
                 //return response()->json(['success' => 'Successfully logged in', 'name' => auth()->user()->name, 'email' => auth()->user()->email], 200);
                }
@@ -114,20 +114,20 @@ class LoginController extends Controller
             ->email_verified_at != null) {
                 //success response with user name and email
                 return response()->json([
-                    'message' => 'Successfully logged in', 
+                    'message' => 'Successfully logged in',
                     'status' => 1,
                     'user' => auth()->user()], 200);
             }
-            
+
         }
-        
+
         else {
             return response()->json([
                 'status' => 0,
                 'message' => 'Invalid email or password. Kindly click on forgot password to change your password.'
             ], 401);
-        } 
+        }
 
-              
+
     }
 }
