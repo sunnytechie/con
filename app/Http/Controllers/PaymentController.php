@@ -16,10 +16,13 @@ class PaymentController extends Controller
     public function index()
     {
         //books
+        $title = "Books payments details listings";
+        $tag = "Payments";
         $books = Book::all();
         //purchased books
-        $purchasedBooks = PurchasedBook::orderBy('created_at', 'desc')->paginate(10);;
-        return view('payment.index', compact('books', 'purchasedBooks'));
+        $purchasedBooks = PurchasedBook::orderBy('created_at', 'desc')->paginate(10);
+        //return view
+        return view('payment.v23', compact('books', 'purchasedBooks', 'title', 'tag'));
     }
 
     //search
@@ -47,11 +50,11 @@ class PaymentController extends Controller
                     <td>'.$purchasedBook->created_at.'</td>
                     <td class="align-middle">
                     <div class="btn-group" role="group" aria-label="Button group">
-                 
+
                         <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="/payments/'.$purchasedBook->id.'">
                           <i class="fa fa-pencil text-xs"></i>
                         </a>
- 
+
                         <form action="/payments/'.$purchasedBook->id.'" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="'.csrf_token().'">
@@ -59,8 +62,8 @@ class PaymentController extends Controller
                                         return confirm(\'Are you sure you want to delete this record?\')">
                                     <i class="fa fa-trash text-xs"></i>
                                     </button>
-                        </form>                        
-                      
+                        </form>
+
                     </div>
                   </td>
                 </tr>';
@@ -78,7 +81,7 @@ class PaymentController extends Controller
         $endDate = $request->to;
 
         $books = Book::all();
-        
+
         //select purchased books where book title is equal to the book name and created_at is between the start and end date
 
             $purchasedBooks = PurchasedBook::where('book_title', '=', $bookName)
@@ -202,7 +205,7 @@ class PaymentController extends Controller
         $purchasedBook->book_id = $request->book_id;
         $purchasedBook->price = $bookPrice;
         $purchasedBook->book_title = $bookName;
-        
+
         $purchasedBook->save();
 
         return back()->with('success', 'Book updated successfully');

@@ -71,6 +71,8 @@ class PostController extends Controller
             ]);
         }
 
+        dd($membership);
+
         //new post
         $post = new Post();
         $post->user_id = $user_id;

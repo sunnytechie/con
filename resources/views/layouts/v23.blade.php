@@ -15,7 +15,7 @@
     <link rel="icon" href="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}">
 
     <!-- TITLE -->
-    <title>CONAIO</title>
+    <title>{{ $title ?? "Conaio Admin" }}</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('v23/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -65,44 +65,20 @@
 
                         <!-- PAGE-HEADER -->
                         <div class="page-header">
-                            <h1 class="page-title">Dashboard</h1>
+                            <h1 class="page-title">{{ $title ?? "Dashboard" }}</h1>
                             <div>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $tag ?? "Dashboard" }}</li>
                                 </ol>
                             </div>
                         </div>
                         <!-- PAGE-HEADER END -->
 
-                        <!-- ROW-1 -->
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                                <div class="row">
+                        {{-- Content --}}
+                        @yield('content')
+                        {{-- End content --}}
 
-                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="mt-2">
-                                                        <h6 class="">Total Users</h6>
-                                                        <h2 class="mb-0 number-font">44,278</h2>
-                                                    </div>
-                                                    <div class="ms-auto">
-                                                        <div class="mt-1">
-                                                            ICON
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span class="text-muted fs-12"><span class="text-secondary"><i class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>Last week</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ROW-1 END -->
 
                     </div>
                     <!-- CONTAINER END -->
@@ -119,8 +95,8 @@
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                     <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with <span
-                            class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All rights reserved.
+                        Copyright © <span id="year"></span> <a href="https://www.fortcan.com">Conaio</a>. Designed with <span
+                            class="fa fa-heart text-danger"></span> by <a href="https://www.fortcan.com"> Spruko </a> All rights reserved.
                     </div>
                 </div>
             </div>
@@ -205,6 +181,21 @@
 
     <!-- Switcher js -->
     <script src="{{ asset('v23/assets/switcher/js/switcher.js') }}"></script>
+
+    <!-- DATA TABLE JS-->
+    <script src="{{ asset('v23/assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/plugins/datatable/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('v23/assets/js/table-data.js') }}"></script>
 
 </body>
 

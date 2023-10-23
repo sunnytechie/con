@@ -63,7 +63,7 @@
 
         {{-- Main application --}}
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            
+
             @guest
             @else
                 @include('navigator.notguest')
@@ -94,7 +94,7 @@
               <button class="btn btn-default" href="#generate" data-toggle="modal" type="button"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter </button>
               <button class="btn btn-default" href="#newPurchase" data-toggle="modal" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </button>
             </div>
-           
+
               @include('modals.generate.purchase')
               @include('modals.add.purchase')
             </div>
@@ -123,7 +123,7 @@
                         <td class="text-left px-4">
                             <span class="text-xs font-weight-bold">{{ $i++ }}</span>
                         </td>
-                      
+
                       <td>
                         {{-- Note* This could throw an error if the book is deleted. --}}
                         <p class="text-sm font-weight-bold mb-0">{{ $purchase->book_title }}</p>
@@ -144,22 +144,22 @@
                       <td>
                         <p class="text-sm font-weight-bold mb-0">{{ $purchase->created_at->diffForHumans() }}</p>
                       </td>
-                      
+
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
 
-                          
+
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('payments.edit', $purchase->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                          
+
                             <form method="post" action="{{ route('payments.destroy', $purchase->id) }}">
                               @method('delete')
                               @csrf
                               <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                            </form> 
-                        
-                          
+                            </form>
+
+
                         </div>
                       </td>
                     </tr>

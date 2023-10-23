@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>Login - CONAIO Admin</title>
 
 @section('content')
 
@@ -17,7 +18,7 @@
                 @else
                   <p class="mb-0 p-2">Provide email and password</p>
                 @endif
-                
+
               </div>
               <div class="card-body pt-1">
                     <form role="form" method="POST" action="{{ route('login') }}">
@@ -36,7 +37,7 @@
                   <label>Password</label>
                   <div class="mb-3">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" aria-label="Password" aria-describedby="password-addon">
-                    
+
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
