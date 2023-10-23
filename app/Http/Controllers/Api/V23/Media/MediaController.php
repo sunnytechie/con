@@ -67,7 +67,7 @@ class MediaController extends Controller
     }
 
     //gallery
-    public function galery(Request $request) {
+    public function gallery(Request $request) {
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
         ]);
