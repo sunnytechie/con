@@ -71,14 +71,14 @@ class PostController extends Controller
             ]);
         }
 
-        dd($membership);
+        //dd($membership);
 
         //new post
         $post = new Post();
         $post->user_id = $user_id;
         $post->content = $request->content;
         $post->province = $membership->province;
-        $post->diocese = $membership->diocese;
+        $post->diocese = $membership->diocease;
         $post->save();
 
         //send notification to all users in the same province and diocese
