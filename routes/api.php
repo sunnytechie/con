@@ -184,6 +184,8 @@ Route::middleware('bearer')->group(function () {
 
     //index post
     Route::get('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'index']);
+    //selfPost
+    Route::get('/v23/forum/selfpost/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'selfPost']);
     //store post
     Route::post('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'store']);
     //update post

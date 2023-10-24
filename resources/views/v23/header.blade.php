@@ -3,7 +3,7 @@
         <div class="d-flex">
             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
             <!-- sidebar-toggle-->
-            <a class="logo-horizontal " href="index.html">
+            <a class="logo-horizontal " href="/">
                 {{-- WHite for dark bg --}}
                 <img height="50" width="50" src="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}" class="header-brand-img desktop-logo" alt="logo">
                 {{-- Dark for white bg --}}

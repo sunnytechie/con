@@ -37,12 +37,13 @@
 
 <body class="app sidebar-mini ltr light-mode">
 
-
+    @if(request()->is('/'))
     <!-- GLOBAL-LOADER -->
     <div id="global-loader">
         <img src="{{ asset('v23/assets/images/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
     <!-- /GLOBAL-LOADER -->
+    @endif
 
     <!-- PAGE -->
     <div class="page">

@@ -127,7 +127,7 @@
 
                                                         <div class="mb-3">
                                                             <label>Change Thumbnail</label>
-                                                            <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" placeholder="Enter image" required>
+                                                            <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" placeholder="Enter image">
 
                                                             @error('image')
                                                                 <span class="invalid-feedback" role="alert">

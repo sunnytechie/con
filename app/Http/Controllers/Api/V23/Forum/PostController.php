@@ -44,6 +44,36 @@ class PostController extends Controller
         ]);
     }
 
+    //selfPost
+    public function selfPost($user_id) {
+        $user = \App\Models\User::find($user_id);
+        //check if user exists
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found.'
+            ]);
+        }
+
+        //find user membership
+        $membership = Membership::where('user_id', $user_id)->first();
+        if(!$membership) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User has no membership.'
+            ]);
+        }
+
+        //get posts with province and diocese
+        $posts = Post::where('user_id', $user_id)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Your posts are retrieved successfully',
+            'data' => $posts
+        ]);
+    }
+
     //store
     public function store(Request $request, $user_id) {
         //validate data
