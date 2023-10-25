@@ -59,7 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //has many membership
     public function membership()
     {
-        return $this->hasMany('App\Models\Membership');
+        return $this->hasOne('App\Models\Membership');
     }
 
     //has many comments

@@ -8,6 +8,7 @@ use App\Models\Bookcategory;
 use Illuminate\Http\Request;
 use App\Models\Booksubcategory;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 class BookController extends Controller
 {
@@ -18,6 +19,7 @@ class BookController extends Controller
      */
     public function index()
     {
+        $title = "Books - PDFs and more...";
         //bookcategories
         $bookcategories = Bookcategory::all();
         //categories
@@ -25,22 +27,12 @@ class BookController extends Controller
         //booksubcategories
         $booksubcategories = Booksubcategory::all();
         //books
-        $books = Book::paginate(10);
-        return view('book.index', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
-    }
-
-    public function v23() {
-        //bookcategories
-        $bookcategories = Bookcategory::all();
-        //categories
-        $categories = Category::all();
-        //booksubcategories
-        $booksubcategories = Booksubcategory::all();
-        //books
+        //$books = Book::paginate(10);
         $books = Book::orderBy('id', 'desc')->get();
-
-        return view('book.v23', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
+        return view('book.v23', compact('categories', 'books', 'title', 'bookcategories', 'booksubcategories'));
     }
+
+
 
     //store book
     public function store(Request $request)
@@ -122,8 +114,9 @@ class BookController extends Controller
     //update book
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         //Validate the request...
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'author' => 'required|max:255',
             'description' => 'required',
@@ -135,6 +128,11 @@ class BookController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tag' => 'nullable',
         ]);
+
+        //validate incoming request
+        if ($validator->fails()) {
+            return back()->withInput()->with('success', "please try again.");
+        }
 
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {

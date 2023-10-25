@@ -14,7 +14,7 @@ class PDFController extends Controller
     public function indexPaid()
     {
         $pdfs = Book::where('tag', null)
-                    ->where('type', 'Paid')->get();
+                    ->where('type', 1)->get();
 
         return response()->json([
             'status' => true,
@@ -25,7 +25,7 @@ class PDFController extends Controller
 
     public function indexFree() {
         $pdfs = Book::where('tag', null)
-                    ->where('type', 'Free')->get();
+                    ->where('type', 0)->get();
 
         return response()->json([
             'status' => true,

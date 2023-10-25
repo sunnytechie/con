@@ -33,7 +33,8 @@ class Membership extends Model
     //belongs to user through email
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'email', 'email');
+        //return $this->belongsTo('App\Models\User', 'email', 'email');
+        return $this->belongsTo(User::class);
     }
 
     //searchable array
