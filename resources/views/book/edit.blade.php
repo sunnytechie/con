@@ -26,7 +26,7 @@
                     <label>Pdf Tag</label>
                     <select name="tag" id="tag" class="form-control @error('tag') is-invalid @enderror" value="{{ $book->tag ?? old('tag') }}" required>
                         @php
-                            $tags = ['Anglicanism', 'Others'];
+                            $tags = ['Anglicanism', 'workbook', 'teachers', 'Others'];
                         @endphp
 
                         <option value="" disabled>Select</option>
