@@ -35,7 +35,7 @@ class PostController extends Controller
         $diocese = $membership->diocese;
 
         //get posts with province and diocese
-        $posts = Post::with('user.membership')->where('province', $province)->where('diocese', $diocese)->get();
+        $posts = Post::with('user.membership', 'postimages')->where('province', $province)->where('diocese', $diocese)->get();
 
         return response()->json([
             'status' => true,
@@ -65,7 +65,7 @@ class PostController extends Controller
         }
 
         //get posts with province and diocese
-        $posts = Post::with('user.membership')->where('user_id', $user_id)->get();
+        $posts = Post::with('user.membership', 'postimages')->where('user_id', $user_id)->get();
 
         return response()->json([
             'status' => true,
