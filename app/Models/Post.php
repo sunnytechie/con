@@ -18,12 +18,12 @@ class Post extends Model
 
     //relationships - has many postcomments
     public function postcomments() {
-        return $this->hasMany(PostComment::class);
+        return $this->hasMany(Postcomment::class);
     }
 
     //relationships - has many postlikes
     public function postlikes() {
-        return $this->hasMany(PostLike::class);
+        return $this->hasMany(Postlike::class);
     }
 
     //relationships - belongs to savedpost
@@ -33,6 +33,6 @@ class Post extends Model
 
     //relationships - has many postimages
     public function postimages() {
-        return $this->hasMany(PostImage::class);
+        return $this->hasMany(Postimage::class);
     }
 }
