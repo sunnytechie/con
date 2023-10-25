@@ -96,7 +96,7 @@ class SettingsController extends Controller
         $flutter = $settings->flutterwave_api_key;
 
         return response()->json([
-            'status' => true,
+            'status' => "flutter key",
             'flutterwave' => $flutter
         ]);
     }
