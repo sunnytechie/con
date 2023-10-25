@@ -114,6 +114,19 @@ Route::put('/media/likes/update/{id}', [App\Http\Controllers\Api\LikesController
 Route::get('/media/views/{id}', [App\Http\Controllers\Api\ViewsController::class, 'getMediaViews']);
 //Api store Media Views
 Route::put('/media/views/update/{id}', [App\Http\Controllers\Api\ViewsController::class, 'updateMediaViews']);
+//flutter key
+Route::get('/get-flutterwave-key', [App\Http\Controllers\SettingsController::class, 'key']);
+
+
+
+
+
+
+
+
+
+
+
 
 
 //version 23

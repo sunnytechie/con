@@ -12,7 +12,7 @@ class SettingsController extends Controller
     {
         //get the last settings
         $settings = Settings::latest()->first();
-        
+
         $id = $settings->id;
         $fcm_server_key = $settings->fcm_server_key;
         $mail_username = $settings->mail_username;
@@ -78,7 +78,7 @@ class SettingsController extends Controller
         $settings->paypal_donation_url = $request->paypal_donation_url;
 
         $settings->save();
-        
+
         return back()->with('success', 'Settings updated successfully');
     }
 
@@ -87,5 +87,17 @@ class SettingsController extends Controller
     {
         $settings = Settings::latest()->first();
         return response()->json($settings);
+    }
+
+    //flutter key
+    public function key() {
+        $settings = Settings::first();
+
+        $flutter = $settings->flutterwave_api_key;
+
+        return response()->json([
+            'status' => true,
+            'flutterwave' => $flutter
+        ]);
     }
 }

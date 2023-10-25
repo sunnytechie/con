@@ -29,6 +29,19 @@ class BookController extends Controller
         return view('book.index', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
     }
 
+    public function v23() {
+        //bookcategories
+        $bookcategories = Bookcategory::all();
+        //categories
+        $categories = Category::all();
+        //booksubcategories
+        $booksubcategories = Booksubcategory::all();
+        //books
+        $books = Book::orderBy('id', 'desc')->get();
+
+        return view('book.v23', compact('categories', 'books', 'bookcategories', 'booksubcategories'));
+    }
+
     //store book
     public function store(Request $request)
     {
