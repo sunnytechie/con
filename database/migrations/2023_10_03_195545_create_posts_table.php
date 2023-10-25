@@ -19,8 +19,8 @@ return new class extends Migration
             $table->longText('content');
             $table->string('province');
             $table->string('diocese');
-            $table->string('likes')->nullable();
-            $table->string('comments')->nullable();
+            $table->string('likes')->default('1');
+            $table->string('comments')->default('1');
             $table->timestamps();
         });
     }

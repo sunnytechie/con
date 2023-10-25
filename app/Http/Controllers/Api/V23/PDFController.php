@@ -37,7 +37,7 @@ class PDFController extends Controller
     //list pdfs by tag
     public function indexByTag()
     {
-        $tag = "Anglicanism";
+        $tag = "anglicanism";
         $pdfs = Book::where('tag', $tag)->get();
 
         return response()->json([

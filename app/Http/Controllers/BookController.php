@@ -33,7 +33,6 @@ class BookController extends Controller
     }
 
 
-
     //store book
     public function store(Request $request)
     {
