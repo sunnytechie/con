@@ -34,6 +34,8 @@ class PostController extends Controller
         $province = $membership->province;
         $diocese = $membership->diocese;
 
+        dd($province . $diocese);
+
         //get posts with province and diocese
         $posts = Post::with('user.membership', 'postimages')->where('province', $province)->where('diocese', $diocese)->get();
 
