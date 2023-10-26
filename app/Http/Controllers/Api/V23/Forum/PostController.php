@@ -37,7 +37,10 @@ class PostController extends Controller
         //dd($province . $diocese);
 
         //get posts with province and diocese
-        $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')->where('province', $province)->where('diocese', $diocese)->get();
+        $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')
+                    ->orderBy('id', 'desc')
+                    ->where('province', $province)
+                    ->where('diocese', $diocese)->get();
 
         //check likes on post, comments and replies
         $posts->each(function ($post) use ($user_id) {
@@ -82,7 +85,10 @@ class PostController extends Controller
         }
 
         //get posts with province and diocese
-        $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')->where('user_id', $user_id)->get();
+        $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')
+                    ->orderBy('id', 'desc')
+                    ->where('user_id', $user_id)
+                    ->get();
 
         //check likes on post, comments and replies
         $posts->each(function ($post) use ($user_id) {

@@ -18,7 +18,7 @@ class Post extends Model
 
     //relationships - has many postcomments
     public function postcomments() {
-        return $this->hasMany(Postcomment::class);
+        return $this->hasMany(Postcomment::class)->orderBy('created_at', 'desc');
     }
 
     //relationships - has many postlikes

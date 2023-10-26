@@ -23,7 +23,7 @@ class Postcomment extends Model
 
     //relationships - has many replies
     public function replies() {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->orderBy('created_at', 'desc');;
     }
 
     //relationships - has many likecomments
