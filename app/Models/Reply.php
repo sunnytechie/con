@@ -25,4 +25,9 @@ class Reply extends Model
     public function postcomment() {
         return $this->belongsTo(Postcomment::class);
     }
+
+    //has many relationship
+    public function likereplies() {
+        return $this->hasMany(Likereply::class);
+    }
 }
