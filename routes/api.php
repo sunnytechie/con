@@ -199,6 +199,10 @@ Route::middleware('bearer')->group(function () {
     Route::get('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'index']);
     //selfPost
     Route::get('/v23/forum/selfpost/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'selfPost']);
+    //saved post
+    Route::get('/v23/forum/saved/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'index']);
+    //likedpost
+    Route::get('/v23/forum/liked/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\LikeController::class, 'index']);
     //store post
     Route::post('/v23/forum/post/{user_id}', [App\Http\Controllers\Api\V23\Forum\PostController::class, 'store']);
     //update post
