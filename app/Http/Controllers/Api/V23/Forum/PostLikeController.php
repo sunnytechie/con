@@ -18,7 +18,6 @@ class PostLikeController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Post does not exist.',
-                'errors' => ''
             ]);
         }
 
@@ -32,7 +31,6 @@ class PostLikeController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Post Unliked.',
-                'errors' => ''
             ]);
         }
 
