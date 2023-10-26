@@ -22,9 +22,13 @@ class Postcomment extends Model
     }
 
     //relationships - has many replies
+    public function replies() {
+        return $this->hasMany(Reply::class);
+    }
+
+    //relationships - has many replies
     public function likecomments() {
         return $this->hasMany(Likecomment::class);
     }
-
 
 }
