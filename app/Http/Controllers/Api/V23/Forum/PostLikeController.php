@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\APi\V23\Forum;
 
 use App\Models\Post;
+use App\Models\Postlike;
+use App\Models\Likereply;
+use App\Models\Likecomment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Savedpost;
 use Illuminate\Support\Facades\Validator;
 
 class PostLikeController extends Controller
@@ -22,7 +26,7 @@ class PostLikeController extends Controller
         }
 
         //check if user has already liked the post
-        $like = $post->postlikes()->where('user_id', $user_id)->first();
+        $like = Postlike::where('user_id', $user_id)->where('post_id', $post_id)->first();
         if($like) {
             //delete the likes and decreement from post like
             $post->decrement('likes');
@@ -35,10 +39,15 @@ class PostLikeController extends Controller
         }
 
         //new like
-        $like = $post->postlikes()->create([
-            'user_id' => $user_id,
-            'post_id' => $post_id,
-        ]);
+        ////$like = $post->postlikes()->create([
+        ////    'user_id' => $user_id,
+        ////    'post_id' => $post_id,
+        ////]);
+
+        $like = new Postlike();
+        $like->user_id = $user_id;
+        $like->post_id = $post_id;
+        $like->save();
 
         //increment likes count in post
         $post->increment('likes');
@@ -51,7 +60,19 @@ class PostLikeController extends Controller
     }
 
     //comment
-    public function storecommentlike(Request $request, $user_id, $comment_id) {
+    public function storecommentlike($user_id, $comment_id) {
+        $like = Likecomment::where('user_id', $user_id)->where('comment_id', $comment_id)->first();
+        if($like) {
+            //delete the likes and decreement from post like
+            $like->decrement('likes');
+            $like->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Comment Unliked.',
+            ]);
+        }
+
         //new like
         $like = new \App\Models\Likecomment();
         $like->user_id = $user_id;
@@ -70,7 +91,19 @@ class PostLikeController extends Controller
     }
 
     //reply
-    public function storereplylike(Request $request, $user_id, $reply_id) {
+    public function storereplylike($user_id, $reply_id) {
+        $like = Likereply::where('user_id', $user_id)->where('reply_id', $reply_id)->first();
+        if($like) {
+            //delete the likes and decreement from post like
+            $like->decrement('likes');
+            $like->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Reply Unliked.',
+            ]);
+        }
+
         //new like
         $like = new \App\Models\Likereply();
         $like->user_id = $user_id;
@@ -85,6 +118,33 @@ class PostLikeController extends Controller
             'status' => true,
             'message' => 'Reply liked successfully',
             'data' => $reply
+        ]);
+    }
+
+    //save post
+    public function savePost($user_id, $post_id) {
+        //check if user has already saved the post
+        $saved = Savedpost::where('user_id', $user_id)->where('post_id', $post_id)->first();
+        if($saved) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Already saved this post.',
+            ]);
+        }
+
+        //new saved post
+        ////$saved = Savedpost::create([
+        ////    'user_id' => $user_id,
+        ////    'post_id' => $post_id,
+        ////]);
+        $saved = new Savedpost();
+        $saved->user_id = $user_id;
+        $saved->post_id = $post_id;
+        $saved->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Post saved successfully',
         ]);
     }
 }

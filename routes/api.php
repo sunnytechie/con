@@ -219,7 +219,7 @@ Route::middleware('bearer')->group(function () {
     Route::post('/v23/post/like/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\PostLikeController::class, 'store']);
 
     //store post saved
-    Route::post('/v23/forum/post/saved/{post_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
+    Route::post('/v23/forum/save/post/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\PostLikeController::class, 'savePost']);
 
     //retrieve comments
     Route::get('/v23/forum/post/comments/{post_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
