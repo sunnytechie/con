@@ -85,6 +85,19 @@ class PostController extends Controller
         $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')->where('user_id', $user_id)->get();
 
         //check likes on post, comments and replies
+        $posts->each(function ($post) use ($user_id) {
+            $post->liked = $post->postlikes()->where('user_id', $user_id)->exists();
+
+            // Loop through the comments and add a 'liked' key to each comment indicating if the current user has liked it
+            $post->postcomments->each(function ($comment) use ($user_id) {
+                $comment->liked = $comment->likecomments()->where('user_id', $user_id)->exists();
+
+                // Loop through the replies and add a 'liked' key to each reply indicating if the current user has liked it
+                $comment->replies->each(function ($reply) use ($user_id) {
+                    $reply->liked = $reply->likereplies()->where('user_id', $user_id)->exists();
+                });
+            });
+        });
 
         return response()->json([
             'status' => true,
