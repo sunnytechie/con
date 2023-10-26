@@ -53,7 +53,7 @@ class LikeController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Validation error',
-                'errors' => $validator->errors()
+                'errors' => 'user_id is required',
             ]);
         }
 
