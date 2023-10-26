@@ -10,6 +10,35 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
+    //index for comments by post id
+    public function index($post_id, $user_id) {
+        $post = Post::find($post_id);
+        if (!$post) {
+            return response()->json([
+                'status' => false,
+                'message' => "Post not found",
+            ]);
+        }
+
+        //get post comment
+        $comments = Postcomment::with('user', 'replies.user')->where('post_id', $post_id)->get();
+
+        $comments->each(function ($comment) use ($user_id) {
+                $comment->liked = $comment->likecomments()->where('user_id', $user_id)->exists();
+
+                // Loop through the replies and add a 'liked' key to each reply indicating if the current user has liked it
+                $comment->replies->each(function ($reply) use ($user_id) {
+                    $reply->liked = $reply->likereplies()->where('user_id', $user_id)->exists();
+                });
+        });
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Comments retrieved',
+            'data' => $comments
+        ]);
+    }
+
     //store
     public function store(Request $request, $post_id, $user_id) {
         //validate data

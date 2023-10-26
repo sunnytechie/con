@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('post_id');
             $table->string('postcomment_id');
             $table->longText('content');
-            $table->string('likes')->nullable();
+            $table->string('likes')->default('1');
             $table->timestamps();
         });
     }

@@ -221,6 +221,9 @@ Route::middleware('bearer')->group(function () {
     //store post saved
     Route::post('/v23/forum/post/saved/{post_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
 
+    //retrieve comments
+    Route::get('/v23/forum/post/comments/{post_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
+
     //store post comment
     Route::post('/v23/forum/post/comment/{post_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\CommentController::class, 'store']);
     //delete post comment
