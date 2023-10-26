@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('post_id');
             $table->longText('content');
-            $table->string('likes')->default('1');
+            $table->string('likes')->default('0');
             $table->timestamps();
         });
     }

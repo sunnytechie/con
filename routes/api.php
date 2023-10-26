@@ -216,7 +216,7 @@ Route::middleware('bearer')->group(function () {
     Route::delete('/v23/forum/post/image/delete/{user_id}/{post_id}/{image_id}', [App\Http\Controllers\Api\V23\Forum\ImageController::class, 'destroy']);
 
     //store post like
-    Route::post('/v23/forum/post/like/{post_id}', [App\Http\Controllers\Api\V23\Forum\LikeController::class, 'store']);
+    Route::post('/v23/post/like/{user_id}/{post_id}', [App\Http\Controllers\Api\V23\Forum\PostLikeController::class, 'store']);
 
     //store post saved
     Route::post('/v23/forum/post/saved/{post_id}', [App\Http\Controllers\Api\V23\Forum\SavedPostController::class, 'store']);
@@ -230,7 +230,7 @@ Route::middleware('bearer')->group(function () {
     Route::delete('/v23/forum/post/comment/{post_id}/{comment_id}', [App\Http\Controllers\Api\V23\Forum\CommentController::class, 'destroy']);
 
     //store comment like
-    Route::post('/v23/forum/post/comment/like/{user_id}/{comment_id}', [App\Http\Controllers\Api\V23\Forum\LikeCommentController::class, 'update']);
+    Route::post('/v23/post/comment/like/{user_id}/{comment_id}', [App\Http\Controllers\Api\V23\Forum\PostLikeController::class, 'storecommentlike']);
 
     //store reply
     Route::post('/v23/forum/post/reply/{post_id}/{comment_id}/{user_id}', [App\Http\Controllers\Api\V23\Forum\ReplyController::class, 'store']);
@@ -238,7 +238,7 @@ Route::middleware('bearer')->group(function () {
     Route::delete('/v23/forum/post/reply/{post_id}/{reply_id}', [App\Http\Controllers\Api\V23\Forum\ReplyController::class, 'destroy']);
 
     //store reply like
-    Route::post('/v23/forum/post/reply/like/{user_id}/{reply_id}', [App\Http\Controllers\Api\V23\Forum\LikeReplyController::class, 'store']);
+    Route::post('/v23/post/reply/like/{user_id}/{reply_id}', [App\Http\Controllers\Api\V23\Forum\PostLikeController::class, 'storereplylike']);
 
     //Update membership
     Route::post('/v23/forum/membership/update/{user_id}', [App\Http\Controllers\Api\V23\Forum\MembershipController::class, 'update']);
