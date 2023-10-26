@@ -54,8 +54,7 @@ class PostLikeController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Post liked successfully',
-            'data' => $post
+            'message' => 'Post liked',
         ]);
     }
 
@@ -85,8 +84,7 @@ class PostLikeController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Comment liked successfully',
-            'data' => $comment
+            'message' => 'Comment liked',
         ]);
     }
 
@@ -116,7 +114,7 @@ class PostLikeController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Reply liked successfully',
+            'message' => 'Reply liked',
             'data' => $reply
         ]);
     }
@@ -144,7 +142,7 @@ class PostLikeController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Post saved successfully',
+            'message' => 'Post saved',
         ]);
     }
 }
