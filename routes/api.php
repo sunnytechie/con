@@ -328,6 +328,8 @@ Route::middleware('bearer')->group(function () {
     Route::get('/v23/calendar', [App\Http\Controllers\Api\V23\CalendarController::class, 'index']);
     //search by date
     Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
+    //settings
+    Route::get('/v23/flutterwave/key', [App\Http\Controllers\Api\V23\SettingController::class, 'key']);
 });
 
 
