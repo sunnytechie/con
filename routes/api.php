@@ -244,7 +244,7 @@ Route::middleware('bearer')->group(function () {
     Route::post('/v23/forum/membership/update/{user_id}', [App\Http\Controllers\Api\V23\Forum\MembershipController::class, 'update']);
 
     //pdf with tag
-    Route::get('/v23/pdf/anglicanism', [App\Http\Controllers\Api\V23\PDFController::class, 'indexByTag']);
+    Route::get('/v23/pdf/books', [App\Http\Controllers\Api\V23\PDFController::class, 'indexByTag']);
 
     //pdf without tag
     Route::get('/v23/pdf/paid', [App\Http\Controllers\Api\V23\PDFController::class, 'indexPaid']);

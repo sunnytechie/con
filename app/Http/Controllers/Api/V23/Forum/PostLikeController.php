@@ -8,6 +8,8 @@ use App\Models\Likereply;
 use App\Models\Likecomment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Postcomment;
+use App\Models\Reply;
 use App\Models\Savedpost;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,7 +62,16 @@ class PostLikeController extends Controller
 
     //comment
     public function storecommentlike($user_id, $comment_id) {
-        $like = Likecomment::where('user_id', $user_id)->where('comment_id', $comment_id)->first();
+        $comment = Postcomment::find($comment_id);
+        if(!$comment) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Comment does not exist.',
+            ]);
+        }
+
+        $like = Likecomment::where('postcomment_id', $comment_id)->where('user_id', $user_id)->first();
+
         if($like) {
             //delete the likes and decreement from post like
             $like->decrement('likes');
@@ -90,6 +101,14 @@ class PostLikeController extends Controller
 
     //reply
     public function storereplylike($user_id, $reply_id) {
+        $reply = Reply::find($reply_id);
+        if(!$reply) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Reply does not exist.',
+            ]);
+        }
+
         $like = Likereply::where('user_id', $user_id)->where('reply_id', $reply_id)->first();
         if($like) {
             //delete the likes and decreement from post like

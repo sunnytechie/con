@@ -35,10 +35,21 @@ class PDFController extends Controller
     }
 
     //list pdfs by tag
-    public function indexByTag()
+    public function indexByTag(Request $request)
     {
-        $tag = "anglicanism";
-        $pdfs = Book::where('tag', $tag)->get();
+        $validator = Validator::make($request->all(), [
+            'tag' => 'required',
+        ]);
+
+        //if validation fails
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => "specify: anglicanism, teachers, workbook, others",
+            ], 400);
+        }
+
+        $pdfs = Book::where('tag', $request->tag)->get();
 
         return response()->json([
             'status' => true,

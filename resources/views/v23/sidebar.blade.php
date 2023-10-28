@@ -2,7 +2,7 @@
     <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
     <div class="app-sidebar">
         <div class="side-header">
-            <a class="header-brand1" href="index.html">
+            <a class="header-brand1" href="/">
                 {{-- Both White for white bg --}}
                 <img height="50" width="50" src="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}" class="header-brand-img desktop-logo" alt="logo">
                 <img height="50" width="50" src="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}" class="header-brand-img toggle-logo" alt="logo">

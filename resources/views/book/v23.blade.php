@@ -10,63 +10,14 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> PDF </a>
                     <a class="btn btn-default modal-effect" href="#category" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Category </a>
-                    <a class="btn btn-default modal-effect" href="#Sub Category" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Subcategory </a>
+                    <a class="btn btn-default modal-effect" href="#subcategory" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Subcategory </a>
                 </div>
             </div>
 
             <!-- MODAL EFFECTS -->
-            <div class="modal fade" id="new">
-
-                <div class="modal-dialog modal-dialog-centered" role="document">
-
-                    <div class="modal-content modal-content-demo">
-                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('kidzone.store') }}" enctype="multipart/form-data">
-                            @csrf
-                        <div class="modal-header">
-                            <h6 class="modal-title">New Kids Video</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label>Title</label>
-                                <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Enter title" required>
-
-                                @error('title')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Url</label>
-                                <input type="url" id="url" name="url" class="form-control @error('url') is-invalid @enderror" placeholder="Enter url" required>
-
-                                @error('url')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <label>Thumbnail</label>
-                                <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" placeholder="Enter image" required>
-
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
+            @include('modals.add.newbook')
+            @include('modals.add.book_category')
+            @include('modals.add.book_sub_category')
 
 
             <div class="card-body">
