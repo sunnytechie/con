@@ -48,7 +48,7 @@
                                 <td>{{ $book->booksubcategory->title }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('books.edit', $book->id) }}" type="button" class="btn btn-sm modal-effect btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
+                                        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
 
                                         <form style="margin: 0; padding: 0" method="post" action="{{ route('books.destroy', $book->id) }}">
                                             @method('delete')

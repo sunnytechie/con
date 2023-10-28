@@ -97,7 +97,7 @@ class BookController extends Controller
         //Variable to store book
         $book = Book::find($book);
 
-        return view('book.edit', compact('book', 'categories', 'bookcategories'));
+        return view('book.edit', compact('book', 'categories', 'bookcategories', 'booksubcategories'));
     }
 
     //update book
@@ -160,7 +160,7 @@ class BookController extends Controller
         $book->save();
 
         //redirect to back with success message
-        return redirect()->back()->with('success', 'Book updated successfully');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully');
 
     }
 
