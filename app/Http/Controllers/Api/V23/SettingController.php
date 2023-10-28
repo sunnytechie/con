@@ -12,11 +12,11 @@ class SettingController extends Controller
     public function key() {
         $settings = Settings::first();
 
-        $flutter = $settings->flutterwave_api_key;
-
         return response()->json([
             'status' => true,
-            'flutterwave_key' => $flutter
+            'flutterwave_key' => $settings->flutterwave_api_key,
+            'test_public_key' => $settings->test_public_key,
+            'test_secret_key' => $settings->test_secret_key,
         ]);
     }
 }
