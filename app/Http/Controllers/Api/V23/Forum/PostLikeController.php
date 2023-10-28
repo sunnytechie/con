@@ -140,7 +140,6 @@ class PostLikeController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Reply liked',
-            'data' => $reply
         ]);
     }
 
