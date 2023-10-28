@@ -74,7 +74,10 @@ class PostLikeController extends Controller
 
         if($like) {
             //delete the likes and decreement from post like
-            $like->decrement('likes');
+            $comment = \App\Models\Postcomment::find($comment_id);
+            $comment->decrement('likes');
+
+            //delete like
             $like->delete();
 
             return response()->json([
@@ -112,7 +115,10 @@ class PostLikeController extends Controller
         $like = Likereply::where('user_id', $user_id)->where('reply_id', $reply_id)->first();
         if($like) {
             //delete the likes and decreement from post like
-            $like->decrement('likes');
+            $reply = \App\Models\Reply::find($reply_id);
+            $reply->decrement('likes');
+
+            //delete like
             $like->delete();
 
             return response()->json([
