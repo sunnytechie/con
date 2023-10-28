@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit">
+{{-- <div class="modal fade" id="edit">
 
     <div class="modal-dialog modal-dialog-centered" role="document">
 
@@ -163,4 +163,4 @@
         </form>
         </div>
     </div>
-</div>
+</div> --}}
