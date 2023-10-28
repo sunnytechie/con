@@ -53,7 +53,7 @@ class PDFController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'List of pdfs',
+            'message' => "List of $request->tag",
             'data' => $pdfs
         ], 200);
     }
