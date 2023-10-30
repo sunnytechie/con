@@ -148,9 +148,12 @@ class PostLikeController extends Controller
         //check if user has already saved the post
         $saved = Savedpost::where('user_id', $user_id)->where('post_id', $post_id)->first();
         if($saved) {
+            $saved = Savedpost::find($saved->id);
+            $saved->delete();
+
             return response()->json([
                 'status' => true,
-                'message' => 'Already saved this post.',
+                'message' => 'Post Unsaved',
             ]);
         }
 
@@ -166,7 +169,7 @@ class PostLikeController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'Post saved',
+            'message' => 'Post Saved',
         ]);
     }
 }

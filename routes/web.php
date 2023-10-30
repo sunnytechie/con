@@ -319,9 +319,17 @@ Route::post('feedback-import', [App\Http\Controllers\Import\FeedbackController::
 //Membership
 Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export')->middleware('is_admin');
 
+//kidzone
 Route::get('kidzone/index', [App\Http\Controllers\KidZoneController::class, 'index'])->name('kidzone.index')->middleware('is_admin');
 Route::post('kidzone/store', [App\Http\Controllers\KidZoneController::class, 'store'])->name('kidzone.store')->middleware('is_admin');
 Route::put('kidzone/update/{id}', [App\Http\Controllers\KidZoneController::class, 'update'])->name('kidzone.update')->middleware('is_admin');
 Route::delete('kidzone/destroy/{id}', [App\Http\Controllers\KidZoneController::class, 'destroy'])->name('kidzone.destroy')->middleware('is_admin');
+
+//hymnal
+Route::get('hymnal/index', [App\Http\Controllers\HymnalController::class, 'index'])->name('hymnal.index')->middleware('is_admin');
+Route::post('hymnal/store', [App\Http\Controllers\HymnalController::class, 'store'])->name('hymnal.store')->middleware('is_admin');
+Route::get('hymnal/edit/{id}', [App\Http\Controllers\HymnalController::class, 'edit'])->name('hymnal.edit')->middleware('is_admin');
+Route::put('hymnal/update/{id}', [App\Http\Controllers\HymnalController::class, 'update'])->name('hymnal.update')->middleware('is_admin');
+Route::delete('hymnal/destroy/{id}', [App\Http\Controllers\HymnalController::class, 'destroy'])->name('hymnal.destroy')->middleware('is_admin');
 
 });

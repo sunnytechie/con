@@ -45,7 +45,7 @@
                                             <li><a href="#" class="slide-item">Bible study</a></li>
                                             <li><a href="#" class="slide-item">CYC</a></li>
                                             <li><a href="#" class="slide-item">BCP</a></li>
-                                            <li><a href="#" class="slide-item">Hymnals</a></li>
+                                            <li><a href="{{ route('hymnal.index') }}" class="slide-item">Hymnals</a></li>
                                             <li><a href="{{ route('books.index') }}" class="slide-item">PDFS</a></li>
                                         </ul>
 

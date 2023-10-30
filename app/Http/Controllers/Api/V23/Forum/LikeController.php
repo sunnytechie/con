@@ -12,7 +12,7 @@ class LikeController extends Controller
     //index
     public function index($user_id){
         $posts = Post::with('user.membership', 'postimages', 'postcomments.user', 'postcomments.replies.user')
-        ->where('id', function ($query) use ($user_id) {
+        ->whereIn('id', function ($query) use ($user_id) {
             $query->select('post_id')
                 ->from('postlikes')
                 ->where('user_id', $user_id);
@@ -41,5 +41,5 @@ class LikeController extends Controller
         ]);
     }
 
-    
+
 }
