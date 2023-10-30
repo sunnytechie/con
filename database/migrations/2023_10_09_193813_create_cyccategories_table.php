@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cyccategories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

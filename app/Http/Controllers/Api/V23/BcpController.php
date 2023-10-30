@@ -57,7 +57,7 @@ class BcpController extends Controller
         } else {
             return response()->json([
                 'status' => false,
-                'message' => 'No BCP subcategory found',
+                'message' => 'No BCP found',
             ], 404);
         }
 

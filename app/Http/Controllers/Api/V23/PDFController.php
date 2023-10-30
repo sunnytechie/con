@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\V23;
 
 use App\Models\Pdf;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\PurchasedBook;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class PDFController extends Controller
@@ -35,8 +37,17 @@ class PDFController extends Controller
     }
 
     //list pdfs by tag
-    public function indexByTag(Request $request)
+    public function indexByTag(Request $request, $user_id)
     {
+        $user = User::find($user_id);
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => "User not found",
+            ], 400);
+        }
+        $userEmail = $user->email;
+
         $validator = Validator::make($request->all(), [
             'tag' => 'required',
         ]);
@@ -49,12 +60,21 @@ class PDFController extends Controller
             ], 400);
         }
 
-        $pdfs = Book::where('tag', $request->tag)->get();
+        $books = Book::where('tag', $request->tag)->get();
 
+        foreach ($books as $book) {
+            $purchasedBook = PurchasedBook::where('email', $userEmail)->where('book_id', $book->id)->first();
+            if ($purchasedBook) {
+                $access = true;
+            } else {
+                $access = false;
+            }
+        }
         return response()->json([
             'status' => true,
+            'access' => $access,
             'message' => "List of $request->tag",
-            'data' => $pdfs
+            'data' => $books
         ], 200);
     }
 }
