@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\PurchasedBook;
 use App\Models\Purchasedstudy;
 use App\Http\Controllers\Controller;
+use App\Models\Bcppurchase;
 use Illuminate\Support\Facades\Validator;
 
 class SubscribeController extends Controller
@@ -182,7 +183,7 @@ class SubscribeController extends Controller
         }
 
         //check if $user-email exists with bcp_id in purchased_bcps table
-        $purchasedBcp = new Purchasedbcp(); //If an error happens just recreate another model for this.
+        $purchasedBcp = new Bcppurchase(); ////If an error happens just recreate another model for this.
         $purchasedBcp->email = $user->email;
         $purchasedBcp->price = $request->price;
         $purchasedBcp->transaction_ref = $request->transaction_ref;
@@ -330,7 +331,7 @@ class SubscribeController extends Controller
         }
 
         //check user->email where purchased_bcps->email = $user->email
-        $status = Purchasedbcp::where('email', $user->email)->first();
+        $status = Bcppurchase::where('email', $user->email)->first();
         if($status) {
             return response()->json([
                 'status' => true,
