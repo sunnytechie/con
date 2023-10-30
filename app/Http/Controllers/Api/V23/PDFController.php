@@ -62,19 +62,29 @@ class PDFController extends Controller
 
         $books = Book::where('tag', $request->tag)->get();
 
+        $bookData = [];
         foreach ($books as $book) {
             $purchasedBook = PurchasedBook::where('email', $userEmail)->where('book_id', $book->id)->first();
-            if ($purchasedBook) {
-                $access = true;
-            } else {
-                $access = false;
-            }
+            // Check if the book is purchased
+            $access = $purchasedBook ? true : false;
+
+            // Add book data along with the access status to an array
+            $bookData[] = [
+                'access' => $access,
+                'id' => $book->id,
+                'title' => $book->title,
+                'description' => $book->description,
+                'image' => $book->image,
+                'file' => $book->file,
+                'price' => $book->price,
+                'tag' => $book->tag,
+            ];
         }
+
         return response()->json([
             'status' => true,
-            'access' => $access,
             'message' => "List of $request->tag",
-            'data' => $books
+            'data' => $bookData
         ], 200);
     }
 }
