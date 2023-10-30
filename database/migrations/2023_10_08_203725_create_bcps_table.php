@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('bcps', function (Blueprint $table) {
             $table->id();
-            $table->string('bcpcategory_id');
-            $table->string('bcpsubcategory_id');
             $table->string('title');
             $table->longText('content');
+            $table->string('bcpcategory_id');
+            $table->string('bcpsubcategory_id');
             $table->timestamps();
         });
     }

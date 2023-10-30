@@ -31,7 +31,7 @@ class BcpController extends Controller
     }
 
     //search subcategory
-    public function searchsubcategory(Request $request)
+    public function search(Request $request)
     {
         //validate incoming request
         $validate = Validator::make($request->all(), [
