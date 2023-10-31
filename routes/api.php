@@ -252,11 +252,12 @@ Route::middleware('bearer')->group(function () {
 
     //hymnals
     //index
-    Route::get('/v23/hymnals', [App\Http\Controllers\Api\V23\HymnalsController::class, 'index']);
+    Route::get('/v23/hymnals/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'index']);
     //search
-    Route::post('/v23/hymnals/search', [App\Http\Controllers\Api\V23\HymnalsController::class, 'search']);
+    Route::post('/v23/hymnals/search/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'search']);
     //filter
-    Route::post('/v23/hymnals/filter', [App\Http\Controllers\Api\V23\HymnalsController::class, 'filter']);
+    Route::post('/v23/hymnals/filter/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'filter']);
+    Route::post('/v23/subscribe/user/hymnals/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'subscribe']);
 
     //Devotional year listing price
     Route::get('/v23/devotional/year/listing/price', [App\Http\Controllers\Api\V23\DevotionalController::class, 'yearsListingPrice']);
