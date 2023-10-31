@@ -17,74 +17,56 @@ use Illuminate\Support\Facades\Validator;
 class SubscribeController extends Controller
 {
     //subscribeBook
-    public function subscribeBook(Request $request, $user_id, $book_id) {
-        //make sure user exits
-        $user = User::find($user_id);
-        if(!$user) {
-            return response()->json([
-                'status' => false,
-                'message' => 'User not found',
-            ], 404);
-        }
-        $userEmail = $user->email;
+    public function subscribeBook(Request $request, $user_id, $book_id)
+    {
+            //make sure user exits
+            $user = User::find($user_id);
+            if(!$user) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User not found',
+                ], 404);
+            }
+            $userEmail = $user->email;
 
-        //make sure book exits
-        $book = Book::find($book_id);
-        if(!$book) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Book not found',
-            ], 404);
-        }
+            //make sure book exits
+            $book = Book::find($book_id);
+            if(!$book) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Book not found',
+                ], 404);
+            }
 
-        //validate request
-        $validate = Validator::make($request->all(), [
-            'transaction_ref' => 'required',
-        ]);
+            //validate request
+            $validate = Validator::make($request->all(), [
+                'transaction_ref' => 'required',
+            ]);
 
-        if($validate->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Validation error',
-                'data' => $validate->errors()
-            ], 400);
-        }
+            if($validate->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Validation error',
+                    'data' => $validate->errors()
+                ], 400);
+            }
 
-        //check if userEmail exists with book_id in purchased_books table
-        $purchasedBook = PurchasedBook::where('email', $userEmail)->where('book_id', $book_id)->first();
+            //check if userEmail exists with book_id in purchased_books table
+            $purchasedBook = PurchasedBook::where('email', $userEmail)->where('book_id', $book_id)->first();
 
-        if($purchasedBook) {
-            //check if book_id exists in purchased_books table
-            $purchasedBook = PurchasedBook::where('book_id', $book_id)->where('email', $userEmail)->first();
             if($purchasedBook) {
                 return response()->json([
                     'status' => false,
                     'message' => 'Book already purchased',
-                ], 404);
-            } else {
-                //add book_id to purchased_books table
-                $purchasedBook = new PurchasedBook();
-                $purchasedBook->email = $userEmail;
-                $purchasedBook->book_id = $book_id;
-                $purchasedBook->price = $book->price;
-                $purchasedBook->transaction_ref = $request->transaction_ref;
-                $purchasedBook->transaction_status = 'success';
-                $purchasedBook->book_title = $book->title;
-                $purchasedBook->save();
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Book purchased successfully',
                 ], 200);
             }
-        } else {
-            //add userEmail and book_id to purchased_books table
+
             $purchasedBook = new PurchasedBook();
             $purchasedBook->email = $userEmail;
             $purchasedBook->book_id = $book_id;
             $purchasedBook->price = $book->price;
             $purchasedBook->transaction_ref = $request->transaction_ref;
-            $purchasedBook->transaction_status = 'success';
+            $purchasedBook->payment_status = 'success';
             $purchasedBook->book_title = $book->title;
             $purchasedBook->save();
 
@@ -92,9 +74,9 @@ class SubscribeController extends Controller
                 'status' => true,
                 'message' => 'Book purchased successfully',
             ], 200);
-            }
 
     }
+
 
     //subscribeStudy
     public function subscribeStudy(Request $request, $user_id) {
