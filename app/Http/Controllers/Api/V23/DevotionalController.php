@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Validator;
 class DevotionalController extends Controller
 {
     public function yearsListingPrice() {
+        //public function yearsListingPrice($study_id, $user_id) {
+        //find the user in the purchasedstudy table
+
         $currentYear = Carbon::now()->year;
         $yearsWithData = [];
 
