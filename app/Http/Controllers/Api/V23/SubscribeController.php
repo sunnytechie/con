@@ -129,7 +129,7 @@ class SubscribeController extends Controller
         $purchasedStudy->study_title = $study;
         $purchasedStudy->price = '500';
         $purchasedStudy->transaction_ref = $request->transaction_ref;
-        $purchasedStudy->transaction_status = 'success';
+        $purchasedStudy->payment_status = 'success';
         $purchasedStudy->valid_year = $request->year;
         $purchasedStudy->save();
 
