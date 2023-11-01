@@ -331,6 +331,9 @@ Route::middleware('bearer')->group(function () {
     Route::post('/v23/calendar/search', [App\Http\Controllers\Api\V23\CalendarController::class, 'search']);
     //settings
     Route::get('/v23/flutterwave/key', [App\Http\Controllers\Api\V23\SettingController::class, 'key']);
+    //stream key
+    Route::get('/v23/stream/live', [App\Http\Controllers\Api\V23\StreamController::class, 'index']);
+
 });
 
 
