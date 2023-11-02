@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V23\Auth;
 
 use App\Models\User;
+use App\Models\Membership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -45,14 +46,27 @@ class GoogleLoginController extends Controller
             $user->remember_token = $token;
             $user->save();
 
+            //check user in memebership
+            $membership = Membership::where('user_id', $user->id)->first();
+
+            //if user exists
+            if ($membership) {
+                return response()->json([
+                    'status' => true,
+                    'membership' => true,
+                    'message' => 'Login Success',
+                    'user' => $user,
+                    'token' => $token
+                ], 200);
+            }
+
             //return response
             return response()->json([
                 'status' => true,
+                'membership' => false,
                 'message' => 'User logged in successfully',
-                'data' => [
-                    'user' => $user,
-                    'token' => $token
-                ]
+                'user' => $user,
+                'token' => $token
             ], 200);
         }
 
@@ -72,11 +86,10 @@ class GoogleLoginController extends Controller
         //return response
         return response()->json([
             'status' => true,
+            'membership' => false,
             'message' => 'User registered successfully',
-            'data' => [
-                'user' => $user,
-                'token' => $token
-            ]
+            'user' => $user,
+            'token' => $token
         ], 201);
     }
 }
