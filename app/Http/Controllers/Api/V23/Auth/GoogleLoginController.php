@@ -16,8 +16,8 @@ class GoogleLoginController extends Controller
         //validate data
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|unique:users',
-            'google_id' => 'required'
+            'email' => 'required',
+            'google_id' => 'nullable'
         ]);
 
         //if validation fails

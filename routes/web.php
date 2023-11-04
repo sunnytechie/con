@@ -273,11 +273,11 @@ Route::get('study/{study}/editBibleStudy', [App\Http\Controllers\StudyController
 Route::put('study/{study}/updateBibleStudy', [App\Http\Controllers\StudyController::class, 'updateBibleStudy'])->name('studies.updateBibleStudy')->middleware('is_admin');
 
 //Routes indexDailyDynamite StudyController
-Route::get('study/dailydynamite', [App\Http\Controllers\StudyController::class, 'indexDailyDynamite'])->name('studies.dynamite')->middleware('is_admin');
-//Routes editDailyDynamite StudyController
-Route::get('study/{study}/editDailyDynamite', [App\Http\Controllers\StudyController::class, 'editDailyDynamite'])->name('studies.editDailyDynamite')->middleware('is_admin');
-//Routes updateDailyDynamite StudyController
-Route::put('study/{study}/updateDailyDynamite', [App\Http\Controllers\StudyController::class, 'updateDailyDynamite'])->name('studies.updateDailyDynamite')->middleware('is_admin');
+Route::get('study/daily/dynamite', [App\Http\Controllers\StudyController::class, 'indexDailyDynamite'])->name('studies.dynamite')->middleware('is_admin');
+//Routes editdailydynamite StudyController
+Route::get('edit/daily/dynamite/{study}', [App\Http\Controllers\StudyController::class, 'editDailyDynamite'])->name('studies.editDailyDynamite')->middleware('is_admin');
+//Routes updatedailydynamite StudyController
+Route::put('update/daily/dynamite/{study}', [App\Http\Controllers\StudyController::class, 'updateDailyDynamite'])->name('studies.updateDailyDynamite')->middleware('is_admin');
 
 //Routes for cyc
 Route::get('cyc', [App\Http\Controllers\CycController::class, 'index'])->name('cyc.index')->middleware('is_admin');

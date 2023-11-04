@@ -40,13 +40,13 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Books</a></li>
-                                            <li><a href="#" class="slide-item">Daily Dynamite</a></li>
-                                            <li><a href="#" class="slide-item">Daily Fountain</a></li>
-                                            <li><a href="#" class="slide-item">Bible study</a></li>
-                                            <li><a href="#" class="slide-item">CYC</a></li>
-                                            <li><a href="#" class="slide-item">BCP</a></li>
-                                            <li><a href="{{ route('hymnal.index') }}" class="slide-item">Hymnals</a></li>
-                                            <li><a href="{{ route('books.index') }}" class="slide-item">PDFS</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'studies.dynamite') active @endif"><a href="{{ route('studies.dynamite') }}" class="slide-item @if(Route::currentRouteName() === 'studies.dynamite') active @endif">Daily Dynamite</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'studies.fountain') active @endif"><a href="{{ route('studies.fountain') }}" class="slide-item @if(Route::currentRouteName() === 'studies.fountain') active @endif">Daily Fountain</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'studies.study') active @endif"><a href="{{ route('studies.study') }}" class="slide-item @if(Route::currentRouteName() === 'studies.study') active @endif">Bible study</a></li>
+                                            {{-- <li class="@if(Route::currentRouteName() === 'your.route.name') active @endif"><a href="#" class="slide-item @if(Route::currentRouteName() === 'your.route.name') active @endif">CYC</a></li> --}}
+                                            {{-- <li class="@if(Route::currentRouteName() === 'your.route.name') active @endif"><a href="#" class="slide-item @if(Route::currentRouteName() === 'your.route.name') active @endif">BCP</a></li> --}}
+                                            <li class="@if(Route::currentRouteName() === 'hymnal.index') active @endif"><a href="{{ route('hymnal.index') }}" class="slide-item @if(Route::currentRouteName() === 'hymnal.index') active @endif">Hymnals</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'books.index') active @endif"><a href="{{ route('books.index') }}" class="slide-item @if(Route::currentRouteName() === 'books.index') active @endif">PDFS</a></li>
                                         </ul>
 
                                     </div>

@@ -49,7 +49,7 @@
 
                             <div class="mb-3">
                                 <label>Content</label>
-                                <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="content" cols="30" rows="10"></textarea>
+                                <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="editor" cols="30" rows="10"></textarea>
 
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">

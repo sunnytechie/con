@@ -16,11 +16,11 @@ class DonationController extends Controller
             'email' => 'email',
             'phone' => 'required',
             'donation_type' => 'required', // 'one-time' or 'recurring
-            'description' => '', // 'tithe', 'offering', 'other'
+            'description' => 'nullable', // 'tithe', 'offering', 'other'
             'currency' => 'required',
             'amount' => 'required',
-            'method' => '',
-            'reference' => '',
+            'method' => 'nullable',
+            'reference' => 'nullable',
             'province' => 'required',
             'diocese' => 'required',
         ]);

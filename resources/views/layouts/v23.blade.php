@@ -33,6 +33,18 @@
     <link href="{{ asset('v23/assets/switcher/css/switcher.css') }}" rel="stylesheet">
     <link href="{{ asset('v23/assets/switcher/demo.css') }}" rel="stylesheet">
 
+    {{-- Tiny MCE --}}
+    <script src="https://cdn.tiny.cloud/1/ifprekyziwmwbff5pm4lgrqgmsm0x5yaew0tctgdk95r94ae/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    {{-- Ckeditor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 200px;
+        }
+  </style>
 </head>
 
 <body class="app sidebar-mini ltr light-mode">
@@ -69,12 +81,14 @@
                             <h1 class="page-title">{{ $title ?? "Dashboard" }}</h1>
                             <div>
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Back</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">{{ $tag ?? "Dashboard" }}</li>
                                 </ol>
                             </div>
                         </div>
                         <!-- PAGE-HEADER END -->
+
+
                         @if (session('success'))
                         {{-- Error Message --}}
                         <div class="text-wrap mb-4">
@@ -121,6 +135,23 @@
     </div>
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <script>
+        function createClassicEditor(selector) {
+            ClassicEditor
+                .create(document.querySelector(selector))
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        createClassicEditor('#editor');
+        createClassicEditor('#editor1');
+        createClassicEditor('#editor2');
+        createClassicEditor('#editor3');
+        createClassicEditor('#editor4');
+    </script>
+
 
     <!-- JQUERY JS -->
     <script src="{{ asset('v23/assets/js/jquery.min.js') }}"></script>

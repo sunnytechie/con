@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
-<div class="container-fluid py-4">
+{{-- <div class="container-fluid py-4">
 
     <div class="row">
         <div class="col-12">
@@ -21,13 +21,13 @@
               @include('modals.add.fountain')
               @include('modals.add.dynamite')
 
-              {{-- Search --}}
+
               {{-- <div class="search-form">
                 <div class="input-group">
                   <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
                 </div>
-              </div> --}}
-            
+              </div>
+
             </div>
 
             @if (session('success'))
@@ -38,7 +38,7 @@
                 </button>
                 </div>
             @endif
-            
+
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center table-striped justify-content-center mb-0">
@@ -62,21 +62,21 @@
                       <td class="text-left px-4">
                           <span class="text-xs font-weight-bold">{{ $i++ }}</span>
                       </td>
-                   
+
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->topic }} </td>
 
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ date('l, d F Y', strtotime($book->study_date)) }} </td>
-                    
+
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->study_type_name }} {{ $book->study_year }} </td>
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->price }} </td>
 
                     <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $book->created_at->diffForHumans() }} </td>
-                    
+
 
                     <td class="align-middle">
                       <div class="btn-group" role="group" aria-label="Button group">
 
-                        
+
                         <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('studies.editBibleStudy', $book->id) }}">
                           <i class="fa fa-pencil text-xs"></i>
                         </a>
@@ -86,14 +86,14 @@
                             @csrf
                             <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
                         </form>
-                          
-                        
+
+
                       </div>
                     </td>
                   </tr>
                     @endforeach
-                    
-                   
+
+
                   </tbody>
                 </table>
               </div>
@@ -106,5 +106,5 @@
       </div>
 
     @include('footer.nonguest')
-  </div>
+  </div> --}}
 @endsection
