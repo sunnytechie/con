@@ -71,12 +71,17 @@ class GoogleLoginController extends Controller
         }
 
         //create user
+        $password = 'Conaio'; // Replace this with the actual password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'login_type' => 'google',
-            'google_id' => $request->google_id
+            'google_id' => $request->google_id,
+            'password' => $hashedPassword,
         ]);
+
 
         //create token
         $token = $user->createToken('auth_token')->plainTextToken;
