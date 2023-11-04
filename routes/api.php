@@ -132,8 +132,7 @@ Route::get('/get-flutterwave-key', [App\Http\Controllers\SettingsController::cla
 //version 23
     //v23 api for login
     Route::post('/auth/v23/login', [App\Http\Controllers\Api\V23\Auth\LoginController::class, 'loginApi']);
-    //v23 api for google login
-    Route::post('/auth/v23/google-login', [App\Http\Controllers\Api\V23\Auth\GoogleLoginController::class, 'gooleLoginApi']);
+
     //v23 api for register
     Route::post('/auth/v23/register', [App\Http\Controllers\Api\V23\Auth\RegisterController::class, 'registerApi']);
     //v23 api for verify email
@@ -150,6 +149,9 @@ Route::get('/get-flutterwave-key', [App\Http\Controllers\SettingsController::cla
 
 //grouping api version 23 with bearer middleware
 Route::middleware('bearer')->group(function () {
+    //v23 api for google login
+    Route::post('/auth/v23/google-login', [App\Http\Controllers\Api\V23\Auth\GoogleLoginController::class, 'gooleLoginApi']);
+    
     //v23 api for contact us
     Route::post('/v23/contact-us/{user_id}', [App\Http\Controllers\Api\V23\ContactUsController::class, 'store']);
 
