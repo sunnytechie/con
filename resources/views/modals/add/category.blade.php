@@ -1,16 +1,6 @@
-<!-- Modal HTML -->
-<div style="z-index: 9999" id="addCategory" class="modal delete-modal fade">
-	<div class="modal-dialog modal-confirm">
-        <form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
-			@csrf
-		<div class="modal-content">
-			<div class="modal-header flex-column">
-				<h5>Create new Category</h5>
-			</div>
-			<div style="text-align: left" class="modal-body">
-				
-                  <div class="mb-3">
-					<label>Title for Category</label>
+
+                    <div class="mb-3">
+					    <label>Title for Category</label>
                     	<input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Give this category a name" required>
 
 							@error('title')
@@ -19,7 +9,7 @@
 								</span>
 							@enderror
 					</div>
-					
+
 					<div class="mb-3">
 						<label>Type of Category</label>
 						<select class="form-control" name="type" id="type" required>
@@ -39,12 +29,3 @@
 								</span>
 							@enderror
 					</div>
-			</div>
-			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-				<button type="submit" class="btn btn-success">Publish</button>
-			</div>
-		</div>
-        </form>
-	</div>
-</div> 

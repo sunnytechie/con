@@ -123,8 +123,8 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Categories</a></li>
-                                            <li><a href="#" class="slide-item">Categories</a></li>
-                                            <li><a href="#" class="slide-item">Sub categories</a></li>
+                                            <li><a href="{{ route('categories.index') }}" class="slide-item">Categories</a></li>
+                                            {{-- <li><a href="#" class="slide-item">Sub categories</a></li> --}}
                                         </ul>
                                     </div>
 
@@ -237,7 +237,7 @@
 
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-shopping-cart"></i><span class="side-menu__label">Financial</span><i class="angle fe fe-chevron-right"></i>
+                        <i class="side-menu__icon fe fe-shopping-cart"></i><span class="side-menu__label">Finance</span><i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
                         <li class="panel sidetab-menu">

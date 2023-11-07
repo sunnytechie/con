@@ -116,6 +116,7 @@ class StudyController extends Controller
     public function editFountain($id)
     {
         $study = Study::find($id);
+        $title = "Devotionals";
 
         //declare variables
         $id = $study->id;
@@ -144,11 +145,13 @@ class StudyController extends Controller
         $study_year = $study->study_year;
         $price = $study->price;
 
-        return view('study.edit.fountain', compact('price', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
+        return view('study.edit.fountain', compact('price', 'title', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
     }
 
     public function editBibleStudy($id)
     {
+        $title = "Devotionals";
+
         $study = Study::find($id);
 
         //declare variables
@@ -178,7 +181,7 @@ class StudyController extends Controller
         $study_year = $study->study_year;
         $price = $study->price;
 
-        return view('study.edit.biblestudy', compact('price', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
+        return view('study.edit.biblestudy', compact('price', 'title', 'id', 'study', 'type', 'study_type_name', 'study_name', 'study_date', 'head_date', 'theme', 'sub_theme', 'topic', 'study_text', 'study_title', 'study_content', 'aims', 'introduction', 'study_guide', 'conclusion', 'food_for_thought', 'memory_verse', 'verse_content', 'anchor_verse_number', 'anchor_verse_text', 'anchor_verse_contents', 'prayer', 'study_year'));
     }
 
     public function editDailyDynamite($id)

@@ -16,8 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $title = "Media Categories";
         $categories = Category::all();
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories', 'title'));
     }
 
     //Category Api
@@ -43,7 +44,7 @@ class CategoryController extends Controller
             'thumbnail' => $imagePath,
             'title' => $data['title'],
             'type' => $data['type'],
-        ]);       
+        ]);
 
         return back()->with('success', 'Category created successfully');
 }
@@ -51,6 +52,7 @@ class CategoryController extends Controller
 //Edit Category
 public function edit(Category $category)
 {
+    $title = "Media Categories";
     $categories = Category::all();
     $subcategories = Subcategory::all();
     $category = Category::find($category->id);
@@ -58,7 +60,7 @@ public function edit(Category $category)
     $categoryTitle = $category->title;
     $categoryType = $category->type;
     $categoryThumbnail = $category->thumbnail;
-    return view('categories.edit', compact('category', 'categoryTitle', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories', 'categoryType'));
+    return view('categories.edit', compact('category', 'categoryTitle', 'title', 'categoryThumbnail', 'categoryID', 'categories', 'subcategories', 'categoryType'));
 }
 
     //Update Category

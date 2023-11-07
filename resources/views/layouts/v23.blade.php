@@ -150,6 +150,11 @@
         createClassicEditor('#editor2');
         createClassicEditor('#editor3');
         createClassicEditor('#editor4');
+        createClassicEditor('#editor5');
+        createClassicEditor('#editor6');
+        createClassicEditor('#editor7');
+        createClassicEditor('#editor8');
+        createClassicEditor('#editor9');
     </script>
 
 

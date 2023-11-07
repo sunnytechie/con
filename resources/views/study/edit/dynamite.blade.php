@@ -101,7 +101,7 @@
 
               <div class="form-group">
                   <label for="anchor_verse_text">Anchor Verse Text</label>
-                  <textarea class="form-control @error('anchor_verse_text') is-invalid @enderror" id="editor1" name="anchor_verse_text" rows="3" placeholder="Provide Anchor Verse Text" required>{{ $anchor_verse_text ?? old('anchor_verse_text') }}</textarea>
+                  <textarea class="form-control @error('anchor_verse_text') is-invalid @enderror" id="editor1" name="anchor_verse_text" rows="3" placeholder="Provide Anchor Verse Text">{{ $anchor_verse_text ?? old('anchor_verse_text') }}</textarea>
 
                   @error('anchor_verse_text')
                       <span class="invalid-feedback" role="alert">
@@ -113,7 +113,7 @@
 
               <div class="form-group">
                   <label for="anchor_verse_contents">Anchor Verse Contents</label>
-                  <textarea class="form-control @error('anchor_verse_contents') is-invalid @enderror" id="editor2" name="anchor_verse_contents" rows="3" placeholder="Provide Anchor Verse Contents" required>{{ $anchor_verse_contents ?? old('anchor_verse_contents') }}</textarea>
+                  <textarea class="form-control @error('anchor_verse_contents') is-invalid @enderror" id="editor2" name="anchor_verse_contents" rows="3" placeholder="Provide Anchor Verse Contents">{{ $anchor_verse_contents ?? old('anchor_verse_contents') }}</textarea>
 
                   @error('anchor_verse_contents')
                       <span class="invalid-feedback" role="alert">
@@ -125,7 +125,7 @@
 
               <div class="form-group">
                   <label for="food_for_thought">Food For Thought</label>
-                  <textarea class="form-control @error('food_for_thought') is-invalid @enderror" id="editor3" name="food_for_thought" rows="3" placeholder="Provide Food For Thought" required>{{ $food_for_thought ?? old('food_for_thought') }}</textarea>
+                  <textarea class="form-control @error('food_for_thought') is-invalid @enderror" id="editor3" name="food_for_thought" rows="3" placeholder="Provide Food For Thought">{{ $food_for_thought ?? old('food_for_thought') }}</textarea>
 
                   @error('food_for_thought')
                       <span class="invalid-feedback" role="alert">
@@ -137,7 +137,7 @@
 
               <div class="form-group">
                   <label for="prayer">Prayer</label>
-                  <textarea class="form-control @error('prayer') is-invalid @enderror" id="editor4" name="prayer" rows="3" placeholder="Provide Prayer" required>{{ $prayer ?? old('prayer') }}</textarea>
+                  <textarea class="form-control @error('prayer') is-invalid @enderror" id="editor4" name="prayer" rows="3" placeholder="Provide Prayer">{{ $prayer ?? old('prayer') }}</textarea>
 
                   @error('prayer')
                       <span class="invalid-feedback" role="alert">
@@ -146,12 +146,10 @@
                   @enderror
               </div>
 
-
-
-                    <div class="btn-group" role="group" aria-label="Button group">
-                        <a href="{{ route('studies.dynamite') }}" type="button" class="btn btn-danger" data-dismiss="modal">Back</a>
-                        <button type="submit" class="btn btn-success">Update</button>
-                    </div>
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a href="{{ route('studies.dynamite') }}" type="button" class="btn btn-danger" data-dismiss="modal">Back</a>
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
                 </form>
 
             </div>
@@ -159,6 +157,6 @@
         </div>
       </div>
 
-    @include('footer.nonguest')
+
   </div>
 @endsection
