@@ -36,7 +36,7 @@ class CategoryController extends Controller
     //gallery category
     public function galleryCategory()
     {
-        $galleryCategories = \App\Models\Category::where('type', 'gallery')->get();
+        $galleryCategories = \App\Models\Category::where('type', 'image')->get();
         return response()->json(
             [
                 'status' => true,

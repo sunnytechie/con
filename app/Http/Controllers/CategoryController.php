@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $title = "Media Categories";
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'desc')->get();
         return view('categories.index', compact('categories', 'title'));
     }
 
