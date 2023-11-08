@@ -53,6 +53,11 @@ Route::get('media/audio/edit/{id}', [App\Http\Controllers\AudioController::class
 Route::put('media/audio/update/{id}', [App\Http\Controllers\AudioController::class, 'update'])->name('audio.update')->middleware('is_admin');
 Route::delete('media/audio/destroy/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audio.destroy')->middleware('is_admin');
 
+//Galleries
+Route::get('media/galleries', [App\Http\Controllers\GalleryController::class, 'index'])->name('media.gallery')->middleware('is_admin');
+Route::post('media/galleries/image', [App\Http\Controllers\GalleryController::class, 'store'])->name('media.gallery.store')->middleware('is_admin');
+Route::delete('media/galleries/image/{id}', [App\Http\Controllers\GalleryController::class, 'destroy'])->name('media.gallery.destroy')->middleware('is_admin');
+
 //Routes for Categories
 Route::get('section/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index')->middleware('is_admin');
 Route::get('section/categories/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('categories.create')->middleware('is_admin');

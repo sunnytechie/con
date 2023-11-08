@@ -37,8 +37,8 @@ class Category extends Model
     }
 
     //relationship with gallery
-    public function galleries()
+    public function mediaimages()
     {
-        return $this->hasMany(Gallery::class);
+        return $this->hasMany(Mediaimage::class);
     }
 }

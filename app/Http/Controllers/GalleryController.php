@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
+use App\Models\Category;
+use App\Models\Mediaimage;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class GalleryController extends Controller
 {
@@ -13,7 +17,11 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Media Gallery Images";
+        $categories = Category::orderBy('id', 'desc')->get();
+        $galleries = Mediaimage::orderBy('id', 'desc')->get();
+
+        return view('gallery.index', compact('galleries', 'categories'));
     }
 
     /**
@@ -34,7 +42,24 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate request
+        $request->validate([
+            'title' => 'nullable',
+            'category_id' => 'required',
+            'thumbnail' => 'required'
+        ]);
+
+        $imagePath = request('thumbnail')->store('gallery', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
+        $gallery = new Mediaimage();
+        $gallery->title = $request->title;
+        $gallery->category_id = $request->category_id;
+        $gallery->image = $imagePath;
+        $gallery->save();
+
+        return back()->with('success', "Image uploaded successfully.");
     }
 
     /**
@@ -79,6 +104,9 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Mediaimage::find($id);
+        $image->delete();
+
+        return back()->with('success', "Image deleted successfully.");
     }
 }

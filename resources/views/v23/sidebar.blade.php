@@ -193,8 +193,8 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Gallery</a></li>
-                                            <li><a href="#" class="slide-item">Listings</a></li>
-                                            <li><a href="#" class="slide-item">Create New</a></li>
+                                            <li><a href="{{ route('media.gallery') }}" class="slide-item">Listings</a></li>
+                                            {{-- <li><a href="#" class="slide-item">Create New</a></li> --}}
                                         </ul>
                                     </div>
 
