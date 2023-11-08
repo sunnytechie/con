@@ -101,7 +101,7 @@
                                         <img src="/storage/{{ $image->image }}" class="avatar avatar-sm rounded-circle me-2" alt="">
                                       </div>
                                       <div class="my-auto">
-                                        <h6 class="mb-0 text-sm">{{ $image->catgeory->title }}</h6>
+                                        <h6 class="mb-0 text-sm">{{ $image->category->title }}</h6>
                                       </div>
                                     </div>
                                 </td>
