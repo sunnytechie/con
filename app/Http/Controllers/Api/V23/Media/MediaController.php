@@ -73,7 +73,7 @@ class MediaController extends Controller
         ]);
 
         //make sure the category_id is valid
-        $category = \App\Models\Category::where('id', $request->category_id)->where('type', 'gallery')->first();
+        $category = \App\Models\Category::where('id', $request->category_id)->where('type', 'image')->first();
         if (!$category) {
             return response()->json(
                 [
@@ -84,7 +84,7 @@ class MediaController extends Controller
             );
         }
 
-        $gallery = \App\Models\Gallery::orderBy('created_at', 'desc')
+        $gallery = \App\Models\Mediaimage::orderBy('created_at', 'desc')
             ->where('category_id', $request->category_id)
             ->get();
 
