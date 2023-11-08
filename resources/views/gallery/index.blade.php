@@ -26,7 +26,7 @@
 
                             <div class="mb-3">
                                 <label>Title(Optional)</label>
-                                <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Enter title" required>
+                                <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Enter title">
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
