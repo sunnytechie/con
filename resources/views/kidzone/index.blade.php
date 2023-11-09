@@ -85,8 +85,8 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td><img width="30px" width="30px" src="/storage/{{ $kid->image }}" alt=""></td>
-                                <td>{{ str_limit($kid->title, 35) }}</td>
-                                <td>{{ str_limit($kid->url, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($kid->title, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($kid->url, 35) }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         {{-- <a href="#edit" type="button" class="btn btn-sm modal-effect btn-warning" data-bs-effect="effect-scale" data-bs-toggle="modal"><i class="fe fe-edit-3"></i> Edit</a> --}}

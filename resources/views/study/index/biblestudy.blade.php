@@ -58,7 +58,7 @@
                             <tr>
                                  <td> {{ $i++ }} </td>
 
-                                  <td>{{ str_limit($book->topic, 35) }} </td>
+                                  <td>{{ Illuminate\Support\Str::limit($book->topic, 35) }} </td>
 
                                   <td>{{ date('l, d F Y', strtotime($book->study_date)) }} </td>
 

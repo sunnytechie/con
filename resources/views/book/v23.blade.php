@@ -42,8 +42,8 @@
                             <tr>
                                 <td>{{ $i++ }}. <img width="30px" width="30px" src="/storage/{{ $book->image }}" alt=""></td>
                                 <td>{{ $book->tag }}</td>
-                                <td>{{ str_limit($book->description, 35) }}</td>
-                                <td>{{ str_limit($book->author, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($book->description, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($book->author, 35) }}</td>
                                 <td>{{ $book->bookcategory->title }}</td>
                                 <td>{{ $book->booksubcategory->title }}</td>
                                 <td>

@@ -52,8 +52,8 @@
                             @foreach ($videos as $data)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ str_limit($data->title, 35) }}</td>
-                                <td>{{ str_limit($data->description, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($data->title, 35) }}</td>
+                                <td>{{ Illuminate\Support\Str::limit($data->description, 35) }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('video.edit', $data->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
