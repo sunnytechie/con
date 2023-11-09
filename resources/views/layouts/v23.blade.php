@@ -142,6 +142,17 @@
     <!-- BACK-TO-TOP -->
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
+    <script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
+
+    {{-- on window load, load two function --}}
+    <script>
+        window.onload = function() {
+            columnChart();
+            pieChart();
+            lineChart();
+        };
+    </script>
+
     <script>
         function createClassicEditor(selector) {
             ClassicEditor

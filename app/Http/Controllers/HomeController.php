@@ -13,6 +13,7 @@ use App\Models\Purchasecyc;
 use Illuminate\Http\Request;
 use App\Models\PurchasedBook;
 use App\Models\Purchasedstudy;
+use Illuminate\Support\Carbon;
 use App\Models\ReportedComment;
 
 class HomeController extends Controller
@@ -82,6 +83,68 @@ class HomeController extends Controller
     }
 
     public function v23() {
-        return view('v23');
+        $users = User::get()->count();
+        $books = Book::get()->count();
+        $members = Membership::get()->count();
+        $admins = User::where('is_admin', 1)->get()->count();
+        $videos = Media::where('type', 'video')->get()->count();
+        $audios = Media::where('type', 'audio')->get()->count();
+        $images = Media::where('type', 'image')->get()->count();
+        $reports = ReportedComment::get()->count();
+
+        $startDate = Carbon::now()->subDays(7);
+
+        $usersLast7Days = User::where('created_at', '>=', $startDate)->count();
+        $booksLast7Days = Book::where('created_at', '>=', $startDate)->count();
+        $membersLast7Days = Membership::where('created_at', '>=', $startDate)->count();
+        $adminsLast7Days = User::where('is_admin', 1)->where('created_at', '>=', $startDate)->count();
+        $videosLast7Days = Media::where('type', 'video')->where('created_at', '>=', $startDate)->count();
+        $audiosLast7Days = Media::where('type', 'audio')->where('created_at', '>=', $startDate)->count();
+        $imagesLast7Days = Media::where('type', 'image')->where('created_at', '>=', $startDate)->count();
+        $reportsLast7Days = ReportedComment::where('created_at', '>=', $startDate)->count();
+
+        //Count purchased books by book id that exists in purchasedbooks table
+        //$totalPurchaseByBookId = PurchasedBook::selectRaw('book_id, count(*) as total')->groupBy('book_id')->get();
+        //dd($totalPurchaseByBookId);
+
+        $totalPurchaseByBookId = PurchasedBook::selectRaw('books.id as book_id, count(*) as total')
+            ->join('books', 'purchased_books.book_id', '=', 'books.id')
+            ->groupBy('books.id')
+            ->get();
+
+
+        //Count PurchasedStudy where study_category_name = Daily Fountain
+        $totalPurchasedDailyFountain = Purchasedstudy::where('study_id', '1')->count();
+        //Count PurchasedStudy where study_category_name = Daily Dynamite
+        $totalPurchasedDailyDynamite = Purchasedstudy::where('study_id', '3')->count();
+        //Count PurchasedStudy where study_category_name = Bible Study
+        $totalPurchasedBibleStudy = Purchasedstudy::where('study_id', '2')->count();
+        //count cyc
+        $totalPurchasedCyc = Purchasecyc::get()->count();
+
+        //dd($users);
+        return view('v23', compact(
+            'users',
+            'books',
+            'members',
+            'admins',
+            'videos',
+            'audios',
+            'images',
+            'reports',
+            'usersLast7Days',
+            'booksLast7Days',
+            'membersLast7Days',
+            'adminsLast7Days',
+            'videosLast7Days',
+            'audiosLast7Days',
+            'imagesLast7Days',
+            'reportsLast7Days',
+            'totalPurchaseByBookId',
+            'totalPurchasedDailyFountain',
+            'totalPurchasedDailyDynamite',
+            'totalPurchasedBibleStudy',
+            'totalPurchasedCyc',
+        ));
     }
 }

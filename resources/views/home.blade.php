@@ -188,10 +188,10 @@
         </div>
       </div>
 
-      
+
 
     </div>
-    
+
 
     @include('snippets.booktable')
 
@@ -204,7 +204,7 @@
         </div>
       </div>
       @include('charts.column')
-      
+
 
       {{-- Column Chart --}}
       <div class="col-lg-6">
@@ -212,7 +212,7 @@
           <div id="pieChart" style="height: 370px; max-width: 100%;"></div>
         </div>
       </div>
-    @include('charts.pie')
+        @include('charts.pie')
     </div>
 
 
