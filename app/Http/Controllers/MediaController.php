@@ -18,11 +18,13 @@ class MediaController extends Controller
 
     public function video()
     {
+        $title = "Media";
         //categories
         $categories = Category::where('type', 'video')->get();
         //Videos
-        $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->paginate(10);
-        return view('media.video.index', compact('categories', 'videos'));
+        $videos = Media::orderBy('created_at', 'desc')->where('type', 'video')->get();
+
+        return view('media.video.index', compact('categories', 'videos', 'title'));
     }
 
     //api mediaApi
@@ -90,11 +92,13 @@ class MediaController extends Controller
 
     public function audio()
     {
+        $title = "Media";
         //Audio
         $audio = Media::orderBy('created_at', 'desc')->where('type', 'audio')->paginate(10);
         //categories
         $categories = Category::where('type', 'audio')->get();
-        return view('media.audio.index', compact('categories', 'audio'));
+
+        return view('media.audio.index', compact('categories', 'audio', 'title'));
     }
 
     //Audio Api for category id

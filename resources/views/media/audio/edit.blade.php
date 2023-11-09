@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -6,25 +6,14 @@
     <div class="row">
         <div class="col-md-8">
           <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>You are editing this Audio</h6>
-              {{-- Success Message --}}
-            @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            @endif
-            </div>
             <div class="card-body p-4">
                 <form method="post" action="{{ route('audio.update', $audioID) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
-                    <label>Title</label>
-                  <div class="mb-3">
+
+                    <div class="mb-3">
+                        <label>Title</label>
                     	<input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ $audioTitle ?? old('title') }}" placeholder="Provide a name" required>
 
 							@error('title')
@@ -34,7 +23,7 @@
 							@enderror
 					</div>
 
-                    
+
                     <div class="mb-3">
                         <label>Category</label>
                         <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" value="{{ $audioCategory ?? old('category_id') }}" required>
@@ -52,8 +41,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Audio Cover</label>
-                        <input type="text" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $audioThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url" required>
+                        <label>Audio Cover (Get Images from Pixabay)</label>
+                        <input type="url" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $audioThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url" required>
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -62,7 +51,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="audio">audio (Optional if you're providing a URL)</label>
+                        <label for="audio">Audio File</label>
                         <input name="audio" class="form-control @error('audio') is-invalid @enderror" type="file" id="audio">
 
                             @error('audio')
@@ -72,18 +61,18 @@
                             @enderror
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>audio URL (Optional if you uploaded from your computer)</label>
-                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" value="{{ $audioUrl ?? old('category_id') }}" id="url" placeholder="Provide a URL">
+                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="url" value="{{ $audioUrl ?? old('category_id') }}" id="url" placeholder="Provide a URL">
 
                             @error('url')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                    </div>
+                    </div> --}}
 
-                    
+
                     <div class="mb-3">
                         <label>Description</label>
                         <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Provide a description" required>{{ $audioDescription ?? old('description') }}</textarea>
@@ -95,7 +84,7 @@
                             @enderror
                     </div>
 
-                    
+
                     <div class="mb-3">
                         <label>Duration (Format 00:00)</label>
                         <input name="duration" class="form-control @error('duration') is-invalid @enderror" type="text" value="{{ $audioDuration ?? old('duration') }}" id="duration" placeholder="Provide a duration" required>
@@ -107,7 +96,7 @@
                             @enderror
                     </div>
 
-                    
+
                     <div class="mb-3">
                         <label>Downloadable</label>
                         <select name="downloadable" class="form-control @error('downloadable') is-invalid @enderror" required>
@@ -178,6 +167,6 @@
       </div>
       </div>
 
-    @include('footer.nonguest')
+
   </div>
 @endsection

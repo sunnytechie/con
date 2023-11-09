@@ -39,6 +39,12 @@
     {{-- Ckeditor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
 
+    {{-- Start Pace page progress loader --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-flash.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    {{-- End Pace page progress loader --}}
+
+
     <style>
         .ck-editor__editable[role="textbox"] {
             /* editing area */

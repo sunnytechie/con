@@ -8,33 +8,36 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\PushNotification;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 class AudioController extends Controller
 {
     public function store(Request $request)
     {
         //validate the request...
-        $data = $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'description' => 'required',
             'category_id' => 'required',
-            'audio' => 'mimes:mp3,m4a,ogg,oga,wav|max:20000',
-            'url' => '',
+            'audio' => 'required|mimes:mp3,m4a,ogg,oga,wav|max:20000',
+            //'url' => '',
             'thumbnail' => 'required|url',
             'duration' => 'required',
-            'downloadable' => '',
-            'notification' => '',
+            'downloadable' => 'nullable',
+            'notification' => 'nullable',
         ]);
 
-        //Var for type of media
-        $type = 'audio';    
-        //store thumbnail
-        //$imagePath = request('thumbnail')->store('media', 'public');
-        //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-        //$image->save();
+        if ($validator->fails()) {
+            $errors = implode(', ', $validator->errors()->all());
+            return back()
+            ->withInput()
+            ->with('success', $errors);
+        }
 
-        //If Audio is empty, then store the url
-        if ($request->hasFile('audio')) {
+        //Var for type of media
+        $type = 'audio';
+
+        ////if ($request->hasFile('audio')) {
             $audioPath = request('audio')->store('media', 'public');
             $audio = Media::create([
                 'title' => $request->title,
@@ -47,19 +50,19 @@ class AudioController extends Controller
                 'notification' => $request->notification,
                 'type' => $type,
             ]);
-        } else {
-            $audio = Media::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'category_id' => $request->category_id,
-                'url' => $request->url,
-                'thumbnail' => $request->thumbnail,
-                'duration' => $request->duration,
-                'downloadable' => $request->downloadable,
-                'notification' => $request->notification,
-                'type' => $type,
-            ]);
-        }
+        ////} else {
+        ////    $audio = Media::create([
+        ////        'title' => $request->title,
+        ////        'description' => $request->description,
+        ////        'category_id' => $request->category_id,
+        ////        'url' => $request->url,
+        ////        'thumbnail' => $request->thumbnail,
+        ////        'duration' => $request->duration,
+        ////        'downloadable' => $request->downloadable,
+        ////        'notification' => $request->notification,
+        ////        'type' => $type,
+        ////    ]);
+        ////}
 
         //Push Notification
         $url = 'https://fcm.googleapis.com/fcm/send';
@@ -81,7 +84,7 @@ class AudioController extends Controller
             $result = curl_exec ( $ch );
             //var_dump($result);
         curl_close ( $ch );
-        
+
         return back()->with('success', 'Audio created successfully');
     }
 
@@ -108,8 +111,9 @@ class AudioController extends Controller
         $audioDuration = $audio->duration;
         $audioDownloadable = $audio->downloadable;
         $audioNotification = $audio->notification;
-        
-        return view('media.audio.edit', compact('audio', 'categories', 'audios', 'audioID', 'audioTitle', 'audioDescription', 'audioCategory', 'audioAudio', 'audioUrl', 'audioThumbnail', 'audioDuration', 'audioDownloadable', 'audioNotification', 'totalVideos', 'totalAudios'));
+        $title = $audioTitle;
+
+        return view('media.audio.edit', compact('audio', 'categories', 'title', 'audios', 'audioID', 'audioTitle', 'audioDescription', 'audioCategory', 'audioAudio', 'audioUrl', 'audioThumbnail', 'audioDuration', 'audioDownloadable', 'audioNotification', 'totalVideos', 'totalAudios'));
     }
 
     //Update Audio
@@ -119,50 +123,32 @@ class AudioController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'category_id' => 'required',
-            'audio' => 'mimes:mp3,m4a,ogg,oga,wav|max:20000',
-            'url' => '',
+            'audio' => 'nullable|mimes:mp3,m4a,ogg,oga,wav|max:20000',
+            //'url' => '',
             'thumbnail' => 'required|url',
             'duration' => 'required',
-            'downloadable' => '',
-            'notification' => '',
+            'downloadable' => 'nullable',
+            'notification' => 'nullable',
         ]);
 
-        //Store Audio
-        //store thumbnail
-
-        //If Audio and Thumbnail are empty, then store the url
-        if ($request->hasFile('audio')) {
             //store audio
-            $audioPath = request('audio')->store('media', 'public');
-            //store thumbnail
-            //$imagePath = request('thumbnail')->store('media', 'public');
-            //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            //$image->save();
-            //update audio
+            if ($request->has('audio')) {
+                $audioPath = request('audio')->store('media', 'public');
+            }
+
             $audio = Media::find($id);
             $audio->title = $request->title;
             $audio->description = $request->description;
             $audio->category_id = $request->category_id;
-            $audio->audio = $audioPath;
+            if ($request->has('audio')) {
+                $audio->audio = $audioPath;
+            }
             $audio->thumbnail = $request->thumbnail;
             $audio->duration = $request->duration;
             $audio->downloadable = $request->downloadable;
             $audio->notification = $request->notification;
             $audio->save();
-        }
-        else {
-            //update audio
-            $audio = Media::find($id);
-            $audio->title = $request->title;
-            $audio->description = $request->description;
-            $audio->category_id = $request->category_id;
-            $audio->thumbnail = $request->thumbnail;
-            $audio->url = $request->url;
-            $audio->duration = $request->duration;
-            $audio->downloadable = $request->downloadable;
-            $audio->notification = $request->notification;
-            $audio->save();
-        }
+
 
         //Push Notification
         $url = 'https://fcm.googleapis.com/fcm/send';

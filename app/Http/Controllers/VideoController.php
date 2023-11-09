@@ -7,6 +7,7 @@ use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 class VideoController extends Controller
 {
@@ -14,36 +15,45 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         //validate the request...
-        $data = $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'description' => 'required',
             'category_id' => 'required',
-            'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
-            'url' => '',
-            'thumbnail' => 'required|url',
-            'duration' => 'required',
-            'downloadable' => '',
-            'notification' => '',
+            //'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
+            'url' => 'required|url',
+            'thumbnail' => 'required',
+            'duration' => 'nullable',
+            'downloadable' => 'nullable',
+            'notification' => 'nullable',
         ]);
+
+        if ($validator->fails()) {
+            $errors = implode(', ', $validator->errors()->all());
+            return back()
+            ->withInput()
+            ->with('success', $errors);
+        }
+
+        //dd($request->all());
 
         //Var for type of media
         $type = 'video';
 
         //store video if it is not empty
-        if ($request->hasFile('video')) {
-            $videoPath = request('video')->store('media', 'public');
-            $video = Media::create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'category_id' => $request->category_id,
-                'video' => $videoPath,
-                'thumbnail' => $request->thumbnail,
-                'duration' => $request->duration,
-                'downloadable' => $request->downloadable,
-                'notification' => $request->notification,
-                'type' => $type,
-            ]);
-        } else {
+        ////if ($request->hasFile('video')) {
+        ////    $videoPath = request('video')->store('media', 'public');
+        ////    $video = Media::create([
+        ////        'title' => $request->title,
+        ////        'description' => $request->description,
+        ////        'category_id' => $request->category_id,
+        ////        'video' => $videoPath,
+        ////        'thumbnail' => $request->thumbnail,
+        ////        'duration' => $request->duration,
+        ////        'downloadable' => $request->downloadable,
+        ////        'notification' => $request->notification,
+        ////        'type' => $type,
+        ////    ]);
+        ////} else {
             $video = Media::create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -55,7 +65,7 @@ class VideoController extends Controller
                 'notification' => $request->notification,
                 'type' => $type,
             ]);
-        }
+        ////}
 
         //Push Notification
         $url = 'https://fcm.googleapis.com/fcm/send';
@@ -104,48 +114,56 @@ class VideoController extends Controller
         $videoDownloadable = $video->downloadable;
         $videoNotification = $video->notification;
         $videoUrl = $video->url;
+        $title = $video->title;
 
-        //return view        
-        return view('media.video.edit', compact('videos', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID', 'totalVideos', 'totalAudios'));
+        //return view
+        return view('media.video.edit', compact('videos', 'title', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID', 'totalVideos', 'totalAudios'));
     }
 
     //Update Video
     public function update(Request $request, $id)
     {
         //validate the request...
-        $data = $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'description' => 'required',
             'category_id' => 'required',
-            'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
-            'url' => '',
+            //'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
+            'url' => 'required|url',
             'thumbnail' => 'required|url',
-            'duration' => 'required',
-            'downloadable' => '',
-            'notification' => '',
+            'duration' => 'nullable',
+            'downloadable' => 'nullable',
+            'notification' => 'nullable',
         ]);
+
+        if ($validator->fails()) {
+            $errors = implode(', ', $validator->errors()->all());
+            return back()
+            ->withInput()
+            ->with('success', $errors);
+        }
 
         //if video and thumbnail are not empty
 
-        if ($request->hasFile('video')) {
-            //store video
-            $videoPath = request('video')->store('media', 'public');
-            //store thumbnail
-            //$imagePath = request('thumbnail')->store('media', 'public');
-            //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
-            //$image->save();
-            //update video
-            $video = Media::find($id);
-            $video->title = $request->title;
-            $video->description = $request->description;
-            $video->category_id = $request->category_id;
-            $video->video = $videoPath;
-            $video->thumbnail = $request->thumbnail;
-            $video->duration = $request->duration;
-            $video->downloadable = $request->downloadable;
-            $video->notification = $request->notification;
-            $video->save();
-        } else {
+    ////    if ($request->hasFile('video')) {
+       //     //store video
+    ////        $videoPath = request('video')->store('media', 'public');
+        //    //store thumbnail
+        //    //$imagePath = request('thumbnail')->store('media', 'public');
+        //    //$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        ////    //$image->save();
+        ////    //update video
+        ////    $video = Media::find($id);
+        ////    $video->title = $request->title;
+        ////    $video->description = $request->description;
+        ////    $video->category_id = $request->category_id;
+        ////    $video->video = $videoPath;
+        ////    $video->thumbnail = $request->thumbnail;
+        ////    $video->duration = $request->duration;
+        ////    $video->downloadable = $request->downloadable;
+        ////    $video->notification = $request->notification;
+        ////    $video->save();
+        ////} else {
             //update video
             $video = Media::find($id);
             $video->title = $request->title;
@@ -157,7 +175,7 @@ class VideoController extends Controller
             $video->downloadable = $request->downloadable;
             $video->notification = $request->notification;
             $video->save();
-        }
+        ////}
 
         //Push Notification
         $url = 'https://fcm.googleapis.com/fcm/send';

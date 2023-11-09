@@ -145,10 +145,10 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
-                                            <li class="side-menu-label1"><a href="javascript:void(0)">video</a></li>
-                                            <li><a href="#" class="slide-item">Listings</a></li>
+                                            <li class="side-menu-label1"><a href="javascript:void(0)">Videos</a></li>
+                                            <li><a href="{{ route('media.video') }}" class="slide-item">Media Videos</a></li>
                                             <li><a href="{{ route('kidzone.index') }}" class="slide-item">Kidzone</a></li>
-                                            <li><a href="#" class="slide-item">Create New</a></li>
+                                            {{-- <li><a href="#" class="slide-item">Create New</a></li> --}}
                                         </ul>
                                     </div>
 
@@ -169,9 +169,9 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
-                                            <li class="side-menu-label1"><a href="javascript:void(0)">Audio</a></li>
-                                            <li><a href="#" class="slide-item">Listings</a></li>
-                                            <li><a href="#" class="slide-item">Create New</a></li>
+                                            <li class="side-menu-label1"><a href="javascript:void(0)">Audio/Podcast</a></li>
+                                            <li><a href="{{ route('media.audio') }}" class="slide-item">Media Audio</a></li>
+                                            {{-- <li><a href="#" class="slide-item">Create New</a></li> --}}
                                         </ul>
                                     </div>
 
@@ -193,7 +193,7 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">Gallery</a></li>
-                                            <li><a href="{{ route('media.gallery') }}" class="slide-item">Listings</a></li>
+                                            <li><a href="{{ route('media.gallery') }}" class="slide-item">Media Images</a></li>
                                             {{-- <li><a href="#" class="slide-item">Create New</a></li> --}}
                                         </ul>
                                     </div>

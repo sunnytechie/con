@@ -89,7 +89,7 @@
                                 <td>{{ $kid->url }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="#edit" type="button" class="btn btn-sm modal-effect btn-warning" data-bs-effect="effect-scale" data-bs-toggle="modal"><i class="fe fe-edit-3"></i> Edit</a>
+                                        {{-- <a href="#edit" type="button" class="btn btn-sm modal-effect btn-warning" data-bs-effect="effect-scale" data-bs-toggle="modal"><i class="fe fe-edit-3"></i> Edit</a> --}}
                                         <!-- MODAL EFFECTS -->
                                         <div class="modal fade" id="edit">
 
