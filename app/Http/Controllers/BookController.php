@@ -52,11 +52,10 @@ class BookController extends Controller
 
         //move pdf file to pdf folder
         $file = $request->file('file');
-        $fileName = $file->getClientOriginalName();
-        //add time to file name to avoid duplicate file name
-        $fileName = time() . '_' . $fileName;
+        $fileName = time() . '_' . $file->getClientOriginalName();
         $file->move(public_path('pdf'), $fileName);
         $filePath = public_path('pdf/' . $fileName);
+
 
         //store image file in public/books/images
         $imagePath = request('image')->store('books/image', 'public');
@@ -110,11 +109,11 @@ class BookController extends Controller
             'author' => 'required|max:255',
             'description' => 'required',
             'type' => 'required',
-            'price' => '',
-            'bookcategory_id' => '',
+            'price' => 'nullable',
+            'bookcategory_id' => 'nullable',
             'booksubcategory_id' => 'required',
-            'file' => 'mimes:pdf',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'file' => 'nullable|mimes:pdf',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tag' => 'nullable',
         ]);
 
@@ -126,9 +125,7 @@ class BookController extends Controller
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $fileName = $file->getClientOriginalName();
-            //add time to file name to avoid duplicate file name
-            $fileName = time() . '_' . $fileName;
+            $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('pdf'), $fileName);
             $filePath = public_path('pdf/' . $fileName);
         }

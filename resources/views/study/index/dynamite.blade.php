@@ -60,7 +60,7 @@
                             <tr>
                                  <td> {{ $i++ }} </td>
 
-                                  <td>{{ $book->topic }} </td>
+                                  <td>{{ str_limit($book->topic, 35) }} </td>
 
                                   <td>{{ date('l, d F Y', strtotime($book->study_date)) }} </td>
 

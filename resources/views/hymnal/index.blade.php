@@ -84,7 +84,7 @@
                             @foreach ($hymnals as $hymn)
                             <tr>
                                 <td>{{ $hymn->number }}</td>
-                                <td>{{ $hymn->title }}</td>
+                                <td>{{ str_limit($hymn->title, 35) }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('hymnal.edit', $hymn->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>

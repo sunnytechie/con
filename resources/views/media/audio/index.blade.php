@@ -54,8 +54,8 @@
                             @foreach ($audio as $data)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $data->title }}</td>
-                                <td>{{ $data->description }}</td>
+                                <td>{{ str_limit($data->title, 35) }}</td>
+                                <td>{{ str_limit($data->description, 35) }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('audio.edit', $data->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
