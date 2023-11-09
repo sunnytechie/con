@@ -95,8 +95,9 @@ class BookController extends Controller
         $booksubcategories = Booksubcategory::all();
         //Variable to store book
         $book = Book::find($book);
+        $title = $book->title;
 
-        return view('book.edit', compact('book', 'categories', 'bookcategories', 'booksubcategories'));
+        return view('book.edit', compact('book', 'title', 'categories', 'bookcategories', 'booksubcategories'));
     }
 
     //update book
