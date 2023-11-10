@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use App\Models\Bookcategory;
 use Illuminate\Http\Request;
 use App\Models\Booksubcategory;
@@ -51,10 +52,13 @@ class BookController extends Controller
         ]);
 
         //move pdf file to pdf folder
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('pdf'), $fileName);
-        $filePath = public_path('pdf/' . $fileName);
+        //$file = $request->file('file');
+        //$fileName = time() . '_' . $file->getClientOriginalName();
+        //$file->move(public_path('pdf'), $fileName);
+        //$filePath = public_path('pdf/' . $fileName);
+        $randomString = Str::random(10); // Generates a random string of 10 characters
+        $fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
+        $filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
 
 
         //store image file in public/books/images
@@ -125,10 +129,15 @@ class BookController extends Controller
 
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('pdf'), $fileName);
-            $filePath = public_path('pdf/' . $fileName);
+            $randomString = Str::random(10); // Generates a random string of 10 characters
+            $fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
+            $filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
+            //$file = $request->file('file');
+            //$fileName = time() . '_' . $file->getClientOriginalName();
+            //$file->move(public_path('pdf'), $fileName);
+            //$filePath = public_path('pdf/' . $fileName);
+            //$filePath = request('file')->storeAs('pdf/files', time() . '_' . request('file')->getClientOriginalName(), 'public');
+
         }
 
         //update image file in public/books/images when image is changed
