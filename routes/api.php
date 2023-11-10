@@ -151,7 +151,7 @@ Route::get('/get-flutterwave-key', [App\Http\Controllers\SettingsController::cla
 Route::middleware('bearer')->group(function () {
     //v23 api for google login
     Route::post('/auth/v23/google-login', [App\Http\Controllers\Api\V23\Auth\GoogleLoginController::class, 'gooleLoginApi']);
-    
+
     //v23 api for contact us
     Route::post('/v23/contact-us/{user_id}', [App\Http\Controllers\Api\V23\ContactUsController::class, 'store']);
 
@@ -260,6 +260,7 @@ Route::middleware('bearer')->group(function () {
     //filter
     Route::post('/v23/hymnals/filter/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'filter']);
     Route::post('/v23/subscribe/user/hymnals/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'subscribe']);
+    Route::get('/v23/hymnals/aceess/user/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'checkAccess']);
 
     //Devotional year listing price
     Route::get('/v23/devotional/year/listing/price', [App\Http\Controllers\Api\V23\DevotionalController::class, 'yearsListingPrice']);

@@ -176,4 +176,29 @@ class HymnalsController extends Controller
             'message' => 'Subscribed successfully',
         ], 200);
     }
+
+    public function checkAccess($user_id) {
+        //check if user subscribed
+        $user = User::find($user_id);
+        if (!$user) {
+            return response()->json(
+                [
+                    'status' => false,
+                    'message' => "user not found",
+                ]
+            );
+        }
+
+        $checkEmailinHymnal = Hymnalpurchase::where('email', $user->email)->first();
+        if ($checkEmailinHymnal) {
+            $access = true;
+        } else {
+            $access = false;
+        }
+
+        return response()->json([
+            'status' => true,
+            'access' => $access,
+        ]);
+    }
 }
