@@ -20,8 +20,8 @@ class Cycsubcategory extends Model
         return $this->hasMany(Cycauthor::class);
     }
 
-    public function churchyearcalendars()
+    public function cyc()
     {
-        return $this->hasMany(Churchyearcalendar::class);
+        return $this->hasOne(Cyc::class);
     }
 }

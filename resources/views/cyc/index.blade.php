@@ -40,7 +40,7 @@
                             @foreach ($cycs as $cyc)
                             <tr>
                                 <td>{{ $i++ }}
-                                <td>{{ $cyc->title }}</td>
+                                <td>{{ $cyc->cyc_title }}</td>
                                 <td>{{ $cyc->cycsubcategory->title }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">

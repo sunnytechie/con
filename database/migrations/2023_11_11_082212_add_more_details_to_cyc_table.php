@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cycs', function (Blueprint $table) {
-            $table->id();
-            //$table->text('cyc_title')->nullable();
-            //$table->string('cyc_year');
-            //$table->text('cyc_pdf')->nullable();
-            $table->timestamps();
+        Schema::table('cycs', function (Blueprint $table) {
+            $table->foreignId('cycsubcategory_id')->after('id')->comment('belongs to subcategory');
+            $table->text('content');
         });
     }
 
@@ -29,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cycs');
+        Schema::table('cycs', function (Blueprint $table) {
+            //
+        });
     }
 };

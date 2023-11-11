@@ -19,4 +19,9 @@ class Cyc extends Model
     {
         return $this->hasMany(Purchasecyc::class);
     }
+
+    public function cycsubcategory()
+    {
+        return $this->belongsTo(Cycsubcategory::class);
+    }
 }
