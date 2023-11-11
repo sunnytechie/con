@@ -1,88 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
-<div class="container-fluid py-4">
 
-    <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header d-flex justify-content-end pb-0">
-              <div class="btn-group" role="group" aria-label="Button group">
-                <a class="btn btn-info" href="{{ route('provinces.index') }}">Provinces</a>
-                <a class="btn btn-success" href="{{ route('cyc.new') }}">Upload New CYC PDF</a>
-              </div>
-            
-            </div>
-
-            @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+     <!-- Row -->
+ <div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">CYC</h3>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New CYC </a>
+                    <a class="btn btn-default modal-effect" href="#category" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Category </a>
+                    <a class="btn btn-default modal-effect" href="#subcategory" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Subcategory </a>
                 </div>
-            @endif
-            
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center table-striped justify-content-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Year</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Created at</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                   <tbody>
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($cycs as $cyc)
-                    <tr>
-                      <td class="text-left px-4">
-                          <span class="text-xs font-weight-bold">{{ $i++ }}</span>
-                      </td>
-                   
-                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $cyc->cyc_title }} </td>
-                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $cyc->cyc_year }} </td>
-
-                    <td> <p class="text-sm font-weight-bold mb-0">  </p> {{ $cyc->created_at->diffForHumans() }} </td>
-                    
-
-                    <td class="align-middle">
-                      <div class="btn-group" role="group" aria-label="Button group">
-
-                        
-                        <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('cyc.edit', $cyc->id) }}">
-                          <i class="fa fa-pencil text-xs"></i>
-                        </a>
-
-                          <form method="post" action="{{ route('cyc.destroy', $cyc->id) }}">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                        </form>
-                          
-                        
-                      </div>
-                    </td>
-                  </tr>
-                    @endforeach
-                    
-                   
-                  </tbody>
-                </table>
-              </div>
-              <div class="d-flex">
-                 {!! $cycs->links() !!}
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-    @include('footer.nonguest')
-  </div>
+            <!-- MODAL EFFECTS -->
+            {{-- @include('modals.add.newbook') --}}
+            {{-- @include('modals.add.book_category') --}}
+            {{-- @include('modals.add.book_sub_category') --}}
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <th class="wd-25p border-bottom-0">ID</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Title</th>
+                                {{-- <th class="wd-25 border-bottom-0 ps-2">Category</th> --}}
+                                <th class="wd-25 border-bottom-0 ps-2">Category</th>
+                                <td class="wd-25 border-bottom-0 ps-2">Options</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                      $i = 1;
+                    @endphp
+                            @foreach ($cycs as $cyc)
+                            <tr>
+                                <td>{{ $i++ }}
+                                <td>{{ $cyc->title }}</td>
+                                <td>{{ $book->cycsubcategory->title }}</td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="#" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
+
+                                        <form style="margin: 0; padding: 0" method="post" action="#">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fe fe-trash"></i> Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row -->
+
 @endsection

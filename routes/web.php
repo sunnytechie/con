@@ -292,6 +292,12 @@ Route::put('cyc/{new}update', [App\Http\Controllers\CycController::class, 'updat
 Route::get('cyc/{new}edit', [App\Http\Controllers\CycController::class, 'edit'])->name('cyc.edit')->middleware('is_admin');
 Route::delete('cyc/{new}destroy', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
 
+//Bcp
+Route::get('bcp', [App\Http\Controllers\BcpController::class, 'index'])->name('bcp.index')->middleware('is_admin');
+
+//Calendar
+Route::get('cy/calender', [App\Http\Controllers\CycController::class, 'calendar'])->name('cyc.index')->middleware('is_admin');
+
 //Purchase cyc
 Route::get('purchased/cyc', [App\Http\Controllers\PurchasedCycController::class, 'index'])->name('purchased.cyc.index')->middleware('is_admin');
 Route::post('purchased/cyc/store', [App\Http\Controllers\PurchasedCycController::class, 'store'])->name('purchased.cyc.store')->middleware('is_admin');

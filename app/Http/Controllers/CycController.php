@@ -14,10 +14,15 @@ class CycController extends Controller
      */
     public function index()
     {
-        $cycs = Cyc::orderBy('created_at', 'desc')
-                    ->paginate(10);
+        //dd('hello');
+        $title = "Church Year Calendar";
+        $cycs = Cyc::orderBy('created_at', 'desc')->get();
 
-                    return view('cyc.index', compact('cycs'));
+        return view('cyc.index', compact('cycs', 'title'));
+    }
+
+    public function calendar() {
+
     }
 
     /**
@@ -38,7 +43,7 @@ class CycController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $this->validate($request, [
             'cyc_title' => 'required',
             'cyc_year' => 'required',
@@ -105,7 +110,7 @@ class CycController extends Controller
             'cyc_year' => 'required',
             'cyc_pdf' => 'mimes:pdf',
         ]);
-        
+
         if ($request->hasFile('cyc_pdf')) {
             $file = $request->file('cyc_pdf');
         $fileName = $file->getClientOriginalName();

@@ -44,6 +44,7 @@
                                             <li class="@if(Route::currentRouteName() === 'studies.fountain') active @endif"><a href="{{ route('studies.fountain') }}" class="slide-item @if(Route::currentRouteName() === 'studies.fountain') active @endif">Daily Fountain</a></li>
                                             <li class="@if(Route::currentRouteName() === 'studies.study') active @endif"><a href="{{ route('studies.study') }}" class="slide-item @if(Route::currentRouteName() === 'studies.study') active @endif">Bible study</a></li>
                                             <li class=""><a href="#" class="slide-item">CYC</a></li>
+                                            <li class=""><a href="#" class="slide-item">CY Calender</a></li>
                                             <li class=""><a href="#" class="slide-item">BCP</a></li>
                                             <li class="@if(Route::currentRouteName() === 'hymnal.index') active @endif"><a href="{{ route('hymnal.index') }}" class="slide-item @if(Route::currentRouteName() === 'hymnal.index') active @endif">Hymnals</a></li>
                                             <li class="@if(Route::currentRouteName() === 'books.index') active @endif"><a href="{{ route('books.index') }}" class="slide-item @if(Route::currentRouteName() === 'books.index') active @endif">PDFS</a></li>
