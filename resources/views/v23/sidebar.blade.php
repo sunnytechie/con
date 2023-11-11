@@ -67,9 +67,10 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
-                                            <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li>
-                                            <li><a href="#" class="slide-item">Categories</a></li>
-                                            <li><a href="#" class="slide-item">Sub categories</a></li>
+                                            {{-- <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li> --}}
+                                            <li><a href="#" class="slide-item">CYC Categories</a></li>
+                                            <li><a href="#" class="slide-item">BCP Categories</a></li>
+                                            {{-- <li><a href="#" class="slide-item">Sub categories</a></li> --}}
                                         </ul>
                                     </div>
 

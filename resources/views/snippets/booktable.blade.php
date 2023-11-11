@@ -23,7 +23,7 @@
                         @foreach ($totalPurchaseByBookId as $item)
                         <tr>
                             <td> {{ $i++ }} </td>
-                            <td>{{ $item->book->title ?? $deleted }}</td>
+                            <td>{{ $item->book->title ?? "deleted" }}</td>
                             <td>{{ $item->total }}</td>
 
 

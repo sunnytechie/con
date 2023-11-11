@@ -307,6 +307,8 @@ Route::delete('cy/calender/{calendar}', [App\Http\Controllers\CycController::cla
 //Bcp
 Route::get('bcp', [App\Http\Controllers\BcpController::class, 'index'])->name('bcp.index')->middleware('is_admin');
 
+//categories
+
 //Purchase cyc
 Route::get('purchased/cyc', [App\Http\Controllers\PurchasedCycController::class, 'index'])->name('purchased.cyc.index')->middleware('is_admin');
 Route::post('purchased/cyc/store', [App\Http\Controllers\PurchasedCycController::class, 'store'])->name('purchased.cyc.store')->middleware('is_admin');
