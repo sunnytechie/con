@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content modal-content-demo">
-            <form style="margin: 0; padding: 0" method="POST" action="#" enctype="multipart/form-data">
+            <form style="margin: 0; padding: 0" method="POST" action="{{ route('cyc.category.store') }}" enctype="multipart/form-data">
                 @csrf
             <div class="modal-header">
                 <h6 class="modal-title">New Category</h6><button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
@@ -22,10 +22,8 @@
                     @enderror
                 </div>
 
-
-
                 <div class="mb-3">
-                    <label>Cover Page thumbnail(Image should not be above 2mb)</label>
+                    <label>Cover Page thumbnail (Image should not be above 2mb)</label>
                     <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="" required>
 
                         @error('image')
@@ -36,7 +34,7 @@
                 </div>
 
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label>Description</label>
                     <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="editor1" placeholder="Provide cyc content" required>{{ old('description') }}</textarea>
 
@@ -45,7 +43,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                </div>
+                </div> --}}
 
             </div>
 

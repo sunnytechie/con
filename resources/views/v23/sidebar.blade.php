@@ -43,13 +43,12 @@
                                             <li class="@if(Route::currentRouteName() === 'studies.dynamite') active @endif"><a href="{{ route('studies.dynamite') }}" class="slide-item @if(Route::currentRouteName() === 'studies.dynamite') active @endif">Daily Dynamite</a></li>
                                             <li class="@if(Route::currentRouteName() === 'studies.fountain') active @endif"><a href="{{ route('studies.fountain') }}" class="slide-item @if(Route::currentRouteName() === 'studies.fountain') active @endif">Daily Fountain</a></li>
                                             <li class="@if(Route::currentRouteName() === 'studies.study') active @endif"><a href="{{ route('studies.study') }}" class="slide-item @if(Route::currentRouteName() === 'studies.study') active @endif">Bible study</a></li>
-                                            <li class=""><a href="#" class="slide-item">CYC</a></li>
-                                            <li class=""><a href="#" class="slide-item">CY Calender</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'cyc.index') active @endif"><a href="{{ route('cyc.index') }}" class="slide-item @if(Route::currentRouteName() === 'cyc.index') active @endif">CYC</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'cyc.calendar') active @endif"><a href="{{ route('cyc.calendar') }}" class="slide-item @if(Route::currentRouteName() === 'cyc.calendar') active @endif">CY Calender</a></li>
                                             <li class=""><a href="#" class="slide-item">BCP</a></li>
                                             <li class="@if(Route::currentRouteName() === 'hymnal.index') active @endif"><a href="{{ route('hymnal.index') }}" class="slide-item @if(Route::currentRouteName() === 'hymnal.index') active @endif">Hymnals</a></li>
                                             <li class="@if(Route::currentRouteName() === 'books.index') active @endif"><a href="{{ route('books.index') }}" class="slide-item @if(Route::currentRouteName() === 'books.index') active @endif">PDFS</a></li>
                                         </ul>
-
                                     </div>
 
                                 </div>

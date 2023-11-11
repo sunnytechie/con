@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content modal-content-demo">
-            <form style="margin: 0; padding: 0" method="POST" action="{{ route('cyc.store') }}" enctype="multipart/form-data">
+            <form style="margin: 0; padding: 0" method="POST" action="{{ route('cyc.calendar.store') }}" enctype="multipart/form-data">
                 @csrf
             <div class="modal-header">
                 <h6 class="modal-title">Publish new</h6><button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
@@ -12,44 +12,21 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label>Title</label>
-                    <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Enter title" required>
+                    <label>Date</label>
+                    <input type="date" id="date" name="date" class="form-control @error('date') is-invalid @enderror" value="{{ old('date') }}" placeholder="Enter date" required>
 
-                    @error('title')
+                    @error('date')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
 
-
-
-                {{-- <div class="mb-3">
-                    <label>Category</label>
-                    <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" value="{{ $->category_id ?? old('category_id') }}" required>
-                        <option value="" disabled>Select Category</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
-                        @endforeach
-                    </select>
-
-                    @error('category_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div> --}}
-
                 <div class="mb-3">
-                    <label>Subcategory</label>
-                    <select name="subcategory_id" id="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror" required>
-                        <option value="" disabled>Select Subcategory</option>
-                        @foreach ($subcategories as $subcategory)
-                            <option value="{{ $subcategory->id }}">{{ $subcategory->title }}</option>
-                        @endforeach
-                    </select>
+                    <label>Color</label>
+                    <input type="text" id="color" name="color" class="form-control @error('color') is-invalid @enderror" value="{{ old('color') }}" placeholder="#000000" required>
 
-                    @error('subcategory_id')
+                    @error('color')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

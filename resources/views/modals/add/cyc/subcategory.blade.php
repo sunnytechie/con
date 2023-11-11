@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content modal-content-demo">
-            <form style="margin: 0; padding: 0" method="POST" action="#" enctype="multipart/form-data">
+            <form style="margin: 0; padding: 0" method="POST" action="{{ route('cyc.subcategory.store') }}" enctype="multipart/form-data">
                 @csrf
             <div class="modal-header">
                 <h6 class="modal-title">Sub Category</h6><button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>

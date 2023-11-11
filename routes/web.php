@@ -288,15 +288,24 @@ Route::put('update/daily/dynamite/{study}', [App\Http\Controllers\StudyControlle
 Route::get('cyc', [App\Http\Controllers\CycController::class, 'index'])->name('cyc.index')->middleware('is_admin');
 Route::get('cyc/new', [App\Http\Controllers\CycController::class, 'create'])->name('cyc.new')->middleware('is_admin');
 Route::post('cyc/store', [App\Http\Controllers\CycController::class, 'store'])->name('cyc.store')->middleware('is_admin');
-Route::put('cyc/{new}update', [App\Http\Controllers\CycController::class, 'update'])->name('cyc.update')->middleware('is_admin');
-Route::get('cyc/{new}edit', [App\Http\Controllers\CycController::class, 'edit'])->name('cyc.edit')->middleware('is_admin');
-Route::delete('cyc/{new}destroy', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
+Route::put('cyc/update/{new}', [App\Http\Controllers\CycController::class, 'update'])->name('cyc.update')->middleware('is_admin');
+Route::get('cyc/edit/{new}', [App\Http\Controllers\CycController::class, 'edit'])->name('cyc.edit')->middleware('is_admin');
+Route::delete('cyc/destroy/{new}', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
+
+//store cyccategory
+Route::post('cyc/category/store', [App\Http\Controllers\CycController::class, 'categoryStore'])->name('cyc.category.store')->middleware('is_admin');
+//store cycsubcategory
+Route::post('cyc/subcategory/store', [App\Http\Controllers\CycController::class, 'subcategoryStore'])->name('cyc.subcategory.store')->middleware('is_admin');
+
+//Calendar
+Route::get('cy/calender', [App\Http\Controllers\CycController::class, 'calendar'])->name('cyc.calendar')->middleware('is_admin');
+Route::post('cy/calender', [App\Http\Controllers\CycController::class, 'calendarStore'])->name('cyc.calendar.store')->middleware('is_admin');
+Route::get('cy/calender/edit/{calendar}', [App\Http\Controllers\CycController::class, 'calendarEdit'])->name('cyc.calendar.edit')->middleware('is_admin');
+Route::put('cy/calender/{calendar}', [App\Http\Controllers\CycController::class, 'calendarUpdate'])->name('cyc.calendar.update')->middleware('is_admin');
+Route::delete('cy/calender/{calendar}', [App\Http\Controllers\CycController::class, 'calendarDestroy'])->name('cyc.calendar.destroy')->middleware('is_admin');
 
 //Bcp
 Route::get('bcp', [App\Http\Controllers\BcpController::class, 'index'])->name('bcp.index')->middleware('is_admin');
-
-//Calendar
-Route::get('cy/calender', [App\Http\Controllers\CycController::class, 'calendar'])->name('cyc.index')->middleware('is_admin');
 
 //Purchase cyc
 Route::get('purchased/cyc', [App\Http\Controllers\PurchasedCycController::class, 'index'])->name('purchased.cyc.index')->middleware('is_admin');

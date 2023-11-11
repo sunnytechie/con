@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calendar;
 use App\Models\Cyc;
 use App\Models\Cyccategory;
-use App\Models\Cycsubcategory;
 use Illuminate\Http\Request;
+use App\Models\Cycsubcategory;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
 
 class CycController extends Controller
 {
@@ -25,9 +28,130 @@ class CycController extends Controller
         return view('cyc.index', compact('cycs', 'title', 'categories', 'subcategories'));
     }
 
-    public function calendar() {
+    public function categoryStore(Request $request) {
+        //dd($request->all());
+        //validate request
+        $validator = Validator::make($request->all(), [
+            'title' => 'nullable',
+            'image' => 'required|image'
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
+        }
+
+        $imagePath = request('image')->store('cycimages', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
+        $category = new Cyccategory();
+        $category->title = $request->title;
+        $category->image = $imagePath;
+        $category->save();
+
+        return back()
+            ->with('success', "Category Added successfully.");
 
     }
+
+    public function subcategoryStore(Request $request) {
+        //dd($request->all());
+        //validate request
+        $validator = Validator::make($request->all(), [
+            'title' => 'nullable',
+            'category_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
+        }
+
+        $category = new Cycsubcategory();
+        $category->title = $request->title;
+        $category->cyccategory_id = $request->category_id;
+        $category->save();
+
+        return back()
+            ->with('success', "Sub Category Added successfully.");
+
+    }
+
+    public function calendar() {
+        $calendars = Calendar::orderBy('id', 'desc')->get();
+        $title = "Church Calender of the Year.";
+
+        return view('calendar.index', compact('calendars', 'title'));
+    }
+
+    public function calendarEdit($id) {
+        $calendar = Calendar::find($id);
+        $title = "Church Calender of the Year.";
+
+        return view('calendar.edit', compact('calendar', 'title'));
+    }
+
+    public function calendarStore(Request $request) {
+        //dd($request->all());
+        //validate request
+        $validator = Validator::make($request->all(), [
+            'content' => 'required',
+            'color' => 'required',
+            'date' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
+        }
+
+        $calendar = new Calendar();
+        $calendar->color = $request->color;
+        $calendar->date = $request->date;
+        $calendar->content = $request->content;
+        $calendar->save();
+
+        return back()
+            ->with('success', "Published Successfully");
+    }
+
+    public function calendarUpdate(Request $request, $id) {
+        //dd($request->all());
+        //validate request
+        $validator = Validator::make($request->all(), [
+            'content' => 'required',
+            'color' => 'required',
+            'date' => 'required|date',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
+        }
+
+        $calendar = Calendar::find($id);
+        $calendar->color = $request->color;
+        $calendar->date = $request->date;
+        $calendar->content = $request->content;
+        $calendar->save();
+
+        return back()
+            ->with('success', "Updated Successfully");
+    }
+
+    public function calendarDestroy($id) {
+        $calendar = Calendar::find($id);
+        $calendar->delete();
+
+        return back()
+            ->with('success', "Deleted Successfully.");
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,29 +171,27 @@ class CycController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'cyc_title' => 'required',
-            'cyc_year' => 'required',
-            'cyc_pdf' => 'required|mimes:pdf',
-        ]);
-
         //dd($request->all());
 
-        $file = $request->file('cyc_pdf');
-        $fileName = $file->getClientOriginalName();
-        //add time to file name to avoid duplicate file name
-        $fileName = time() . '_' . $fileName;
-        $file->move(public_path('pdf'), $fileName);
-        $filePath = public_path('pdf/' . $fileName);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'subcategory_id' => 'required',
+            'content' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
+        }
 
         $cyc = new Cyc;
-        $cyc->cyc_title = $request->cyc_title;
-        $cyc->cyc_year = $request->cyc_year;
-        $cyc->cyc_pdf = $filePath;
+        $cyc->cyc_title = $request->title;
+        $cyc->cycsubcategory_id = $request->subcategory_id;
+        $cyc->content = $request->content;
         $cyc->save();
 
-        return redirect()->route('cyc.index')->with('success', 'New CYC created successfully');
+        return back()->with('success', 'New CYC published successfully.');
     }
 
     /**
@@ -92,12 +214,10 @@ class CycController extends Controller
     public function edit($id)
     {
         $cyc = Cyc::find($id);
-        $cycID = $cyc->id;
-        $cycTitle = $cyc->cyc_title;
-        $cycYear = $cyc->cyc_year;
-        $cycPdf = $cyc->cyc_pdf;
+        $title = $cyc->cyc_title;
+        $subcategories = Cycsubcategory::orderBy('id', 'desc')->get();
 
-        return view('cyc.edit', compact('cycID', 'cycTitle', 'cycYear', 'cycPdf'));
+        return view('cyc.edit', compact('cyc', 'title', 'subcategories'));
     }
 
     /**
@@ -109,27 +229,22 @@ class CycController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'cyc_title' => 'required',
-            'cyc_year' => 'required',
-            'cyc_pdf' => 'mimes:pdf',
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'subcategory_id' => 'required',
+            'content' => 'required',
         ]);
 
-        if ($request->hasFile('cyc_pdf')) {
-            $file = $request->file('cyc_pdf');
-        $fileName = $file->getClientOriginalName();
-        //add time to file name to avoid duplicate file name
-        $fileName = time() . '_' . $fileName;
-        $file->move(public_path('pdf'), $fileName);
-        $filePath = public_path('pdf/' . $fileName);
+        if ($validator->fails()) {
+            return back()
+            ->withInput()
+            ->with('success', "Please try again.");
         }
 
         $cyc = Cyc::find($id);
-        if ($request->hasFile('cyc_pdf')) {
-            $cyc->cyc_pdf = $filePath;
-        }
-        $cyc->cyc_title = $request->cyc_title;
-        $cyc->cyc_year = $request->cyc_year;
+        $cyc->cyc_title = $request->title;
+        $cyc->cycsubcategory_id = $request->subcategory_id;
+        $cyc->content = $request->content;
         $cyc->save();
 
         //redirect to back with success message
