@@ -41,7 +41,7 @@
                             <tr>
                                 <td>{{ $i++ }}
                                 <td>{{ $cyc->title }}</td>
-                                <td>{{ $book->cycsubcategory->title }}</td>
+                                <td>{{ $cyc->cycsubcategory->title }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="#" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
