@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cyc;
+use App\Models\Cyccategory;
+use App\Models\Cycsubcategory;
 use Illuminate\Http\Request;
 
 class CycController extends Controller
@@ -17,8 +19,10 @@ class CycController extends Controller
         //dd('hello');
         $title = "Church Year Calendar";
         $cycs = Cyc::orderBy('created_at', 'desc')->get();
+        $categories = Cyccategory::orderBy('id', 'desc')->get();
+        $subcategories = Cycsubcategory::orderBy('id', 'desc')->get();
 
-        return view('cyc.index', compact('cycs', 'title'));
+        return view('cyc.index', compact('cycs', 'title', 'categories', 'subcategories'));
     }
 
     public function calendar() {

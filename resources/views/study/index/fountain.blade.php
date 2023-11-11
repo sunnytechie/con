@@ -47,7 +47,7 @@
                                 <th class="wd-25 border-bottom-0 ps-2">Topic</th>
                                 <th class="wd-25 border-bottom-0 ps-2">Study Date</th>
                                 <th class="wd-25 border-bottom-0 ps-2">Devotional</th>
-                                <th class="wd-25 border-bottom-0 ps-2">Price</th>
+                                {{-- <th class="wd-25 border-bottom-0 ps-2">Price</th> --}}
                                 <th class="wd-25 border-bottom-0 ps-2 ps-2">Created</th>
                                 <th class="wd-25 border-bottom-0 ps-2">Action</th>
                             </tr>
@@ -65,7 +65,7 @@
                                  <td>{{ date('l, d F Y', strtotime($book->study_date)) }} </td>
 
                                  <td>{{ $book->study_type_name }} {{ $book->study_year }} </td>
-                                 <td>{{ $book->price }} </td>
+                                 {{-- <td>{{ $book->price }} </td> --}}
                                  <td>{{ $book->created_at->diffForHumans() }} </td>
 
 

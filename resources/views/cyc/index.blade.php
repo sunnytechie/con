@@ -16,9 +16,9 @@
             </div>
 
             <!-- MODAL EFFECTS -->
-            {{-- @include('modals.add.newbook') --}}
-            {{-- @include('modals.add.book_category') --}}
-            {{-- @include('modals.add.book_sub_category') --}}
+            @include('modals.add.cyc.new')
+            @include('modals.add.cyc.category')
+            @include('modals.add.cyc.subcategory')
 
 
             <div class="card-body">
