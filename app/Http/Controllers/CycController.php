@@ -28,6 +28,15 @@ class CycController extends Controller
         return view('cyc.index', compact('cycs', 'title', 'categories', 'subcategories'));
     }
 
+    public function category() {
+        $title = "Category - Church year calendar";
+        $categories = Cyccategory::orderBy('id', 'desc')->get();
+        $subcategories = Cycsubcategory::orderBy('id', 'desc')->get();
+
+
+        return view('cyc.category', compact('categories','subcategories', 'title'));
+    }
+
     public function categoryStore(Request $request) {
         //dd($request->all());
         //validate request
@@ -78,6 +87,22 @@ class CycController extends Controller
         return back()
             ->with('success', "Sub Category Added successfully.");
 
+    }
+
+    public function categoryDestroy($id) {
+        $cycs = Cyc::where('cycsubcategory_id', $id)->get();
+
+        if ($cycs) {
+            foreach ($cycs as $cyc) {
+                    $cyc->delete();
+                }
+        }
+
+        $sub = Cycsubcategory::find($id);
+        $sub->delete();
+
+        return back()
+            ->with('success', "Deleted with all it associates.");
     }
 
     public function calendar() {

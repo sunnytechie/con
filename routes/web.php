@@ -293,9 +293,11 @@ Route::get('cyc/edit/{new}', [App\Http\Controllers\CycController::class, 'edit']
 Route::delete('cyc/destroy/{new}', [App\Http\Controllers\CycController::class, 'destroy'])->name('cyc.destroy')->middleware('is_admin');
 
 //store cyccategory
+Route::get('cyc/category', [App\Http\Controllers\CycController::class, 'category'])->name('cyc.category')->middleware('is_admin');
 Route::post('cyc/category/store', [App\Http\Controllers\CycController::class, 'categoryStore'])->name('cyc.category.store')->middleware('is_admin');
 //store cycsubcategory
 Route::post('cyc/subcategory/store', [App\Http\Controllers\CycController::class, 'subcategoryStore'])->name('cyc.subcategory.store')->middleware('is_admin');
+Route::delete('cyc/subcategory/{id}', [App\Http\Controllers\CycController::class, 'categoryDestroy'])->name('cyc.subcategory.destroy')->middleware('is_admin');
 
 //Calendar
 Route::get('cy/calender', [App\Http\Controllers\CycController::class, 'calendar'])->name('cyc.calendar')->middleware('is_admin');
@@ -306,8 +308,15 @@ Route::delete('cy/calender/{calendar}', [App\Http\Controllers\CycController::cla
 
 //Bcp
 Route::get('bcp', [App\Http\Controllers\BcpController::class, 'index'])->name('bcp.index')->middleware('is_admin');
+Route::post('bcp/store', [App\Http\Controllers\BcpController::class, 'store'])->name('bcp.store')->middleware('is_admin');
+Route::get('bcp/edit/{id}', [App\Http\Controllers\BcpController::class, 'edit'])->name('bcp.edit')->middleware('is_admin');
+Route::put('bcp/update/{id}', [App\Http\Controllers\BcpController::class, 'update'])->name('bcp.update')->middleware('is_admin');
+Route::delete('bcp/destroy/{id}', [App\Http\Controllers\BcpController::class, 'destroy'])->name('bcp.destroy')->middleware('is_admin');
 
 //categories
+Route::get('bcp/categories', [App\Http\Controllers\BcpController::class, 'category'])->name('bcp.category')->middleware('is_admin');
+Route::post('bcp/category', [App\Http\Controllers\BcpController::class, 'categoryStore'])->name('bcp.category.store')->middleware('is_admin');
+Route::delete('bcp/category/{id}', [App\Http\Controllers\BcpController::class, 'categoryDestory'])->name('bcp.category.destroy')->middleware('is_admin');
 
 //Purchase cyc
 Route::get('purchased/cyc', [App\Http\Controllers\PurchasedCycController::class, 'index'])->name('purchased.cyc.index')->middleware('is_admin');
@@ -342,13 +351,13 @@ Route::post('feedback-import', [App\Http\Controllers\Import\FeedbackController::
 Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export')->middleware('is_admin');
 
 //kidzone
-Route::get('kidzone/index', [App\Http\Controllers\KidZoneController::class, 'index'])->name('kidzone.index')->middleware('is_admin');
+Route::get('kidzone', [App\Http\Controllers\KidZoneController::class, 'index'])->name('kidzone.index')->middleware('is_admin');
 Route::post('kidzone/store', [App\Http\Controllers\KidZoneController::class, 'store'])->name('kidzone.store')->middleware('is_admin');
 Route::put('kidzone/update/{id}', [App\Http\Controllers\KidZoneController::class, 'update'])->name('kidzone.update')->middleware('is_admin');
 Route::delete('kidzone/destroy/{id}', [App\Http\Controllers\KidZoneController::class, 'destroy'])->name('kidzone.destroy')->middleware('is_admin');
 
 //hymnal
-Route::get('hymnal/index', [App\Http\Controllers\HymnalController::class, 'index'])->name('hymnal.index')->middleware('is_admin');
+Route::get('hymnal', [App\Http\Controllers\HymnalController::class, 'index'])->name('hymnal.index')->middleware('is_admin');
 Route::post('hymnal/store', [App\Http\Controllers\HymnalController::class, 'store'])->name('hymnal.store')->middleware('is_admin');
 Route::get('hymnal/edit/{id}', [App\Http\Controllers\HymnalController::class, 'edit'])->name('hymnal.edit')->middleware('is_admin');
 Route::put('hymnal/update/{id}', [App\Http\Controllers\HymnalController::class, 'update'])->name('hymnal.update')->middleware('is_admin');

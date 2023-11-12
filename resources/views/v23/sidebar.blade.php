@@ -45,9 +45,9 @@
                                             <li class="@if(Route::currentRouteName() === 'studies.study') active @endif"><a href="{{ route('studies.study') }}" class="slide-item @if(Route::currentRouteName() === 'studies.study') active @endif">Bible study</a></li>
                                             <li class="@if(Route::currentRouteName() === 'cyc.index') active @endif"><a href="{{ route('cyc.index') }}" class="slide-item @if(Route::currentRouteName() === 'cyc.index') active @endif">CYC</a></li>
                                             <li class="@if(Route::currentRouteName() === 'cyc.calendar') active @endif"><a href="{{ route('cyc.calendar') }}" class="slide-item @if(Route::currentRouteName() === 'cyc.calendar') active @endif">CY Calender</a></li>
-                                            <li class=""><a href="#" class="slide-item">BCP</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'bcp.index') active @endif"><a href="{{ route('bcp.index') }}" class="slide-item @if(Route::currentRouteName() === 'bcp.index') active @endif">BCP</a></li>
                                             <li class="@if(Route::currentRouteName() === 'hymnal.index') active @endif"><a href="{{ route('hymnal.index') }}" class="slide-item @if(Route::currentRouteName() === 'hymnal.index') active @endif">Hymnals</a></li>
-                                            <li class="@if(Route::currentRouteName() === 'books.index') active @endif"><a href="{{ route('books.index') }}" class="slide-item @if(Route::currentRouteName() === 'books.index') active @endif">PDFS</a></li>
+                                            <li class="@if(Route::currentRouteName() === 'books.index') active @endif"><a href="{{ route('books.index') }}" class="slide-item @if(Route::currentRouteName() === 'books.index') active @endif">PDFs</a></li>
                                         </ul>
                                     </div>
 
@@ -58,7 +58,7 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
-                        <i class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Category</span><i class="angle fe fe-chevron-right"></i>
+                        <i class="side-menu__icon fe fe-slack"></i><span class="side-menu__label">Categories</span><i class="angle fe fe-chevron-right"></i>
                     </a>
                     <ul class="slide-menu">
                         <li class="panel sidetab-menu">
@@ -68,8 +68,8 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             {{-- <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li> --}}
-                                            <li><a href="#" class="slide-item">CYC Categories</a></li>
-                                            <li><a href="#" class="slide-item">BCP Categories</a></li>
+                                            <li><a href="{{ route('bcp.category') }}" class="slide-item">BCP Categories</a></li>
+                                            <li><a href="{{ route('cyc.category') }}" class="slide-item">CYC Categories</a></li>
                                             {{-- <li><a href="#" class="slide-item">Sub categories</a></li> --}}
                                         </ul>
                                     </div>
