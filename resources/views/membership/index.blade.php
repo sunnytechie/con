@@ -1,92 +1,75 @@
-@extends('layouts.app')
-
+@extends('layouts.v23')
 @section('content')
-<div class="container-fluid py-4">
 
-    <div class="row">
-        <div class="col-12">
-            
-          <div class="card mb-4">
-            
-            <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Membership listing {{ $membershipsCount->count(); }}</h6>
-              
-              
-              <form class="search-form" method="GET">
-                <div class="input-group">
-                  <input 
-                  type="text"
-                  id="search" 
-                  name="search" 
-                  value="{{ request()->get('search') }}"
-                  class="form-control" 
-                  placeholder="Search name, email, diocese...">
-                </div>
-              </form>
-                
-                <a href="{{ route('membership.export') }}" class="btn btn-default" type="button"> <span><i class="fa fa-file-excel-o px-2" aria-hidden="true"></i></span> Export Excel </a>
-              
-              
+ <!-- Row -->
+ <div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Memberships</h3>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center table-striped justify-content-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email2</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">State</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Diocese</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Province</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Street</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">City</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Date of Birth</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Local Church Address</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                        $i = 1;
+
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <th class="wd-25p border-bottom-0">ID</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Full Name</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Email</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Phone</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Email2</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">State</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Diocese</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Province</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Street</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">City</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Date of Birth</th>
+                                <th class="wd-25 border-bottom-0 ps-2 ps-2">Local Church Address</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                      $i = 1;
                     @endphp
-                    @foreach ($memberships as $membership)
-                      <tr>
-                        <td class="text-left px-4"> <span class="text-xs font-weight-bold">{{ $i++ }}</span> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->fullname }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->phone }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->email2 }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->state }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->diocease }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->province }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->street }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->city }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->date_of_birth }}</p> </td>
-                      <td> <p class="text-sm font-weight-bold mb-0">{{ $membership->local_church_address }}</p> </td> 
-                      <td> 
-                        <form method="post" action="{{ route('memberships.destroy', $membership->id) }}">
-                          @method('delete')
-                          @csrf
-                          <button type="submit" onclick="return confirm('Are you sure you want to delete this record?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                      </form>
-                      </td>                
-                    </tr>  
-                    @endforeach                    
-                   
-                  </tbody>
-                </table>
-              </div>
-              <div class="d-flex">
-                {!! $memberships->links() !!}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                            @foreach ($memberships as $membership)
+                            <tr>
+                                <td>{{ $i++ }}
+                                    <td>{{ $membership->fullname }} </td>
+                                    <td>{{ $membership->email }} </td>
+                                    <td>{{ $membership->phone }} </td>
+                                    <td>{{ $membership->email2 }} </td>
+                                    <td>{{ $membership->state }} </td>
+                                    <td>{{ $membership->diocease }} </td>
+                                    <td>{{ $membership->province }} </td>
+                                    <td>{{ $membership->street }} </td>
+                                    <td>{{ $membership->city }} </td>
+                                    <td>{{ $membership->date_of_birth }} </td>
+                                    <td>{{ $membership->local_church_address }} </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        {{-- <a href="#" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a> --}}
 
-    @include('footer.nonguest')
-  </div>
+                                        <form style="margin: 0; padding: 0" method="post" action="{{ route('memberships.destroy', $membership->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fe fe-trash"></i> Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row -->
+
 @endsection

@@ -16,11 +16,11 @@ class PaymentController extends Controller
     public function index()
     {
         //books
-        $title = "Books payments details listings";
+        $title = "Books payments reports";
         $tag = "Payments";
         $books = Book::all();
         //purchased books
-        $purchasedBooks = PurchasedBook::orderBy('created_at', 'desc')->paginate(10);
+        $purchasedBooks = PurchasedBook::orderBy('created_at', 'desc')->get();
         //return view
         return view('payment.v23', compact('books', 'purchasedBooks', 'title', 'tag'));
     }

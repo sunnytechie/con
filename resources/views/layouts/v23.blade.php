@@ -50,6 +50,28 @@
             /* editing area */
             min-height: 200px;
         }
+
+        .btn {
+            margin-bottom: 1rem;
+            letter-spacing: -0.025rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
+            background-size: 150%;
+            background-position-x: 25%;
+            background: purple;
+            border-radius: 0;
+            color: #ffffff;
+            }
+
+            .form-control {
+                border-radius: 0px !important;
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+            }
+
+            select {
+                border-radius: 0 !important;
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+            }
   </style>
 </head>
 

@@ -64,8 +64,8 @@
                     </div> --}}
 
                     <div class="mb-3">
-                        <label>Youtube video URL</label>
-                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" value="{{ $videoUrl ?? old('category_id') }}" id="url" placeholder="Provide a URL">
+                        <label>Youtube Video ID</label>
+                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" value="{{ $videoUrl ?? old('category_id') }}" id="url" placeholder="hg-ren435gg">
 
                             @error('url')
                                 <span class="invalid-feedback" role="alert">

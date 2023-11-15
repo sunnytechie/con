@@ -16,7 +16,7 @@ class BibleController extends Controller
     public function index()
     {
         //bibles paginate 20
-        $bibles = Bible::paginate(10);
+        $bibles = Bible::orderBy('id', 'desc')->get();
         return view('bible.index', compact('bibles'));
     }
 
@@ -41,7 +41,7 @@ class BibleController extends Controller
         $fileName = $file->getClientOriginalName();
         //change file name to avoid duplicate file name
         $fileName = time() . '-' . $fileName;
-        
+
         $fileFolder = 'bibles/';
         $filePath = $fileFolder . $fileName;
         $file->storeAs('public/bibles', $fileName);
@@ -68,7 +68,7 @@ class BibleController extends Controller
         $bibleSource = $bible->source;
         $bibleVersion = $bible->version;
         $bibleShortcode = $bible->shortcode;
-        return view('bible.edit', compact('bibleId', 'bibleName', 'bibleDescription', 'bibleSource', 'bibleVersion', 'bibleShortcode'));                                                    
+        return view('bible.edit', compact('bibleId', 'bibleName', 'bibleDescription', 'bibleSource', 'bibleVersion', 'bibleShortcode'));
     }
 
     //update bible
@@ -88,7 +88,7 @@ class BibleController extends Controller
             $fileName = $file->getClientOriginalName();
             //change file name to avoid duplicate file name
             $fileName = time() . '-' . $fileName;
-            
+
             $fileFolder = 'bibles/';
             $filePath = $fileFolder . $fileName;
             $file->storeAs('public/bibles', $fileName);

@@ -31,9 +31,9 @@ Auth::routes([
 //Middleware Auth
 Route::middleware('auth')->group(function () {
 Route::get('/version23', [App\Http\Controllers\HomeController::class, 'v23'])->name('v23')->middleware('is_admin');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index')->middleware('is_admin');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'v23'])->name('home.index')->middleware('is_admin');
 Route::get('/notAuthorized', [App\Http\Controllers\HomeController::class, 'notAuthorized'])->name('notAuthorized');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('is_admin');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'v23'])->name('home')->middleware('is_admin');
 
 //Routes for Media
 Route::get('media/videos', [App\Http\Controllers\MediaController::class, 'video'])->name('media.video')->middleware('is_admin');
@@ -244,7 +244,7 @@ Route::get('prayers/{prayer}/response', [App\Http\Controllers\PrayerController::
 Route::get('feedbacks', [App\Http\Controllers\FeedbackController::class, 'index'])->name('feedbacks.index')->middleware('is_admin');
 
 //Routes for AdminController
-Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('is_admin');
+Route::get('admins', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('is_admin');
 Route::get('admin/create', [App\Http\Controllers\AdminController::class, 'create'])->name('admin.create')->middleware('is_admin');
 Route::post('admin', [App\Http\Controllers\AdminController::class, 'store'])->name('admin.store')->middleware('is_admin');
 Route::get('admin/{admin}', [App\Http\Controllers\AdminController::class, 'show'])->name('admin.show')->middleware('is_admin');

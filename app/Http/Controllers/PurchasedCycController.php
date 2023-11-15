@@ -15,9 +15,10 @@ class PurchasedCycController extends Controller
      */
     public function index()
     {
-        $purchasedCycs = Purchasecyc::orderBy('created_at', 'desc')->paginate();
+        $purchasedCycs = Purchasecyc::orderBy('created_at', 'desc')->get();
         $cycs = Cyc::orderBy('created_at', 'desc')->get();
-        return view('purchaseCYC.index', compact('purchasedCycs', 'cycs'));
+        $title = "Church year Calendar Purchase report";
+        return view('purchaseCYC.index', compact('purchasedCycs', 'cycs', 'title'));
     }
 
     /**

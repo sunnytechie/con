@@ -96,10 +96,11 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">record</a></li>
-                                            <li><a href="#" class="slide-item">Books</a></li>
-                                            <li><a href="#" class="slide-item">Devotionals</a></li>
-                                            <li><a href="#" class="slide-item">CYC</a></li>
+                                            <li><a href="{{ route('payments.index') }}" class="slide-item">Books</a></li>
+                                            <li><a href="{{ route('purchase.studies.index') }}" class="slide-item">Devotionals</a></li>
+                                            <li><a href="{{ route('purchased.cyc.index') }}" class="slide-item">CYC</a></li>
                                             <li><a href="#" class="slide-item">BCP</a></li>
+                                            <li><a href="#" class="slide-item">Con Hymnals</a></li>
                                         </ul>
                                     </div>
 
@@ -221,8 +222,8 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">users</a></li>
-                                            <li><a href="#" class="slide-item">Sign ups</a></li>
-                                            <li><a href="#" class="slide-item">Members</a></li>
+                                            <li><a href="{{ route('androidusers.index') }}" class="slide-item">User Sign ups</a></li>
+                                            <li><a href="{{ route('memberships.index') }}" class="slide-item">Members</a></li>
                                         </ul>
                                     </div>
 
@@ -248,7 +249,7 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">reports</a></li>
-                                            <li><a href="#" class="slide-item">Donations</a></li>
+                                            <li><a href="{{ route('donations.index') }}" class="slide-item">Donations</a></li>
                                         </ul>
                                     </div>
 
@@ -270,9 +271,9 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">reports</a></li>
-                                            <li><a href="#" class="slide-item">Testimonies</a></li>
-                                            <li><a href="#" class="slide-item">Prayer Requests</a></li>
-                                            <li><a href="#" class="slide-item">Feedbacks</a></li>
+                                            <li><a href="{{ route('testimonies.index') }}" class="slide-item">Testimonies</a></li>
+                                            <li><a href="{{ route('prayers.index') }}" class="slide-item">Prayer Requests</a></li>
+                                            <li><a href="{{ route('feedbacks.index') }}" class="slide-item">Feedbacks</a></li>
                                         </ul>
                                     </div>
 
@@ -298,9 +299,9 @@
                                     <div class="tab-pane active" id="side1">
                                         <ul class="sidemenu-list">
                                             <li class="side-menu-label1"><a href="javascript:void(0)">settings</a></li>
-                                            <li><a href="#" class="slide-item">Admin</a></li>
-                                            <li><a href="#" class="slide-item">Keys</a></li>
-                                            <li><a href="#" class="slide-item">Livestream</a></li>
+                                            <li><a href="{{ route('admin.index') }}" class="slide-item">Admin</a></li>
+                                            <li><a href="{{ route('settings.index') }}" class="slide-item">Keys</a></li>
+                                            <li><a href="{{ route('stream.index') }}" class="slide-item">Livestream</a></li>
                                         </ul>
                                     </div>
 

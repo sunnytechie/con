@@ -49,8 +49,8 @@
                     </div> --}}
 
                     <div class="mb-3">
-                        <label>Youtube video URL</label>
-                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" id="url" placeholder="Provide a URL">
+                        <label>Youtube video ID</label>
+                        <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" id="url" placeholder="8954bghjb">
 
                             @error('url')
                                 <span class="invalid-feedback" role="alert">

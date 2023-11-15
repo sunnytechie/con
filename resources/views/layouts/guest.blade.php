@@ -15,7 +15,7 @@
     <link rel="icon" href="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}">
 
     <!-- TITLE -->
-    <title>Login - CONAIO Admin</title>
+    <title>Admin Login - CONAIO</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{ asset('v23/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -32,6 +32,21 @@
     <!-- INTERNAL Switcher css -->
     <link href="{{ asset('v23/assets/switcher/css/switcher.css') }}" rel="stylesheet">
     <link href="{{ asset('v23/assets/switcher/demo.css') }}" rel="stylesheet">
+
+    <style>
+        .btn {
+            margin-bottom: 1rem;
+            letter-spacing: -0.025rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
+            background-size: 150%;
+            background-position-x: 25%;
+            background: purple;
+            border-radius: 0;
+            color: #ffffff;
+            }
+
+    </style>
 
 </head>
 

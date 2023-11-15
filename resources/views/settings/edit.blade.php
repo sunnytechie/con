@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -6,31 +6,23 @@
     <div class="row">
         <div class="col-12">
           <div class="card mb-4">
-            
+
             <div class="card-header d-flex justify-content-between pb-0">
-              <h4>Update Setting</h4>
-              @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            @endif
+              <h3><b>Update Setting</b></h3>
             </div>
             <div class="card-body p-4">
               <form method="POST" action="{{ route('settings.update', $id) }}">
                 @csrf
                 @method('PUT')
 
-                <h5>Donation APi Keys Settings</h5>
+                <h5><b>Payment APIs</b></h5>
                 <div class="form-group row">
-                  <label for="paystack_api_key">Paystack Api Key</label>
+                  <label for="test_public_key">Flutterwave Test Test Key</label>
                   <div class="col-sm-12">
-                    <input type="text" class="form-control" id="paystack_api_key" name="paystack_api_key" value="{{ $paystack_api_key }}">
+                    <input type="text" class="form-control" id="test_public_key" name="test_public_key" value="{{ $setting->test_public_key }}">
                   </div>
 
-                  @error('paystack_api_key')
+                  @error('test_public_key')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -38,7 +30,20 @@
                 </div>
 
                 <div class="form-group row">
-                  <label for="flutterwave_api_key">FlutterWave Api Key</label>
+                    <label for="test_secret_key">Flutterwave Public Test Key</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="test_secret_key" name="test_secret_key" value="{{ $setting->test_secret_key }}">
+                    </div>
+
+                    @error('test_secret_key')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
+                  </div>
+
+                <div class="form-group row">
+                  <label for="flutterwave_api_key">FlutterWave Live Api Key</label>
                   <div class="col-sm-12">
                     <input type="text" class="form-control" id="flutterwave_api_key" name="flutterwave_api_key" value="{{ $flutterwave_api_key }}">
                   </div>
@@ -63,7 +68,7 @@
                   @enderror
                 </div>
 
-              
+
                 <div class="form-group row">
                   <label for="paypal_donation_url">FlutterWave Api Key</label>
                   <div class="col-sm-12">
@@ -77,7 +82,7 @@
                   @enderror
                 </div>
 
-                
+
                 <h5 class="mt-5">Firebase Settings</h5>
                 <div class="form-group">
                   <label for="fcm_server_key">Firebase Server Key</label>
@@ -113,7 +118,7 @@
                   @enderror
                 </div>
 
-                 
+
                 <div class="form-group">
                   <label for="mail_smtp_host">Mail SMTP Host</label>
                   <input type="text" class="form-control @error('mail_smtp_host') is-invalid @enderror" id="mail_smtp_host" value="{{ $mail_smtp_host ?? old('mail_smtp_host') }}" name="mail_smtp_host" placeholder="Host">
@@ -125,7 +130,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="mail_protocol">Mail Protocol</label>
                   <input type="text" class="form-control @error('mail_protocol') is-invalid @enderror" id="mail_protocol" value="{{ $mail_protocol ?? old('mail_protocol') }}" name="mail_protocol" placeholder="Protocol">
@@ -137,7 +142,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="mail_port">Mail Port</label>
                   <input type="text" class="form-control @error('mail_port') is-invalid @enderror" id="mail_port" value="{{ $mail_port ?? old('mail_port') }}" name="mail_port" placeholder="Port">
@@ -161,7 +166,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="youtube_page">Youtube Page</label>
                   <input type="text" class="form-control @error('youtube_page') is-invalid @enderror" id="youtube_page" value="{{ $youtube_page ?? old('youtube_page') }}" name="youtube_page" placeholder="Youtube Page">
@@ -173,7 +178,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="twitter_page">Twitter Page</label>
                   <input type="text" class="form-control @error('twitter_page') is-invalid @enderror" id="twitter_page" value="{{ $twitter_page ?? old('twitter_page') }}" name="twitter_page" placeholder="Twitter Page">
@@ -185,7 +190,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="instagram_page">Instagram Page</label>
                   <input type="text" class="form-control @error('instagram_page') is-invalid @enderror" id="instagram_page" value="{{ $instagram_page ?? old('instagram_page') }}" name="instagram_page" placeholder="Instagram Page">
@@ -197,7 +202,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="phone_number">Phone Number</label>
                   <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" value="{{ $phone_number ?? old('phone_number') }}" name="phone_number" placeholder="Phone Number">
@@ -209,7 +214,7 @@
                   @enderror
                 </div>
 
-                
+
                 <div class="form-group">
                   <label for="whatsapp_number">Whatsapp Number</label>
                   <input type="text" class="form-control @error('whatsapp_number') is-invalid @enderror" id="whatsapp_number" value="{{ $whatsapp_number ?? old('whatsapp_number') }}" name="whatsapp_number" placeholder="Whatsapp Number">
@@ -220,9 +225,9 @@
                     </span>
                   @enderror
                 </div>
-                
 
-                
+
+
                 <button type="submit" class="btn btn-primary">Update</button>
 
               </form>
@@ -231,6 +236,6 @@
         </div>
       </div>
 
-    @include('footer.nonguest')
+
   </div>
 @endsection

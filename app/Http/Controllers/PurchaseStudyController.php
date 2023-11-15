@@ -15,11 +15,11 @@ class PurchaseStudyController extends Controller
     {
         //studies
         $studies = Study::all();
-
+        $title = "Devotionals Purchases report";
         //purchased books
-        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->paginate(10);
+        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->orderBy('id', 'desc')->get();
 
-        return view('purchase.index', compact('studies', 'purchasedstudies'));
+        return view('purchase.index', compact('studies', 'purchasedstudies', 'title'));
     }
 
     //search for purchase study

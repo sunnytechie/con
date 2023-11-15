@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -7,26 +7,26 @@
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Membership Profile</h6>
+              <h6>User's Information</h6>
+              <button class="btn btn-danger" onclick="return confirm('Are you sure you want to block this user?')"><i class="fe fe-info"></i> Block User</button>
             </div>
             <div class="card-body p-4">
               {{-- User details --}}
-                <p>Full Name: {{ $first_name }} {{ $last_name }}</p>
-                <p>Email: {{ $users->email }}, {{ $email2 }}</p>
-                <p>Phone: {{ $phone }} {{ $phone2 }}</p>
-                <p>Street: {{ $street }}</p>
-                <p>City: {{ $city }}</p>
-                <p>State: {{ $state }}</p>
-                <p>Country: {{ $country }}</p>
-                <p>Province: {{ $province }}</p>
-                <p>Diocese: {{ $date_of_birth }}</p>
-                <p>Birthdate: {{ $wedding_date }}</p>
-                <p>Local Church Address: {{ $local_church_address }}</p>
+                <p>Full Name: {{ $user->name }}</p>
+                <p>Email: {{ $user->email }}</p>
+                <p>Phone: {{ $user->phone }}</p>
+                <p>Street: {{ $user->street }}</p>
+                <p>City: {{ $user->city }}</p>
+                <p>State: {{ $user->state }}</p>
+                <p>Country: {{ $user->country }}</p>
+                <p>Province: {{ $user->province }}</p>
+                <p>Diocese: {{ $user->date_of_birth }}</p>
+                <p>Birthdate: {{ $user->wedding_date }}</p>
+                <p>Local Church Address: {{ $user->local_church_address }}</p>
             </div>
           </div>
         </div>
       </div>
 
-    @include('footer.nonguest')
   </div>
 @endsection

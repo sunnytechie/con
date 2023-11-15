@@ -14,16 +14,11 @@ class MembershipController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->filled('search')){
-            $memberships = Membership::search($request->search)->paginate();
-            $membershipsCount = Membership::get();
-        }else{
-            $membershipsCount = Membership::get();
-            $memberships = Membership::paginate(10);
-        }
+        $title = "Memberships";
+            $memberships = Membership::orderBy('id', 'desc')->get();
 
-        return view('membership.index', compact('memberships', 'membershipsCount'));
-        
+        return view('membership.index', compact('memberships'));
+
     }
 
     //store

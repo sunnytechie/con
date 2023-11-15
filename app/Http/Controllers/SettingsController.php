@@ -11,28 +11,28 @@ class SettingsController extends Controller
     public function edit()
     {
         //get the last settings
-        $settings = Settings::latest()->first();
+        $setting = Settings::latest()->first();
+        $title = "Settings";
+        $id = $setting->id;
+        $fcm_server_key = $setting->fcm_server_key;
+        $mail_username = $setting->mail_username;
+        $mail_password = $setting->mail_password;
+        $mail_smtp_host = $setting->mail_smtp_host;
+        $mail_protocol = $setting->mail_protocol;
+        $mail_port = $setting->mail_port;
+        $facebook_page = $setting->facebook_page;
+        $youtube_page = $setting->youtube_page;
+        $twitter_page = $setting->twitter_page;
+        $instagram_page = $setting->instagram_page;
+        $phone_number = $setting->phone_number;
+        $whatsapp_number = $setting->whatsapp_number;
+        $ads_interval = $setting->ads_interval;
+        $paystack_api_key = $setting->paystack_api_key;
+        $flutterwave_api_key = $setting->flutterwave_api_key;
+        $flutterwave_currency_code = $setting->flutterwave_currency_code;
+        $paypal_donation_url = $setting->paypal_donation_url;
 
-        $id = $settings->id;
-        $fcm_server_key = $settings->fcm_server_key;
-        $mail_username = $settings->mail_username;
-        $mail_password = $settings->mail_password;
-        $mail_smtp_host = $settings->mail_smtp_host;
-        $mail_protocol = $settings->mail_protocol;
-        $mail_port = $settings->mail_port;
-        $facebook_page = $settings->facebook_page;
-        $youtube_page = $settings->youtube_page;
-        $twitter_page = $settings->twitter_page;
-        $instagram_page = $settings->instagram_page;
-        $phone_number = $settings->phone_number;
-        $whatsapp_number = $settings->whatsapp_number;
-        $ads_interval = $settings->ads_interval;
-        $paystack_api_key = $settings->paystack_api_key;
-        $flutterwave_api_key = $settings->flutterwave_api_key;
-        $flutterwave_currency_code = $settings->flutterwave_currency_code;
-        $paypal_donation_url = $settings->paypal_donation_url;
-
-        return view('settings.edit', compact('settings', 'fcm_server_key', 'mail_username', 'mail_password', 'mail_smtp_host', 'mail_protocol', 'mail_port', 'facebook_page', 'youtube_page', 'twitter_page', 'instagram_page', 'phone_number', 'whatsapp_number', 'ads_interval', 'id', 'paystack_api_key', 'flutterwave_api_key', 'flutterwave_currency_code', 'paypal_donation_url'));
+        return view('settings.edit', compact('setting', 'title', 'fcm_server_key', 'mail_username', 'mail_password', 'mail_smtp_host', 'mail_protocol', 'mail_port', 'facebook_page', 'youtube_page', 'twitter_page', 'instagram_page', 'phone_number', 'whatsapp_number', 'ads_interval', 'id', 'paystack_api_key', 'flutterwave_api_key', 'flutterwave_currency_code', 'paypal_donation_url'));
     }
 
     //update settings
@@ -56,28 +56,31 @@ class SettingsController extends Controller
             'flutterwave_api_key' => '',
             'flutterwave_currency_code' => '',
             'paypal_donation_url' => '',
+            'test_public_key' => '',
+            'test_secret_key' => '',
         ]);
 
         //update the settings
-        $settings = Settings::find($id);
-        $settings->fcm_server_key = $request->fcm_server_key;
-        $settings->mail_username = $request->mail_username;
-        $settings->mail_password = $request->mail_password;
-        $settings->mail_smtp_host = $request->mail_smtp_host;
-        $settings->mail_protocol = $request->mail_protocol;
-        $settings->mail_port = $request->mail_port;
-        $settings->facebook_page = $request->facebook_page;
-        $settings->youtube_page = $request->youtube_page;
-        $settings->twitter_page = $request->twitter_page;
-        $settings->instagram_page = $request->instagram_page;
-        $settings->phone_number = $request->phone_number;
-        $settings->whatsapp_number = $request->whatsapp_number;
-        $settings->paystack_api_key = $request->paystack_api_key;
-        $settings->flutterwave_api_key = $request->flutterwave_api_key;
-        $settings->flutterwave_currency_code = $request->flutterwave_currency_code;
-        $settings->paypal_donation_url = $request->paypal_donation_url;
-
-        $settings->save();
+        $setting = Settings::find($id);
+        $setting->fcm_server_key = $request->fcm_server_key;
+        $setting->mail_username = $request->mail_username;
+        $setting->mail_password = $request->mail_password;
+        $setting->mail_smtp_host = $request->mail_smtp_host;
+        $setting->mail_protocol = $request->mail_protocol;
+        $setting->mail_port = $request->mail_port;
+        $setting->facebook_page = $request->facebook_page;
+        $setting->youtube_page = $request->youtube_page;
+        $setting->twitter_page = $request->twitter_page;
+        $setting->instagram_page = $request->instagram_page;
+        $setting->phone_number = $request->phone_number;
+        $setting->whatsapp_number = $request->whatsapp_number;
+        $setting->paystack_api_key = $request->paystack_api_key;
+        $setting->flutterwave_api_key = $request->flutterwave_api_key;
+        $setting->flutterwave_currency_code = $request->flutterwave_currency_code;
+        $setting->paypal_donation_url = $request->paypal_donation_url;
+        $setting->test_public_key = $request->test_public_key;
+        $setting->test_secret_key = $request->test_secret_key;
+        $setting->save();
 
         return back()->with('success', 'Settings updated successfully');
     }

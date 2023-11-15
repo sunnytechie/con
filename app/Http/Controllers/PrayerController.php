@@ -16,13 +16,14 @@ class PrayerController extends Controller
      */
     public function index()
     {
-        $prayers = Prayer::paginate(10);;
-        return view('prayer.index', compact('prayers'));
+        $title = "Prayer Requests";
+        $prayers = Prayer::orderBy('id', 'desc')->get();
+        return view('prayer.index', compact('prayers', 'title'));
     }
 
     public function show($prayer) {
         $prayer = Prayer::find($prayer);
-        
+
         $prayerID = $prayer->id;
         $prayerEmail = $prayer->email;
         $prayerTitle = $prayer->title;
@@ -86,5 +87,5 @@ class PrayerController extends Controller
 
         $success = "You have successfully submitted your prayer request.";
         return response()->json(['success' => $success], 200);
-    }    
+    }
 }

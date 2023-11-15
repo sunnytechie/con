@@ -1,16 +1,7 @@
-<!-- Modal HTML -->
-<div style="z-index: 9999" id="addDonation" class="modal delete-modal fade">
-	<div class="modal-dialog modal-confirm">
-        <form method="POST" action="{{ route('donations.store') }}" enctype="multipart/form-data">
-			@csrf
-		<div class="modal-content">
-			<div class="modal-header flex-column">
-				<h5>New Donation</h5>
-			</div>
-			<div style="text-align: left" class="modal-body">
-				
-                  <div class="mb-3">
-					<label>Name</label>
+
+
+                    <div class="mb-3">
+					    <label>Name</label>
                     	<input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Full Name" required>
 
 							@error('name')
@@ -19,7 +10,7 @@
 								</span>
 							@enderror
 					</div>
-					
+
 					<div class="mb-3">
 						<label>Email</label>
 						<input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Email" required>
@@ -30,7 +21,7 @@
 							@enderror
 					</div>
 
-					
+
 					<div class="mb-3">
 						<label>Currency</label>
 						<select class="form-control" name="currency" id="currency" required>
@@ -72,7 +63,7 @@
 							@enderror
 					</div>
 
-					
+
 					<div class="mb-3">
 						<label>Method</label>
 						<select class="form-control" name="method" id="method" required>
@@ -85,7 +76,7 @@
 						</select>
 					</div>
 
-					
+
 					<div class="mb-3">
 						<label>Reference</label>
 						<input type="text" id="reference" name="reference" class="form-control @error('reference') is-invalid @enderror" value="{{ old('reference') }}" placeholder="Reference" required>
@@ -106,7 +97,7 @@
 							@enderror
 					</div>
 
-					
+
 					<div class="mb-3">
 						<label>Diocese</label>
 						<input type="text" id="diocese" name="diocese" class="form-control @error('diocese') is-invalid @enderror" value="{{ old('diocese') }}" placeholder="diocese" required>
@@ -127,13 +118,3 @@
 							@enderror
 					</div>
 
-					
-			</div>
-			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-				<button type="submit" class="btn btn-success">Submit</button>
-			</div>
-		</div>
-        </form>
-	</div>
-</div> 

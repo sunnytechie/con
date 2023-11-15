@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -8,21 +8,12 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Edit Account</h6>
-              {{-- Success Message --}}
-            @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            @endif
             </div>
             <div class="card-body p-4">
                 <form method="post" action="{{ route('admin.update', $adminId) }}">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="mb-3">
                         <label>Admin Name</label>
                         	<input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $adminName ?? old('name') }}" required>
@@ -34,7 +25,7 @@
                             @enderror
                     </div>
 
-                    
+
                     <div class="mb-3">
                         <label>Admin Role</label>
                         <select name="role" class="form-control @error('role') is-invalid @enderror">
@@ -52,7 +43,7 @@
                         @enderror
                     </div>
 
-					
+
                     <div class="mb-3">
                         <label>Change Password</label>
                         	<input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ $adminPassword ?? old('password') }}" placeholder="New Password">
@@ -64,7 +55,7 @@
                             @enderror
                     </div>
 
-            
+
                     <div class="mb-3">
                         <label>Email</label>
                         	<input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ $adminEmail ?? old('email') }}" required>
@@ -73,7 +64,7 @@
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror   
+                            @enderror
                     </div>
 
                     <div class="btn-group" role="group" aria-label="Button group">
@@ -95,10 +86,9 @@
               </div>
           </div>
 
-        
+
       </div>
       </div>
 
-    @include('footer.nonguest')
   </div>
 @endsection

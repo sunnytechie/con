@@ -34,8 +34,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>Url</label>
-                                <input type="url" id="url" name="url" class="form-control @error('url') is-invalid @enderror" placeholder="Enter url" required>
+                                <label>Youtube Video Id</label>
+                                <input type="text" id="url" name="url" class="form-control @error('url') is-invalid @enderror" placeholder="AE-gfdbg43" required>
 
                                 @error('url')
                                     <span class="invalid-feedback" role="alert">

@@ -12,9 +12,9 @@ class StreamController extends Controller
     {
         //get the last stream
         $stream = Stream::latest()->first();
+        $title = "Streaming link and TV";
 
         $id = $stream->id;
-        $title = $stream->title;
         $stream_url = $stream->stream_url;
         $stream_type = $stream->stream_type;
         $stream_status = $stream->stream_status;

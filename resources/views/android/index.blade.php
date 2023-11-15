@@ -1,219 +1,58 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.v23')
+@section('content')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    {{-- favicon --}}
-    <link rel="icon" href="{{ asset('assets/img/Untitled_design__20_-removebg-preview.png') }}">
-
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <!-- Nucleo Icons -->
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css?v=1.0.6') }}" rel="stylesheet" />
-    {{-- Custom css --}}
-    <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
-
-    <style>
-        .table> :not(caption)>*>* {
-            padding: 0.1rem 0.5rem !important;
-        }
-
-        .table .m-2 {
-            margin: 0.2rem 0.5rem !important;
-        }
-
-        .search-form {
-            width: 300px;
-        }
-    </style>
-
-</head>
-
-<body class="g-sidenav-show  bg-gray-100">
-    <div id="app">
-        {{-- Navbare --}}
-        @guest
-            @include('navigator.guest')
-        @else
-            {{-- Sidebar --}}
-            @include('navigator.aside')
-        @endguest
-
-        {{-- Main application --}}
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            
-            @guest
-            @else
-                @include('navigator.notguest')
-            @endguest
-<div class="container-fluid py-4">
-
-    <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Registered IOS and Android Users</h6>
-              
-              <div class="search-form">
-                <div class="input-group">
-                  <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
-              </div>
-              </div>
+ <!-- Row -->
+ <div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title"> Signup Users</h3>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center table-striped justify-content-center mb-0 table-condensed table-hover">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                   <tbody id="searchResults"></tbody>
-                  <tbody id="allResults">
-                    @php
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <th class="wd-25p border-bottom-0">ID</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Name</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Email</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
                       $i = 1;
                     @endphp
-                    @foreach ($users as $user)
-                        <tr>
-                        <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">{{ $i++ }}</span>
-                        </td>
-                      
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">{{ $user->name }}</p>
-                      </td>
+                            @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
 
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">{{ $user->email }}</p>
-                      </td>
-                      
-                      <td class="align-middle">
-                        <div class="btn-group" role="group" aria-label="Button group">
-                     
-                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('androidusers.show', $user->id) }}">
-                              <i class="fa fa-eye text-xs"></i>
-                            </a>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a href="{{ route('androidusers.show', $user->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-eye"></i> Use details</a>
 
-                            <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="#">
-                              <i class="fa fa-ban text-xs"></i>
-                            </a>                        
-                          
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                 
-                </table>
-              </div>
-              
-              <div class="d-flex">
-                {!! $users->links() !!}
-              </div>
+                                        <form style="margin: 0; padding: 0" method="post" action="{{ route('androidusers.destroy', $user->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="fe fe-trash"></i> Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
-    @include('footer.nonguest')
-  </div>
- 
-  
-</main>
+    </div>
 </div>
+<!-- End Row -->
 
-<!--   Core JS Files   -->
-<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-<script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
-
-<!-- Github buttons -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.0.6') }}"></script>
-{{-- Bootstrap links --}}
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-{{-- Preview file upload --}}
-
-{{-- Flutterwave inline payment --}}
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-{{-- Google CDN --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    setTimeout(function() {
-        $('.alert').fadeOut('fast');
-    }, 5000);
-</script>
-
-<script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
-
-{{-- on window load, load two function --}}
-<script>
-    window.onload = function() {
-        columnChart();
-        pieChart();
-    };
-</script>
-
-{{-- Tinymce editor --}}
-<script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
-<script>
-tinymce.init({
-selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-plugins: 'code table lists',
-toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-});
-</script>
-
-{{-- ajax search --}}
- <script>
-  $('#search').on('keyup', function(){
-    var search = $(this).val();
-      if(search) {
-        $('#allResults').hide();
-      }
-    $.ajax({
-      url: "{{ route('androidusers.search') }}",
-      method: 'get',
-      data: {'search': search},
-      success: function(data){
-        $('#searchResults').html(data);
-      }
-    });
-  });
-</script>
-
-
-
-</body>
-</html>
-
- 
+@endsection
 

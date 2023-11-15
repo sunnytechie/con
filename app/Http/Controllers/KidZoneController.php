@@ -13,6 +13,7 @@ class KidZoneController extends Controller
     //index
     public function index() {
         $kidzones = \App\Models\Kidzone::orderBy('id', 'desc')->get();
+        $title = "Kids youtube videos";
 
         return view('kidzone.index', compact('kidzones'));
     }

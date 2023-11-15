@@ -53,6 +53,16 @@
 		        width: 800px important;
 	    }
   }
+
+        .form-control {
+                border-radius: 0px !important;
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+            }
+
+            select {
+                border-radius: 0 !important;
+                border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+            }
     </style>
 
 </head>
@@ -69,7 +79,7 @@
 
         {{-- Main application --}}
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-            
+
             @guest
             @else
                 @include('navigator.notguest')
@@ -104,7 +114,7 @@
     </script>
 
     <script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
-    
+
     {{-- on window load, load two function --}}
     <script>
         window.onload = function() {
@@ -113,7 +123,7 @@
             lineChart();
         };
     </script>
-    
+
 {{-- Tinymce editor --}}
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
 <script>
@@ -128,7 +138,7 @@
     $(document).ready(function () {
         $('#province').on('change', function () {
             var provinceId = this.value;
-            
+
             $('#diocese').html('');
             $.ajax({
                 url: '{{ route('getDiocese') }}?province_id='+provinceId,
@@ -139,12 +149,12 @@
                         $('#diocese').append('<option value="' + value
                             .id + '">' + value.name + '</option>');
                     });
-                   
+
                 }
             });
 
         });
-       
+
     });
 </script>
 

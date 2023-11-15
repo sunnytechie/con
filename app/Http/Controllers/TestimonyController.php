@@ -15,8 +15,9 @@ class TestimonyController extends Controller
     public function index()
     {
         //testimonies
-        $testimonies = Testimony::paginate(10);;
-        return view('testimony.index', compact('testimonies'));
+        $title = "Testimonies";
+        $testimonies = Testimony::orderBy('id', 'desc')->get();
+        return view('testimony.index', compact('testimonies', 'title'));
     }
 
     //api to store testimony

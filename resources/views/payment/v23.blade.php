@@ -19,7 +19,7 @@
                         <form style="margin: 0; padding: 0" method="POST" action="{{ route('payments.store') }}" enctype="multipart/form-data">
                             @csrf
                         <div class="modal-header">
-                            <h6 class="modal-title">Manual book purchase</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title">Manual book purchase</h6><button type="button"aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
@@ -76,11 +76,11 @@
                         </thead>
                         <tbody>
                             @php
-                      $i = 1;
-                    @endphp
+                                $i = 1;
+                            @endphp
                             @foreach ($purchasedBooks as $purchase)
                             <tr>
-                                <td>{{ $i }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $purchase->book_title }}</td>
                                 <td>{{ $purchase->email }}</td>
                                 <td>{{ $purchase->price }}</td>
