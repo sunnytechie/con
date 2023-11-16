@@ -21,6 +21,8 @@ class ProfileUpdateController extends Controller
             'phone' => 'nullable|string',
             'birthday' => 'date|nullable',
             'avatar' => 'nullable',
+            'province' => 'nullable',
+            'diocese' => 'nullable',
         ]);
 
         //validate request
@@ -83,6 +85,10 @@ class ProfileUpdateController extends Controller
             //$membership->email = $request->email;
             $membership->phone = $request->phone;
             $membership->date_of_birth = $request->birthday;
+            if ($request->has('province') || $request->has('diocese')) {
+                $membership->province = $request->province;
+                $membership->diocease = $request->diocese;
+            }
             $membership->save();
 
             return response()->json([
