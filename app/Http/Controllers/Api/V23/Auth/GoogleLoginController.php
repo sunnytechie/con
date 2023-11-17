@@ -56,8 +56,14 @@ class GoogleLoginController extends Controller
                 $member_diocese = $membership->diocease;
                 $member_province = $membership->province;
 
-                $diocese = Diocese::where('id', $member_diocese)->first()->name;
-                $province = Province::where('id', $member_province)->first()->name;
+                $diocese = Diocese::where('id', $member_diocese)->first();
+                if (!$diocese) {
+                    $diocese = "Nil";
+                } else { $diocese = $diocese->name; }
+                $province = Province::where('id', $member_province)->first();
+                if (!$province) {
+                    $province = "Nil";
+                } else { $province = $province->name; }
 
                 return response()->json([
                     'status' => true,
