@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProfileUpdateController extends Controller
 {
-    //update membership
+    //update profile
     public function update(Request $request, $user_id) {
         //validate request
         $validator = Validator::make($request->all(), [

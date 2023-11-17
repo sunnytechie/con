@@ -54,6 +54,7 @@ class GoogleLoginController extends Controller
                 return response()->json([
                     'status' => true,
                     'membership' => true,
+                    'membership_data' => $membership,
                     'message' => 'Login Success',
                     'user' => $user,
                     'token' => $token
