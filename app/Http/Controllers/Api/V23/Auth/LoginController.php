@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Membership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Diocese;
+use App\Models\Province;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,9 +62,17 @@ class LoginController extends Controller
 
         //if user exists
         if ($membership) {
+            $member_diocese = $membership->diocease;
+            $member_province = $membership->province;
+
+            $diocese = Diocese::where('id', $member_diocese)->first()->name;
+            $province = Province::where('id', $member_province)->first()->name;
+
             return response()->json([
                 'status' => true,
                 'membership' => true,
+                'diocese' => $diocese,
+                'province' => $province,
                 'membership_data' => $membership,
                 'message' => 'Login Success',
                 'user' => $user,

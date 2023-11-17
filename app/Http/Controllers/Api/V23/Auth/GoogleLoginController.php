@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V23\Auth;
 
 use App\Models\User;
+use App\Models\Diocese;
+use App\Models\Province;
 use App\Models\Membership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -51,9 +53,17 @@ class GoogleLoginController extends Controller
 
             //if user exists
             if ($membership) {
+                $member_diocese = $membership->diocease;
+                $member_province = $membership->province;
+
+                $diocese = Diocese::where('id', $member_diocese)->first()->name;
+                $province = Province::where('id', $member_province)->first()->name;
+
                 return response()->json([
                     'status' => true,
                     'membership' => true,
+                    'diocese' => $diocese,
+                    'province' => $province,
                     'membership_data' => $membership,
                     'message' => 'Login Success',
                     'user' => $user,
