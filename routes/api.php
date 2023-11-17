@@ -354,6 +354,7 @@ Route::middleware('token')->group(function () {
     Route::post('/v23/membership/{user_id}', [App\Http\Controllers\Api\V23\MembershipController::class, 'store']);
     //delete account
     Route::post('/v23/deactivate/user/{user_id}', [App\Http\Controllers\Api\V23\AccountController::class, 'account']);
+    Route::get('/v23/account/user/{user_id}', [App\Http\Controllers\Api\V23\AccountController::class, 'userAccount']);
 });
 
 
