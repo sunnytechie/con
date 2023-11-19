@@ -19,9 +19,21 @@ class Donation extends Model
         'reference',
         'province',
         'diocese',
+        'province_id',
+        'diocese_id',
         'deleted',
         'phone',
         'donation_type',
         'description',
     ];
+
+    //relationships - belongs to province and diocese
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function diocese() {
+        return $this->belongsTo(Diocese::class);
+    }
 }

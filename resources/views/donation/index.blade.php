@@ -44,7 +44,7 @@
                                 <th class="wd-25p border-bottom-0">ID</th>
                                 <th class="wd-25p border-bottom-0">Name</th>
                                 <th class="wd-25p border-bottom-0">Email</th>
-                                {{-- <th class="wd-25p border-bottom-0">Reason</th> --}}
+                                <th class="wd-25p border-bottom-0">Description</th>
                                 <th class="wd-25p border-bottom-0">Province</th>
                                 <th class="wd-25p border-bottom-0">Diocese</th>
                                 <th class="wd-25p border-bottom-0">Currency</th>
@@ -69,14 +69,15 @@
                         <td>
                             <a href="mailto:  {{ $donation->email }}">  {{ $donation->email }}</a>
                         </td>
+                        <td>{{ $donation->description }}</td>
 
 
                       <td>
-                        {{ $donation->province }}
+                        {{ $donation->province->name }}
                     </td>
 
                     <td>
-                        {{ $donation->diocese }}
+                        {{ $donation->diocese->name }}
                     </td>
 
                     <td>

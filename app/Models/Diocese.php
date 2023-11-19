@@ -19,6 +19,10 @@ class Diocese extends Model
         return $this->belongsTo(Province::class);
     }
 
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
 }
 
-    

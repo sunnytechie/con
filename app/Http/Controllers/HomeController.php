@@ -112,7 +112,6 @@ class HomeController extends Controller
             ->groupBy('books.id')
             ->get();
 
-
         //Count PurchasedStudy where study_category_name = Daily Fountain
         $totalPurchasedDailyFountain = Purchasedstudy::where('study_id', '1')->count();
         //Count PurchasedStudy where study_category_name = Daily Dynamite

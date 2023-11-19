@@ -13,7 +13,7 @@
                         <tr>
                             <th class="wd-25 border-bottom-0 ps-2">S/N</th>
                             <th class="wd-25 border-bottom-0 ps-2">Books</th>
-                            <th class="wd-25 border-bottom-0 ps-2">Amount</th>
+                            <th class="wd-25 border-bottom-0 ps-2">Sold</th>
                         </tr>
                     </thead>
                     <tbody>

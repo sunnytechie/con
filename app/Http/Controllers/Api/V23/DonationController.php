@@ -44,8 +44,10 @@ class DonationController extends Controller
         $donation->amount = $request->amount;
         $donation->method = $request->method;
         $donation->reference = $request->reference;
-        $donation->province = $request->province;
-        $donation->diocese = $request->diocese;
+        //$donation->province = $request->province;
+        //$donation->diocese = $request->diocese;
+        $donation->province_id = $request->province;
+        $donation->diocese_id = $request->diocese;
         $donation->deleted = false;
         $donation->save();
 
