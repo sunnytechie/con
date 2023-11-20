@@ -6,8 +6,12 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title">Books/Materials Payments</h3>
+                <h3 class="card-title">Books/Materials Payments Report</h3>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-default modal-effect" href="#report" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter Report </a>
                 <a class="btn btn-default modal-effect" href="#newPurchase" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </a>
+                </div>
             </div>
 
             <!-- MODAL EFFECTS -->
@@ -59,6 +63,56 @@
                 </div>
             </div>
 
+
+            <div class="modal fade" id="report">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+
+                    <div class="modal-content modal-content-demo">
+                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('payments.search') }}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="modal-header">
+                            <h6 class="modal-title">Filter</h6>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" onclick="clearModalInputs()" class="btn btn-default btn-sm" style="background-color: #aaa">Clear Input</button>
+                                <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-2">
+                                <label>Range From</label>
+                                <input type="date" id="from" name="from" value="{{ old('from') ?? $from ?? '' }}" class="form-control">
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Range To</label>
+                                <input type="date" id="to" name="to" value="{{ old('to') ?? $to ?? '' }}" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Book title</label>
+                                <select name="book" id="book" class="form-control @error('book') is-invalid @enderror">
+                                    <option value="">Select book</option>
+                                    @foreach ($books as $book)
+                                        <option
+                                        @if ($book->id == $bk)
+                                            selected
+                                        @endif
+                                         value="{{ $book->id }}">{{ $book->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
 
             <div class="card-body">
                 <div class="table-responsive">

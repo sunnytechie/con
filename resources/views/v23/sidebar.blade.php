@@ -99,8 +99,8 @@
                                             <li><a href="{{ route('payments.index') }}" class="slide-item">Books</a></li>
                                             <li><a href="{{ route('purchase.studies.index') }}" class="slide-item">Devotionals</a></li>
                                             <li><a href="{{ route('purchased.cyc.index') }}" class="slide-item">CYC</a></li>
-                                            <li><a href="#" class="slide-item">BCP</a></li>
-                                            <li><a href="#" class="slide-item">Con Hymnals</a></li>
+                                            <li><a href="{{ route('report.bcp.purchase') }}" class="slide-item">BCP</a></li>
+                                            <li><a href="{{ route('report.hymnal.purchase') }}" class="slide-item">Con Hymnals</a></li>
                                         </ul>
                                     </div>
 

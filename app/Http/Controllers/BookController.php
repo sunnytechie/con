@@ -57,9 +57,12 @@ class BookController extends Controller
         //$file->move(public_path('pdf'), $fileName);
         //$filePath = public_path('pdf/' . $fileName);
         $randomString = Str::random(10); // Generates a random string of 10 characters
-        $fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
-        $filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
+        //$fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
+        //$filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
 
+        $pdf = $request->file('file');
+        $filePath = 'pdf/uploads/' . $randomString . $pdf->getClientOriginalName();
+        $pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
 
         //store image file in public/books/images
         $imagePath = request('image')->store('books/image', 'public');
@@ -130,8 +133,11 @@ class BookController extends Controller
         //update pdf file in public/books when file is changed or image is changed
         if ($request->hasFile('file')) {
             $randomString = Str::random(10); // Generates a random string of 10 characters
-            $fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
-            $filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
+            $pdf = $request->file('file');
+            $filePath = 'pdf/uploads/' . $randomString  . $pdf->getClientOriginalName();
+            $pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
+            //$fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
+            //$filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
             //$file = $request->file('file');
             //$fileName = time() . '_' . $file->getClientOriginalName();
             //$file->move(public_path('pdf'), $fileName);

@@ -117,7 +117,6 @@ Route::get('app/androidusers/{androiduser}/edit', [App\Http\Controllers\AndroidU
 Route::put('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'update'])->name('androidusers.update')->middleware('is_admin');
 Route::delete('app/androidusers/{androiduser}', [App\Http\Controllers\AndroidUsersController::class, 'destroy'])->name('androidusers.destroy')->middleware('is_admin');
 
-
 //Routes for CommentController
 Route::get('comments', [App\Http\Controllers\CommentController::class, 'index'])->name('comments.index')->middleware('is_admin');
 //destroy comment
@@ -130,6 +129,7 @@ Route::delete('comments/reported/{reportedcomment}', [App\Http\Controllers\Repor
 
 //Routes for MembershipController
 Route::get('memberships', [App\Http\Controllers\MembershipController::class, 'index'])->name('memberships.index')->middleware('is_admin');
+Route::post('memberships/search', [App\Http\Controllers\MembershipController::class, 'search'])->name('memberships.search')->middleware('is_admin');
 Route::get('memberships/create', [App\Http\Controllers\MembershipController::class, 'create'])->name('memberships.create')->middleware('is_admin');
 Route::post('memberships', [App\Http\Controllers\MembershipController::class, 'store'])->name('memberships.store')->middleware('is_admin');
 Route::get('memberships/{membership}', [App\Http\Controllers\MembershipController::class, 'show'])->name('memberships.show')->middleware('is_admin');
@@ -166,7 +166,7 @@ Route::post('books/sub/category', [App\Http\Controllers\BookSubCategoryControlle
 //Routes for DonationController
 Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index')->middleware('is_admin');
 //Search
-Route::get('donations/search', [App\Http\Controllers\DonationController::class, 'search'])->name('donations.search')->middleware('is_admin');
+Route::post('donations/search', [App\Http\Controllers\DonationController::class, 'search'])->name('donations.search')->middleware('is_admin');
 Route::get('donations/create', [App\Http\Controllers\DonationController::class, 'create'])->name('donations.create')->middleware('is_admin');
 Route::post('donations', [App\Http\Controllers\DonationController::class, 'store'])->name('donations.store')->middleware('is_admin');
 Route::get('donations/{donation}', [App\Http\Controllers\DonationController::class, 'show'])->name('donations.show')->middleware('is_admin');
@@ -177,7 +177,7 @@ Route::delete('donations/destroy/{donation}', [App\Http\Controllers\DonationCont
 //Routes for PaymentController
 Route::get('payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index')->middleware('is_admin');
 //search
-Route::get('payments/search', [App\Http\Controllers\PaymentController::class, 'search'])->name('payments.search')->middleware('is_admin');
+Route::post('payments/search', [App\Http\Controllers\PaymentController::class, 'search'])->name('payments.search')->middleware('is_admin');
 //rangeSearch
 Route::post('payments/range/search', [App\Http\Controllers\PaymentController::class, 'rangeSearch'])->name('payments.rangeSearch')->middleware('is_admin');
 Route::get('payments/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payments.create')->middleware('is_admin');
@@ -195,8 +195,9 @@ Route::get('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudy
 Route::get('purchase/study/{purchaseStudy}/edit', [App\Http\Controllers\PurchaseStudyController::class, 'edit'])->name('purchase.studies.edit')->middleware('is_admin');
 Route::put('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudyController::class, 'update'])->name('purchase.studies.update')->middleware('is_admin');
 Route::delete('purchase/study/{purchaseStudy}', [App\Http\Controllers\PurchaseStudyController::class, 'destroy'])->name('purchase.studies.destroy')->middleware('is_admin');
+
 //search
-Route::get('purchase/studies/search', [App\Http\Controllers\PurchaseStudyController::class, 'search'])->name('purchase.studies.search')->middleware('is_admin');
+Route::post('purchase/studies/search', [App\Http\Controllers\PurchaseStudyController::class, 'search'])->name('purchase.studies.search')->middleware('is_admin');
 //rangeSearch
 Route::post('purchase/studies/range/search', [App\Http\Controllers\PurchaseStudyController::class, 'rangeSearch'])->name('purchase.studies.rangeSearch')->middleware('is_admin');
 
@@ -362,5 +363,8 @@ Route::post('hymnal/store', [App\Http\Controllers\HymnalController::class, 'stor
 Route::get('hymnal/edit/{id}', [App\Http\Controllers\HymnalController::class, 'edit'])->name('hymnal.edit')->middleware('is_admin');
 Route::put('hymnal/update/{id}', [App\Http\Controllers\HymnalController::class, 'update'])->name('hymnal.update')->middleware('is_admin');
 Route::delete('hymnal/destroy/{id}', [App\Http\Controllers\HymnalController::class, 'destroy'])->name('hymnal.destroy')->middleware('is_admin');
+
+Route::get('report/purchase/bcp', [App\Http\Controllers\ReportPurchaseController::class, 'bcp'])->name('report.bcp.purchase')->middleware('is_admin');
+Route::get('report/purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'hymnal'])->name('report.hymnal.purchase')->middleware('is_admin');
 
 });

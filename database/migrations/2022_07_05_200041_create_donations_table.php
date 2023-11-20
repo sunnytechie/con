@@ -22,8 +22,8 @@ return new class extends Migration
             $table->text('reason')->nullable();
             $table->string('method')->nullable();
             $table->string('reference')->nullable();
-            $table->string('province')->nullable();
-            $table->string('diocese')->nullable();
+            //$table->string('province')->nullable();
+            //$table->string('diocese')->nullable();
             $table->boolean('deleted')->default(false);
             $table->timestamps();
         });

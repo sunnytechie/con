@@ -6,9 +6,67 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title">Memberships</h3>
+                <h3 class="card-title">{{ $memberships->count() }} - Memberships</h3>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-default modal-effect" href="#report" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-filter px-2" aria-hidden="true"></i></span> Filter Report </a>
+                </div>
             </div>
 
+            <div class="modal fade" id="report">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+
+                    <div class="modal-content modal-content-demo">
+                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('memberships.search') }}" enctype="multipart/form-data">
+                            @csrf
+                        <div class="modal-header">
+                            <h6 class="modal-title">Filter</h6>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" onclick="clearModalInputs()" class="btn btn-default btn-sm" style="background-color: #aaa">Clear Input</button>
+                                <button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="mb-2">
+                                <label>Province</label>
+                                <select name="province" id="province" class="form-control">
+                                    <option value="" selected>Select</option>
+                                    @foreach ($provinces as $province)
+                                    <option
+                                    @if ($province->id == $prov)
+                                    selected
+                                    @endif
+                                    value="{{ $province->id }}">{{ $province->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-12">
+                                <label for="diocese">Diocese</label>
+                                <select name="diocese" id="diocese" class="form-control">
+                                    <option value="" selected>Select</option>
+                                    @foreach ($dioceses as $diocese)
+                                    <option
+                                    @if ($diocese->id == $dio)
+                                    selected
+                                    @endif
+                                     value="{{ $diocese->id }}">{{ $diocese->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="card-body">

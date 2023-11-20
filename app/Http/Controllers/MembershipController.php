@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diocese;
 use App\Models\Membership;
+use App\Models\Province;
 use Illuminate\Http\Request;
 
 class MembershipController extends Controller
@@ -14,10 +16,41 @@ class MembershipController extends Controller
      */
     public function index(Request $request)
     {
-        $title = "Memberships";
-            $memberships = Membership::orderBy('id', 'desc')->get();
+        $title = "Registered Memberships";
+        $memberships = Membership::orderBy('id', 'desc')->get();
 
-        return view('membership.index', compact('memberships'));
+        $provinces = Province::all();
+        $dioceses = Diocese::all();
+
+        $dio = $request->diocese;
+        $prov = $request->province;
+
+        return view('membership.index', compact('memberships', 'title', 'provinces', 'dioceses', 'dio', 'prov',));
+
+    }
+
+    public function search(Request $request)
+    {
+        //dd($request->all());
+        $title = "Filtered Memberships Result ";
+        if ($request->has('province') && $request->has('to') && $request->has('diocese')) {
+            $memberships = Membership::orderBy('id', 'desc')
+                ->where('diocease', $request->diocese)
+                ->where('province', $request->province)
+                ->get();
+        }
+        else {
+            $memberships = Membership::orderBy('id', 'desc')->get();
+        }
+
+
+        $provinces = Province::all();
+        $dioceses = Diocese::all();
+
+        $dio = $request->diocese;
+        $prov = $request->province;
+
+        return view('membership.index', compact('memberships', 'title', 'provinces', 'dioceses', 'dio', 'prov',));
 
     }
 

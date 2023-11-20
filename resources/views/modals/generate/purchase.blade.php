@@ -8,7 +8,7 @@
 				<h5>Generate Report on table</h5>
 			</div>
 			<div style="text-align: left" class="modal-body">
-				
+
                   	<div class="mb-2">
 						<label>Range From</label>
                     	<input type="date" id="from" name="from" class="form-control" required>
@@ -28,13 +28,15 @@
                                 <option value="{{ $book->title }}">{{ $book->title }}</option>
                             @endforeach
                         </select>
-    
+
                         @error('book_title')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+
+
 			</div>
 			<div class="modal-footer justify-content-center">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -43,4 +45,4 @@
 		</div>
         </form>
 	</div>
-</div> 
+</div>

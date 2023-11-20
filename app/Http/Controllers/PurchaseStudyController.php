@@ -11,57 +11,42 @@ use Illuminate\Support\Facades\Auth;
 class PurchaseStudyController extends Controller
 {
     //index for purchase study
-    public function index()
+    public function index(Request $request)
     {
         //studies
         $studies = Study::all();
-        $title = "Devotionals Purchases report";
-        //purchased books
-        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->orderBy('id', 'desc')->get();
+        $title = "Devotionals Purchases report.";
 
-        return view('purchase.index', compact('studies', 'purchasedstudies', 'title'));
+        //purchased books
+        $purchasedstudies = Purchasedstudy::orderBy('id', 'desc')->get();
+
+        $sk = $request->study_id;
+
+        return view('purchase.index', compact('studies', 'purchasedstudies', 'title', 'sk'));
     }
 
     //search for purchase study
     public function search(Request $request)
     {
-        $output = "";
+        //dd($request->all());
+        $studies = Study::all();
+        $title = "Filtered Results";
 
-        $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->where('email', 'like', '%' . $request->search . '%')
-            ->orWhere('transaction_ref', 'like', '%' . $request->search . '%')
-            ->orWhere('price', 'like', '%' . $request->search . '%')
-            ->orWhere('study_title', 'like', '%' . $request->search . '%')
-            ->orWhere('payment_status', 'like', '%' . $request->search . '%')
-            ->paginate(10);
-
-        foreach ($purchasedstudies as $key => $purchasedstudy) {
-            //key is the index of the array and starts from 1
-            $key = $key + 1;
-            $output.=
-                '<tr>
-                    <td>'.$key.'</td>
-                    <td>'.$purchasedstudy->study_title.'</td>
-                    <td>'.$purchasedstudy->email.'</td>
-                    <td>'.$purchasedstudy->price.'</td>
-                    <td>'.$purchasedstudy->transaction_ref.'</td>
-                    <td>'.$purchasedstudy->created_at.'</td>
-                    <td class="align-middle">
-                    <div class="btn-group" role="group" aria-label="Button group">
-
-                    <form action="/purchase/study/'.$purchasedstudy->id.'" method="post">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="'.csrf_token().'">
-                        <button type="submit" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" onclick="
-                            return confirm(\'Are you sure you want to delete this record?\')">
-                        <i class="fa fa-trash text-xs"></i>
-                        </button>
-            </form>
-
-                    </div>
-                  </td>
-                </tr>';
+        if ($request->has('from') && $request->has('to') && $request->has('book')) {
+            $donations = $purchasedBooks = Purchasedstudy::orderBy('id', 'desc')
+                ->whereBetween('created_at', [$request->from, $request->to])
+                ->where('type', $request->study)
+                ->get();
         }
-        return $output;
+        else {
+            $purchasedstudies = Purchasedstudy::orderBy('id', 'DESC')->orderBy('id', 'desc')->get();
+        }
+
+        $from = $request->from;
+        $to = $request->to;
+        $sk = $request->study_id;
+
+        return view('purchase.index', compact('studies', 'purchasedstudies', 'title', 'sk'));
     }
 
     public function rangeSearch(Request $request) {

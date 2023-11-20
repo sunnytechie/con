@@ -195,6 +195,20 @@
         createClassicEditor('#editor9');
     </script>
 
+    <script>
+        function clearModalInputs() {
+      // Get all form elements
+      var formElements = document.querySelectorAll('form input, form select, form textarea');
+
+      // Loop through each form element and set its value to an empty string
+      formElements.forEach(function(element) {
+        if (element.type !== 'submit') { // Exclude submit buttons from being cleared
+          element.value = '';
+        }
+      });
+    }
+    </script>
+
 
     <!-- JQUERY JS -->
     <script src="{{ asset('v23/assets/js/jquery.min.js') }}"></script>
