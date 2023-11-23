@@ -50,6 +50,8 @@ class GoogleLoginController extends Controller
 
             //check user in memebership
             $membership = Membership::where('user_id', $user->id)->first();
+            
+            $user = User::find($user->id);
 
             //if user exists
             if ($membership) {
@@ -104,6 +106,8 @@ class GoogleLoginController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         $user->remember_token = $token;
         $user->save();
+
+        $user = User::find($user->id);
 
         //return response
         return response()->json([

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -41,26 +41,26 @@
                       <td>
                         <p class="text-sm font-weight-bold mb-0">Pushed {{ Carbon\Carbon::parse($notification->created_at)->format('d-m-Y') }}</p>
                       </td>
-                      
+
                       <td class="align-middle">
                         <div class="btn-group" role="group" aria-label="Button group">
-                          
+
                           <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('notifications.edit', $notification->id) }}">
                             <i class="fa fa-pencil text-xs"></i>
                           </a>
-                                    
+
                           <form method="post" action="{{ route('notifications.destroy', $notification->id) }}">
                             @method('delete')
                             @csrf
                             <button type="submit" onclick="return confirm('Are you sure you want to delete this notifcation?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                          </form> 
-                        
+                          </form>
+
                         </div>
                       </td>
                     </tr>
                     @endforeach
-                    
-                   
+
+
                   </tbody>
                 </table>
               </div>
@@ -69,6 +69,5 @@
         </div>
       </div>
 
-    @include('footer.nonguest')
   </div>
 @endsection
