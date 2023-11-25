@@ -1,73 +1,56 @@
 @extends('layouts.v23')
-
 @section('content')
-<div class="container-fluid py-4">
 
-    <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header d-flex justify-content-between pb-0">
-              <h6>Sent Notifications</h6>
-              <a href="{{ route('notifications.create') }}" class="btn btn-default" type="button"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Compose </a>
+ <!-- Row -->
+ <div class="row row-sm">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title">Notifications</h3>
+                <a class="btn btn-default" href="{{ route('notifications.create') }}" data-bs-effect="effect-scale"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Compose </a>
             </div>
-            @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                        <thead>
+                            <tr>
+                                <th class="class="wd-25 border-bottom-0 ps-2">ID</th>
+                                <th class="class="wd-25 border-bottom-0 ps-2">Title</th>
+                                <th class="class="wd-25 border-bottom-0 ps-2">Pushed At</th>
+                                <th class="class="wd-25 border-bottom-0 ps-2 ps-2">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($notifications as $notification)
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $notification->title }} </td>
+                                <td>{{ Carbon\Carbon::parse($notification->created_at)->format('d-m-Y') }} </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <form style="margin: 0; padding: 0" method="post" action="{{ route('notifications.destroy', $notification->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fe fe-trash"></i> Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
                 </div>
-            @endif
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center justify-content-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pushed at</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($notifications as $notification)
-                        <tr>
-                        <td class="text-left px-4">
-                            <span class="text-xs font-weight-bold">1</span>
-                        </td>
-                        <td>
-                          <p class="text-sm font-weight-bold mb-0">{{ $notification->title }}</p>
-                        </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">Pushed {{ Carbon\Carbon::parse($notification->created_at)->format('d-m-Y') }}</p>
-                      </td>
-
-                      <td class="align-middle">
-                        <div class="btn-group" role="group" aria-label="Button group">
-
-                          <a class="shadow border-radius-md bg-white btn btn-link text-secondary m-2" href="{{ route('notifications.edit', $notification->id) }}">
-                            <i class="fa fa-pencil text-xs"></i>
-                          </a>
-
-                          <form method="post" action="{{ route('notifications.destroy', $notification->id) }}">
-                            @method('delete')
-                            @csrf
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this notifcation?')" class="shadow border-radius-md bg-white btn btn-link text-secondary m-2"><i class="fa fa-trash text-xs"></i></button>
-                          </form>
-
-                        </div>
-                      </td>
-                    </tr>
-                    @endforeach
-
-
-                  </tbody>
-                </table>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+<!-- End Row -->
 
-  </div>
 @endsection
+

@@ -11,7 +11,7 @@
             </a>
             <!-- LOGO -->
             <div class="main-header-center ms-3 d-none d-lg-block">
-                Welcome to CONAIO
+                Welcome to CONAIO Administration
             </div>
             <div class="d-flex order-lg-2 ms-auto header-right-icons">
                 <!-- Button -->

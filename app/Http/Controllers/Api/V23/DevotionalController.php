@@ -2,35 +2,73 @@
 
 namespace App\Http\Controllers\Api\v23;
 
+use App\Models\User;
 use App\Models\Study;
 use Illuminate\Http\Request;
+use App\Models\Purchasedstudy;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class DevotionalController extends Controller
 {
-    public function yearsListingPrice() {
-        //public function yearsListingPrice($study_id, $user_id) {
-        //find the user in the purchasedstudy table
+    public function yearsListingPrice($user_id, $study_id) {
+        $user = User::find($user_id);
+        if(!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+            ], 404);
+        }
 
         $currentYear = Carbon::now()->year;
         $yearsWithData = [];
 
         for ($year = 2020; $year <= $currentYear; $year++) {
+            $status = Purchasedstudy::where('email', $user->email)
+                ->where('study_id', $study_id)
+                ->where('valid_year', $year)
+                ->first();
+
+            $access = $status ? true : false;
+
             $yearsWithData[] = [
                 'year' => $year,
+                'access' => $access,
                 'price' => 500
             ];
         }
 
-        //reverse the array
+        // Reverse the array
         $yearsWithData = array_reverse($yearsWithData);
 
         return response()->json([
             'status' => true,
             'data' => $yearsWithData
         ], 200);
+
+
+        //find the user in the purchasedstudy table
+        ////$status = Purchasedstudy::where('email', $user->email)->where('study_id', $study_id)->where('valid_year', $year)->first();
+
+        ////$currentYear = Carbon::now()->year;
+        ////$yearsWithData = [];
+
+        ////for ($year = 2020; $year <= $currentYear; $year++) {
+        ////    $yearsWithData[] = [
+        ////        'year' => $year,
+                //'access' => true or false
+        ////        'price' => 500
+        ////    ];
+        ////}
+
+        //reverse the array
+        ////$yearsWithData = array_reverse($yearsWithData);
+
+        ////return response()->json([
+        ////    'status' => true,
+        ////    'data' => $yearsWithData
+        ////], 200);
     }
 
     //bible study

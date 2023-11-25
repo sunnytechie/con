@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.v23')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -9,23 +9,16 @@
             <div class="card-header d-flex justify-content-between pb-0">
               <h6>Compose Notification</h6>
             </div>
-            @if (session('success'))
-                <div style="position: absolute; right: 30px; top: 20px" class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ session('success') }}</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-            @endif
+
             <div class="card-body px-3 pt-0 pb-2">
-              
+
                 <form method="POST" action="{{ route('notifications.store') }}">
                     @csrf
 
                     <div class="form-group">
-                        <label for="title">Tile</label>
-                        <input type="text" placeholder="Give the push notification a title" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
-      
+                        <label for="title">Title</label>
+                        <input type="text" placeholder="Your notification title" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
+
                         @error('title')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -35,8 +28,8 @@
 
                     <div class="form-group">
                         <label for="details">Body</label>
-                        <textarea class="form-control @error('details') is-invalid @enderror" id="myeditorinstance" name="details" rows="3">Write here...</textarea>
-      
+                        <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" placeholder="Write here..." rows="3"></textarea>
+
                         @error('details')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
@@ -47,7 +40,7 @@
                       <a href="{{ route('notifications.index') }}" type="submit" class="btn btn-primary">Return Back</a>
                       <button type="submit" class="btn btn-success">Publish</button>
                     </div>
-                    
+
                 </form>
 
             </div>

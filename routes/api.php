@@ -263,7 +263,7 @@ Route::middleware('bearer')->group(function () {
     Route::get('/v23/hymnals/aceess/user/{user_id}', [App\Http\Controllers\Api\V23\HymnalsController::class, 'checkAccess']);
 
     //Devotional year listing price
-    Route::get('/v23/devotional/year/listing/price', [App\Http\Controllers\Api\V23\DevotionalController::class, 'yearsListingPrice']);
+    Route::get('/v23/devotional/year/listing/price/{user_id}', [App\Http\Controllers\Api\V23\DevotionalController::class, 'yearsListingPrice']);
 
     //bible study
     Route::post('/v23/devotional/biblestudy', [App\Http\Controllers\Api\V23\DevotionalController::class, 'bibleStudy']);
@@ -307,7 +307,7 @@ Route::middleware('bearer')->group(function () {
     //checkBookSubscription
     Route::get('/v23/check/book/subscription/{user_id}/{book_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkBookSubscription']);
     //checkStudySubscription
-    Route::post('/v23/check/study/subscription/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkStudySubscription']);
+    Route::post('/v23/check/study/subscription/{user_id}/{study_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkStudySubscription']);
     //checkBcpSubscription
     Route::get('/v23/check/bcp/subscription/{user_id}', [App\Http\Controllers\Api\V23\SubscribeController::class, 'checkBcpSubscription']);
     //checkCycSubscription
