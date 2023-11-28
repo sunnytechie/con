@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class Dbase
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role == "admin") {
+        if (auth()->user()->role == "db" || auth()->user()->role == "admin") {
             return $next($request);
         }
         return redirect('notAuthorized')->with('error', 'You are not authorized to access this page.');

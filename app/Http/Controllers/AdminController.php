@@ -18,6 +18,7 @@ class AdminController extends Controller
     //store admin
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -33,7 +34,7 @@ class AdminController extends Controller
         $admin->email_verified_at = now();
         $admin->password = bcrypt($request->password);
         $admin->save();
-        
+
         return back()->with('success', 'Account created successfully');
     }
 

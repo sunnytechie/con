@@ -66,5 +66,8 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'bearer' => \App\Http\Middleware\Bearer::class,
         'token' => \App\Http\Middleware\Token::class,
+        'isDataBase' => \App\Http\Middleware\Dbase::class,
+        'isICT' => \App\Http\Middleware\Ict::class,
+        'isFinance' => \App\Http\Middleware\Finance::class,
     ];
 }
