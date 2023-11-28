@@ -87,26 +87,27 @@
 							@enderror
 					</div>
 
-					<div class="mb-3">
-						<label>Province</label>
-						<input type="text" id="province" name="province" class="form-control @error('province') is-invalid @enderror" value="{{ old('province') }}" placeholder="province" required>
-							@error('province')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-							@enderror
-					</div>
+					<div class="mb-2">
+                        <label>Province</label>
+                        <select name="province" id="province" class="form-control">
+                            <option selected>Select</option>
+                            @foreach ($provinces as $province)
+                            <option
+                            value="{{ $province->id }}">{{ $province->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-
-					<div class="mb-3">
-						<label>Diocese</label>
-						<input type="text" id="diocese" name="diocese" class="form-control @error('diocese') is-invalid @enderror" value="{{ old('diocese') }}" placeholder="diocese" required>
-							@error('diocese')
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $message }}</strong>
-								</span>
-							@enderror
-					</div>
+                    <div class="mb-12">
+                        <label for="diocese">Diocese</label>
+                        <select name="diocese" id="diocese" class="form-control">
+                            <option selected>Select</option>
+                            @foreach ($dioceses as $diocese)
+                            <option
+                             value="{{ $diocese->id }}">{{ $diocese->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
 					<div class="mb-3">
 						<label>Reason</label>

@@ -365,6 +365,9 @@ Route::put('hymnal/update/{id}', [App\Http\Controllers\HymnalController::class, 
 Route::delete('hymnal/destroy/{id}', [App\Http\Controllers\HymnalController::class, 'destroy'])->name('hymnal.destroy')->middleware('is_admin');
 
 Route::get('report/purchase/bcp', [App\Http\Controllers\ReportPurchaseController::class, 'bcp'])->name('report.bcp.purchase')->middleware('is_admin');
+Route::post('purchase/bcp', [App\Http\Controllers\ReportPurchaseController::class, 'storePurchasedBcp'])->name('store.bcp.purchase')->middleware('is_admin');
+
 Route::get('report/purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'hymnal'])->name('report.hymnal.purchase')->middleware('is_admin');
+Route::post('purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'purchaseHymnal'])->name('store.hymnal.purchase')->middleware('is_admin');
 
 });

@@ -39,26 +39,21 @@ class PurchasedCycController extends Controller
      */
     public function store(Request $request)
     {
-        //validate request
-        //validate
+        
         $request->validate([
             'email' => 'required|email',
             'price' => 'required',
-            'cyc_id' => 'required',
         ]);
 
-        $cyc_id = $request->cyc_id;
-        $cyc = Cyc::find($cyc_id);
-        $cycTitle = $cyc->cyc_title;
-        $cycYear = $cyc->cyc_year;
 
         $purchasedCyc = new Purchasecyc();
         $purchasedCyc->email = $request->email;
-        $purchasedCyc->cyc_id = $request->cyc_id;
         $purchasedCyc->price = $request->price;
-        $purchasedCyc->cyc_title = $cycTitle;
-        $purchasedCyc->cyc_year = $cycYear;
-        $purchasedCyc->payment_status = 'Paid';
+        $purchasedCyc->transaction_ref = "Manual Payment";
+        $purchasedCyc->payment_status = 'success';
+        $purchasedCyc->cyc_id = 'nil'; //not needed
+        $purchasedCyc->cyc_title = 'nil'; //not needed
+        $purchasedCyc->cyc_year = 'nil'; //not needed
         $purchasedCyc->save();
 
         return redirect()->route('purchased.cyc.index')->with('success', 'New CYC purchased successfully');

@@ -163,7 +163,7 @@ class HymnalsController extends Controller
             ], 404);
         }
 
-        //check if $user-email exists with bcp_id in purchased_bcps table
+        ////check if $user-email exists with bcp_id in purchased_bcps table
         $purchasedBcp = new Hymnalpurchase(); ////If an error happens just recreate another model for this.
         $purchasedBcp->email = $user->email;
         $purchasedBcp->price = $request->price;

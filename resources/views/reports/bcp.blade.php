@@ -7,19 +7,19 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">BCP Puchased Report</h3>
-                {{-- <a class="btn btn-default modal-effect" href="#newPurchase" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </a> --}}
+                <a class="btn btn-default modal-effect" href="#newPurchase" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </a>
             </div>
 
             <!-- MODAL EFFECTS -->
-            {{-- <div class="modal fade" id="newPurchase">
+            <div class="modal fade" id="newPurchase">
 
                 <div class="modal-dialog modal-dialog-centered" role="document">
 
                     <div class="modal-content modal-content-demo">
-                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('purchased.cyc.store') }}" enctype="multipart/form-data">
+                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('store.bcp.purchase') }}" enctype="multipart/form-data">
                             @csrf
                         <div class="modal-header">
-                            <h6 class="modal-title">Manual book purchase</h6><button type="button"aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title">Manual purchase</h6><button type="button"aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
@@ -36,7 +36,7 @@
 
                             <div class="mb-3">
                                 <label>Price</label>
-                                <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="3000" required>
+                                <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="1500" required>
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
                     </form>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
 
             <div class="card-body">
