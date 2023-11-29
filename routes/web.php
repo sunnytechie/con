@@ -111,7 +111,7 @@ Route::middleware('auth', 'isICT')->group(function () {
     Route::post('notifications/push', [App\Http\Controllers\PushNotificationController::class, 'push'])->name('notifications.push');
 });
 
-Route::middleware('auth', 'db')->group(function () {
+Route::middleware('auth', 'isDataBase')->group(function () {
     //Routes for AndroidUsersController
     Route::get('app/androidusers', [App\Http\Controllers\AndroidUsersController::class, 'index'])->name('androidusers.index');
     //search for android users
@@ -134,7 +134,7 @@ Route::middleware('auth', 'db')->group(function () {
     //destroy reported comment
     Route::delete('comments/reported/{reportedcomment}', [App\Http\Controllers\ReportedCommentController::class, 'destroy'])->name('reportedcomments.destroy');
 
-Route::middleware('auth', 'db')->group(function () {
+Route::middleware('auth', 'isDataBase')->group(function () {
     //Routes for MembershipController
     Route::get('memberships', [App\Http\Controllers\MembershipController::class, 'index'])->name('memberships.index');
     Route::post('memberships/search', [App\Http\Controllers\MembershipController::class, 'search'])->name('memberships.search');
@@ -148,7 +148,7 @@ Route::middleware('auth', 'db')->group(function () {
     Route::get('memberships/export', [App\Http\Controllers\MembershipController::class, 'export'])->name('memberships.export');
 });
 
-Route::middleware('auth', 'ict')->group(function () {
+Route::middleware('auth', 'isICT')->group(function () {
     //Routes for BookController
     Route::get('books', [App\Http\Controllers\BookController::class, 'index'])->name('books.index');
     Route::get('books/create', [App\Http\Controllers\BookController::class, 'create'])->name('books.create');
@@ -174,7 +174,7 @@ Route::middleware('auth', 'ict')->group(function () {
     Route::post('books/sub/category', [App\Http\Controllers\BookSubCategoryController::class, 'store'])->name('books.sub.categories.store');
 });
 
-Route::middleware('auth', 'finance')->group(function () {
+Route::middleware('auth', 'isFinance')->group(function () {
     //Routes for DonationController
     Route::get('donations', [App\Http\Controllers\DonationController::class, 'index'])->name('donations.index');
     //Search
@@ -214,7 +214,7 @@ Route::middleware('auth', 'finance')->group(function () {
     Route::post('purchase/studies/range/search', [App\Http\Controllers\PurchaseStudyController::class, 'rangeSearch'])->name('purchase.studies.rangeSearch');
 });
 
-Route::middleware('auth', 'db')->group(function () {
+Route::middleware('auth', 'isDataBase')->group(function () {
     //Routes for TestimonyController
     Route::get('testimonies', [App\Http\Controllers\TestimonyController::class, 'index'])->name('testimonies.index');
 
@@ -270,7 +270,7 @@ Route::middleware('auth', 'is_admin')->group(function () {
     Route::delete('admin/{admin}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
-Route::middleware('auth', 'ict')->group(function () {
+Route::middleware('auth', 'isICT')->group(function () {
     //Routes to edit and update settings
     Route::get('settings', [App\Http\Controllers\SettingsController::class, 'edit'])->name('settings.index');
     Route::put('settings/{id}', [App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
@@ -280,7 +280,7 @@ Route::middleware('auth', 'ict')->group(function () {
     Route::put('stream/{id}', [App\Http\Controllers\StreamController::class, 'update'])->name('stream.update');
 });
 
-Route::middleware('auth', 'ict')->group(function () {
+Route::middleware('auth', 'isICT')->group(function () {
     //Routes recources for StudyController
     Route::resource('studies', StudyController::class);
 
@@ -373,7 +373,7 @@ Route::middleware('auth', 'ict')->group(function () {
     //Membership
     Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export');
 
-Route::middleware('auth', 'ict')->group(function () {
+Route::middleware('auth', 'isICT')->group(function () {
     //kidzone
     Route::get('kidzone', [App\Http\Controllers\KidZoneController::class, 'index'])->name('kidzone.index');
     Route::post('kidzone/store', [App\Http\Controllers\KidZoneController::class, 'store'])->name('kidzone.store');
@@ -388,7 +388,7 @@ Route::middleware('auth', 'ict')->group(function () {
     Route::delete('hymnal/destroy/{id}', [App\Http\Controllers\HymnalController::class, 'destroy'])->name('hymnal.destroy');
 });
 
-Route::middleware('auth', 'finance')->group(function () {
+Route::middleware('auth', 'isFinance')->group(function () {
     Route::get('report/purchase/bcp', [App\Http\Controllers\ReportPurchaseController::class, 'bcp'])->name('report.bcp.purchase');
     Route::post('purchase/bcp', [App\Http\Controllers\ReportPurchaseController::class, 'storePurchasedBcp'])->name('store.bcp.purchase');
 
