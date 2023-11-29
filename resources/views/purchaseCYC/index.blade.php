@@ -63,10 +63,10 @@
 
                                 <th class="class="wd-25 border-bottom-0 ps-2">ID</th>
                                 <th class="class="wd-25 border-bottom-0 ps-2">Email</th>
-                                <th class="class="wd-25 border-bottom-0 ps-2">Title</th>
-                                <th class="class="wd-25 border-bottom-0 ps-2">Year</th>
                                 <th class="class="wd-25 border-bottom-0 ps-2">Transaction Ref</th>
                                 <th class="class="wd-25 border-bottom-0 ps-2 ps-2">Purchased time</th>
+                                <th class="class="wd-25 border-bottom-0 ps-2 ps-2">Option</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -77,8 +77,6 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->email }} </td>
-                                <td>{{ $item->cyc_title }} </td>
-                                <td>{{ $item->cyc_year }} </td>
                                 <td>{{ $item->transaction_ref }} </td>
                                 <td>{{ $item->created_at->diffForHumans() }} </td>
                                 <td>
