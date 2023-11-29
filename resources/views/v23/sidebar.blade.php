@@ -20,7 +20,7 @@
                 <li class="sub-category">
                     <h3>Main</h3>
                 </li>
-                
+
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                 </li>
@@ -328,7 +328,9 @@
                                         <div class="tab-pane active" id="side1">
                                             <ul class="sidemenu-list">
                                                 <li class="side-menu-label1"><a href="javascript:void(0)">settings</a></li>
+                                                @if (Auth::user()->role == "admin")
                                                 <li><a href="{{ route('admin.index') }}" class="slide-item">Admin</a></li>
+                                                @endif
                                                 <li><a href="{{ route('settings.index') }}" class="slide-item">Keys</a></li>
                                                 <li><a href="{{ route('stream.index') }}" class="slide-item">Livestream</a></li>
                                             </ul>

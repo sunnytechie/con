@@ -22,10 +22,6 @@
                         @enderror
                 </div>
 
-                {{-- Hide is_admin --}}
-                <input type="hidden" name="is_admin" value="1">
-
-
                 <div class="mb-3">
                     <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter email" required>
 

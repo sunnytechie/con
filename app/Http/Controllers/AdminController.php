@@ -18,19 +18,31 @@ class AdminController extends Controller
     //store admin
     public function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'role' => 'required',
-            'is_admin' => 'required',
             'password' => 'required|min:6',
         ]);
+
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role = $request->role;
+            $user->is_admin = 1;
+            $user->email_verified_at = now();
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            return back()->with('success', 'Account created successfully');
+        }
+
         $admin = new User;
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->role = $request->role;
-        $admin->is_admin = $request->is_admin;
+        $admin->is_admin = 1;
         $admin->email_verified_at = now();
         $admin->password = bcrypt($request->password);
         $admin->save();
@@ -60,7 +72,7 @@ class AdminController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'role' => 'required',
-            'password' => '',
+            'password' => 'nullable',
         ]);
         $admin = User::find($id);
         $admin->name = $request->name;

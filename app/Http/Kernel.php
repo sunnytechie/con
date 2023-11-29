@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'isDataBase' => \App\Http\Middleware\Dbase::class,
         'isICT' => \App\Http\Middleware\Ict::class,
         'isFinance' => \App\Http\Middleware\Finance::class,
+        'is_all_admin' => \App\Http\Middleware\Alladmins::class,
     ];
 }
