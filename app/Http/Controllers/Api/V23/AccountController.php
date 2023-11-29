@@ -45,6 +45,8 @@ class AccountController extends Controller
             ]);
         }
 
+        $token = $user->remember_token;
+
         $membership = Membership::where('user_id', $user_id)->first();
         if ($membership) {
             $member_diocese = $membership->diocease;
@@ -58,21 +60,25 @@ class AccountController extends Controller
             if (!$province) {
                 $province = "Nil";
             } else { $province = $province->name; }
-            
+
             return response()->json([
                 'status' => true,
+                'membership' => true,
                 'diocese' => $diocese,
                 'province' => $province,
+                'membership_data' => $membership,
+                'message' => 'Login Success',
                 'user' => $user,
-                'membership' => true,
-                'membership' => $membership,
+                'token' => $token
             ]);
         }
 
         return response()->json([
-            'membership' => false,
             'status' => true,
+            'membership' => false,
+            'message' => 'Login Success',
             'user' => $user,
+            'token' => $token
         ]);
 
     }
