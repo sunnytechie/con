@@ -317,14 +317,15 @@ class SubscribeController extends Controller
         if($status) {
             return response()->json([
                 'status' => true,
-                'message' => 'Subscribed',
+                'access' => true,
             ], 200);
         } else {
             return response()->json([
-                'status' => false,
-                'message' => 'Not subscribed',
+                'status' => true,
+                'access' => false,
             ], 404);
         }
+
     }
 
     //check if user is subscribed to cyc
@@ -343,12 +344,12 @@ class SubscribeController extends Controller
         if($status) {
             return response()->json([
                 'status' => true,
-                'message' => 'Subscribed',
+                'access' => true,
             ], 200);
         } else {
             return response()->json([
-                'status' => false,
-                'message' => 'Not subscribed',
+                'status' => true,
+                'access' => false,
             ], 404);
         }
     }
