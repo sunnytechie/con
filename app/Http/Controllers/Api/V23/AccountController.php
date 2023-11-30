@@ -58,8 +58,8 @@ class AccountController extends Controller
                 $diocese_id = "Nil";
             }
             else {
-                $diocese = $diocese->name;
                 $diocese_id = $diocese->id;
+                $diocese = $diocese->name;
              }
             $province = Province::where('id', $member_province)->first();
             if (!$province) {
@@ -67,8 +67,8 @@ class AccountController extends Controller
                 $province_id = "Nil";
             }
             else {
-                $province = $province->name;
                 $province_id = $province->id;
+                $province = $province->name;
             }
 
             return response()->json([
