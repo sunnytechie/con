@@ -12,8 +12,8 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label>Title</label>
-                    <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Enter title" required>
+                    <label>Diocese</label>
+                    <input type="title" id="title" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="Diocese Name" value="Diocese of " required>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                 </div> --}}
 
                 <div class="mb-3">
-                    <label>Subcategory</label>
+                    <label>ECCLESIASTICAL PROVINCE</label>
                     <select name="subcategory_id" id="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror" required>
                         <option value="" disabled>Select Subcategory</option>
                         @foreach ($subcategories as $subcategory)
