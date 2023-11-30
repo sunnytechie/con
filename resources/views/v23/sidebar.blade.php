@@ -178,6 +178,37 @@
 
 
                 @if (Auth::user()->role == "ict" || Auth::user()->role == "admin")
+                    {{-- #### Start ##### --}}
+                    <li class="sub-category">
+                        <h3>Notification</h3>
+                    </li>
+
+                    <li class="slide">
+                        <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                            <i class="side-menu__icon fe fe-message-square"></i><span class="side-menu__label">Push Notification</span><i class="angle fe fe-chevron-right"></i>
+                        </a>
+
+                        <ul class="slide-menu">
+                            <li class="panel sidetab-menu">
+
+                                <div class="panel-body tabs-menu-body p-0 border-0">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="side1">
+                                            <ul class="sidemenu-list">
+                                                <li class="side-menu-label1"><a href="javascript:void(0)">Push</a></li>
+                                                <li><a href="{{ route('notifications.index') }}" class="slide-item">Push</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+
+                @if (Auth::user()->role == "ict" || Auth::user()->role == "admin")
                     {{-- #### Media Start ##### --}}
                     <li class="sub-category">
                         <h3>Media</h3>

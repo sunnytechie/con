@@ -40,18 +40,26 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         //validation request
         $request->validate([
             'title' => 'required',
             'details' => 'required',
         ]);
 
-        dd($request->all());
+        //dd($request->all());
 
         $notification = New Notification;
         $notification->title = $request->title;
         $notification->details = $request->details;
         $notification->save();
+
+        $apiKey = getenv('API_NOTIFICATION_KEY');
+
+        if (!$apiKey) {
+            // Handle the case when the API key is not found in the environment
+            return back()->with('success', "API Key not found, Sorry your Notification was not sent 😒");
+        }
 
         $url = 'https://fcm.googleapis.com/fcm/send';
             $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
@@ -59,7 +67,7 @@ class NotificationController extends Controller
             $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
             $fields = json_encode ($arrayToSend);
             $headers = array (
-                'Authorization: key=' . 'AAAAo9KT6zk:APA91bHFFW8sx44n64q-DSgTr9SCjbf-Ji1uHlG8GrEWRaQDCqw6-XZFqAxch1pVRWYRy7jdnXlXA-SqIg0O1oyxH5--aGeYJlwi03YPKOuZpk0Bqo8J85xnxDaRXjlZdCuxCKdoMdzF',
+                'Authorization: key=' . $apiKey,
                 'Content-Type: application/json'
             );
             $ch = curl_init ();
@@ -73,7 +81,7 @@ class NotificationController extends Controller
             //var_dump($result);
             curl_close ( $ch );
 
-        return back()->with('success', 'Push Notification sent.');
+        return back()->with('success', 'Push Notification sent successfully 😊.');
     }
 
 

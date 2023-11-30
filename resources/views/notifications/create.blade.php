@@ -16,7 +16,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="title">Title</label>
+                        <label for="title" class="mt-2">Title</label>
                         <input type="text" placeholder="Your notification title" class="form-control @error('title') is-invalid @enderror" id="title" name="title">
 
                         @error('title')
@@ -28,7 +28,7 @@
 
                     <div class="form-group">
                         <label for="details">Body</label>
-                        <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" placeholder="Write here..." rows="3"></textarea>
+                        <textarea class="form-control @error('details') is-invalid @enderror" id="details" name="details" placeholder="Write details here..." rows="3"></textarea>
 
                         @error('details')
                           <span class="invalid-feedback" role="alert">
@@ -48,6 +48,6 @@
         </div>
       </div>
 
-    @include('footer.nonguest')
+   
   </div>
 @endsection
