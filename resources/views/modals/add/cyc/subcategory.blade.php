@@ -26,9 +26,9 @@
                 <div class="mb-3">
                     <label>Category</label>
                     <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
-                        <option value="" disabled>Select Category</option>
+                        {{-- <option value="" disabled>Select Category</option> --}}
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            <option selected value="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
                     </select>
 
