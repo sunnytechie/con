@@ -60,7 +60,6 @@ class LoginController extends Controller
         //check user in memebership
         $membership = Membership::where('user_id', $user->id)->first();
 
-        //if user exists
         if ($membership) {
             $member_diocese = $membership->diocease;
             $member_province = $membership->province;
@@ -68,17 +67,29 @@ class LoginController extends Controller
             $diocese = Diocese::where('id', $member_diocese)->first();
             if (!$diocese) {
                 $diocese = "Nil";
-            } else { $diocese = $diocese->name; }
+                $diocese_id = "Nil";
+            }
+            else {
+                $diocese = $diocese->name;
+                $diocese_id = $diocese->id;
+             }
             $province = Province::where('id', $member_province)->first();
             if (!$province) {
                 $province = "Nil";
-            } else { $province = $province->name; }
+                $province_id = "Nil";
+            }
+            else {
+                $province = $province->name;
+                $province_id = $province->id;
+            }
 
             return response()->json([
                 'status' => true,
                 'membership' => true,
                 'diocese' => $diocese,
                 'province' => $province,
+                'diocese_id' => $diocese_id,
+                'province_id' => $province_id,
                 'membership_data' => $membership,
                 'message' => 'Login Success',
                 'user' => $user,
