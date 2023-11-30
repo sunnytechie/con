@@ -89,7 +89,7 @@ class HomeController extends Controller
         $admins = User::where('is_admin', 1)->get()->count();
         $videos = Media::where('type', 'video')->get()->count();
         $audios = Media::where('type', 'audio')->get()->count();
-        $images = Media::where('type', 'image')->get()->count();
+        $images = Media::where('type', 'gallery')->get()->count();
         $reports = ReportedComment::get()->count();
 
         $startDate = Carbon::now()->subDays(7);
@@ -100,7 +100,7 @@ class HomeController extends Controller
         $adminsLast7Days = User::where('is_admin', 1)->where('created_at', '>=', $startDate)->count();
         $videosLast7Days = Media::where('type', 'video')->where('created_at', '>=', $startDate)->count();
         $audiosLast7Days = Media::where('type', 'audio')->where('created_at', '>=', $startDate)->count();
-        $imagesLast7Days = Media::where('type', 'image')->where('created_at', '>=', $startDate)->count();
+        $imagesLast7Days = Media::where('type', 'gallery')->where('created_at', '>=', $startDate)->count();
         $reportsLast7Days = ReportedComment::where('created_at', '>=', $startDate)->count();
 
         //Count purchased books by book id that exists in purchasedbooks table
