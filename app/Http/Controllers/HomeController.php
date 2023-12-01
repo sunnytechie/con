@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Audio;
+use App\Models\Bcppurchase;
 use App\Models\Media;
 use App\Models\Video;
 use App\Models\Comment;
+use App\Models\Hymnalpurchase;
 use App\Models\Mediaimage;
 use App\Models\Membership;
 use App\Models\Purchasecyc;
@@ -113,6 +115,10 @@ class HomeController extends Controller
             ->groupBy('books.id')
             ->get();
 
+        $hymnals = Hymnalpurchase::get()->count();
+        $bcps = Bcppurchase::get()->count();
+        $cycs = Purchasecyc::get()->count();
+
         //Count PurchasedStudy where study_category_name = Daily Fountain
         $totalPurchasedDailyFountain = Purchasedstudy::where('study_id', '1')->count();
         //Count PurchasedStudy where study_category_name = Daily Dynamite
@@ -145,6 +151,9 @@ class HomeController extends Controller
             'totalPurchasedDailyDynamite',
             'totalPurchasedBibleStudy',
             'totalPurchasedCyc',
+            'hymnals',
+            'bcps',
+            'cycs',
         ));
     }
 }

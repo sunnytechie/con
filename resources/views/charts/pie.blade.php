@@ -2,13 +2,13 @@
                           $deleted = "deleted";
                       @endphp
 <script>
-    
+
     function pieChart() {
-    
+
     var pie = new CanvasJS.Chart("pieChart", {
         animationEnabled: true,
         title: {
-            text: "Pie Chart Analysis"
+            text: "BCP, CYC and Hymnals"
         },
         data: [{
             type: "pie",
@@ -16,15 +16,15 @@
             yValueFormatString: "##0.00'%'",
             indexLabel: "{label} {y}",
             dataPoints: [
-                //for each item in the array, add a new data point
-                @foreach ($totalPurchaseByBookId as $item)
-                { y: {{ $item->total }}, label: "{{ $item->book->title ?? $deleted}}" },
-                @endforeach
-                
+
+                { y: {{ $hymnals }}, label: "Con Hymnals Purchase" },
+                { y: {{ $bcps }}, label: "Book of Common Prayers" },
+                { y: {{ $cycs }}, label: "Church Year Calendar" },
+
             ]
         }]
     });
     pie.render();
-    
+
     }
     </script>
