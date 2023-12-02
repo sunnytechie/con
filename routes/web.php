@@ -30,7 +30,7 @@ Auth::routes([
 
 //Middleware Auth
     Route::get('/notAuthorized', [App\Http\Controllers\HomeController::class, 'notAuthorized'])->name('notAuthorized');
-    Route::middleware('auth', 'is_all_admin')->group(function () {
+Route::middleware('auth', 'is_all_admin')->group(function () {
     Route::get('/version23', [App\Http\Controllers\HomeController::class, 'v23'])->name('v23');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'v23'])->name('home.index');
     Route::get('/', [App\Http\Controllers\HomeController::class, 'v23'])->name('home');

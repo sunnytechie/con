@@ -56,13 +56,25 @@ class BookController extends Controller
         //$fileName = time() . '_' . $file->getClientOriginalName();
         //$file->move(public_path('pdf'), $fileName);
         //$filePath = public_path('pdf/' . $fileName);
-        $randomString = Str::random(10); // Generates a random string of 10 characters
+        //$randomString = Str::random(10); // Generates a random string of 10 characters
         //$fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
         //$filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
 
+        //$pdf = $request->file('file');
+        //$filePath = 'pdf/uploads/' . $randomString . $pdf->getClientOriginalName();
+        //$pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
+        $randomString = Str::random(10); // Generates a random string of 10 characters
         $pdf = $request->file('file');
-        $filePath = 'pdf/uploads/' . $randomString . $pdf->getClientOriginalName();
-        $pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
+
+        // Use hashName() to generate a unique filename
+        $fileName = $pdf->hashName();
+
+        // Combine the random string and the unique filename
+        $filePath = 'pdf/uploads/' . $randomString . '_' . $fileName;
+
+        // Move the file to the specified path
+        $pdf->move(public_path('pdf/uploads'), $fileName);
+
 
         //store image file in public/books/images
         $imagePath = request('image')->store('books/image', 'public');
@@ -134,8 +146,20 @@ class BookController extends Controller
         if ($request->hasFile('file')) {
             $randomString = Str::random(10); // Generates a random string of 10 characters
             $pdf = $request->file('file');
-            $filePath = 'pdf/uploads/' . $randomString  . $pdf->getClientOriginalName();
-            $pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
+
+            // Use hashName() to generate a unique filename
+            $fileName = $pdf->hashName();
+
+            // Combine the random string and the unique filename
+            $filePath = 'pdf/uploads/' . $randomString . '_' . $fileName;
+
+            // Move the file to the specified path
+            $pdf->move(public_path('pdf/uploads'), $fileName);
+
+            //$randomString = Str::random(10); // Generates a random string of 10 characters
+            //$pdf = $request->file('file');
+            //$filePath = 'pdf/uploads/' . $randomString  . $pdf->getClientOriginalName();
+            //$pdf->move(public_path('pdf/uploads'), $pdf->getClientOriginalName());
             //$fileName = time() . '_' . $randomString . '_' . request('file')->getClientOriginalName();
             //$filePath = request('file')->storeAs('pdf/files', $fileName, 'public');
             //$file = $request->file('file');
