@@ -26,7 +26,7 @@ class PDFController extends Controller
     }
 
     public function indexFree() {
-        $pdfs = Book::where('tag', null)
+        $pdfs = Book::where('tag', "others")
                     ->where('type', 0)->get();
 
         return response()->json([
