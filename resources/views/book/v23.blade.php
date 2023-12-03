@@ -26,26 +26,28 @@
                         <thead>
                             <tr>
                                 <th class="wd-25p border-bottom-0">ID</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Title</th>
                                 <th class="wd-25 border-bottom-0 ps-2">Tag</th>
-                                <th class="wd-25 border-bottom-0 ps-2">Description</th>
+                                {{-- <th class="wd-25 border-bottom-0 ps-2">Description</th>
                                 <th class="wd-25 border-bottom-0">Author</th>
                                 <th class="wd-25 border-bottom-0 ps-2">Category</th>
-                                <th class="wd-25 border-bottom-0 ps-2">Sub Category</th>
+                                <th class="wd-25 border-bottom-0 ps-2">Sub Category</th> --}}
                                 <td class="wd-25 border-bottom-0 ps-2">Options</td>
                             </tr>
                         </thead>
                         <tbody>
                             @php
-                      $i = 1;
-                    @endphp
+                                $i = 1;
+                            @endphp
                             @foreach ($books as $book)
                             <tr>
                                 <td>{{ $i++ }}. <img width="30px" width="30px" src="/storage/{{ $book->image }}" alt=""></td>
+                                <td>{{ $book->title }}</td>
                                 <td>{{ $book->tag }}</td>
-                                <td>{{ Illuminate\Support\Str::limit($book->description, 35) }}</td>
+                                {{-- <td>{{ Illuminate\Support\Str::limit($book->description, 35) }}</td>
                                 <td>{{ Illuminate\Support\Str::limit($book->author, 35) }}</td>
                                 <td>{{ $book->bookcategory->title }}</td>
-                                <td>{{ $book->booksubcategory->title }}</td>
+                                <td>{{ $book->booksubcategory->title }}</td> --}}
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-sm btn-warning"><i class="fe fe-edit-3"></i> Edit</a>
