@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-6 mb-3">
+                        {{-- <div class="col-6 mb-3">
                             <label>Category</label>
                             <select name="bookcategory_id" id="bookcategory_id" class="form-control @error('bookcategory_id') is-invalid @enderror" value="{{ $book->bookcategory_id ?? old('bookcategory_id') }}" required>
                                 <option value="" disabled>Select Category</option>
@@ -76,7 +76,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="form-row">
@@ -98,7 +98,7 @@
 
                     <div class="col-6 mb-3">
                         <label>Price</label>
-                        <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $book->price ?? old('price') }}" placeholder="Provide a price" required>
+                        <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $book->price ?? old('price') }}" placeholder="Provide a price">
 
                         @error('price')
                             <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
 
                     <div class="form-row">
 
-                        <div class="col-6 mb-3">
+                        {{-- <div class="col-6 mb-3">
                             <label>Book author</label>
                             <input name="author" class="form-control @error('author') is-invalid @enderror" type="text" value="{{ $book->author ?? old('author') }}" id="author" placeholder="Provide an author's name">
 
@@ -120,7 +120,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                        </div>
+                        </div> --}}
+
                         <div class="col-6 mb-3">
                             <label for="PDF file">PDF file</label>
                             <input name="file" class="form-control @error('file') is-invalid @enderror" type="file" id="file">
@@ -149,7 +150,7 @@
                     </div>
 
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Description</label>
                         <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Provide a description" required>{{ $book->description ?? old('description') }}</textarea>
 
@@ -158,7 +159,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <button class="btn btn-md btn-primary">Update details</button>

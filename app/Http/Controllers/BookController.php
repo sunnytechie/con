@@ -40,13 +40,13 @@ class BookController extends Controller
         //Validate the request...
         $request->validate([
             'title' => 'required|max:255',
-            'author' => 'required|max:255',
-            'description' => 'required',
+            //'author' => 'required|max:255',
+            //'description' => 'required',
             'file' => 'required|mimes:pdf',
             'type' => 'required',
             'price' => '',
-            'bookcategory_id' => 'required',
-            'booksubcategory_id' => '',
+            //'bookcategory_id' => 'required',
+            //'booksubcategory_id' => '',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tag' => 'nullable',
         ]);
@@ -72,14 +72,14 @@ class BookController extends Controller
         //store book
         $book = new Book();
         $book->title = $request->title;
-        $book->author = $request->author;
-        $book->description = $request->description;
+        //$book->author = $request->author;
+        //$book->description = $request->description;
         $book->file = $filePath;
         $book->image = $imagePath;
         $book->type = $request->type;
         $book->price = $request->price;
-        $book->bookcategory_id = $request->bookcategory_id;
-        $book->booksubcategory_id = $request->booksubcategory_id;
+        //$book->bookcategory_id = $request->bookcategory_id;
+        //$book->booksubcategory_id = $request->booksubcategory_id;
         $book->tag = $request->tag;
 
         $book->save();
@@ -113,12 +113,12 @@ class BookController extends Controller
         //Validate the request...
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:255',
-            'author' => 'required|max:255',
-            'description' => 'required',
+            //'author' => 'required|max:255',
+            //'description' => 'required',
             'type' => 'required',
             'price' => 'nullable',
-            'bookcategory_id' => 'nullable',
-            'booksubcategory_id' => 'required',
+            //'bookcategory_id' => 'nullable',
+            //'booksubcategory_id' => 'required',
             'file' => 'nullable|mimes:pdf',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tag' => 'nullable',
@@ -154,12 +154,12 @@ class BookController extends Controller
         //update book
         $book = Book::find($id);
         $book->title = $request->title;
-        $book->author = $request->author;
+        //$book->author = $request->author;
         $book->type = $request->type;
         $book->price = $request->price;
-        $book->bookcategory_id = $request->bookcategory_id;
-        $book->booksubcategory_id = $request->booksubcategory_id;
-        $book->description = $request->description;
+        //$book->bookcategory_id = $request->bookcategory_id;
+        //$book->booksubcategory_id = $request->booksubcategory_id;
+        //$book->description = $request->description;
         $book->tag = $request->tag;
         if ($request->hasFile('file')) {
             $book->file = $filePath;
