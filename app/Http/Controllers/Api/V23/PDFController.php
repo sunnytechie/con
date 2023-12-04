@@ -60,7 +60,9 @@ class PDFController extends Controller
             ], 400);
         }
 
-        $books = Book::where('tag', $request->tag)->get();
+        $books = Book::where('tag', $request->tag)
+                    ->where('type', 1)
+                    ->get();
 
         $bookData = [];
         foreach ($books as $book) {
