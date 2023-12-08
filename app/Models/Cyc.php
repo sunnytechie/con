@@ -9,11 +9,7 @@ class Cyc extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'cyc_title',
-        'cyc_year',
-        'cyc_pdf',
-    ];
+    protected $table = 'cycs';
 
     public function purchasecycs()
     {

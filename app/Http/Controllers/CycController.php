@@ -85,7 +85,7 @@ class CycController extends Controller
         $category->save();
 
         return back()
-            ->with('success', "Sub Category Added successfully.");
+            ->with('success', "Ecclesiastical Province Added successfully.");
 
     }
 
@@ -202,6 +202,10 @@ class CycController extends Controller
             'title' => 'required',
             'subcategory_id' => 'required',
             'content' => 'required',
+            'cyc_date' => 'nullable|date',
+            'cyc_thumbnail' => 'nullable',
+            'cyc_name' => 'nullable',
+            'cyc_name_title' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -210,10 +214,18 @@ class CycController extends Controller
             ->with('success', "Please try again.");
         }
 
+        $imagePath = request('cyc_thumbnail')->store('cyc', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
         $cyc = new Cyc;
         $cyc->cyc_title = $request->title;
         $cyc->cycsubcategory_id = $request->subcategory_id;
         $cyc->content = $request->content;
+        $cyc->cyc_date = $request->cyc_date;
+        $cyc->cyc_thumbnail = "/storage/$imagePath";
+        $cyc->cyc_name = $request->cyc_name;
+        $cyc->cyc_name_title = $request->cyc_name_title;
         $cyc->save();
 
         return back()->with('success', 'New CYC published successfully.');
@@ -258,6 +270,10 @@ class CycController extends Controller
             'title' => 'required',
             'subcategory_id' => 'required',
             'content' => 'required',
+            'cyc_date' => 'nullable|date',
+            'cyc_thumbnail' => 'nullable',
+            'cyc_name' => 'nullable',
+            'cyc_name_title' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -266,10 +282,22 @@ class CycController extends Controller
             ->with('success', "Please try again.");
         }
 
+        if ($request->has('cyc_thumbnail')) {
+            $imagePath = request('cyc_thumbnail')->store('cyc', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            $image->save();
+        }
+
         $cyc = Cyc::find($id);
         $cyc->cyc_title = $request->title;
         $cyc->cycsubcategory_id = $request->subcategory_id;
         $cyc->content = $request->content;
+        $cyc->cyc_date = $request->cyc_date;
+        if ($request->has('cyc_thumbnail')) {
+        $cyc->cyc_thumbnail = "/storage/$imagePath";
+        }
+        $cyc->cyc_name = $request->cyc_name;
+        $cyc->cyc_name_title = $request->cyc_name_title;
         $cyc->save();
 
         //redirect to back with success message

@@ -72,95 +72,94 @@
                 border-radius: 0 !important;
                 border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
             }
-  </style>
+    </style>
 </head>
 
 <body class="app sidebar-mini ltr light-mode">
 
     @if(request()->is('/'))
-    <!-- GLOBAL-LOADER -->
-    <div id="global-loader">
-        <img src="{{ asset('v23/assets/images/loader.svg') }}" class="loader-img" alt="Loader">
-    </div>
-    <!-- /GLOBAL-LOADER -->
+        <!-- GLOBAL-LOADER -->
+            <div id="global-loader">
+                <img src="{{ asset('v23/assets/images/loader.svg') }}" class="loader-img" alt="Loader">
+            </div>
+        <!-- /GLOBAL-LOADER -->
     @endif
 
     <!-- PAGE -->
-    <div class="page">
-        <div class="page-main">
+        <div class="page">
+            <div class="page-main">
 
-            <!-- app-Header -->
-            @include('v23.header')
-            <!-- /app-Header -->
+                <!-- app-Header -->
+                @include('v23.header')
+                <!-- /app-Header -->
 
-            <!--APP-SIDEBAR-->
-            @include('v23.sidebar')
-            <!--/APP-SIDEBAR-->
+                <!--APP-SIDEBAR-->
+                @include('v23.sidebar')
+                <!--/APP-SIDEBAR-->
 
-            <!--app-content open-->
-            <div class="main-content app-content mt-0">
-                <div class="side-app">
+                <!--app-content open-->
+                <div class="main-content app-content mt-0">
+                    <div class="side-app">
 
-                    <!-- CONTAINER -->
-                    <div class="main-container container-fluid">
+                        <!-- CONTAINER -->
+                        <div class="main-container container-fluid">
 
-                        <!-- PAGE-HEADER -->
-                        <div class="page-header">
-                            <h1 class="page-title">{{ $title ?? "Dashboard" }}</h1>
-                            <div>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Back</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $tag ?? "Dashboard" }}</li>
-                                </ol>
-                            </div>
-                        </div>
-                        <!-- PAGE-HEADER END -->
-
-
-                        @if (session('success'))
-                        {{-- Error Message --}}
-                        <div class="text-wrap mb-4">
-                            <div class="">
-                                <div class="alert alert-success">
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
-                                    <span class=""><i class="fe fe-bell"></i></span>
-                                    <strong>Heads Up</strong>
-                                    <hr class="message-inner-separator">
-                                    <p>{{ session('success') }}</p>
+                            <!-- PAGE-HEADER -->
+                            <div class="page-header">
+                                <h1 class="page-title">{{ $title ?? "Dashboard" }}</h1>
+                                <div>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Back</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ $tag ?? "Dashboard" }}</li>
+                                    </ol>
                                 </div>
                             </div>
+                            <!-- PAGE-HEADER END -->
+
+
+                            @if (session('success'))
+                            {{-- Error Message --}}
+                            <div class="text-wrap mb-4">
+                                <div class="">
+                                    <div class="alert alert-success">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                                        <span class=""><i class="fe fe-bell"></i></span>
+                                        <strong>Heads Up</strong>
+                                        <hr class="message-inner-separator">
+                                        <p>{{ session('success') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- End Error Message --}}
+                            @endif
+
+                            {{-- Content --}}
+                            @yield('content')
+                            {{-- End content --}}
+
+
                         </div>
-                        {{-- End Error Message --}}
-                        @endif
-
-                        {{-- Content --}}
-                        @yield('content')
-                        {{-- End content --}}
-
-
+                        <!-- CONTAINER END -->
                     </div>
-                    <!-- CONTAINER END -->
                 </div>
-            </div>
-            <!--app-content close-->
+                <!--app-content close-->
 
+            </div>
+
+            <!-- FOOTER -->
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row align-items-center flex-row-reverse">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                Copyright © <span id="year"></span> CONAIO. All rights reserved.
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            <!-- FOOTER END -->
         </div>
-
-
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <span id="year"></span> CONAIO. All rights reserved.
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- FOOTER END -->
-    </div>
     <!-- BACK-TO-TOP -->
+
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
     <script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
@@ -197,16 +196,16 @@
 
     <script>
         function clearModalInputs() {
-      // Get all form elements
-      var formElements = document.querySelectorAll('form input, form select, form textarea');
+        // Get all form elements
+        var formElements = document.querySelectorAll('form input, form select, form textarea');
 
-      // Loop through each form element and set its value to an empty string
-      formElements.forEach(function(element) {
-        if (element.type !== 'submit') { // Exclude submit buttons from being cleared
-          element.value = '';
+        // Loop through each form element and set its value to an empty string
+        formElements.forEach(function(element) {
+            if (element.type !== 'submit') { // Exclude submit buttons from being cleared
+            element.value = '';
+            }
+        });
         }
-      });
-    }
     </script>
 
 
