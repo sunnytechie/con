@@ -54,34 +54,36 @@ class NotificationController extends Controller
         $notification->details = $request->details;
         $notification->save();
 
-        $apiKey = getenv('FIREBASE_SERVER_KEY');
+        $fcmServerKey = getenv('FIREBASE_SERVER_KEY');
 
         //dd($apiKey);
 
-        if (!$apiKey) {
+        if (!$fcmServerKey) {
             // Handle the case when the API key is not found in the environment
             return back()->with('success', "Server Key not found, Sorry your Notification was not sent 😒");
         }
 
         $url = 'https://fcm.googleapis.com/fcm/send';
-            $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $request->id,'status'=>"done");
-            $notification = array('title' =>$request->title, 'text' => $request->details, 'sound' => 'default', 'badge' => '1',);
-            $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
-            $fields = json_encode ($arrayToSend);
-            $headers = array (
-                'Authorization: key=' . $apiKey,
-                'Content-Type: application/json'
-            );
-            $ch = curl_init ();
-            curl_setopt ( $ch, CURLOPT_URL, $url );
-            curl_setopt ( $ch, CURLOPT_POST, true );
-            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+        $dataArr = array('click_action' => 'FLUTTER_NOTIFICATION_CLICK', 'id' => $notification->id,'status'=>"done");
+        $notification = array('title' =>$notification->title, 'text' => $notification->details, 'image'=> 'nill', 'sound' => 'default', 'badge' => '1',);
+        $arrayToSend = array('to' => "/topics/all", 'notification' => $notification, 'data' => $dataArr, 'priority'=>'high');
+        $fields = json_encode($arrayToSend);
 
-            $result = curl_exec ( $ch );
-            //var_dump($result);
-            curl_close ( $ch );
+        $headers = array(
+            'Authorization: key=' . $fcmServerKey,
+            'Content-Type: application/json'
+        );
+
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        $result = curl_exec ( $ch );
+        //dd($result);
+        curl_close ( $ch );
 
         return back()->with('success', 'Push Notification sent successfully 😊.');
     }
@@ -154,6 +156,6 @@ class NotificationController extends Controller
         $notification = Notification::find($id);
         $notification->delete();
 
-        return back()->with('success', 'Push Notification edited.');
+        return back()->with('success', 'Push Notification Deleted.');
     }
 }
