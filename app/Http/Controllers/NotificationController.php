@@ -54,7 +54,7 @@ class NotificationController extends Controller
         $notification->details = $request->details;
         $notification->save();
 
-        $apiKey = getenv('API_NOTIFICATION_KEY');
+        $apiKey = getenv('FIREBASE_SERVER_KEY');
 
         dd($apiKey);
 
