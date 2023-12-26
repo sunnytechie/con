@@ -56,6 +56,8 @@ class NotificationController extends Controller
 
         $apiKey = getenv('API_NOTIFICATION_KEY');
 
+        dd($apiKey);
+
         if (!$apiKey) {
             // Handle the case when the API key is not found in the environment
             return back()->with('success', "API Key not found, Sorry your Notification was not sent 😒");
