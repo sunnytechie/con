@@ -70,7 +70,7 @@ class NotificationController extends Controller
         $fields = json_encode($arrayToSend);
 
         $headers = array(
-            'Authorization: key=' . $fcmServerKey,
+            'Authorization: key=' . "AAAAo9KT6zk:APA91bGQv5NcNJ3qRhTwYIf9hW8BqzMb_xNYxS3CUlMmvuFt6g3I2X_UO1aiIg9o-a8PGp_VPgrm1Ls8VJmmIGxOlm695_4lDGRFt06gg3jA5bhB10gFoCPxnm0bKZwKK6lwEPvDAIO_",
             'Content-Type: application/json'
         );
 
