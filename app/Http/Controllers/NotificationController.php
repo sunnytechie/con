@@ -56,11 +56,11 @@ class NotificationController extends Controller
 
         $apiKey = getenv('FIREBASE_SERVER_KEY');
 
-        dd($apiKey);
+        //dd($apiKey);
 
         if (!$apiKey) {
             // Handle the case when the API key is not found in the environment
-            return back()->with('success', "API Key not found, Sorry your Notification was not sent 😒");
+            return back()->with('success', "Server Key not found, Sorry your Notification was not sent 😒");
         }
 
         $url = 'https://fcm.googleapis.com/fcm/send';
