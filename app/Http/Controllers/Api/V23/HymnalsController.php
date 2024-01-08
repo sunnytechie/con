@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V23;
 
 use App\Models\User;
+use App\Models\Hymnal;
 use Illuminate\Http\Request;
 use App\Models\Hymnalpurchase;
 use App\Http\Controllers\Controller;
@@ -75,10 +76,12 @@ class HymnalsController extends Controller
             );
         }
 
-        $hymnals = \App\Models\Hymnal::Where('title', 'like', '%' . $request->title . '%')
-            ->orWhere('number', 'like', '%' . $request->title . '%')
-            ->orderBy('number', 'asc')
-            ->get();
+        //$hymnals = \App\Models\Hymnal::Where('title', 'like', '%' . $request->title . '%')
+        //    ->orWhere('number', 'like', '%' . $request->title . '%')
+        //    ->orderBy('number', 'asc')
+        //    ->get();
+
+        $hymnals = Hymnal::search($request->title)->get();
 
         return response()->json(
             [
