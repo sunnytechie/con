@@ -76,8 +76,12 @@ class HymnalsController extends Controller
             );
         }
 
+        //$hymnals = Hymnal::search($request->title)->get();
+        //$hymnals = $hymnals->sortBy('number');
+
         $hymnals = Hymnal::search($request->title)->get();
-        $hymnals = $hymnals->sortBy('number');
+        $hymnals = $hymnals->sortBy('number')->values()->all();
+
 
         return response()->json(
             [
