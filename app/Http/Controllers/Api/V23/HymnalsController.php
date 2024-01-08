@@ -32,7 +32,7 @@ class HymnalsController extends Controller
             $access = false;
         }
 
-        $hymnals = \App\Models\Hymnal::orderBy('number', 'desc')->get();
+        $hymnals = \App\Models\Hymnal::orderBy('number', 'asc')->get();
         return response()->json(
             [
                 'status' => true,
@@ -76,12 +76,8 @@ class HymnalsController extends Controller
             );
         }
 
-        //$hymnals = \App\Models\Hymnal::Where('title', 'like', '%' . $request->title . '%')
-        //    ->orWhere('number', 'like', '%' . $request->title . '%')
-        //    ->orderBy('number', 'asc')
-        //    ->get();
-
         $hymnals = Hymnal::search($request->title)->get();
+        $hymnals = $hymnals->sortBy('number');
 
         return response()->json(
             [
