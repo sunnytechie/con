@@ -32,7 +32,7 @@ class HymnalsController extends Controller
             $access = false;
         }
 
-        $hymnals = \App\Models\Hymnal::orderBy('number', 'asc')->get();
+        $hymnals = \App\Models\Hymnal::orderBy('number', 'desc')->get();
         return response()->json(
             [
                 'status' => true,
