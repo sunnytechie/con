@@ -76,6 +76,7 @@ class HymnalsController extends Controller
         }
 
         $hymnals = \App\Models\Hymnal::Where('title', 'like', '%' . $request->title . '%')
+            ->orWhere('number', 'like', '%' . $request->title . '%')
             ->orderBy('number', 'asc')
             ->get();
 
