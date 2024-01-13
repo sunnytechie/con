@@ -54,15 +54,17 @@
         </a>
 
         <div id="content">
-            <div class="text-1">Your Verification Code:</div>
-            <div class="text-2" style="margin-bottom: 15px; margin-top: 15px; color: #4C0B93; font-size: 20px; font-weight: 700">{{ $compose['otp'] }}</div>
+            <div class="text-1">Welcome to Conaio</div>
+                <div class="text-3">
+                    Please use the login details to login to Conaio.
+                </div>
+            <div class="text-2" style="margin-bottom: 15px; margin-top: 15px; color: #4C0B93; font-size: 20px; font-weight: 700">{{ $compose['email'] }}</div>
+            <div class="text-2" style="margin-bottom: 15px; margin-top: 15px; color: #4C0B93; font-size: 20px; font-weight: 700">{{ $compose['password'] }}</div>
+
+
 
             <div class="text-3">
-              Please use the verification code to verify your email address.
-            </div>
-
-            <div class="text-3">
-              If you did not create an account, no further action is required.
+              You're getting this email because {{ $compose['name'] }} added you to our membership forum.
             </div>
         </div>
 

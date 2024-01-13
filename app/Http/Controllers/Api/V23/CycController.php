@@ -24,7 +24,7 @@ class CycController extends Controller
     //cycsubcategories with cycauthors
     public function cycsubcategories($cyccategory_id)
     {
-        $cycsubcategories = \App\Models\Cycsubcategory::with('cyc')->where('cyccategory_id', $cyccategory_id)->get();
+        $cycsubcategories = \App\Models\Cycsubcategory::with('cycs')->where('cyccategory_id', $cyccategory_id)->get();
         return response()->json(
             [
                 'status' => true,

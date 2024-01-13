@@ -20,8 +20,8 @@ class Cycsubcategory extends Model
         return $this->hasMany(Cycauthor::class);
     }
 
-    public function cyc()
+    public function cycs()
     {
-        return $this->hasOne(Cyc::class);
+        return $this->hasMany(Cyc::class);
     }
 }
