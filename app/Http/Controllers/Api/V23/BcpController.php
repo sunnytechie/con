@@ -71,7 +71,7 @@ class BcpController extends Controller
     //bcp
     public function bcp($id)
     {
-        $bcp = \App\Models\Bcpsubcategory::where('bcpsubcategory_id', $id)
+        $bcp = \App\Models\Bcpsubcategory::where('bcpcategory_id', $id)
                 ->select('id', 'title', 'content')
                 ->get();
 
