@@ -22,7 +22,10 @@ class BcpController extends Controller
     //subcategory
     public function subcategory($id)
     {
-        $bcpsubcategories = \App\Models\Bcpsubcategory::where('bcpcategory_id', $id)->get();
+        $bcpsubcategories = \App\Models\Bcpsubcategory::where('bcpcategory_id', $id)
+                            ->select('id', 'title')
+                            ->get();
+
         return response()->json([
             'status' => true,
             'message' => 'BCP subcategory',
@@ -46,7 +49,9 @@ class BcpController extends Controller
             ], 422);
         }
 
-        $bcpsubcategories = \App\Models\Bcpsubcategory::where('title', 'LIKE', '%' . $request->title . '%')->get();
+        $bcpsubcategories = \App\Models\Bcpsubcategory::where('title', 'LIKE', '%' . $request->title . '%')
+                            ->select('id', 'title')
+                            ->get();
 
         if (count($bcpsubcategories) > 0) {
             return response()->json([
@@ -66,7 +71,10 @@ class BcpController extends Controller
     //bcp
     public function bcp($id)
     {
-        $bcp = \App\Models\Bcp::where('bcpsubcategory_id', $id)->get();
+        $bcp = \App\Models\Bcpsubcategory::where('bcpsubcategory_id', $id)
+                ->select('id', 'title', 'content')
+                ->get();
+
         return response()->json([
             'status' => true,
             'message' => 'BCP',
