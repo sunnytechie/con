@@ -119,16 +119,6 @@ Route::get('/get-flutterwave-key', [App\Http\Controllers\SettingsController::cla
 
 
 
-
-
-
-
-
-
-
-
-
-
 //version 23
     //v23 api for login
     Route::post('/auth/v23/login', [App\Http\Controllers\Api\V23\Auth\LoginController::class, 'loginApi']);

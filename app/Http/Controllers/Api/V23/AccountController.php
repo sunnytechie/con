@@ -8,6 +8,7 @@ use App\Models\Province;
 use App\Models\Membership;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -94,4 +95,6 @@ class AccountController extends Controller
         ]);
 
     }
+
+    
 }

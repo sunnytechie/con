@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudyController;
+use App\Http\Controllers\UserAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Auth::routes([
 ]);
 
 //Middleware Auth
-    Route::get('/notAuthorized', [App\Http\Controllers\HomeController::class, 'notAuthorized'])->name('notAuthorized');
+Route::get('/notAuthorized', [App\Http\Controllers\HomeController::class, 'notAuthorized'])->name('notAuthorized');
 Route::middleware('auth', 'is_all_admin')->group(function () {
     Route::get('/version23', [App\Http\Controllers\HomeController::class, 'v23'])->name('v23');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'v23'])->name('home.index');
@@ -345,7 +346,6 @@ Route::middleware('auth', 'isICT')->group(function () {
     Route::delete('purchased/{id}/cyc/', [App\Http\Controllers\PurchasedCycController::class, 'destroy'])->name('purchased.cyc.destory');
 });
 
-
     //import routes
     Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index');
     Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import');
@@ -395,3 +395,7 @@ Route::middleware('auth', 'isFinance')->group(function () {
     Route::get('report/purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'hymnal'])->name('report.hymnal.purchase');
     Route::post('purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'purchaseHymnal'])->name('store.hymnal.purchase');
 });
+
+//account delete
+Route::get('user/delete/my-account', [UserAccountController::class, 'accountDelete'])->name('delete.my.account');
+Route::delete('user/delete/my-account', [UserAccountController::class, 'deleteAccount'])->name('trash.my.account');

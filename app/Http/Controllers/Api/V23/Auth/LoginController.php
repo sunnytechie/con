@@ -32,6 +32,12 @@ class LoginController extends Controller
 
         //check user
         $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found'
+            ], 401);
+        }
 
         //check password
         if (!$user || !Hash::check($request->password, $user->password)) {
