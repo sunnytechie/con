@@ -8,16 +8,16 @@
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">PDFs</h3>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> PDF </a>
-                    <a class="btn btn-default modal-effect" href="#category" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Category </a>
-                    <a class="btn btn-default modal-effect" href="#subcategory" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Subcategory </a>
+                    <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Upload PDF </a>
+                    {{-- <a class="btn btn-default modal-effect" href="#category" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Category </a>
+                    <a class="btn btn-default modal-effect" href="#subcategory" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Subcategory </a> --}}
                 </div>
             </div>
 
             <!-- MODAL EFFECTS -->
             @include('modals.add.newbook')
-            @include('modals.add.book_category')
-            @include('modals.add.book_sub_category')
+            {{-- @include('modals.add.book_category')
+            @include('modals.add.book_sub_category') --}}
 
 
             <div class="card-body">

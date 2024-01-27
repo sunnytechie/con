@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label>Pdf Tag</label>
+                    <label>Pdf Category (tag)</label>
                     <select name="tag" id="tag" class="form-control @error('tag') is-invalid @enderror" value="{{ $book->tag ?? old('tag') }}" required>
                         @php
                             $tags = ['anglicanism', 'workbook', 'teachers', 'others'];
