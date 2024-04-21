@@ -81,7 +81,7 @@
                             @enderror
                     </div>
 
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="downloadable">Downloadable</label>
                         <select id="downloadable" name="downloadable" class="form-control @error('downloadable') is-invalid @enderror" required>
                             <option value="">Select a status</option>
@@ -94,7 +94,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-4">
                         <label for="notification">Send Notification</label>

@@ -99,7 +99,7 @@
                     </div>
 
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Downloadable</label>
                         <select name="downloadable" class="form-control @error('downloadable') is-invalid @enderror" required>
                             @php
@@ -117,7 +117,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label>Send Notification</label>
