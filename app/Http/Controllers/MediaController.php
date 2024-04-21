@@ -27,6 +27,13 @@ class MediaController extends Controller
         return view('media.video.index', compact('categories', 'videos', 'title'));
     }
 
+    public function create() {
+        $title = "New Media";
+        //categories
+        $categories = Category::where('type', 'video')->get();
+        return view('media.video.new', compact('title', 'categories'));
+    }
+
     //api mediaApi
     public function mediaApi()
     {

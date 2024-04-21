@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudyController;
@@ -39,6 +40,7 @@ Route::middleware('auth', 'is_all_admin')->group(function () {
 
 Route::middleware('auth', 'isICT')->group(function () {
     //Routes for Media
+    Route::get('media/videos/create', [App\Http\Controllers\MediaController::class, 'create'])->name('media.video.create');
     Route::get('media/videos', [App\Http\Controllers\MediaController::class, 'video'])->name('media.video');
     //search
     Route::get('media/videos/search', [App\Http\Controllers\MediaController::class, 'searchVideo'])->name('media.video.search');
@@ -399,3 +401,11 @@ Route::middleware('auth', 'isFinance')->group(function () {
 //account delete
 Route::get('user/delete/my-account', [UserAccountController::class, 'accountDelete'])->name('delete.my.account');
 Route::delete('user/delete/my-account', [UserAccountController::class, 'deleteAccount'])->name('trash.my.account');
+
+//Update from April 2024
+Route::prefix('prices')->middleware('auth', 'isICT')->group(function () {
+Route::get('/', [PriceController::class, 'index'])->name('price.index');
+//Route::post('/store', [PriceController::class, 'store'])->name('price.store');
+//Route::put('/edit/{id}', [PriceController::class, 'edit'])->name('price.edit');
+Route::put('/update/{id}', [PriceController::class, 'update'])->name('price.update');
+});

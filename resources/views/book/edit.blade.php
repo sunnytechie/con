@@ -98,7 +98,7 @@
 
                     <div class="col-6 mb-3">
                         <label>Price</label>
-                        <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $book->price ?? old('price') }}" placeholder="Provide a price">
+                        <input type="text" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ $book->price ?? old('price') }}" placeholder="Provide a price">
 
                         @error('price')
                             <span class="invalid-feedback" role="alert">
@@ -172,5 +172,26 @@
     </div>
 </div>
 <!-- End Row -->
+
+@endsection
+
+@section('script')
+<script>
+    // Function to check if the input is a number
+    function isNumber(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        // Check if the pressed key is not a number
+        if (charCode < 48 || charCode > 57) {
+            evt.preventDefault();
+            return false;
+        }
+        return true;
+    }
+
+    // Add event listeners to the input fields
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('price').addEventListener('keypress', isNumber);
+    });
+</script>
 
 @endsection

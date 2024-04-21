@@ -43,7 +43,12 @@
                                         <div class="tab-pane active" id="side1">
                                             <ul class="sidemenu-list">
                                                 <li class="side-menu-label1"><a href="javascript:void(0)">Books</a></li>
-                                                <li class="@if(Route::currentRouteName() === 'studies.dynamite') active @endif"><a href="{{ route('studies.dynamite') }}" class="slide-item @if(Route::currentRouteName() === 'studies.dynamite') active @endif">Daily Dynamite</a></li>
+                                                <li class="@if(Route::currentRouteName() === 'price.index') active @endif">
+                                                    <a class="@if(Route::currentRouteName() === 'price.index') active @endif slide-item" href="{{ route('price.index') }}">Prices</a>
+                                                </li>
+                                                <li
+                                                class="@if(Route::currentRouteName() === 'studies.dynamite') active @endif">
+                                                <a href="{{ route('studies.dynamite') }}" class="slide-item @if(Route::currentRouteName() === 'studies.dynamite') active @endif">Daily Dynamite</a></li>
                                                 <li class="@if(Route::currentRouteName() === 'studies.fountain') active @endif"><a href="{{ route('studies.fountain') }}" class="slide-item @if(Route::currentRouteName() === 'studies.fountain') active @endif">Daily Fountain</a></li>
                                                 <li class="@if(Route::currentRouteName() === 'studies.study') active @endif"><a href="{{ route('studies.study') }}" class="slide-item @if(Route::currentRouteName() === 'studies.study') active @endif">Bible study</a></li>
                                                 <li class="@if(Route::currentRouteName() === 'cyc.index') active @endif"><a href="{{ route('cyc.index') }}" class="slide-item @if(Route::currentRouteName() === 'cyc.index') active @endif">CYC</a></li>

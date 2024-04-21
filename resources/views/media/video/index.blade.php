@@ -6,32 +6,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Video</h3>
-                <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Video </a>
-            </div>
-
-            <!-- MODAL EFFECTS -->
-            <div class="modal fade" id="new">
-
-                <div class="modal-dialog modal-dialog-centered" role="document">
-
-                    <div class="modal-content modal-content-demo">
-                        <form style="margin: 0; padding: 0" method="POST" action="{{ route('video.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="modal-header">
-                                <h6 class="modal-title">Media Video</h6><button type="button" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                            </div>
-
-                            <div class="modal-body">
-                                @include('modals.add.video')
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Publish</button>
-                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            </div>
-                    </form>
-                    </div>
-                </div>
+                <a class="btn btn-default" href="{{ route('media.video.create') }}"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Video </a>
             </div>
 
             <div class="card-body">

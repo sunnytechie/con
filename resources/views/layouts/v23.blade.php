@@ -164,6 +164,8 @@
 
     <script src="{{ asset('assets/js/canvasjs.min.js') }}"></script>
 
+    @yield('script')
+
     {{-- on window load, load two function --}}
     <script>
         window.onload = function() {

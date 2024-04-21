@@ -327,6 +327,9 @@ Route::middleware('bearer')->group(function () {
     //stream key
     Route::get('/v23/stream/live', [App\Http\Controllers\Api\V23\StreamController::class, 'index']);
 
+    //2024
+    //prices
+    Route::get('/v23/prices', [App\Http\Controllers\Api\V23\PriceController::class, 'index']);
 });
 
 

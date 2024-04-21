@@ -93,7 +93,7 @@
 
                 <div class="mb-3">
                     <label>Price</label>
-                    <input type="number" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" placeholder="Provide a price">
+                    <input type="text" id="price" name="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" placeholder="Provide a price">
 
                     @error('price')
                         <span class="invalid-feedback" role="alert">
