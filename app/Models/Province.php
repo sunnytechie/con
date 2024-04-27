@@ -25,6 +25,12 @@ class Province extends Model
         return $this->hasMany(Donation::class);
     }
 
+    //belongs to donation
+    public function donation()
+    {
+        return $this->belongsTo(Donation::class);
+    }
+
     public function cycprovinces()
     {
         return $this->hasMany(Cycprovince::class);

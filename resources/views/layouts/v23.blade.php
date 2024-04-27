@@ -44,6 +44,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
     {{-- End Pace page progress loader --}}
 
+    {{-- Dropify css --}}
+    <link rel="stylesheet" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 
     <style>
         .ck-editor__editable[role="textbox"] {
@@ -301,6 +303,19 @@
     <script src="{{ asset('v23/assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('v23/assets/plugins/datatable/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('v23/assets/js/table-data.js') }}"></script>
+
+    {{-- Dropify --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
+    <script src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.dropify').dropify();
+        });
+        $(document).ready(function(){
+            $('.dropify2').dropify();
+        });
+    </script>
+
 
 </body>
 

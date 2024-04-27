@@ -43,7 +43,7 @@
 
                     <div class="mb-3">
                         <label>Video Cover</label>
-                        <input type="url" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $videoThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url">
+                        <input type="file" id="thumbnail" name="thumbnail" class="form-control dropify @error('thumbnail') is-invalid @enderror" accept=".png, .jpg" data-default-file="{{ $media->thumbnail }}">
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
@@ -52,19 +52,19 @@
                             @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                         <label for="video">Video (Optional if you're providing a URL)</label>
-                        <input name="video" class="form-control @error('video') is-invalid @enderror" type="file" id="video">
+                        <input name="video" class="form-control dropify @error('video') is-invalid @enderror" type="file" id="video">
 
                             @error('video')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                    </div> --}}
+                    </div>
 
                     <div class="mb-3">
-                        <label>Youtube Video ID</label>
+                        <label>Youtube Video ID (If video is from Youtube)</label>
                         <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" value="{{ $videoUrl ?? old('category_id') }}" id="url" placeholder="hg-ren435gg">
 
                             @error('url')

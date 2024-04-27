@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Models\Video;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Env;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +22,7 @@ class VideoController extends Controller
             'category_id' => 'required',
             'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
             'url' => 'nullable',
-            'thumbnail' => 'required',
+            'thumbnail' => 'required|mimes:jpg,png|max:10000',
             'duration' => 'nullable',
             'downloadable' => 'nullable',
             'notification' => 'nullable',
@@ -34,7 +35,9 @@ class VideoController extends Controller
             ->with('success', $errors);
         }
 
-        //dd($request->all());
+        $imagePath = request('thumbnail')->store('media/video/images', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
 
         //Var for type of media
         $type = 'video';
@@ -47,11 +50,12 @@ class VideoController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'video' => $videoPath,
-                'thumbnail' => $request->thumbnail,
+                'thumbnail' => Env('APP_URL') . '/storage/' . $imagePath,
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
                 'type' => $type,
+                'downloadable' => 1,
             ]);
         } else {
             $video = Media::create([
@@ -59,11 +63,12 @@ class VideoController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'url' => $request->url,
-                'thumbnail' => $request->thumbnail,
+                'thumbnail' => Env('APP_URL') . '/storage/' . $imagePath,
                 'duration' => $request->duration,
                 'downloadable' => $request->downloadable,
                 'notification' => $request->notification,
                 'type' => $type,
+                'downloadable' => 1,
             ]);
         }
 
@@ -88,11 +93,11 @@ class VideoController extends Controller
             ////var_dump($result);
         ////    curl_close ( $ch );
 
-        return back()->with('success', 'Video created successfully');
+        return redirect()->route('media.video')->with('success', 'Video created successfully');
     }
 
     //Edit Video
-    public function edit(Media $id)
+    public function edit($id)
     {
         //Total number of videos
         $totalVideos = Media::where('type', 'video')->count();
@@ -103,7 +108,7 @@ class VideoController extends Controller
         //Categories
         $categories = Category::all();
         //video
-        $video = Media::find($id->id);
+        $video = Media::find($id);
         $videoID = $video->id;
         $videoTitle = $video->title;
         $videoDescription = $video->description;
@@ -115,9 +120,10 @@ class VideoController extends Controller
         $videoNotification = $video->notification;
         $videoUrl = $video->url;
         $title = $video->title;
+        $media = Media::find($id);
 
         //return view
-        return view('media.video.edit', compact('videos', 'title', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID', 'totalVideos', 'totalAudios'));
+        return view('media.video.edit', compact('videos', 'media', 'title', 'categories', 'video', 'videoTitle', 'videoDescription', 'videoCategory', 'videoVideo', 'videoThumbnail', 'videoDuration', 'videoDownloadable', 'videoNotification', 'videoUrl', 'videoID', 'totalVideos', 'totalAudios'));
     }
 
     //Update Video
@@ -130,7 +136,7 @@ class VideoController extends Controller
             'category_id' => 'required',
             'video' => 'mimes:mp4,m4v,ogg,ogv,webm,mov,flv,wmv|max:20000',
             'url' => 'nullable',
-            'thumbnail' => 'required|url',
+            'thumbnail' => 'nullable|mimes:png,jpg,jpeg,gif|max:10000',
             'duration' => 'nullable',
             'downloadable' => 'nullable',
             'notification' => 'nullable',
@@ -143,9 +149,7 @@ class VideoController extends Controller
             ->with('success', $errors);
         }
 
-        //if video and thumbnail are not empty
 
-        if ($request->hasFile('video')) {
        //     //store video
             //$videoPath = request('video')->store('media', 'public');
             //store thumbnail
@@ -156,13 +160,22 @@ class VideoController extends Controller
             $video->title = $request->title;
             $video->description = $request->description;
             $video->category_id = $request->category_id;
-            $video->thumbnail = $request->thumbnail;
+            if ($request->hasFile('video')) {
+                $videoPath = request('video')->store('media', 'public');
+                $video->video = $videoPath;
+            }
+            if ($request->hasFile('thumbnail')) {
+                $imagePath = request('thumbnail')->store('media/video/images', 'public');
+                $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+                $image->save();
+                $video->thumbnail = Env('APP_URL') . '/storage/' . $imagePath;
+            }
             $video->url = $request->url;
             $video->duration = $request->duration;
-            $video->downloadable = $request->downloadable;
+            $video->downloadable = 1;
             $video->notification = $request->notification;
             $video->save();
-        }
+
 
         //Push Notification
         $url = 'https://fcm.googleapis.com/fcm/send';

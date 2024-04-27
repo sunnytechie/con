@@ -34,6 +34,13 @@ class MediaController extends Controller
         return view('media.video.new', compact('title', 'categories'));
     }
 
+    public function createAudio() {
+        $title = "New Media";
+        //categories
+        $categories = Category::where('type', 'audio')->get();
+        return view('media.audio.new', compact('title', 'categories'));
+    }
+
     //api mediaApi
     public function mediaApi()
     {

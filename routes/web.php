@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Export\ExportController;
 use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::middleware('auth', 'isICT')->group(function () {
     //search
     Route::get('media/videos/search', [App\Http\Controllers\MediaController::class, 'searchVideo'])->name('media.video.search');
     Route::get('media/audio', [App\Http\Controllers\MediaController::class, 'audio'])->name('media.audio');
+    Route::get('media/audio/create', [App\Http\Controllers\MediaController::class, 'createAudio'])->name('media.audio.create');
     //search
     Route::get('media/audio/search', [App\Http\Controllers\MediaController::class, 'searchAudio'])->name('media.audio.search');
     //Store video, edit video, update video and destroy
@@ -348,6 +350,7 @@ Route::middleware('auth', 'isICT')->group(function () {
     Route::delete('purchased/{id}/cyc/', [App\Http\Controllers\PurchasedCycController::class, 'destroy'])->name('purchased.cyc.destory');
 });
 
+Route::middleware('auth')->group(function () {
     //import routes
     Route::get('import-export', [App\Http\Controllers\ImportController::class, 'index'])->name('import.index');
     Route::post('user-import', [App\Http\Controllers\ImportController::class, 'userImport'])->name('user.import');
@@ -374,6 +377,7 @@ Route::middleware('auth', 'isICT')->group(function () {
     Route::post('feedback-import', [App\Http\Controllers\Import\FeedbackController::class, 'feedbackImport'])->name('feedback.import');
     //Membership
     Route::get('membership-export', [App\Http\Controllers\Export\MembershipController::class, 'fileExport'])->name('membership.export');
+});
 
 Route::middleware('auth', 'isICT')->group(function () {
     //kidzone
@@ -397,15 +401,27 @@ Route::middleware('auth', 'isFinance')->group(function () {
     Route::get('report/purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'hymnal'])->name('report.hymnal.purchase');
     Route::post('purchase/hymnal', [App\Http\Controllers\ReportPurchaseController::class, 'purchaseHymnal'])->name('store.hymnal.purchase');
 });
-
 //account delete
 Route::get('user/delete/my-account', [UserAccountController::class, 'accountDelete'])->name('delete.my.account');
 Route::delete('user/delete/my-account', [UserAccountController::class, 'deleteAccount'])->name('trash.my.account');
 
-//Update from April 2024
+
+//########Update from April 2024########
+//dynamic prices
 Route::prefix('prices')->middleware('auth', 'isICT')->group(function () {
-Route::get('/', [PriceController::class, 'index'])->name('price.index');
-//Route::post('/store', [PriceController::class, 'store'])->name('price.store');
-//Route::put('/edit/{id}', [PriceController::class, 'edit'])->name('price.edit');
-Route::put('/update/{id}', [PriceController::class, 'update'])->name('price.update');
+    Route::get('/', [PriceController::class, 'index'])->name('price.index');
+    //Route::post('/store', [PriceController::class, 'store'])->name('price.store');
+    //Route::put('/edit/{id}', [PriceController::class, 'edit'])->name('price.edit');
+    Route::put('/update/{id}', [PriceController::class, 'update'])->name('price.update');
+});
+//export files
+Route::prefix('export')->middleware('auth')->group(function () {
+    Route::post('/donations', [ExportController::class, 'donations'])->name('export.donations');
+    Route::post('/bcp', [ExportController::class, 'bcp'])->name('export.bcp');
+    Route::post('/books', [ExportController::class, 'books'])->name('export.books');
+    Route::post('/cyc', [ExportController::class, 'cyc'])->name('export.cyc');
+    Route::post('/devotions', [ExportController::class, 'devotions'])->name('export.devotions');
+    Route::post('/feedbacks', [ExportController::class, 'feedbacks'])->name('export.feedbacks');
+    Route::post('/hymnals', [ExportController::class, 'hymnals'])->name('export.hymnals');
+    Route::post('/testimony', [ExportController::class, 'testimony'])->name('export.testimony');
 });

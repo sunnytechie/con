@@ -42,7 +42,7 @@
 
                     <div class="mb-3">
                         <label>Audio Cover (Get Images from Pixabay)</label>
-                        <input type="url" id="thumbnail" name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" value="{{ $audioThumbnail ?? old('thumbnail') }}" placeholder="Thumbnail url" required>
+                        <input type="file" id="thumbnail" name="thumbnail" class="form-control dropify @error('thumbnail') is-invalid @enderror"  accept=".png, .jpg" data-default-file="{{ $media->thumbnail }}">
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
 
                     <div class="mb-3">
                         <label for="audio">Audio File</label>
-                        <input name="audio" class="form-control @error('audio') is-invalid @enderror" type="file" id="audio">
+                        <input name="audio" class="form-control dropify @error('audio') is-invalid @enderror" type="file" accept=".mp3" id="audio">
 
                             @error('audio')
                                 <span class="invalid-feedback" role="alert">

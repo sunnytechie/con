@@ -8,11 +8,11 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Audio/Podcasts</h3>
-                <a class="btn btn-default modal-effect" href="#new" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Audio </a>
+                <a class="btn btn-default" href="{{ route('media.audio.create') }}" data-bs-effect="effect-scale"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> New Audio </a>
             </div>
 
             <!-- MODAL EFFECTS -->
-            <div class="modal fade" id="new">
+            {{-- <div class="modal fade" id="new">
 
                 <div class="modal-dialog modal-dialog-centered" role="document">
 
@@ -34,7 +34,7 @@
                     </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="card-body">
                 <div class="table-responsive">

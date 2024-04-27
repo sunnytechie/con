@@ -28,7 +28,7 @@
 
                     <div class="mb-4">
                         <label for="thumbnail">Video Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" placeholder="provide url for thumbnail" type="url" id="thumbnail">
+                        <input name="thumbnail" accept=".png, .jpg" class="form-control dropify @error('thumbnail') is-invalid @enderror" placeholder="provide url for thumbnail" type="file" id="thumbnail" data-height="200">
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
@@ -38,8 +38,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="video">Video (Optional if you're providing a URL)</label>
-                        <input name="video" accept=".mp4" class="form-control @error('video') is-invalid @enderror" type="file" id="video">
+                        <label for="video">Upload Video</label>
+                        <input name="video" accept=".mp4" class="form-control dropify @error('video') is-invalid @enderror" type="file" id="video" data-height="200">
 
                             @error('video')
                                 <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="url">Youtube video ID</label>
+                        <label for="url">Youtube video ID(Leave empty if uploading)</label>
                         <input name="url" class="form-control @error('url') is-invalid @enderror" type="text" id="url" placeholder="8954bghjb">
 
                             @error('url')

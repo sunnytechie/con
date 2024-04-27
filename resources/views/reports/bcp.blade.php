@@ -7,7 +7,20 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">BCP Puchased Report</h3>
-                <a class="btn btn-default modal-effect" href="#newPurchase" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </a>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="dropdown">
+                        <form id="all" action="{{ route('export.bcp') }}" method="POST">@csrf<input type="hidden" id="tag" name="tag" value="all"></form>
+                        <form id="thismonth" action="{{ route('export.bcp') }}" method="POST">@csrf<input type="hidden" id="tag" name="tag" value="thismonth"></form>
+                        <button class="btn btn-info modal-effect dropdown-toggle" data-bs-effect="effect-scale" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Download Report
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><button type="submit" form="thismonth" class="dropdown-item">This Month</button></li>
+                          <li><button type="submit" form="all" class="dropdown-item">All Report</button></li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-default modal-effect" href="#newPurchase" data-bs-effect="effect-scale" data-bs-toggle="modal"> <span><i class="fa fa-plus-circle px-2" aria-hidden="true"></i></span> Purchase manually </a>
+                </div>
             </div>
 
             <!-- MODAL EFFECTS -->

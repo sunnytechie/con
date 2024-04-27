@@ -2,7 +2,7 @@
 @section('content')
      <!-- Row -->
  <div class="row row-sm">
-    <div class="col-md-6 offset-md-2">
+    <div class="col-md-8 offset-md-2">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Upload Video</h3>

@@ -7,6 +7,20 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Feedback Recieved</h3>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="dropdown">
+                        <form id="all" action="{{ route('export.feedbacks') }}" method="POST">@csrf<input type="hidden" id="tag" name="tag" value="all"></form>
+                        <form id="thismonth" action="{{ route('export.feedbacks') }}" method="POST">@csrf<input type="hidden" id="tag" name="tag" value="thismonth"></form>
+                        <button class="btn btn-info modal-effect dropdown-toggle" data-bs-effect="effect-scale" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Download Report
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><button type="submit" form="thismonth" class="dropdown-item">This Month</button></li>
+                          <li><button type="submit" form="all" class="dropdown-item">All Report</button></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
 

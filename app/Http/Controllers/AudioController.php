@@ -21,7 +21,7 @@ class AudioController extends Controller
             'category_id' => 'required',
             'audio' => 'required|mimes:mp3,m4a,ogg,oga,wav|max:20000',
             //'url' => '',
-            'thumbnail' => 'required|url',
+            'thumbnail' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
             'duration' => 'required',
             'downloadable' => 'nullable',
             'notification' => 'nullable',
@@ -37,6 +37,10 @@ class AudioController extends Controller
         //Var for type of media
         $type = 'audio';
 
+        $imagePath = request('thumbnail')->store('media/audio/images', 'public');
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image->save();
+
         ////if ($request->hasFile('audio')) {
             $audioPath = request('audio')->store('media', 'public');
             $audio = Media::create([
@@ -44,9 +48,9 @@ class AudioController extends Controller
                 'description' => $request->description,
                 'category_id' => $request->category_id,
                 'audio' => $audioPath,
-                'thumbnail' => $request->thumbnail,
+                'thumbnail' => Env('APP_URL') . '/storage/' . $imagePath,
                 'duration' => $request->duration,
-                'downloadable' => $request->downloadable,
+                'downloadable' => 1,
                 'notification' => $request->notification,
                 'type' => $type,
             ]);
@@ -85,11 +89,11 @@ class AudioController extends Controller
             //var_dump($result);
         curl_close ( $ch );
 
-        return back()->with('success', 'Audio created successfully');
+        return redirect()->route('media.audio')->with('success', 'Audio created successfully');
     }
 
     //Edit Audio
-    public function edit(Media $id)
+    public function edit($id)
     {
         //Total number of videos
         $totalVideos = Media::where('type', 'video')->count();
@@ -100,7 +104,7 @@ class AudioController extends Controller
         //audios
         $audios = Media::all();
         //Variable to store the audio
-        $audio = Media::find($id->id);
+        $audio = Media::find($id);
         $audioID = $audio->id;
         $audioTitle = $audio->title;
         $audioDescription = $audio->description;
@@ -109,31 +113,42 @@ class AudioController extends Controller
         $audioUrl = $audio->url;
         $audioThumbnail = $audio->thumbnail;
         $audioDuration = $audio->duration;
-        $audioDownloadable = $audio->downloadable;
+        $audioDownloadable = 1;
         $audioNotification = $audio->notification;
         $title = $audioTitle;
+        $media = Media::find($id);
 
-        return view('media.audio.edit', compact('audio', 'categories', 'title', 'audios', 'audioID', 'audioTitle', 'audioDescription', 'audioCategory', 'audioAudio', 'audioUrl', 'audioThumbnail', 'audioDuration', 'audioDownloadable', 'audioNotification', 'totalVideos', 'totalAudios'));
+        return view('media.audio.edit', compact('audio', 'categories', 'title', 'audios', 'audioID', 'audioTitle', 'audioDescription', 'audioCategory', 'audioAudio', 'audioUrl', 'media', 'audioThumbnail', 'audioDuration', 'audioDownloadable', 'audioNotification', 'totalVideos', 'totalAudios'));
     }
 
     //Update Audio
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
+        $valaidation = Validator::make($request->all(), [
             'title' => 'required|max:255',
             'description' => 'required',
             'category_id' => 'required',
             'audio' => 'nullable|mimes:mp3,m4a,ogg,oga,wav|max:20000',
-            //'url' => '',
-            'thumbnail' => 'required|url',
+            'thumbnail' => 'nullable|mimes:png,jpg,jpeg,gif|max:10000',
             'duration' => 'required',
             'downloadable' => 'nullable',
             'notification' => 'nullable',
         ]);
 
+        if ($valaidation->fails()) {
+            $errors = implode(', ', $valaidation->errors()->all());
+            return back()->withInput()->with('success', $errors);
+        }
+
             //store audio
             if ($request->has('audio')) {
                 $audioPath = request('audio')->store('media', 'public');
+            }
+
+            if ($request->has('thumbnail')) {
+                $imagePath = request('thumbnail')->store('media/audio/images', 'public');
+                $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+                $image->save();
             }
 
             $audio = Media::find($id);
@@ -143,9 +158,11 @@ class AudioController extends Controller
             if ($request->has('audio')) {
                 $audio->audio = $audioPath;
             }
-            $audio->thumbnail = $request->thumbnail;
+            if ($request->has('thumbnail')) {
+                $audio->thumbnail = Env('APP_URL') . '/storage/' . $imagePath;
+            }
             $audio->duration = $request->duration;
-            $audio->downloadable = $request->downloadable;
+            $audio->downloadable = 1;
             $audio->notification = $request->notification;
             $audio->save();
 

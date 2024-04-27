@@ -29,7 +29,7 @@
 
                     <div class="mb-3">
                         <label>Audio Cover Thumbnail/Picture</label>
-                        <input name="thumbnail" class="form-control @error('thumbnail') is-invalid @enderror" type="url" id="thumbnail" placeholder="provide url for thumbnail" required>
+                        <input name="thumbnail" class="form-control dropify @error('thumbnail') is-invalid @enderror" type="file" id="thumbnail" accept=".png, jpg" required>
 
                             @error('thumbnail')
                                 <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
 
                     <div class="mb-3">
                         <label for="audio">Audio File</label>
-                        <input name="audio" class="form-control" type="file" id="audio">
+                        <input name="audio" class="form-control dropify" accept=".mp3" type="file" id="audio">
 
                             @error('audio')
                                 <span class="invalid-feedback" role="alert">

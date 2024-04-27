@@ -2,11 +2,11 @@
 
 namespace App\Exports;
 
-use App\Models\Testimony;
+use App\Models\Bcppurchase;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class TestimonyExport implements FromCollection, WithHeadings
+class BcpExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -17,13 +17,14 @@ class TestimonyExport implements FromCollection, WithHeadings
     {
         $this->exportMethod = $exportMethod;
     }
+
     public function collection()
     {
         if ($this->exportMethod == "thismonth") {
-            return Testimony::select('email', 'fullname', 'title', 'body', 'created_at')->whereYear('created_at', date('Y'))
+            return Bcppurchase::select('email', 'price', 'transaction_ref', 'transaction_status', 'created_at')->whereYear('created_at', date('Y'))
             ->whereMonth('created_at', date('m'))->get();
         } else {
-            return Testimony::select('email', 'fullname', 'title', 'body', 'created_at')->get();
+            return Bcppurchase::select('email', 'price', 'transaction_ref', 'transaction_status', 'created_at')->get();
         }
     }
 
@@ -31,9 +32,9 @@ class TestimonyExport implements FromCollection, WithHeadings
     {
         return [
             'Email',
-            'Fullname',
-            'Subject',
-            'Message',
+            'Price',
+            'Transaction Ref',
+            'Payment Status',
             'Date created',
         ];
     }
