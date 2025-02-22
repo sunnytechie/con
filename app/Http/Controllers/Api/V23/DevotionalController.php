@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v23;
 
 use App\Models\User;
 use App\Models\Study;
+use App\Models\Price;
 use Illuminate\Http\Request;
 use App\Models\Purchasedstudy;
 use Illuminate\Support\Carbon;
@@ -14,6 +15,29 @@ class DevotionalController extends Controller
 {
     public function yearsListingPrice($user_id, $study_id) {
         $user = User::find($user_id);
+        $study = Study::findOrFail($study_id);
+
+        switch ($study->type) {
+                case 1:
+                $price = Price::first()->daily_fountain;
+                break;
+                case 2:
+                $price = Price::first()->bible_study;
+                break;
+                case 3:
+                $price = Price::first()->daily_dynamite;
+                break;
+            default:
+                $price = 1000;
+                break;
+        }
+
+        if (!$study) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Study not found',
+            ], 404);
+        }
         if(!$user) {
             return response()->json([
                 'status' => false,
@@ -35,7 +59,7 @@ class DevotionalController extends Controller
             $yearsWithData[] = [
                 'year' => $year,
                 'access' => $access,
-                'price' => 500
+                'price' => $price
             ];
         }
 
