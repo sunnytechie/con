@@ -17,15 +17,31 @@ class DevotionalController extends Controller
         $user = User::find($user_id);
         $study = Study::findOrFail($study_id);
 
+        $price = Price::first();
         switch ($study->type) {
                 case 1:
-                $price = Price::first()->daily_fountain;
+                $priceList = [
+                    'naira' => $price->daily_fountain,
+                    'usd' => $price->daily_fountain_usd,
+                    'euro' => $price->daily_fountain_euro,
+                    'pounds' => $price->daily_fountain_pounds,
+                ];
                 break;
                 case 2:
-                $price = Price::first()->bible_study;
+                $priceList = [
+                    'naira' => $price->bible_study,
+                    'usd' => $price->bible_study_usd,
+                    'euro' => $price->bible_study_euro,
+                    'pounds' => $price->bible_study_pounds,
+                ];
                 break;
                 case 3:
-                $price = Price::first()->daily_dynamite;
+                $priceList = [
+                    'naira' => $price->daily_dynamite,
+                    'usd' => $price->daily_dynamite_usd,
+                    'euro' => $price->daily_dynamite_euro,
+                    'pounds' => $price->daily_dynamite_pounds,
+                ];
                 break;
             default:
                 $price = 1000;
@@ -59,7 +75,8 @@ class DevotionalController extends Controller
             $yearsWithData[] = [
                 'year' => $year,
                 'access' => $access,
-                'price' => $price
+                'price' => $price,
+                'priceList' => $priceList
             ];
         }
 
