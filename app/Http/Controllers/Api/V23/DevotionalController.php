@@ -17,33 +17,33 @@ class DevotionalController extends Controller
         $user = User::find($user_id);
         $study = Study::findOrFail($study_id);
 
-        $price = Price::first();
+        $prices = Price::first();
         switch ($study->type) {
                 case 1:
-                    $price = $price->daily_fountain;
+                    $price = $prices->daily_fountain;
                 $priceList = [
-                    'naira' => $price->daily_fountain,
-                    'usd' => $price->daily_fountain_usd,
-                    'euro' => $price->daily_fountain_euro,
-                    'pounds' => $price->daily_fountain_pounds,
+                    'naira' => $prices->daily_fountain,
+                    'usd' => $prices->daily_fountain_usd,
+                    'euro' => $prices->daily_fountain_euro,
+                    'pounds' => $prices->daily_fountain_pounds,
                 ];
                 break;
                 case 2:
-                    $price = $price->bible_study;
+                    $price = $prices->bible_study;
                 $priceList = [
-                    'naira' => $price->bible_study,
-                    'usd' => $price->bible_study_usd,
-                    'euro' => $price->bible_study_euro,
-                    'pounds' => $price->bible_study_pounds,
+                    'naira' => $prices->bible_study,
+                    'usd' => $prices->bible_study_usd,
+                    'euro' => $prices->bible_study_euro,
+                    'pounds' => $prices->bible_study_pounds,
                 ];
                 break;
                 case 3:
-                    $price = $price->daily_dynamite;
+                    $price = $prices->daily_dynamite;
                 $priceList = [
-                    'naira' => $price->daily_dynamite,
-                    'usd' => $price->daily_dynamite_usd,
-                    'euro' => $price->daily_dynamite_euro,
-                    'pounds' => $price->daily_dynamite_pounds,
+                    'naira' => $prices->daily_dynamite,
+                    'usd' => $prices->daily_dynamite_usd,
+                    'euro' => $prices->daily_dynamite_euro,
+                    'pounds' => $prices->daily_dynamite_pounds,
                 ];
                 break;
             default:
