@@ -20,6 +20,7 @@ class DevotionalController extends Controller
         $price = Price::first();
         switch ($study->type) {
                 case 1:
+                    $price = $price->daily_fountain;
                 $priceList = [
                     'naira' => $price->daily_fountain,
                     'usd' => $price->daily_fountain_usd,
@@ -28,6 +29,7 @@ class DevotionalController extends Controller
                 ];
                 break;
                 case 2:
+                    $price = $price->bible_study;
                 $priceList = [
                     'naira' => $price->bible_study,
                     'usd' => $price->bible_study_usd,
@@ -36,6 +38,7 @@ class DevotionalController extends Controller
                 ];
                 break;
                 case 3:
+                    $price = $price->daily_dynamite;
                 $priceList = [
                     'naira' => $price->daily_dynamite,
                     'usd' => $price->daily_dynamite_usd,
